@@ -20,7 +20,7 @@
 					#{memberEmail}, 
 					#{memberPw}, 
 					#{memberName},
-					#{memberPhone},
+					#{memberPhoneNumber},
 					#{memberSchool},
 					#{memberMajor},
 					#{memberAddmission},
@@ -36,7 +36,7 @@
 					#{memberEmail}, 
 					#{memberPw}, 
 					#{memberName},
-					#{memberPhone},
+					#{memberPhoneNumber},
 					#{authorities}
 				)
 		;
