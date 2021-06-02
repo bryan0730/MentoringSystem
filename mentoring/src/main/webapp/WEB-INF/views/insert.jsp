@@ -16,7 +16,7 @@
 	<br/>
 	이름 : <input type="text" name="memberName" id="memberName">
 	<br/>
-	전화번호 : <input type="text" name="memberPhone" id="memberPhone">
+	전화번호 : <input type="text" name="memberPhoneNumber" id="memberPhoneNumber">
 	<br/>
 	학교 : <input type="text" name="memberSchool" id="memberSchool">
 	<br/>

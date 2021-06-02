@@ -7,12 +7,11 @@ import lombok.Setter;
 @Setter
 public class MemberDomain {
 
-	//멘토 멘티 seq 구분 필요(아직 생각중)
-	
+	private String memberSeq;
 	private String memberEmail;
 	private String memberPw;
 	private String memberName;
-	private String memberPhone;
+	private String memberPhoneNumber;
 	private String memberSchool;
 	private String memberMajor;
 	private String memberAddmission;
