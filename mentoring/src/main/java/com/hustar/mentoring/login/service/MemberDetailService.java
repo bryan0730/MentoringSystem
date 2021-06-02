@@ -29,12 +29,10 @@ public class MemberDetailService implements UserDetailsService{
 	public void signUp(MemberDomain memberDomain) {
 		// TODO Auto-generated method stub
 		Role param = Role.valueOf(memberDomain.getAuthorities());
-		
 		signUpFactory.getInstance(param).insertMemberInfo(memberDomain);
 	}
 	
 	public int findBySeq(String memberEmail) {
-		
 		return memberMapper.findBySeq(memberEmail);
 	}
 

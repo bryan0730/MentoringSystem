@@ -10,5 +10,7 @@
 <h1>COMPLELETE</h1>
 
 <%= session.getAttribute("name")%>
+<a href="/menti">멘티</a>
+<a href="/mento">멘토</a>
 </body>
 </html>

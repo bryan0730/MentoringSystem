@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hustar.mentoring.login.domain.MemberDetails;
 import com.hustar.mentoring.login.domain.MemberDomain;
@@ -35,7 +36,7 @@ public class LoginController {
 		return "insert";
 	}
 	
-	@GetMapping("/menti")
+	@GetMapping("/common")
 	public String menti(Authentication auth, MemberDetails memberDetails) {
 		System.out.println("auth.getName() : "+auth.getName());
 		
@@ -43,5 +44,17 @@ public class LoginController {
 		System.out.println("memberDetails.getMemberEmail : "+memberDetails.getMemberEmail());
 		System.out.println("memberDetails.getMemberSeq() : "+memberDetails.getMemberSeq());
 		return "compelete";
+	}
+	
+	@GetMapping("/menti")
+	@ResponseBody
+	public String myTest() {
+		return "menti";
+	}
+	
+	@GetMapping("/mento")
+	@ResponseBody
+	public String test() {
+		return "mento";
 	}
 }

@@ -3,6 +3,8 @@ package com.hustar.mentoring.login.service;
 import org.springframework.context.annotation.Configuration;
 
 import com.hustar.mentoring.login.mapper.MemberMapper;
+import com.hustar.mentoring.login.service.impl.MentiSignUpImpl;
+import com.hustar.mentoring.login.service.impl.MentoSignUpImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,10 +18,10 @@ public class SignUpFactory {
 	public Judgement getInstance(Role role) {
 		switch(role) {
 			case ROLE_MEMBER : 
-				return new MentiSignUp(memberMapper);
+				return new MentiSignUpImpl(memberMapper);
 				
 			case ROLE_MENTO : 
-				return new MentoSignUp(memberMapper);
+				return new MentoSignUpImpl(memberMapper);
 		}
 		return null;
 	}
