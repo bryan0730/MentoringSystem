@@ -16,5 +16,5 @@ public class MemberDomain {
 	private String memberMajor;
 	private String memberAddmission;
 	private String memberTrack;
-	private String authorities;
+	private String authoritie;
 }

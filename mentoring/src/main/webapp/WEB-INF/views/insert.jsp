@@ -29,8 +29,8 @@
 	사진 : 생략
 	<br/>
 	권한 : 
-		<input type="radio" name="authorities" value="ROLE_MEMBER">멘티
-		<input type="radio" name="authorities" value="ROLE_MENTO">멘토
+		<input type="radio" name="authoritie" value="ROLE_MEMBER">멘티
+		<input type="radio" name="authoritie" value="ROLE_MENTO">멘토
 	<button type="submit">signUp</button>
 </form>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
