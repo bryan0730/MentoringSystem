@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hustar.mentoring.main.mapper.MainMapper">
+	<select id="selectBookingList" parameterType="com.hustar.mentoring.main.domain.MainDomain" resultType="com.hustar.mentoring.main.domain.MainDomain">
+		<![CDATA[
+			SELECT * FROM T_HUSTAR WHERE mentiSeq = #{mentiSeq}
+		]]>
+	</select>
+	
+	<insert id="insertBooking" parameterType="com.hustar.mentoring.main.domain.MainDomain" useGeneratedKeys="true" keyProperty="te_id">
+		<![CDATA[
+			INSERT INTO T_HUSTAR SET TE_TITLE=#{te_title}, TE_CONTENT=#{te_content}, TE_DATE=#{te_date}, TE_TIME=#{te_time}, TE_WAY=#{te_way}, mentiSeq = #{mentiSeq}
+		]]>
+	</insert>
+	
+	<update id="updateBooking" parameterType="com.hustar.mentoring.main.domain.MainDomain">
+		<![CDATA[
+			UPDATE T_HUSTAR SET
+			TE_TITLE=#{te_title}, TE_CONTENT=#{te_content}, TE_DATE=#{te_date}, TE_TIME=#{te_time}, TE_WAY=#{te_way}
+			WHERE te_id = #{te_id}
+		]]>
+	</update>
+	
+	
+	<delete id="deleteBooking" parameterType="com.hustar.mentoring.main.domain.MainDomain">
+		<![CDATA[
+			DELETE FROM T_HUSTAR
+			WHERE TE_ID = #{te_id}
+		]]>
+	</delete>
+</mapper>

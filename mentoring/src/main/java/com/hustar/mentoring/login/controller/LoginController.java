@@ -2,6 +2,7 @@ package com.hustar.mentoring.login.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,12 +37,15 @@ public class LoginController {
 	}
 	
 	@GetMapping("/menti")
-	public String menti(Authentication auth, MemberDetails memberDetails) {
+	public String menti(Authentication auth, MemberDetails memberDetails, Model model) {
 		System.out.println("auth.getName() : "+auth.getName());
 		
 		System.out.println("memberDetailsService.findBySeq(auth.getName) : "+memberDetailService.findBySeq(auth.getName()));
 		System.out.println("memberDetails.getMemberEmail : "+memberDetails.getMemberEmail());
 		System.out.println("memberDetails.getMemberSeq() : "+memberDetails.getMemberSeq());
-		return "compelete";
+		
+		int mentiSeq = memberDetailService.findBySeq(auth.getName());
+		model.addAttribute("mentiSeq", mentiSeq);
+		return "/main/index";
 	}
 }
