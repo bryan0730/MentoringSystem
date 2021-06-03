@@ -49,10 +49,13 @@ public class LoginController {
 		System.out.println("auth.getName() : "+auth.getName());		
 		System.out.println("memberDetailsService.findBySeq(auth.getName) : "+memberDetailService.findBySeq(auth.getName()));
 		System.out.println("memberDetails.getMemberEmail : "+memberDetails.getMemberEmail());
-		System.out.println("memberDetails.getMemberSeq() : "+memberDetails.getMemberSeq());
+		System.out.println("memberDetails.getMemberSeq() : "+memberDetails.getMemberSeq());		
+		int memberSeq = memberDetailService.findBySeq(auth.getName());
+		model.addAttribute("memberSeq", memberSeq);
 		
-		int mentiSeq = memberDetailService.findBySeq(auth.getName());
-		model.addAttribute("mentiSeq", mentiSeq);
+		MemberDetails authentication = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		String role = authentication.getAuthoritie();
+		model.addAttribute("role", role);
 		return "/main/index";
 	}
 	

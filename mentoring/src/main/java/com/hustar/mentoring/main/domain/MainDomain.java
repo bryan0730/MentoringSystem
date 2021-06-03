@@ -12,5 +12,6 @@ public class MainDomain {
 	private String te_date;
 	private String te_time;
 	private String te_way;
-	private int mentiSeq;
+	private int memberSeq;
+	private String role;
 }

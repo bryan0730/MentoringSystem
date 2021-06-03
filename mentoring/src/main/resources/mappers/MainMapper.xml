@@ -4,13 +4,14 @@
 <mapper namespace="com.hustar.mentoring.main.mapper.MainMapper">
 	<select id="selectBookingList" parameterType="com.hustar.mentoring.main.domain.MainDomain" resultType="com.hustar.mentoring.main.domain.MainDomain">
 		<![CDATA[
-			SELECT * FROM T_HUSTAR WHERE mentiSeq = #{mentiSeq}
+			SELECT * FROM T_HUSTAR WHERE memberSeq=#{memberSeq}
 		]]>
 	</select>
 	
 	<insert id="insertBooking" parameterType="com.hustar.mentoring.main.domain.MainDomain" useGeneratedKeys="true" keyProperty="te_id">
 		<![CDATA[
-			INSERT INTO T_HUSTAR SET TE_TITLE=#{te_title}, TE_CONTENT=#{te_content}, TE_DATE=#{te_date}, TE_TIME=#{te_time}, TE_WAY=#{te_way}, mentiSeq = #{mentiSeq}
+			INSERT INTO T_HUSTAR
+			 SET TE_TITLE=#{te_title}, TE_CONTENT=#{te_content}, TE_DATE=#{te_date}, TE_TIME=#{te_time}, TE_WAY=#{te_way}, memberSeq = #{memberSeq}
 		]]>
 	</insert>
 	

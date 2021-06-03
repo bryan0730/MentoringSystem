@@ -97,7 +97,8 @@ function setData(url, id) {
     let bookingDate = $('.calendar-active').attr('data-date-val');
     let bookingTime = $('.selected-item').text();
     let bookingWay = $('#on-off').val()
-    let seq = $("#mentiSeq").val()
+    let seq = $("#memberSeq").val()
+    let role = $("#role").val()
     let form;
     // 저장할 데이터 json으로
     if(id){
@@ -108,7 +109,6 @@ function setData(url, id) {
             te_date: bookingDate,
             te_time: bookingTime,
             te_way: bookingWay,
-            mentiSeq: seq
         }
     }else{
         form = {
@@ -117,7 +117,7 @@ function setData(url, id) {
             te_date: bookingDate,
             te_time: bookingTime,
             te_way: bookingWay,
-            mentiSeq: seq
+            memberSeq: seq,
         }
     }  
     // insertBooking controller에 통신 
@@ -141,9 +141,11 @@ function setData(url, id) {
 // 달력 뷰 띄우는 함수
 function setBookingView() {
     $('#calendar').evoCalendar({})
-    let seq = $("#mentiSeq").val()
+    let seq = $("#member").val()
+    let role = $("#role").val()
     let form = {
-        mentiSeq: seq
+        member: seq,
+        role: role
     }
     $.ajax({
         url: "listBooking",

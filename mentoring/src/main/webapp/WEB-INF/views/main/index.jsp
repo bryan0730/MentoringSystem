@@ -107,7 +107,9 @@
                 <button id="booking-cancle">취소</button>
             </div>
             <input type="hidden" id="eventId" name="eventId">
-            <input type="hidden" id="mentiSeq" name="mentiSeq" value="${mentiSeq}">
+            <input type="hidden" id="memberSeq" name="memberSeq" value="${memberSeq}">
+            <input type="hidden" id="e-mail" value="${name}">
+            <input type="hidden" id="role" value="${role}">
         </div>
     </div>
     <div class="footer">
