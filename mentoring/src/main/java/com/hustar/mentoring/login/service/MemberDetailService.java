@@ -28,7 +28,7 @@ public class MemberDetailService implements UserDetailsService{
 
 	public void signUp(MemberDomain memberDomain) {
 		// TODO Auto-generated method stub
-		Role param = Role.valueOf(memberDomain.getAuthorities());
+		Role param = Role.valueOf(memberDomain.getAuthoritie());
 		signUpFactory.getInstance(param).insertMemberInfo(memberDomain);
 	}
 	

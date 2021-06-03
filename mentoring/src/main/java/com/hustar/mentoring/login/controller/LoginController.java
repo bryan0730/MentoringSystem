@@ -1,6 +1,7 @@
 package com.hustar.mentoring.login.controller;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LoginController {
 	private final MemberDetailService memberDetailService;
+	
+	/*
+	 *  MemberDetails auth = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); -> 로그인 후 저장된 유저의 정보들을 MemberDetails 객체로 받음
+	 *  MemberDetails.get** -> MebmerDetails안에 있는 get 메서드를 사용하여 사용자 이름, 권한, 이메일 등 가져올 수 있음
+	 */
 	
 	
 	@RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST}) 
@@ -47,14 +53,17 @@ public class LoginController {
 	}
 	
 	@GetMapping("/menti")
-	@ResponseBody
 	public String myTest() {
+		MemberDetails auth = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println(auth.getAuthoritie());
 		return "menti";
 	}
 	
 	@GetMapping("/mento")
 	@ResponseBody
 	public String test() {
+		MemberDetails auth = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println(auth.getAuthoritie());
 		return "mento";
 	}
 }
