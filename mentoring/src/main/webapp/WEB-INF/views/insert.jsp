@@ -9,6 +9,7 @@
 <body>
 <form method="POST" action="/signUp">
 	아이디 : <input type="text" name="memberEmail" id="memberEmail">
+	<button type="button" id="emailCheck">중복확인</button>
 	<br/>
 	비밀번호 : <input type="password" name="memberPw" id="memberPw">
 	<br/>
@@ -31,9 +32,12 @@
 	권한 : 
 		<input type="radio" name="authoritie" value="ROLE_MEMBER">멘티
 		<input type="radio" name="authoritie" value="ROLE_MENTO">멘토
-	<button type="submit">signUp</button>
+	<button id="signUp" type="submit">signUp</button>
 </form>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
 <script src="Member/js/signUp.js"></script>
+
 </body>
 </html>

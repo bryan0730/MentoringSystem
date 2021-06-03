@@ -30,4 +30,16 @@ public class GlobalHandlerException {
 		return  new ResponseEntity<ErrorResponse>(response, HttpStatus.BAD_REQUEST);
 	}
 	
+	@ExceptionHandler(SignUpException.class)
+	protected ResponseEntity<ErrorResponse> duplicatedExceptionHandler(SignUpException e, HttpServletRequest request) {
+		log.error("EmailDuplicatedException- url:{}, trace:{}", request.getRequestURI(), e.getStackTrace());
+		final ErrorResponse response = new ErrorResponse(e.getErrorCode().getCode(),
+				e.getErrorCode().getDescription(),
+				"NO");
+		
+		return new ResponseEntity<ErrorResponse>(response, HttpStatus.OK);
+	}
+	
+
+	
 }
