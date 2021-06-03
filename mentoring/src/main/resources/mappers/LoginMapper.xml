@@ -25,7 +25,7 @@
 					#{memberMajor},
 					#{memberAddmission},
 					#{memberTrack},
-					#{authorities}
+					#{authoritie}
 				)
 		;
 	</insert>
@@ -37,7 +37,7 @@
 					#{memberPw}, 
 					#{memberName},
 					#{memberPhoneNumber},
-					#{authorities}
+					#{authoritie}
 				)
 		;
 	</insert>
