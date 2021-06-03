@@ -19,6 +19,7 @@ public enum ErrorCode {
 	, KIND_VALUE("ERROR_008", "KIND NOTHING")
 	
 	, AUTH_ERROR("ERROR_LOGIN", "찾을 수 없는 사용자입니다.")
+	, DUPLECATED_ERROR("ERROR_CHECK","중복된 Email입니다.")
 	;
 	
 	@Getter

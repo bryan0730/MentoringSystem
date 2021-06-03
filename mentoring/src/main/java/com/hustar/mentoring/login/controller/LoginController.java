@@ -66,7 +66,7 @@ public class LoginController {
 		return "menti";
 	}
 	
-	@GetMapping("/mento")
+	@GetMapping("/super")
 	@ResponseBody
 	public String test() {
 		MemberDetails auth = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

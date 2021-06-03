@@ -11,6 +11,6 @@
 
 <%= session.getAttribute("name")%>
 <a href="/menti">멘티</a>
-<a href="/mento">멘토</a>
+<a href="/super">멘토</a>
 </body>
 </html>
