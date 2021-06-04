@@ -2,32 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hustar.mentoring.main.mapper.MainMapper">
-	<select id="selectBookingList" parameterType="com.hustar.mentoring.main.domain.MainDomain" resultType="com.hustar.mentoring.main.domain.MainDomain">
+	<select id="selectBookingList" parameterType="com.hustar.mentoring.main.domain.BookingDomain" resultType="com.hustar.mentoring.main.domain.BookingDomain">
 		<![CDATA[
-			SELECT * FROM T_HUSTAR WHERE memberSeq=#{memberSeq}
+			SELECT * FROM booking WHERE memberSeq=#{memberSeq}
 		]]>
 	</select>
 	
-	<insert id="insertBooking" parameterType="com.hustar.mentoring.main.domain.MainDomain" useGeneratedKeys="true" keyProperty="te_id">
+	<insert id="insertBooking" parameterType="com.hustar.mentoring.main.domain.BookingDomain" useGeneratedKeys="true" keyProperty="te_id">
 		<![CDATA[
-			INSERT INTO T_HUSTAR
-			 SET TE_TITLE=#{te_title}, TE_CONTENT=#{te_content}, TE_DATE=#{te_date}, TE_TIME=#{te_time}, TE_WAY=#{te_way}, memberSeq = #{memberSeq}
+			INSERT INTO booking
+			 SET bookingTitle=#{bookingTitle}, bookingContent=#{bookingContent}, bookingDate=#{bookingDate}, bookingTime=#{bookingTime}, way=#{way}, memberSeq = #{memberSeq}, accept = #{accept}
 		]]>
 	</insert>
 	
-	<update id="updateBooking" parameterType="com.hustar.mentoring.main.domain.MainDomain">
+	<update id="updateBooking" parameterType="com.hustar.mentoring.main.domain.BookingDomain">
 		<![CDATA[
-			UPDATE T_HUSTAR SET
-			TE_TITLE=#{te_title}, TE_CONTENT=#{te_content}, TE_DATE=#{te_date}, TE_TIME=#{te_time}, TE_WAY=#{te_way}
-			WHERE te_id = #{te_id}
+			UPDATE booking SET
+			bookingTitle=#{bookingTitle}, bookingContent=#{bookingContent}, bookingDate=#{bookingDate}, bookingTime=#{bookingTime}, way=#{way}
+			WHERE bookingId = #{bookingId}
 		]]>
 	</update>
 	
 	
-	<delete id="deleteBooking" parameterType="com.hustar.mentoring.main.domain.MainDomain">
+	<delete id="deleteBooking" parameterType="com.hustar.mentoring.main.domain.BookingDomain">
 		<![CDATA[
-			DELETE FROM T_HUSTAR
-			WHERE TE_ID = #{te_id}
+			DELETE FROM booking
+			WHERE bookingId = #{bookingId}
 		]]>
 	</delete>
 </mapper>

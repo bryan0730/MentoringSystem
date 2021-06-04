@@ -8,7 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hustar.mentoring.main.domain.MainDomain;
+import com.hustar.mentoring.main.domain.BookingDomain;
 import com.hustar.mentoring.main.service.MainService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,23 +22,23 @@ public class MainController {
 	private final MainService mainService;
 	
 	@RequestMapping(value="/insertBooking")
-	public void BookingInsert(MainDomain mainDomain) throws Exception {
-		mainService.insertBooking(mainDomain);
+	public void BookingInsert(BookingDomain bookingDomain) throws Exception {
+		mainService.insertBooking(bookingDomain);
 	}
 	
 	@RequestMapping(value="/listBooking")
-	public List BookingList(MainDomain mainDomain) throws Exception {
-		List<MainDomain> BookingList = (List<MainDomain>)mainService.selectBookingList(mainDomain);
+	public List BookingList(BookingDomain bookingDomain) throws Exception {
+		List<BookingDomain> BookingList = (List<BookingDomain>)mainService.selectBookingList(bookingDomain);
 		return BookingList;
 	}
 	
 	@RequestMapping(value="/updateBooking")
-	public void BookingUpdate(MainDomain mainDomain) throws Exception {
-		mainService.updateBooking(mainDomain);
+	public void BookingUpdate(BookingDomain bookingDomain) throws Exception {
+		mainService.updateBooking(bookingDomain);
 	}
 	
 	@RequestMapping(value="/deleteBooking")
-	public void BookingDelete(MainDomain mainDomain) throws Exception {
-		mainService.deleteBooking(mainDomain);
+	public void BookingDelete(BookingDomain bookingDomain) throws Exception {
+		mainService.deleteBooking(bookingDomain);
 	}
 }

@@ -7,10 +7,13 @@ let day = today.getDay();  // 요일
 let checkDay;
 let week = ['일', '월', '화', '수', '목', '금', '토'];
 let checkDayArr;
+// 회원 확인 변수
+let memberSeq = $("#memberSeq").val()
+let memberRole = $("#role").val()
 
 
 //캘린더 뷰 띄우기
-setBookingView();
+setBookingView(memberSeq,memberRole);
 
 //예약하기 버튼 클릭
 $('.add-btn').bind('click', function () {
@@ -103,20 +106,20 @@ function setData(url, id) {
     // 저장할 데이터 json으로
     if(id){
         form = {
-            te_id: id,
-            te_title: title,
-            te_content: content,
-            te_date: bookingDate,
-            te_time: bookingTime,
-            te_way: bookingWay,
+            bookingId: id,
+            bookingTitle: title,
+            bookingContent: content,
+            bookingDate: bookingDate,
+            bookingTime: bookingTime,
+            way: bookingWay,
         }
     }else{
         form = {
-            te_title: title,
-            te_content: content,
-            te_date: bookingDate,
-            te_time: bookingTime,
-            te_way: bookingWay,
+            bookingTitle: title,
+            bookingContent: content,
+            bookingDate: bookingDate,
+            bookingTime: bookingTime,
+            way: bookingWay,
             memberSeq: seq,
         }
     }  
@@ -139,28 +142,34 @@ function setData(url, id) {
 };
 
 // 달력 뷰 띄우는 함수
-function setBookingView() {
+function setBookingView(seq, role) {
     $('#calendar').evoCalendar({})
-    let seq = $("#member").val()
-    let role = $("#role").val()
-    let form = {
-        member: seq,
-        role: role
+    let url;
+    let form;
+    let type;
+    if(role == "ROLE_MEMBER"){
+        url = "listBooking";
+        form = {
+            memberSeq: seq,
+            role: role
+        };
+        type = "event;"
     }
+    
     $.ajax({
-        url: "listBooking",
+        url: url,
         type: "POST",
         data: form,
         success: function (data) {
             data.forEach(element => {
                 $("#calendar").evoCalendar('addCalendarEvent', 
                     {
-                        id: element.te_id,
-                        name: element.te_title,
-                        date: element.te_date,
-                        badge: '시간 : ' + element.te_time, // Event badge (optional)
-                        description: element.te_content,
-                        type: "event"
+                        id: element.bookingId,
+                        name: element.bookingTitle,
+                        date: element.bookingDate,
+                        badge: '시간 : ' + element.bookingTime, // Event badge (optional)
+                        description: element.bookingContent,
+                        type: type
                     }
                 );
             });
