@@ -1,9 +1,8 @@
 /**
  * 
  */
-     $("input:radio[name=authorities]").click(function(){
-        
-        if($("input:radio[name=authorities]:checked").val()=='ROLE_MENTO'){
+     $("input:radio[name=authoritie]").click(function(){
+        if($("input:radio[name=authoritie]:checked").val()=='ROLE_MENTO'){
             $("#memberMajor").css("display", "none");
             $("#memberSchool").css("display", "none");
             $("#memberAddmission").css("display", "none");
