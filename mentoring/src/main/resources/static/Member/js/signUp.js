@@ -17,6 +17,30 @@
     });
     
 let duplicate = false;
+let password = document.getElementById('memberPw');
+let passwordCheck = document.getElementById('pwCheck');
+let pwSame = false;
+passwordCheck.addEventListener('blur', (eve) => {
+	if($('#memberPw').val() == $('#pwCheck').val()){
+		$('.pwMsg').html("패스워드 일치");
+		$('.pwMsg').css('color', 'blue');
+		pwSame = true;
+	} else{
+		$('.pwMsg').html("패스워드 불일치");
+		pwSame = false;
+	}
+ });
+password.addEventListener('blur', (eve) => {
+	if($('#memberPw').val() == $('#pwCheck').val()){
+		$('.pwMsg').html("패스워드 일치");
+		$('.pwMsg').css('color', 'blue');
+		pwSame = true;
+	} else{
+		$('.pwMsg').html("패스워드 불일치");
+		pwSame = false;
+	}
+ });
+
 
 $('#signUp').click(function(){
 	if($('#memberEmail').val() == ''){
@@ -66,8 +90,14 @@ $('#signUp').click(function(){
 		alert("중복확인하세요");
 		return false;
 	}
+	
+	if(!pwSame){
+		alert("비밀번호가 일치하지 않습니다.");
+		return false;
+	}
 	return true;
 });
+
 
 $('#emailCheck').click(function(){
 	$.ajax({

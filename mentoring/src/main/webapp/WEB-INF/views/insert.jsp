@@ -14,6 +14,7 @@
 	비밀번호 : <input type="password" name="memberPw" id="memberPw">
 	<br/>
 	비밀번호 확인 : <input type="password" name="pwCheck" id="pwCheck">
+	<div class="pwMsg" style="color:red;"></div>
 	<br/>
 	이름 : <input type="text" name="memberName" id="memberName">
 	<br/>
@@ -38,6 +39,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
 <script src="Member/js/signUp.js"></script>
- 
 </body>
 </html>
