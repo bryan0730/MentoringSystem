@@ -36,6 +36,7 @@ password.addEventListener('blur', (eve) => {
 		pwSame = true;
 	} else{
 		$('.pwMsg').html("패스워드 불일치");
+		$('.pwMsg').css('color', 'red');
 		pwSame = false;
 	}
  });
@@ -75,10 +76,35 @@ $('#signUp').click(function(){
 		return false;
 	}
 	const phoneRgx = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+	//const phoneRgx = /(^02.{0}|[0-9]{3})([0-9]+)([0-9){4})/, "$1-$2-$3"
 	if(!phoneRgx.test($('#memberPhoneNumber').val())){
 		alert("휴대폰 정규식 안맞음");
 		return false;
 	}
+	
+	if($('input[name="authoritie"]:checked').val() == 'ROLE_MEMBER'){
+		if($('#memberSchool').val() == ''){
+			alert("학교 입력");
+			return false;
+		}
+		
+		if($('#memberMajor').val() == ''){
+			alert('전공 입력');
+			return false;
+		}
+		
+		if($('#memberAddmission').val() == ''){
+			alert('입학년도 입력');
+			return false;
+		}
+		
+		if($('#memberTrack').val() == ''){
+			alert('트랙 입력');
+			return false;
+		}
+	}
+	
+	
 	
 	if($('input[name=authoritie]:radio:checked').length < 1){
 		alert("권한 인증하세요");
@@ -107,10 +133,12 @@ $('#emailCheck').click(function(){
         }),
         contentType:'application/json',
         success: function(data) {	
-        	alert(data.description);
+        	//alert(data.description);
         	if(data.detail == 'yes'){
+        		swal(data.description, data.description, "success");
         		duplicate = true;
         	}else{
+        		swal(data.description, data.description, "error");
         		duplicate = false;
         	}
         	console.log(duplicate);

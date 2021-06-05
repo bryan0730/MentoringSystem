@@ -1,5 +1,7 @@
 package com.hustar.mentoring.login.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -32,7 +34,7 @@ public class LoginController {
 	}
 	
 	@PostMapping(value = "/signUp")
-	public String signUp(MemberDomain member) throws Exception {
+	public String signUp(@Valid MemberDomain member) throws Exception {
 		memberDetailService.signUp(member);
 		return "/login";
 	}
