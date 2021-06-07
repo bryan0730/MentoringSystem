@@ -3,6 +3,9 @@ package com.hustar.mentoring.login.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -54,6 +57,18 @@ public class MemberDetailService implements UserDetailsService{
 			return responseMap;
 		}
 		return responseMap;
+	}
+	
+	@PostConstruct
+	public void postConstruct() {
+		
+		System.out.println(":::::::::::::::::::::::::::::::::::::::::::Bean 생성시 실행:::::::::::::::::::::::::::::::::::");
+	}
+
+	@PreDestroy
+	public void preDestory() {
+		
+		System.out.println(":::::::::::::::::::::::::::::::::::::::::::Bean 소멸시 실행:::::::::::::::::::::::::::::::::::");
 	}
 
 }

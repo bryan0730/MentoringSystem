@@ -1,5 +1,7 @@
 package com.hustar.mentoring.login.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -23,7 +25,7 @@ public class LoginController {
 	
 	/*
 	 *  MemberDetails auth = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); -> 로그인 후 저장된 유저의 정보들을 MemberDetails 객체로 받음
-	 *  MemberDetails.get** -> MebmerDetails안에 있는 get 메서드를 사용하여 사용자 이름, 권한, 이메일 등 가져올 수 있음
+	 *  auth.get** -> MebmerDetails안에 있는 get 메서드를 사용하여 사용자 이름, 권한, 이메일 등 가져올 수 있음
 	 */
 	
 	
@@ -32,11 +34,6 @@ public class LoginController {
 		return "login";
 	}
 	
-	@PostMapping(value = "/signUp")
-	public String signUp(MemberDomain member) throws Exception {
-		memberDetailService.signUp(member);
-		return "/login";
-	}
 	
 	@GetMapping("/sign")
 	public String sign() {
@@ -70,7 +67,8 @@ public class LoginController {
 	@ResponseBody
 	public String test() {
 		MemberDetails auth = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		System.out.println(auth.getAuthoritie());
+		System.out.println("패스워드 : "+auth.getPassword());
+		System.out.println("이메일 : "+auth.getMemberEmail());
 		return "mento";
 	}
 }
