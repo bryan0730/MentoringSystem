@@ -2,6 +2,8 @@ package com.hustar.mentoring.login.controller;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,5 +23,10 @@ public class LoginRestController {
 	public Map<String, String> emailCheck(@RequestBody MemberDomain memberDomain) {
 		System.out.println(memberDomain.getMemberEmail());
 		return memberDetailService.emailCheck(memberDomain);
+	}
+	
+	@PostMapping("/signUp")
+	public void signUp(@Valid MemberDomain member) throws Exception {
+		memberDetailService.signUp(member);
 	}
 }

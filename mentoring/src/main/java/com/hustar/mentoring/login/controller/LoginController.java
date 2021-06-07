@@ -33,11 +33,6 @@ public class LoginController {
 		return "login";
 	}
 	
-	@PostMapping(value = "/signUp")
-	public String signUp(@Valid MemberDomain member) throws Exception {
-		memberDetailService.signUp(member);
-		return "/login";
-	}
 	
 	@GetMapping("/sign")
 	public String sign() {

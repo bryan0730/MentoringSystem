@@ -11,10 +11,10 @@
 <h2><a href="/login">Mentoring</a></h2>
     <div class="sign_container">
         <h1>멘토링계정 정보를 입력해 주세요.</h1>
-        <form method="POST" action="/signUp">
+        <form method="POST" id="signForm">
             <p>멘토링계정 이메일</p>
             <div class="item email_box">
-                <input type="text" name="memberEmail" id="memberEmail" class="tb email" placeholder="이메일 입력">
+                <input type="text" name="memberEmail" id="memberEmail" class="tb email" placeholder="example@mentoring.com">
                 <button type="button" id="emailCheck">확인</button>
             </div>
             <ul class="list_des">
@@ -33,7 +33,7 @@
             </div>
             <p>전화번호</p>
             <div class="item phone_box">
-                <input type="text" name="memberPhoneNumber" id="memberPhoneNumber" class="tb phone" placeholder="전화번호">
+                <input type="text" name="memberPhoneNumber" id="memberPhoneNumber" class="tb phone" placeholder="ex) 010-0000-0000">
             </div>
             
             <div class="only_menti">
@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <button id="signUp" type="submit" class="sign_btn">Sign up</button>
+            <button id="signUp" type="button" class="sign_btn">Sign up</button>
         </form>
     </div>
 <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
