@@ -675,7 +675,11 @@
         var eventListEl = _.$elements.eventEl.find('.event-list');
         if (eventListEl.find('[data-event-index]').length === 0) eventListEl.empty();
         _.$active.events.push(event_data);
-        markup = '<div class="event-container" data-event-index="'+(event_data.id)+'" onclick="reviseEvent('+(event_data.id)+')">';
+        if(event_data.type == "birthday"){
+            markup = '<div class="event-container" data-event-index="'+(event_data.id)+'" onclick="reviseMentoEvent('+"'"+event_data.id+"'"+')">';
+        }else{
+            markup = '<div class="event-container" data-event-index="'+(event_data.id)+'" onclick="reviseEvent('+(event_data.id)+')">';
+        }
         markup += '<div class="event-icon"><div class="event-bullet-'+event_data.type+'"';
         if (event_data.color) {
             markup += 'style="background-color:'+event_data.color+'"'

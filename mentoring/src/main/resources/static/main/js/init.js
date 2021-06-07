@@ -165,6 +165,7 @@ function setData(url, id) {
     });
 };
 
+//멘토 데이터 추가
 function setDataMento(url, id) {
     let title = $('.booking-title').children('input').val();
     let content = $('.booking-content').children('textarea').val();
@@ -247,6 +248,8 @@ function setBookingView(seq, role) {
             alert("error");
         },
     });
+
+    //멘토일 경우 자기자신의 일정을 보여줌.
     if(role == "ROLE_MENTO"){
         $.ajax({
             url: "listSchedule",
@@ -284,14 +287,19 @@ function modalReset() {
 
 // 이벤트 상세보기
 function reviseEvent(index) {
-    let title = $('.event-container[data-event-index='+index+']').children('.event-info').children('.event-title').text().split('시간 : ');
-    let content = $('.event-container[data-event-index='+index+']').children('.event-info').children('.event-desc').text();
-    $('#revise-btn').removeClass('hidden');
-    $('#remove-btn').removeClass('hidden');
-    $('#booking-btn').addClass('hidden');
-    $('.booking-title').children('input').val(title[0]);
-    $('.booking-content').children('textarea').val(content);  
-    $('#on-off').val("on")
-    $('.time-item').removeClass('selected-item'); 
-    veiwModal(title[1], index);
+    if(role == "ROLE_MEMBER"){
+        let title = $('.event-container[data-event-index='+index+']').children('.event-info').children('.event-title').text().split('시간 : ');
+        let content = $('.event-container[data-event-index='+index+']').children('.event-info').children('.event-desc').text();
+        $('#revise-btn').removeClass('hidden');
+        $('#remove-btn').removeClass('hidden');
+        $('#booking-btn').addClass('hidden');
+        $('.booking-title').children('input').val(title[0]);
+        $('.booking-content').children('textarea').val(content);  
+        $('#on-off').val("on")
+        $('.time-item').removeClass('selected-item'); 
+        veiwModal(title[1], index);
+    }else{
+        reviseMentoEvent(index);
+    }
+    
 }
