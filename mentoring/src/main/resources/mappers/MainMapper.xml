@@ -3,15 +3,48 @@
 
 <mapper namespace="com.hustar.mentoring.main.mapper.MainMapper">
 	<select id="selectBookingList" parameterType="com.hustar.mentoring.main.domain.BookingDomain" resultType="com.hustar.mentoring.main.domain.BookingDomain">
+	<if test='role == "ROLE_MEMBER"'>
 		<![CDATA[
 			SELECT * FROM booking WHERE memberSeq=#{memberSeq}
 		]]>
+	</if>
+	<if test='role == "ROLE_MENTO"'>
+		<![CDATA[
+			SELECT * FROM booking as booking
+			LEFT OUTER JOIN mentoring as mentoring ON booking.memberSeq = mentoring.mentiSeq
+			WHERE mentoring.mentoSeq=#{memberSeq}
+		]]>
+	</if>
 	</select>
+	
+	<select id="selectScheduleTime" parameterType="com.hustar.mentoring.main.domain.ScheduleDomain" resultType="com.hustar.mentoring.main.domain.ScheduleDomain">
+
+		<![CDATA[
+			SELECT scheduleTime FROM mento_schedule WHERE scheduleDate = "${scheduleDate}"
+		]]>
+
+	</select>
+	
+	<select id="selectScheduleList" parameterType="com.hustar.mentoring.main.domain.ScheduleDomain" resultType="com.hustar.mentoring.main.domain.ScheduleDomain">
+
+		<![CDATA[
+			SELECT * FROM mento_schedule WHERE memberSeq = ${memberSeq}
+		]]>
+
+	</select>
+	
 	
 	<insert id="insertBooking" parameterType="com.hustar.mentoring.main.domain.BookingDomain" useGeneratedKeys="true" keyProperty="te_id">
 		<![CDATA[
 			INSERT INTO booking
 			 SET bookingTitle=#{bookingTitle}, bookingContent=#{bookingContent}, bookingDate=#{bookingDate}, bookingTime=#{bookingTime}, way=#{way}, memberSeq = #{memberSeq}, accept = #{accept}
+		]]>
+	</insert>
+	
+	<insert id="insertSchedule" parameterType="com.hustar.mentoring.main.domain.ScheduleDomain" useGeneratedKeys="true" keyProperty="scheduleId">
+		<![CDATA[
+			INSERT INTO mento_schedule
+			 SET scheduleTitle=#{scheduleTitle}, scheduleDate=#{scheduleDate}, scheduleTime=#{scheduleTime},memberSeq = #{memberSeq}
 		]]>
 	</insert>
 	
@@ -30,4 +63,7 @@
 			WHERE bookingId = #{bookingId}
 		]]>
 	</delete>
+	
+	
+	
 </mapper>

@@ -580,12 +580,22 @@
                         '</div>';
 
             // events
-            markup += '<div class="calendar-events">'+
+            if($('#role').val() == "ROLE_MEMBER"){
+                markup += '<div class="calendar-events">'+
                             '<div class="event-header"><p></p></div>'+
                             '<div class="event-list"></div>'+
                             '<div class="event-btn-box"><button class="add-btn">예약하기</button>'+
                             '<button class="detail-btn">상세보기</button></div>'+
                         '</div>';
+            }else{
+                markup += '<div class="calendar-events">'+
+                            '<div class="event-header"><p></p></div>'+
+                            '<div class="event-list"></div>'+
+                            '<div class="event-btn-box"><button class="add-btn-mento">일정등록</button>'+
+                            '<button class="detail-btn">상세보기</button></div>'+
+                        '</div>';
+            }
+            
 
             // --- Finally, build it now! --- //
             _.$elements.calendarEl.html(markup);

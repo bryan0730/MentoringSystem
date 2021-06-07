@@ -14,4 +14,5 @@ public class BookingDomain {
 	private String way;
 	private int memberSeq;
 	private int accept;
+	private String role;
 }

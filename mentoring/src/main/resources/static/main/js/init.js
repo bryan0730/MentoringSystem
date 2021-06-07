@@ -23,10 +23,14 @@ $('.add-btn').bind('click', function () {
     veiwModal()
 });
 
-
 // 예약버튼 클릭
 $('#booking-btn').bind('click', function () {
-    setData("insertBooking");
+    if(memberRole == "ROLE_MEMBER"){
+        setData("insertBooking");
+    }else{
+        setDataMento("insertSchedule");
+    }
+    
 });
 
 // 수정버튼 클릭 
@@ -44,18 +48,17 @@ $('#remove-btn').on('click', function(){
 //취소버튼 클릭
 $('#booking-cancle').bind('click',function(){modalReset()});
 
-// 모달 뷰 시간 보이게 안보이게
-$('.calendar-time').bind('click', function () {
-    $('.time-select').toggleClass('hidden');
-    $('.fa-chevron-down').toggleClass('before');
-});
-
 // 시간 선택 
 $('.time-item').bind('click', function (e) {
-    if($(this).attr('data-select-val') != 'selected'){
-        $('.time-item').removeClass('selected-item');
+    if(memberRole == "ROLE_MEMBER"){
+        if($(this).attr('data-select-val') != 'selected'){
+            $('.time-item').removeClass('selected-item');
+            $(this).toggleClass('selected-item');
+        }  
+    }else{
         $(this).toggleClass('selected-item');
-    }   
+    }
+     
 });
 
 //예약, 수정화면 띄우기
@@ -141,21 +144,66 @@ function setData(url, id) {
     });
 };
 
+function setDataMento(url, id) {
+    let title = $('.booking-title').children('input').val();
+    let content = $('.booking-content').children('textarea').val();
+    let bookingDate = $('.calendar-active').attr('data-date-val');
+    let bookingTime = $('.selected-item')[0].textContent;
+    let seq = $("#memberSeq").val()
+    let form;
+    for(let i = 1; i < $('.selected-item').length; i++){
+        bookingTime += ','+$('.selected-item')[i].textContent
+    }
+    // 저장할 데이터 json으로
+    if(id){
+        form = {
+            bookingId: id,
+            bookingTitle: title,
+            bookingContent: content,
+            bookingDate: bookingDate,
+            bookingTime: bookingTime,
+            way: bookingWay,
+        }
+    }else{
+        form = {
+            scheduleTitle: title,
+            scheduleDate: bookingDate,
+            scheduleTime: bookingTime,
+            memberSeq: seq,
+        }
+    }  
+    // insertBooking controller에 통신 
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: form,
+        success: function () {
+            modalReset();
+            alert("저장되었습니다.");                
+        },
+        error: function () {
+            alert("error");
+        },
+        complete: function (){
+            location.reload();
+        }
+    });
+
+};
+
 // 달력 뷰 띄우는 함수
 function setBookingView(seq, role) {
     $('#calendar').evoCalendar({})
     let url;
     let form;
     let type;
-    if(role == "ROLE_MEMBER"){
         url = "listBooking";
         form = {
             memberSeq: seq,
             role: role
         };
-        type = "event;"
-    }
-    
+        type = "event";
+    // 예약 현황  
     $.ajax({
         url: url,
         type: "POST",
@@ -178,6 +226,31 @@ function setBookingView(seq, role) {
             alert("error");
         },
     });
+    if(role == "ROLE_MENTO"){
+        $.ajax({
+            url: "listSchedule",
+            type: "POST",
+            data: form,
+            success: function (data) {
+                data.forEach(element => {
+                    let st = element.scheduleTime.split(',');
+                    console.log(st);
+                    $("#calendar").evoCalendar('addCalendarEvent', 
+                        {
+                            id: "mento_"+element.scheduleId,
+                            name: element.scheduleTitle,
+                            date: element.scheduleDate,
+                            badge: '시간 : ' + st[0] + ' ~ ' + st[st.length-1], // Event badge (optional)
+                            type: "birthday"
+                        }
+                    );
+                });
+            },
+            error: function () {
+                alert("error");
+            },
+        });
+    }  
 };
 // 모달뷰 초기화
 function modalReset() {
