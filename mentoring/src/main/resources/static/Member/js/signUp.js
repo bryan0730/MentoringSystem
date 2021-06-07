@@ -1,19 +1,13 @@
 /**
  * 
  */
-     $("input:radio[name=authoritie]").click(function(){
-        if($("input:radio[name=authoritie]:checked").val()=='ROLE_MENTO'){
-            $("#memberMajor").css("display", "none");
-            $("#memberSchool").css("display", "none");
-            $("#memberAddmission").css("display", "none");
-            $("#memberTrack").css("display", "none");
-        }else{
-            $("#memberMajor").css("display", "inline-block");
-            $("#memberSchool").css("display", "inline-block");
-            $("#memberAddmission").css("display", "inline-block");
-            $("#memberTrack").css("display", "inline-block");                   
-        }
-    });
+$("input:radio[name=authoritie]").click(function(){
+	if($("input:radio[name=authoritie]:checked").val()=='ROLE_MENTO'){
+       $(".only_menti").css("display", "none");
+	}else{
+        $(".only_menti").css("display", "inline-block");
+	}
+});
     
 let duplicate = false;
 let password = document.getElementById('memberPw');
