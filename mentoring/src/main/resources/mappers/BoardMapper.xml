@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hustar.mentoring.board.mapper.BoardMapper">
+
+
+
+	<!-- 게시판 목록 조회 -->
+	<select id="selectBoardList" parameterType="com.hustar.mentoring.board.domain.BoardDomain" resultType="com.hustar.mentoring.board.domain.BoardDomain">
+		<![CDATA[
+			SELECT * FROM BOARD WHERE(1) 
+		]]>
+		
+					
+		<!-- 검색어가 null이 아니고 값이 비어 있지 않으면 쿼리문 추가 -->
+		<if test='searchKeyword != null and !searchKeyword.equals("")'>
+			<!-- 검색조건이 제목만 일때 -->
+ 			<if test='searchCondition == "boardTitle" '>
+				<![CDATA[
+ 					AND BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')
+ 				]]>
+ 			</if>
+			<!-- 검색조건이 내용만 일때 -->
+			<if test='searchCondition == "boardContents" '>
+				<![CDATA[
+					AND BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%')
+				]]>
+			</if>
+			<!-- 검색조건이 작성자만 일때 -->
+			<if test='searchCondition == "boardWriter" '>
+				<![CDATA[
+					AND BOARDWRITER LIKE CONCAT('%',#{searchKeyword},'%')
+				]]>
+			</if>
+			<!-- 검색조건이 제목+내용 일때 -->
+			<if test='searchCondition == "all" '>
+				<![CDATA[
+					AND (BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')) OR (BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%'))
+				]]>
+			</if>
+		</if>
+		
+		<![CDATA[
+			ORDER BY BOARDSEQ DESC
+			LIMIT #{firstpage}, #{pageUnit}
+		]]>
+	
+	</select>
+	
+	<!-- 게시글 상세 조회 -->
+	<select id="selectBoardView" parameterType="com.hustar.mentoring.board.domain.BoardDomain" resultType="com.hustar.mentoring.board.domain.BoardDomain">
+		<![CDATA[
+			SELECT * FROM BOARD WHERE BOARDSEQ = #{boardSeq}
+		]]>
+	</select>
+	
+	<!-- 게시글 전체 개수 -->
+	<select id="selectBoardTotalCnt" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM BOARD
+		]]>	
+	</select>
+	
+	<!-- 게시글 등록 -->
+	<insert id="insertBoard" parameterType="com.hustar.mentoring.board.domain.BoardDomain" useGeneratedKeys="true" keyProperty="boardSeq">
+		<![CDATA[
+			INSERT INTO BOARD SET
+				BOARDTITLE=#{boardTitle},
+				BOARDFILEPATH1=#{boardFilePath1},
+				BOARDFILEPATH2=#{boardFilePath2},
+				BOARDFILEPATH3=#{boardFilePath3},
+				BOARDCONTENTS=#{boardContents},
+				BOARDCREATEDATE=NOW()
+		]]>
+	</insert>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateBoard" parameterType="com.hustar.mentoring.board.domain.BoardDomain">
+		<![CDATA[
+			UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS = #{boardContents}, BOARDFILEPATH1 = #{boardFilePath1}, BOARDMODIFYDATE = NOW()
+			WHERE BOARDSEQ = #{boardSeq}
+		]]>
+	</update>
+
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard" parameterType = "com.hustar.mentoring.board.domain.BoardDomain">
+		<![CDATA[
+			DELETE FROM BOARD WHERE BOARDSEQ = #{boardSeq}
+		]]>
+	</delete>
+	
+	
+</mapper>
