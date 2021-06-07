@@ -14,4 +14,5 @@ public interface MainService {
 	public List<?> selectScheduleTime(ScheduleDomain scheduleDomain) throws Exception;
 	public void insertSchedule(ScheduleDomain scheduleDomain) throws Exception;
 	public List<?> selectScheduleList(ScheduleDomain scheduleDomain) throws Exception;
+	public void updateSchedule(ScheduleDomain scheduleDomain) throws Exception;
 }

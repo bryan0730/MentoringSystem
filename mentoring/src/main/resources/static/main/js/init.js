@@ -36,7 +36,11 @@ $('#booking-btn').bind('click', function () {
 // 수정버튼 클릭 
 $('#revise-btn').on('click', function () {
     let id = $('#eventId').val();
-    setData("updateBooking",id);
+    if(memberRole == "ROLE_MEMBER"){
+        setData("updateBooking",id);
+    }else{
+        setDataMento("updateSchedule",id);
+    }
 });
 
 //삭제버튼 클릭
@@ -46,7 +50,9 @@ $('#remove-btn').on('click', function(){
 });
 
 //취소버튼 클릭
-$('#booking-cancle').bind('click',function(){modalReset()});
+$('.booking-cancle').bind('click',function(){
+    modalReset()
+});
 
 // 시간 선택 
 $('.time-item').bind('click', function (e) {
@@ -73,11 +79,13 @@ function veiwModal(selectedTime, id) {
     todayLable = week[checkDay];
 
     // 예약된 시간 선택 불가능 또는 표시 하기
-    for(let i = 0; i<$('.event-container').length; i++){
-        let time = $('.event-title').children('span')[i].innerHTML.split('시간 : ')[1];
-        $('.time-item')[timeItem[time]].setAttribute('data-select-val','selected');
-
-    }
+    if(memberRole == "ROLE_MEMBER"){
+        for(let i = 0; i<$('.event-container').length; i++){
+            let time = $('.event-title').children('span')[i].innerHTML.split('시간 : ')[1];
+            $('.time-item')[timeItem[time]].setAttribute('data-select-val','selected');
+    
+        }
+    }  
     $.ajax({
         url: "getMentoScheduleTime",
         type: "POST",
@@ -111,7 +119,11 @@ function veiwModal(selectedTime, id) {
     if (checkDayArr[2] - year > 0 || (checkDayArr[2] - year == 0 && checkDayArr[0] - month > 0) || ((checkDayArr[2] - year) == 0 && (checkDayArr[0] - month) ==0 && (checkDayArr[1] - date) >= 0)){
         //모달 뷰를 띄워서 예약을 처리
         $('.calendar-date').children('.date').text(checkDayArr[0] + '.' + checkDayArr[1] + '(' + todayLable + ')')
-        $('#modal-view').removeClass('hidden');
+        if(memberRole == "ROLE_MEMBER"){
+            $('#modal-view').removeClass('hidden');
+        }else{
+            $('#modal-view-mento').removeClass('hidden');
+        }
     }else{
         modalReset()
     }
@@ -168,7 +180,6 @@ function setData(url, id) {
 //멘토 데이터 추가
 function setDataMento(url, id) {
     let title = $('.booking-title').children('input').val();
-    let content = $('.booking-content').children('textarea').val();
     let bookingDate = $('.calendar-active').attr('data-date-val');
     let bookingTime = $('.selected-item')[0].textContent;
     let seq = $("#memberSeq").val()
@@ -179,12 +190,10 @@ function setDataMento(url, id) {
     // 저장할 데이터 json으로
     if(id){
         form = {
-            bookingId: id,
-            bookingTitle: title,
-            bookingContent: content,
-            bookingDate: bookingDate,
-            bookingTime: bookingTime,
-            way: bookingWay,
+            scheduleId: id,
+            scheduleTitle: title,
+            scheduleDate: bookingDate,
+            scheduleTime: bookingTime,
         }
     }else{
         form = {
@@ -283,6 +292,10 @@ function modalReset() {
     $('#on-off').val("on")
     $('.time-item').removeClass('selected-item');
     $('#modal-view').addClass('hidden');
+    $('#modal-view-mento').addClass('hidden');
+    for(let i =0 ; i<$(".time-item").length; i++){
+        $(".time-item")[i].setAttribute('data-select-val','')
+    }
 }
 
 // 이벤트 상세보기

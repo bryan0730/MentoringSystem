@@ -105,7 +105,7 @@
                 <button id="booking-btn">예약</button>
                 <button id="revise-btn">수정</button>
                 <button id="remove-btn">삭제</button>
-                <button id="booking-cancle">취소</button>
+                <button class="booking-cancle">취소</button>
             </div>
         </div>
     </div>
@@ -146,7 +146,38 @@
                 <button id="booking-btn">예약</button>
                 <button id="revise-btn">수정</button>
                 <button id="remove-btn">삭제</button>
-                <button id="booking-cancle">취소</button>
+                <button class="booking-cancle">취소</button>
+            </div>
+        </div>
+    </div>
+    </c:if>
+    <c:if test="${role eq 'ROLE_MENTO'}" >
+    <div id="modal-view-mento" class="modal-view-mento hidden">
+        <div class="bg"></div>
+        <div class="modalBox">
+            <div class="booking-title">
+                <span>제목 : </span>
+            </div>
+            <div class="calendar-date">
+                <i class="far fa-calendar-alt"></i>
+                <span class="date"></span>
+            </div>
+            <div class="calendar-time">
+                <i class="far fa-clock"></i>
+                <span class="time">시간 : </span>
+            </div>
+            <div class="booking-way">
+                <span>상담방법 : </span>
+            </div>
+            <div class="booking-content">
+                <div>
+                    <span>상담내용 : </span>
+                </div>
+            </div> 
+            <div class="button-area">
+                <button id="accept-btn">수락</button>
+                <button id="reject-btn">거절</button>
+                <button class="booking-cancle">취소</button>
             </div>
         </div>
     </div>

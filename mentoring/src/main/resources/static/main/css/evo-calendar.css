@@ -1021,7 +1021,7 @@ button.icon-button > span.chevron-arrow-right {
 
 
 /* 예약하기 view */
-.modal-view {
+.modal-view, .modal-view-mento {
     position: fixed;
     top: 0;
     left: 0;
@@ -1033,7 +1033,7 @@ button.icon-button > span.chevron-arrow-right {
     z-index: 9999;
   }
 
-  .modal-view .bg {
+  .modal-view, .modal-view-mento .bg {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
@@ -1068,8 +1068,6 @@ button.icon-button > span.chevron-arrow-right {
   .before{
     transform: rotate(180deg);
 }
-
-
 .time-select > ul > span{
     display: block;
     margin-bottom: 5px;

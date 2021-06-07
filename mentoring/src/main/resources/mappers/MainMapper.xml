@@ -56,6 +56,14 @@
 		]]>
 	</update>
 	
+	<update id="updateSchedule" parameterType="com.hustar.mentoring.main.domain.ScheduleDomain">
+		<![CDATA[
+			UPDATE mento_schedule SET
+			scheduleTitle=#{scheduleTitle}, scheduleDate=#{scheduleDate}, scheduleTime=#{scheduleTime}
+			WHERE scheduleId = #{scheduleId}
+		]]>
+	</update>
+	
 	
 	<delete id="deleteBooking" parameterType="com.hustar.mentoring.main.domain.BookingDomain">
 		<![CDATA[
