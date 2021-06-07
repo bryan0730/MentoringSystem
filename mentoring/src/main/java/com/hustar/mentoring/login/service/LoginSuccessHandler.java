@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import com.hustar.mentoring.login.domain.MemberDetails;
 
 public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 
@@ -19,7 +22,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		HttpSession session = request.getSession();
 		session.setAttribute("name", authentication.getName());
 		System.out.println("SuccessHandler : "+ authentication.getName());
-		response.sendRedirect("/menti");
+		response.sendRedirect("/common");
 	}
 
 }

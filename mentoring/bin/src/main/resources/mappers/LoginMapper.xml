@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hustar.mentoring.login.mapper.MemberMapper">
+	
+	<select id="findByuser" resultType="com.hustar.mentoring.login.domain.MemberDetails">
+		select *
+		from(
+		select mentiSeq as memberSeq, memberEmail, memberPw, memberPhoneNumber, memberPhoto, Authoritie from menti 
+		union 
+		select mentoSeq as memberSeq, memberEmail, memberPw, memberPhoneNumber, memberPhoto, Authoritie from mento
+		) a
+		WHERE memberEmail = #{username}
+		;
+	</select>
+	
+	<insert id="mentiSignUp">
+		INSERT INTO MENTI(memberEmail, memberPw, memberName, memberPhoneNumber, memberSchool, memberMajor, memberAddmission, memberTrack, Authoritie)
+		VALUES ( 
+					#{memberEmail}, 
+					#{memberPw}, 
+					#{memberName},
+					#{memberPhoneNumber},
+					#{memberSchool},
+					#{memberMajor},
+					#{memberAddmission},
+					#{memberTrack},
+					#{authorities}
+				)
+		;
+	</insert>
+	
+	<insert id="mentoSignUp">
+		INSERT INTO MENTO(memberEmail, memberPw, memberName, memberPhoneNumber, Authoritie)
+		VALUES ( 
+					#{memberEmail}, 
+					#{memberPw}, 
+					#{memberName},
+					#{memberPhoneNumber},
+					#{authorities}
+				)
+		;
+	</insert>
+	
+	<select id="findBySeq" resultType="int">
+		SELECT memberSeq
+		from(
+		select mentiSeq as memberSeq, memberEmail, memberPw, memberPhoneNumber, memberPhoto, Authoritie from menti 
+		union 
+		select mentoSeq as memberSeq, memberEmail, memberPw, memberPhoneNumber, memberPhoto, Authoritie from mento
+		) a
+		WHERE memberEmail = #{memberEmail}
+		;
+	</select>
+</mapper>
