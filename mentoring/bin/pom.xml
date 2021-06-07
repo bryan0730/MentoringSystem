@@ -92,18 +92,6 @@
 		    <artifactId>hibernate-validator</artifactId>
 		    <version>6.0.1.Final</version>
 		</dependency>
-		<!-- img파일 업로드 관련 -->
-		<dependency>
-		  <groupId>commons-fileupload</groupId>
-		  <artifactId>commons-fileupload</artifactId>
-		  <version>1.2.1</version>
-		</dependency>
-		<!-- img파일 업로드 관련 -->
-		<dependency>
-		  <groupId>commons-io</groupId>
-		  <artifactId>commons-io</artifactId>
-		  <version>1.4</version>
-		</dependency>
 	</dependencies>
 
 	<build>

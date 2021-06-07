@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hustar.mentoring.mypage.mapper.MyPageMapper">
+	
+	<!-- 조회 -->
+	<select id="mento" resultType="com.hustar.mentoring.login.domain.MemberDomain">
+			SELECT menti.* FROM menti AS menti 
+			LEFT OUTER JOIN mentoring AS mentoring ON menti.mentiSeq = mentoring.mentiSeq 
+			LEFT OUTER JOIN mento AS mento ON mento.mentoSeq = mentoring.mentoSeq 
+			WHERE mentoring.mentoSeq = #{Seq};
+	</select>
+	
+	
+	<!-- 특정 이름 조회 -->
+	<select id="mypage" parameterType="int" resultType="com.hustar.mentoring.login.domain.MemberDomain">
+	
+		select mentiSeq as memberSeq, memberEmail, memberName,memberPw, memberPhoneNumber, Authoritie, memberSchool, memberMajor, memberTrack, memberAddmission
+		 from menti where mentiSeq = #{Seq};
+		
+	</select>
+	
+	<!-- 멘토 마이페이지에서 학생 관리버튼 눌렀을 때 해당 학생의 마이페이지로 이동 -->
+	<select id="mypagementi" resultType="com.hustar.mentoring.login.domain.MemberDomain">
+	
+		select mentiSeq as memberSeq, memberEmail, memberName,memberPw, memberPhoneNumber, Authoritie from menti where memberName = #{memberName};
+		
+	</select>
+	
+	<!-- 마이페이지 수정 -->
+	<update id="mypageModify">
+	
+		UPDATE MENTI SET 
+		MEMBERNAME = #{memberdomain.memberName},
+		MEMBEREMAIL = #{memberdomain.memberEmail},
+		MEMBERPW = #{memberdomain.memberPw},
+		MEMBERPHONENUMBER = #{memberdomain.memberPhoneNumber},
+		MEMBERSCHOOL = #{memberdomain.memberSchool},
+		MEMBERMAJOR = #{memberdomain.memberMajor},
+		MEMBERADDMISSION = #{memberdomain.memberAddmission},
+		MEMBERTRACK = #{memberdomain.memberTrack}
+		WHERE MENTISEQ = #{mentiSeq};
+		
+		
+	</update>
+	
+</mapper>

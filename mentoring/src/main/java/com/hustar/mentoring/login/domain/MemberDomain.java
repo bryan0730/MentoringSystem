@@ -32,4 +32,5 @@ public class MemberDomain {
 	
 	@NotEmpty
 	private String authoritie;
+	
 }
