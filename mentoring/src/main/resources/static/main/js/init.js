@@ -77,7 +77,28 @@ function veiwModal(selectedTime, id) {
         let time = $('.event-title').children('span')[i].innerHTML.split('시간 : ')[1];
         $('.time-item')[timeItem[time]].setAttribute('data-select-val','selected');
 
-    }if(selectedTime){
+    }
+    $.ajax({
+        url: "getMentoScheduleTime",
+        type: "POST",
+        data: {
+            scheduleDate : $('.calendar-active').attr('data-date-val')
+        },
+        success: function (data) {
+            data.forEach(element => {
+                console.log(element.scheduleTime)
+                // 예약된 시간 선택 불가능 또는 표시 하기
+                let st = element.scheduleTime.split(',');
+                for(let i = 0; i<st.length; i++){
+                    $('.time-item')[timeItem[st[i]]].setAttribute('data-select-val','selected');
+                }
+            });
+        },
+        error: function () {
+            alert("error");
+        },
+    });
+    if(selectedTime){
         $('.time-item')[timeItem[selectedTime]].setAttribute('data-select-val','');
         if([timeItem[selectedTime]] < 2){
             $(`.time-am li:nth-child(${parseInt([timeItem[selectedTime]])+2})`).addClass('selected-item');
