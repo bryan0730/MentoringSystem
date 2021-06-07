@@ -5,14 +5,14 @@
 	<select id="selectBookingList" parameterType="com.hustar.mentoring.main.domain.BookingDomain" resultType="com.hustar.mentoring.main.domain.BookingDomain">
 	<if test='role == "ROLE_MEMBER"'>
 		<![CDATA[
-			SELECT * FROM booking WHERE memberSeq=#{memberSeq}
+			SELECT * FROM booking WHERE mentiSeq=#{mentiSeq}
 		]]>
 	</if>
 	<if test='role == "ROLE_MENTO"'>
 		<![CDATA[
 			SELECT * FROM booking as booking
-			LEFT OUTER JOIN mentoring as mentoring ON booking.memberSeq = mentoring.mentiSeq
-			WHERE mentoring.mentoSeq=#{memberSeq}
+			LEFT OUTER JOIN mentoring as mentoring ON booking.mentiSeq = mentoring.mentiSeq
+			WHERE mentoring.mentoSeq=#{mentoSeq}
 		]]>
 	</if>
 	</select>
@@ -28,7 +28,7 @@
 	<select id="selectScheduleList" parameterType="com.hustar.mentoring.main.domain.ScheduleDomain" resultType="com.hustar.mentoring.main.domain.ScheduleDomain">
 
 		<![CDATA[
-			SELECT * FROM mento_schedule WHERE memberSeq = ${memberSeq}
+			SELECT * FROM mento_schedule WHERE mentoSeq = ${mentoSeq}
 		]]>
 
 	</select>
@@ -37,14 +37,14 @@
 	<insert id="insertBooking" parameterType="com.hustar.mentoring.main.domain.BookingDomain" useGeneratedKeys="true" keyProperty="te_id">
 		<![CDATA[
 			INSERT INTO booking
-			 SET bookingTitle=#{bookingTitle}, bookingContent=#{bookingContent}, bookingDate=#{bookingDate}, bookingTime=#{bookingTime}, way=#{way}, memberSeq = #{memberSeq}, accept = #{accept}
+			 SET bookingTitle=#{bookingTitle}, bookingContent=#{bookingContent}, bookingDate=#{bookingDate}, bookingTime=#{bookingTime}, way=#{way}, mentiSeq = #{mentiSeq}, accept = #{accept}
 		]]>
 	</insert>
 	
 	<insert id="insertSchedule" parameterType="com.hustar.mentoring.main.domain.ScheduleDomain" useGeneratedKeys="true" keyProperty="scheduleId">
 		<![CDATA[
 			INSERT INTO mento_schedule
-			 SET scheduleTitle=#{scheduleTitle}, scheduleDate=#{scheduleDate}, scheduleTime=#{scheduleTime},memberSeq = #{memberSeq}
+			 SET scheduleTitle=#{scheduleTitle}, scheduleDate=#{scheduleDate}, scheduleTime=#{scheduleTime},mentoSeq = #{mentoSeq}
 		]]>
 	</insert>
 	

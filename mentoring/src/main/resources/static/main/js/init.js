@@ -156,7 +156,7 @@ function setData(url, id) {
             bookingDate: bookingDate,
             bookingTime: bookingTime,
             way: bookingWay,
-            memberSeq: seq,
+            mentiSeq: seq,
         }
     }  
     // insertBooking controller에 통신 
@@ -200,7 +200,7 @@ function setDataMento(url, id) {
             scheduleTitle: title,
             scheduleDate: bookingDate,
             scheduleTime: bookingTime,
-            memberSeq: seq,
+            mentoSeq: seq,
         }
     }  
     // insertBooking controller에 통신 
@@ -224,13 +224,14 @@ function setDataMento(url, id) {
 
 // 달력 뷰 띄우는 함수
 function setBookingView(seq, role) {
+    console.log(seq);
     $('#calendar').evoCalendar({})
     let url;
     let form;
     let type;
         url = "listBooking";
         form = {
-            memberSeq: seq,
+            mentiSeq: seq,
             role: role
         };
         type = "event";
