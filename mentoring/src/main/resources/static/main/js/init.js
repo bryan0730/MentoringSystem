@@ -46,7 +46,11 @@ $('#revise-btn').on('click', function () {
 //삭제버튼 클릭
 $('#remove-btn').on('click', function(){
     let id = $('#eventId').val();
-    setData("deleteBooking",id);
+    if(memberRole == "ROLE_MEMBER"){
+        setData("deleteBooking",id);
+    }else{
+        setDataMento("deleteSchedule",id);
+    }   
 });
 
 //취소버튼 클릭
@@ -191,7 +195,7 @@ function setData(url, id, accept) {
 function setDataMento(url, id) {
     let title = $('.booking-title').children('input').val();
     let bookingDate = $('.calendar-active').attr('data-date-val');
-    let bookingTime = $('.selected-item')[0].textContent;
+    let bookingTime = $('.selected-item') ? "" : $('.selected-item')[0].textContent;
     let seq = $("#memberSeq").val();
     let form;
     for(let i = 1; i < $('.selected-item').length; i++){
@@ -264,7 +268,7 @@ function setBookingView(seq, role) {
                         description: element.bookingContent,
                         type: "event",
                         color: element.accept == 0 ? "#ff7575" : "#7cee35",
-                        name:element.mentiName,
+                        userName:element.mentiName,
                         way:element.way,
                         accept:element.accept
                     }
@@ -280,7 +284,7 @@ function setBookingView(seq, role) {
                         description: element.bookingContent,
                         type: "event",
                         color: element.accept == 0 ? "#ff7575" : "#7cee35",
-                        name:element.mentiName,
+                        userName:element.mentiName,
                         way:element.way,
                         accept:element.accept
                     }
@@ -344,7 +348,7 @@ function reviseEvent(index) {
         $('#revise-btn').removeClass('hidden');
         $('#remove-btn').removeClass('hidden');
         $('#booking-btn').addClass('hidden');
-        $('.booking-title').children('input').val(title[0]);
+        $('#modal-view').children('.booking-title').children('input').val(title[0]);
         $('.booking-content').children('textarea').val(content[0]);  
         $('#on-off').val("on")
         $('.time-item').removeClass('selected-item'); 

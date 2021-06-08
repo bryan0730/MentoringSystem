@@ -69,9 +69,9 @@ function reviseMentoEvent(id) {
         let content = $('.event-container[data-event-index='+splitId[0]+']').children('.event-info').children('.event-desc').text();
         let way = $('.event-container[data-event-index='+splitId[0]+']').children('.event-info').children('.event-way').text();
         $('.time').text("시간 : " + title[1]);
-        $('.booking-title').children('span').text('제목 : ' + title[0]);
-        $('.booking-way').children('span').text(way);
-        $('.booking-content').children('span').text("상담내용 : " +'\n'+ content);
+        $('.booking-title-mento').children('span').text('제목 : ' + title[0]);
+        $('.booking-way-mento').children('span').text(way);
+        $('.booking-content-mento').children('span').text("상담내용 : " +'\n'+ content);
         veiwModal(title[1],splitId[1]); 
     }
 
@@ -87,7 +87,7 @@ $('#accept-btn').on('click', function(){
 
 function acceptBooking() {
     let eventId = $('#eventId').val();
-    let title =$('.event-name').children('span').text().split('이름: ')[1]+ " 멘토링" 
+    let title =$('.event-name').children('span').text().split('이름: ')[1]+ "의 멘토링" 
     console.log(title);
     let date = $('.calendar-active').attr('data-date-val');
     let time = $('.event-container[data-event-index='+eventId+']').children('.event-info').children('.event-title').children('span').text().split("시간 : ")[1];

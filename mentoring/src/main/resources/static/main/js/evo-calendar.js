@@ -692,7 +692,7 @@
         if (event_data.badge) markup += '<span>'+event_data.badge+'</span>';
         markup += '</p>'
         if (event_data.description) markup += '<p class="event-desc">'+event_data.description+'</p>';
-        if (event_data.way) markup += '<p class="event-name">'+'<span>'+'이름: '+event_data.name+' '+'</span>'+'</p>'+'<p class="event-way">'+ '<span>' +'상담방법: '+event_data.way+'</span>' + '</p>'
+        if (event_data.way) markup += '<p class="event-name">'+'<span>'+'이름: '+event_data.userName+' '+'</span>'+'</p>'+'<p class="event-way">'+ '<span>' +'상담방법: '+event_data.way+'</span>' + '</p>'
         markup += '</div>';
         markup += '</div>';
         eventListEl.append(markup);

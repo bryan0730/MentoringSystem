@@ -155,7 +155,7 @@
     <div id="modal-view-mento" class="modal-view-mento hidden">
         <div class="bg"></div>
         <div class="modalBox">
-            <div class="booking-title">
+            <div class="booking-title-mento">
                 <span>제목 : </span>
             </div>
             <div class="calendar-date">
@@ -166,10 +166,10 @@
                 <i class="far fa-clock"></i>
                 <span class="time">시간 : </span>
             </div>
-            <div class="booking-way">
+            <div class="booking-way-mento">
                 <span>상담방법 : </span>
             </div>
-            <div class="booking-content">
+            <div class="booking-content-mento">
                 <span>상담내용 : </span>
             </div> 
             <div class="button-area">

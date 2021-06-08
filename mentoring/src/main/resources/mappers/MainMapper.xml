@@ -81,6 +81,13 @@
 		]]>
 	</delete>
 	
+	<delete id="deleteSchedule" parameterType="com.hustar.mentoring.main.domain.ScheduleDomain">
+		<![CDATA[
+			DELETE FROM mento_schedule
+			WHERE scheduleId = #{scheduleId}
+		]]>
+	</delete>
+	
 	
 	
 </mapper>

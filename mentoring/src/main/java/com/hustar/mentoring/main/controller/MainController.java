@@ -63,4 +63,9 @@ public class MainController {
 	public void ScheduleUpdate(ScheduleDomain scheduleDomain) throws Exception {
 		mainService.updateSchedule(scheduleDomain);
 	}
+	
+	@RequestMapping(value="/deleteSchedule")
+	public void ScheduleDelete(ScheduleDomain scheduleDomain) throws Exception {
+		mainService.deleteSchedule(scheduleDomain);
+	}
 }

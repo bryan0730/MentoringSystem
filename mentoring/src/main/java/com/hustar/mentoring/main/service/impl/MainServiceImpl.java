@@ -59,4 +59,11 @@ public class MainServiceImpl implements MainService{
 	public void updateSchedule(ScheduleDomain scheduleDomain) throws Exception {
 		mainMapper.updateSchedule(scheduleDomain);
 	}
+	
+	@Override
+	public void deleteSchedule(ScheduleDomain scheduleDomain) throws Exception {
+		mainMapper.deleteSchedule(scheduleDomain);
+	}
+	
+	
 }

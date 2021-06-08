@@ -19,4 +19,6 @@ public interface MainMapper {
 	public void insertSchedule(ScheduleDomain scheduleDomain);
 	public List<?> selectScheduleList(ScheduleDomain scheduleDomain);
 	public void updateSchedule(ScheduleDomain scheduleDomain);
+	public void deleteSchedule(ScheduleDomain scheduleDomain);
+	
 }
