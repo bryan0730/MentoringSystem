@@ -68,9 +68,8 @@ $('.time-item').bind('click', function (e) {
 });
 
 //예약, 수정화면 띄우기
-function veiwModal(selectedTime, id) {
+function veiwModal(selectedTime) {
     let timeItem = {"10:00":0, "11:00":1, "12:00":2, "1:00":3, "2:00":4, "3:00":5, "4:00":6, "5:00":7}
-    $('#eventId').val(id);
     //선택한 날짜 받아오는 변수
     checkDayArr = $('.calendar-active').attr('data-date-val').split('/');
 
@@ -83,7 +82,6 @@ function veiwModal(selectedTime, id) {
         for(let i = 0; i<$('.event-container').length; i++){
             let time = $('.event-title').children('span')[i].innerHTML.split('시간 : ')[1];
             $('.time-item')[timeItem[time]].setAttribute('data-select-val','selected');
-    
         }
     }  
     $.ajax({
@@ -130,25 +128,36 @@ function veiwModal(selectedTime, id) {
 }
 
 //데이터 추가, 수정, 삭제
-function setData(url, id) {
+function setData(url, id, accept) {
     let title = $('.booking-title').children('input').val();
     let content = $('.booking-content').children('textarea').val();
     let bookingDate = $('.calendar-active').attr('data-date-val');
     let bookingTime = $('.selected-item').text();
-    let bookingWay = $('#on-off').val()
-    let seq = $("#memberSeq").val()
-    let role = $("#role").val()
+    let bookingWay = $('#on-off').val();
+    let seq = $("#memberSeq").val();
+    let role = $("#role").val();
+    let name = $('#name').val();
     let form;
     // 저장할 데이터 json으로
     if(id){
-        form = {
-            bookingId: id,
-            bookingTitle: title,
-            bookingContent: content,
-            bookingDate: bookingDate,
-            bookingTime: bookingTime,
-            way: bookingWay,
+        if(role == "ROLE_MEMBER"){
+            form = {
+                bookingId: id,
+                bookingTitle: title,
+                bookingContent: content,
+                bookingDate: bookingDate,
+                bookingTime: bookingTime,
+                way: bookingWay,
+                role: role
+            }
+        }else{
+            form = {
+                bookingId: id,
+                accept: accept,
+                role: role
+            }
         }
+        
     }else{
         form = {
             bookingTitle: title,
@@ -157,6 +166,7 @@ function setData(url, id) {
             bookingTime: bookingTime,
             way: bookingWay,
             mentiSeq: seq,
+            mentiName: name
         }
     }  
     // insertBooking controller에 통신 
@@ -182,10 +192,10 @@ function setDataMento(url, id) {
     let title = $('.booking-title').children('input').val();
     let bookingDate = $('.calendar-active').attr('data-date-val');
     let bookingTime = $('.selected-item')[0].textContent;
-    let seq = $("#memberSeq").val()
+    let seq = $("#memberSeq").val();
     let form;
     for(let i = 1; i < $('.selected-item').length; i++){
-        bookingTime += ','+$('.selected-item')[i].textContent
+        bookingTime += ','+$('.selected-item')[i].textContent;
     }
     // 저장할 데이터 json으로
     if(id){
@@ -224,34 +234,59 @@ function setDataMento(url, id) {
 
 // 달력 뷰 띄우는 함수
 function setBookingView(seq, role) {
-    console.log(seq);
     $('#calendar').evoCalendar({})
-    let url;
     let form;
-    let type;
-        url = "listBooking";
+    if(role == "ROLE_MEMBER"){
         form = {
             mentiSeq: seq,
             role: role
         };
-        type = "event";
+    }else{
+        form = {
+            mentoSeq: seq,
+            role: role
+        };
+    }       
     // 예약 현황  
     $.ajax({
-        url: url,
+        url: "listBooking",
         type: "POST",
         data: form,
         success: function (data) {
             data.forEach(element => {
-                $("#calendar").evoCalendar('addCalendarEvent', 
+                if(memberRole == "ROLE_MEMBER"){
+                    $("#calendar").evoCalendar('addCalendarEvent', 
                     {
                         id: element.bookingId,
                         name: element.bookingTitle,
                         date: element.bookingDate,
                         badge: '시간 : ' + element.bookingTime, // Event badge (optional)
                         description: element.bookingContent,
-                        type: type
+                        type: "event",
+                        color: element.accept == 0 ? "#ff7575" : "#7cee35",
+                        name:element.mentiName,
+                        way:element.way,
+                        accept:element.accept
                     }
                 );
+                }else{
+                    if(element.accept == 0){
+                        $("#calendar").evoCalendar('addCalendarEvent', 
+                    {
+                        id: element.bookingId,
+                        name: element.bookingTitle,
+                        date: element.bookingDate,
+                        badge: '시간 : ' + element.bookingTime, // Event badge (optional)
+                        description: element.bookingContent,
+                        type: "event",
+                        color: element.accept == 0 ? "#ff7575" : "#7cee35",
+                        name:element.mentiName,
+                        way:element.way,
+                        accept:element.accept
+                    }
+                );
+                    }
+                }               
             });
         },
         error: function () {
@@ -268,14 +303,15 @@ function setBookingView(seq, role) {
             success: function (data) {
                 data.forEach(element => {
                     let st = element.scheduleTime.split(',');
-                    console.log(st);
+                    let mentoringChecker = element.scheduleTitle.indexOf("멘토링");
                     $("#calendar").evoCalendar('addCalendarEvent', 
                         {
                             id: "mento_"+element.scheduleId,
                             name: element.scheduleTitle,
                             date: element.scheduleDate,
-                            badge: '시간 : ' + st[0] + ' ~ ' + st[st.length-1], // Event badge (optional)
-                            type: "birthday"
+                            badge: st.length-1 == 0 ? '시간 : ' + st[0] : '시간 : ' + st[0] + ' ~ ' + st[st.length-1], // Event badge (optional)
+                            type: "birthday",
+                            color: mentoringChecker == -1 ? "#3ca8ff" : "#7cee35",
                         }
                     );
                 });
@@ -301,14 +337,15 @@ function modalReset() {
 
 // 이벤트 상세보기
 function reviseEvent(index) {
-    if(role == "ROLE_MEMBER"){
-        let title = $('.event-container[data-event-index='+index+']').children('.event-info').children('.event-title').text().split('시간 : ');
-        let content = $('.event-container[data-event-index='+index+']').children('.event-info').children('.event-desc').text();
+    $('#eventId').val(index);
+    let title = $('.event-container[data-event-index='+index+']').children('.event-info').children('.event-title').text().split('시간 : ');
+    let content = $('.event-container[data-event-index='+index+']').children('.event-info').children('.event-desc').text().split('상담방법:');
+    if(memberRole == "ROLE_MEMBER"){
         $('#revise-btn').removeClass('hidden');
         $('#remove-btn').removeClass('hidden');
         $('#booking-btn').addClass('hidden');
         $('.booking-title').children('input').val(title[0]);
-        $('.booking-content').children('textarea').val(content);  
+        $('.booking-content').children('textarea').val(content[0]);  
         $('#on-off').val("on")
         $('.time-item').removeClass('selected-item'); 
         veiwModal(title[1], index);

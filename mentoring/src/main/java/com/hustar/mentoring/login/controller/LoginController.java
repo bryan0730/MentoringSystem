@@ -52,7 +52,9 @@ public class LoginController {
 		
 		MemberDetails authentication = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 		String role = authentication.getAuthoritie();
+		String name = authentication.getMemberName();
 		model.addAttribute("role", role);
+		model.addAttribute("userName", name);
 		return "/main/index";
 	}
 	

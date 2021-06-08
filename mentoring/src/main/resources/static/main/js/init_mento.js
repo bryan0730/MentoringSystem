@@ -32,6 +32,10 @@ function veiwModalSchedule(selected,id) {
                     for(let i = 0; i<st.length; i++){
                         $('.time-item')[timeItem[st[i]]].setAttribute('data-select-val','selected');
                     }
+                }else{
+                    for(let i = 0; i<st.length; i++){
+                        $('.time-item')[timeItem[st[i]]].setAttribute('data-select-val','');
+                    }
                 }  
             });
         },
@@ -40,7 +44,6 @@ function veiwModalSchedule(selected,id) {
         },
     });
   
-
     //오늘 이후의 날짜만 예약 가능하게 하는 조건문
     if (checkDayArr[2] - year > 0 || (checkDayArr[2] - year == 0 && checkDayArr[0] - month > 0) || ((checkDayArr[2] - year) == 0 && (checkDayArr[0] - month) ==0 && (checkDayArr[1] - date) >= 0)){
         //모달 뷰를 띄워서 예약을 처리
@@ -51,33 +54,66 @@ function veiwModalSchedule(selected,id) {
     }
 }
 
-//학생 예약현황
-function viewBooking(params) {
-    $('#modal-view-mento').removeClass('hidden');
 
-}
-
+// event 클릭시 처리
 function reviseMentoEvent(id) {
     id = String(id);
     let findString = "mento_";
-    let title = $('.event-container[data-event-index='+id+']').children('.event-info').children('.event-title').text().split('시간 : ')[0];
-    if(id.indexOf(findString) != -1){
-        let splitId = id.split(findString);
-        $('.booking-title').children('input').val(title);
+    let splitId = id.split(findString);
+    let title = $('.event-container[data-event-index='+id+']').children('.event-info').children('.event-title').text().split('시간 : ');
+    if(id.indexOf(findString) != -1){      
+        $('.booking-title').children('input').val(title[0]);
         $('#booking-btn').addClass('hidden');
         veiwModalSchedule(1,splitId[1])
     }else{
-        $('.booking-title').children('span').text(title);
-        veiwModal(); 
+        let content = $('.event-container[data-event-index='+splitId[0]+']').children('.event-info').children('.event-desc').text();
+        let way = $('.event-container[data-event-index='+splitId[0]+']').children('.event-info').children('.event-way').text();
+        $('.time').text("시간 : " + title[1]);
+        $('.booking-title').children('span').text('제목 : ' + title[0]);
+        $('.booking-way').children('span').text(way);
+        $('.booking-content').children('span').text("상담내용 : " +'\n'+ content);
+        veiwModal(title[1],splitId[1]); 
     }
 
     
-    // id.split("mento_");
-    // if(id[1]){
-    //     console.log(id[1]);
-    // }else{
-    //     console.log(id);
-    // }
+}
+
+// 수락버튼 클릭
+$('#accept-btn').on('click', function(){
+    let id = $('#eventId').val();
+    setData("updateBooking",id,1);
+    acceptBooking();
+});
+
+function acceptBooking() {
+    let eventId = $('#eventId').val();
+    let title =$('.event-name').children('span').text().split('이름: ')[1]+ " 멘토링" 
+    console.log(title);
+    let date = $('.calendar-active').attr('data-date-val');
+    let time = $('.event-container[data-event-index='+eventId+']').children('.event-info').children('.event-title').children('span').text().split("시간 : ")[1];
+    let seq = $('#memberSeq').val();
+    let form = {
+            scheduleTitle: title,
+            scheduleDate: date,
+            scheduleTime: time,
+            mentoSeq: seq,
+    }
+    // insertBooking controller에 통신 
+    $.ajax({
+        url: "insertSchedule",
+        type: "POST",
+        data: form,
+        success: function () {
+            modalReset();
+            alert("저장되었습니다.");                
+        },
+        error: function () {
+            alert("error");
+        },
+        complete: function (){
+            location.reload();
+        }
+    });
 }
             
     

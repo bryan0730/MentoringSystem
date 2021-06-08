@@ -675,10 +675,14 @@
         var eventListEl = _.$elements.eventEl.find('.event-list');
         if (eventListEl.find('[data-event-index]').length === 0) eventListEl.empty();
         _.$active.events.push(event_data);
-        if(event_data.type == "birthday"){
-            markup = '<div class="event-container" data-event-index="'+(event_data.id)+'" onclick="reviseMentoEvent('+"'"+event_data.id+"'"+')">';
+        if(event_data.color == "#7cee35"){
+            markup = '<div class="event-container" data-event-index="'+(event_data.id)+'" onclick="viewMentoring('+"'"+event_data.id+"'"+')">';
         }else{
-            markup = '<div class="event-container" data-event-index="'+(event_data.id)+'" onclick="reviseEvent('+(event_data.id)+')">';
+            if(event_data.type == "birthday"){
+                markup = '<div class="event-container" data-event-index="'+(event_data.id)+'" onclick="reviseMentoEvent('+"'"+event_data.id+"'"+')">';
+            }else{
+                markup = '<div class="event-container" data-event-index="'+(event_data.id)+'" onclick="reviseEvent('+(event_data.id)+')">';
+            }
         }
         markup += '<div class="event-icon"><div class="event-bullet-'+event_data.type+'"';
         if (event_data.color) {
@@ -688,6 +692,7 @@
         if (event_data.badge) markup += '<span>'+event_data.badge+'</span>';
         markup += '</p>'
         if (event_data.description) markup += '<p class="event-desc">'+event_data.description+'</p>';
+        if (event_data.way) markup += '<p class="event-name">'+'<span>'+'이름: '+event_data.name+' '+'</span>'+'</p>'+'<p class="event-way">'+ '<span>' +'상담방법: '+event_data.way+'</span>' + '</p>'
         markup += '</div>';
         markup += '</div>';
         eventListEl.append(markup);

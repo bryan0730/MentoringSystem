@@ -39,7 +39,7 @@
                 <ul>
                     <li><a href=""><i class="fas fa-bell"></i></a></li>
                     <li><a href=""><i class="fas fa-user"></i></a></li>
-                    <li><a href=""><i class="fas fa-sign-out-alt"></i></a></li>
+                    <li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
                 </ul>
             </div>
             <div class="gnb">
@@ -90,8 +90,8 @@
             <div class="booking-way">
                 <span>상담방법</span>
                 <select name="" id="on-off">
-                    <option value="on">온라인</option>
-                    <option value="off">오프라인</option>
+                    <option value="온라인">온라인</option>
+                    <option value="오프라인">오프라인</option>
                 </select>
             </div>
             <div class="booking-content">
@@ -170,9 +170,7 @@
                 <span>상담방법 : </span>
             </div>
             <div class="booking-content">
-                <div>
-                    <span>상담내용 : </span>
-                </div>
+                <span>상담내용 : </span>
             </div> 
             <div class="button-area">
                 <button id="accept-btn">수락</button>
@@ -185,6 +183,7 @@
     <input type="hidden" id="eventId" name="eventId">
     <input type="hidden" id="memberSeq" name="memberSeq" value="${memberSeq}">
     <input type="hidden" id="e-mail" value="${name}">
+    <input type="hidden" id="name" value="${userName}">
     <input type="hidden" id="role" value="${role}">
     <div class="footer">
             <div class="footer-box">

@@ -6,9 +6,9 @@
 	<select id="findByuser" resultType="com.hustar.mentoring.login.domain.MemberDetails">
 		select *
 		from(
-		select mentiSeq as memberSeq, memberEmail, memberPw, memberPhoneNumber, memberPhoto, Authoritie from menti 
+		select mentiSeq as memberSeq, memberEmail, memberName, memberPw, memberPhoneNumber, memberPhoto, Authoritie from menti 
 		union 
-		select mentoSeq as memberSeq, memberEmail, memberPw, memberPhoneNumber, memberPhoto, Authoritie from mento
+		select mentoSeq as memberSeq, memberEmail, memberName, memberPw, memberPhoneNumber, memberPhoto, Authoritie from mento
 		) a
 		WHERE memberEmail = #{username}
 		;

@@ -34,10 +34,10 @@
 	</select>
 	
 	
-	<insert id="insertBooking" parameterType="com.hustar.mentoring.main.domain.BookingDomain" useGeneratedKeys="true" keyProperty="te_id">
+	<insert id="insertBooking" parameterType="com.hustar.mentoring.main.domain.BookingDomain" useGeneratedKeys="true" keyProperty="bookingId">
 		<![CDATA[
 			INSERT INTO booking
-			 SET bookingTitle=#{bookingTitle}, bookingContent=#{bookingContent}, bookingDate=#{bookingDate}, bookingTime=#{bookingTime}, way=#{way}, mentiSeq = #{mentiSeq}, accept = #{accept}
+			 SET bookingTitle=#{bookingTitle}, bookingContent=#{bookingContent}, bookingDate=#{bookingDate}, bookingTime=#{bookingTime}, way=#{way}, mentiSeq = #{mentiSeq}, mentiName=#{mentiName}, accept = #{accept}
 		]]>
 	</insert>
 	
@@ -49,11 +49,20 @@
 	</insert>
 	
 	<update id="updateBooking" parameterType="com.hustar.mentoring.main.domain.BookingDomain">
+	<if test='role == "ROLE_MEMBER"'>
 		<![CDATA[
 			UPDATE booking SET
 			bookingTitle=#{bookingTitle}, bookingContent=#{bookingContent}, bookingDate=#{bookingDate}, bookingTime=#{bookingTime}, way=#{way}
 			WHERE bookingId = #{bookingId}
 		]]>
+	</if>
+	<if test='role == "ROLE_MENTO"'>
+		<![CDATA[
+			UPDATE booking SET
+			accept = #{accept}
+			WHERE bookingId = #{bookingId}
+		]]>
+	</if>
 	</update>
 	
 	<update id="updateSchedule" parameterType="com.hustar.mentoring.main.domain.ScheduleDomain">

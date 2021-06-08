@@ -13,6 +13,8 @@ public class BookingDomain {
 	private String bookingTime;
 	private String way;
 	private int mentiSeq;
+	private int mentoSeq;
+	private String mentiName;
 	private int accept;
 	private String role;
 }
