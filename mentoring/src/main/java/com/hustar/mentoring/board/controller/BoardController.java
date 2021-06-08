@@ -3,13 +3,11 @@ package com.hustar.mentoring.board.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.nio.file.Files;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.springframework.security.core.Authentication;
@@ -25,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hustar.mentoring.board.config.PagingCalc;
 import com.hustar.mentoring.board.domain.BoardDomain;
+import com.hustar.mentoring.board.domain.FileDomain;
 import com.hustar.mentoring.board.service.BoardService;
 import com.hustar.mentoring.login.service.MemberDetailService;
 
@@ -69,8 +68,10 @@ public class BoardController {
 			ModelMap model) throws Exception {
 			
 			BoardDomain BoardView = (BoardDomain) boardService.selectBoardView(boardDomain);
+			List<FileDomain> fileList = (List<FileDomain>) boardService.selectFileList(boardDomain.getBoardSeq());
 			
 			model.addAttribute("BoardView", BoardView);
+			model.addAttribute("fileList",fileList);
 		
 		
 		return "view";
@@ -81,7 +82,7 @@ public class BoardController {
 	@GetMapping(value="/insertBoard.do")
 	public String insertBoard(ModelMap model) throws Exception {
 		
-		model.addAttribute("actionUrl", "/menti/insertBoardForm.do");
+		model.addAttribute("actionUrl", "/common/insertBoardForm.do");
 		
 		return "insertForm";
 	}
@@ -115,7 +116,7 @@ public class BoardController {
 			}
 			// 파일 경로를 Domain에 set
 			boardDomain.setBoardFilePath1(File.separator + "Board" + File.separator + "ProfileImg" + File.separator +  fileName);*/
-			
+		
 			// DB 저장
 			boardService.insertBoard(boardDomain, multipartHttpServletRequest);
 				
@@ -129,10 +130,11 @@ public class BoardController {
 			HttpServletResponse res,
 			ModelMap model) throws Exception {
 		
+			// 원래 있던 내용을 조회해서 model에 추가
 			BoardDomain beforeView = (BoardDomain) boardService.selectBoardView(boardDomain);
 			model.addAttribute("beforeView", beforeView);
 		
-			model.addAttribute("actionUrl", "/menti/updateBoardForm.do");
+			model.addAttribute("actionUrl", "/common/updateBoardForm.do");
 			
 		return "insertForm";
 	}
@@ -169,43 +171,6 @@ public class BoardController {
 		return "redirect:BoardView.do?boardSeq=" + boardDomain.getBoardSeq();
 	}
 	
-	/*
-	@PostMapping(value= "/insertBoardForm.do")
-	@ResponseBody
-	public ResponseEntity<?> insertBoardForm(@ModelAttribute LoginDomain lgDomain,
-			@RequestParam(value = "hu_img", required = false) MultipartFile imgField,
-			HttpServletRequest req,
-			HttpServletResponse res) throws Exception {
-		
-			
-			
-			// 저장 경로 설정
-			String UploadPath = req.getSession().getServletContext().getRealPath("/");			
-			String ImgUploadPath = UploadPath.substring(0,UploadPath.length()-7).concat("resources" + File.separator + "static" + File.separator +"ProfileImg");
-			
-			
-			String fileName = null;
-			
-			//System.out.println("")
-			
-			if (imgField != null && !(imgField.getOriginalFilename().equals(""))) {
-				// 파일이 있으면 이름을 가져와서 파일 업로드
-				fileName = UploadFileUtils.fileUpload(ImgUploadPath, imgField.getOriginalFilename(), imgField.getBytes());
-			} else {
-				// 파일이 없을때 기본화면을 제공해야함
-				fileName = "images" + File.separator + "user.png";
-			}
-			// 파일 경로를 Domain에 set
-			lgDomain.setHu_img_path(File.separator + "ProfileImg" + File.separator +  fileName);
-			
-			// DB 저장
-			loginService.insertBoard(lgDomain);
-			
-			URI urilocation = new URI ("/BoardList.do");
-			
-		return ResponseEntity.created(urilocation).body("{}");
-	}*/
-	
 	// 게시글 삭제
 	@PostMapping(value= {"/deleteBoard.do"})
 	public String deleteBoard(@ModelAttribute BoardDomain boardDomain,
@@ -227,32 +192,17 @@ public class BoardController {
 	
 	// 게시글에서 파일 다운로드
 	@GetMapping(value = {"/fileDownload.do"})
-	public void FileDownload(@ModelAttribute BoardDomain boardDomain, HttpServletRequest req, HttpServletResponse res) throws Exception {
+	public void FileDownload(@ModelAttribute BoardDomain boardDomain,
+			HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
-		String fileName;
-		System.out.println("a");
-		System.out.println("a : " + boardDomain.getBoardSeq());
-		System.out.println("a : " + boardDomain.getBoardContents());
-		System.out.println("a : " + boardDomain.getBoardTitle());
-		System.out.println("a : " + boardDomain.getBoardFilePath1());
+			String fileName = "";
+			System.out.println("a");
+			System.out.println("a : " + boardDomain.getBoardSeq());
+			System.out.println("a : " + boardDomain.getBoardContents());
+			System.out.println("a : " + boardDomain.getBoardTitle());
+
 		
-		if (boardDomain.getBoardFilePath1() != null) {
-			
-			String temp = boardDomain.getBoardFilePath1();
-			
-			
-			String ori = temp.substring(53, temp.length());
-			fileName = temp.substring(90,temp.length());
-			
-					 
-			System.out.println("b");
-			System.out.println("fileName : " + fileName);
-			System.out.println("ori : " + ori);
-			System.out.println("path : " + boardDomain.getBoardFilePath1());
-			
-			// 파일을 byte[] 로 변환
-			//byte[] files = FileUtils.readFileToByteArray(new File(boardDomain.getBoardFilePath1()));
-			byte[] files = Files.readAllBytes(new File(boardDomain.getBoardFilePath1()).toPath());
+		
 			
 			
 			// octet-stream은 모든 경우의 기본값 -> 알려지지 않은 파일 타입은 이 속성을 사용해야 한다.
@@ -262,7 +212,6 @@ public class BoardController {
 			
 			//res.setContentType("application/octet-stream");
 			res.setContentType( "application/download; UTF-8" );
-			res.setContentLength(files.length);
 			res.setHeader("Content-Type", "application/x-msdownload");                
 			res.setHeader("Content-Transfer-Encoding", "binary;");
 			res.setHeader("Pragma", "no-cache;");
@@ -327,10 +276,8 @@ public class BoardController {
 			
 			
 			
-			res.getOutputStream().write(files);
+			//res.getOutputStream().write(files);
 			res.getOutputStream().flush();
 			res.getOutputStream().close();
 		}
-		System.out.println("c");
-	}
 }

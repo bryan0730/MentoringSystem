@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   
+
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+  
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +18,13 @@
 <form method="post" id="submitImg" name="submitImg" enctype="multipart/form-data" onsubmit="return fn_submit();" action="${actionUrl }" >
 <!-- <form method="post" id="submitImg" name="submitImg" enctype="multipart/form-data" >
  -->
-	<input type="hidden" name="boardSeq" value="${beforeView.boardSeq }">
+ 	<!-- 그냥 등록을 할때에 이전 값이 없어서 NumberFormatException이 발생 -->
+ 	<!-- NumberFormatException : "", "a0" <-- 이런 숫자로 바뀌지 않는 값을 숫자로 바꾸려고 해서 예외 발생 -->
+ 	<!-- beforeView가 없으면 Seq를 보내지 않는 것으로 해결 -->
+	 <c:if test="${beforeView.boardSeq != null}">
+		<input type="hidden" name="boardSeq" value="${beforeView.boardSeq }"> 
+	 </c:if>
+	
 	<div>
 		<ul>
 			<li>

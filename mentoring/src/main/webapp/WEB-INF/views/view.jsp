@@ -26,20 +26,16 @@
 				</div>
 				
 				<div>
-					<c:if test="${BoardView.boardFilePath1 ne null}">
-						<c:url value="fileDownload.do" var = "url">
-							<c:param name="boardSeq" value="${BoardView.boardSeq }"/>
-							<c:param name="boardFilePath1" value="${BoardView.boardFilePath1 }"/>
-						</c:url>
-						<a href = "${url }">${BoardView.boardFilePath1 }</a>	
-					</c:if>
-					
-					<c:if test="${BoardView.boardFilePath2 ne null}">
-						<a href = "#none">#none</a>	
-					</c:if>
-					
-					<c:if test="${BoardView.boardFilePath3 ne null}">
-						<a href = "#none">#none</a>	
+					<c:if test = "${not empty fileList}">
+						<c:forEach var = "file" items= "${fileList }" varStatus="status">
+							<div>
+								<c:url value="fileDownload.do" var = "url">
+									<c:param name="boardSeq" value="${file.boardSeq }"/>
+									<c:param name="fileSeq" value="${file.fileSeq }"/>
+								</c:url>
+								<a href = "${url }"><c:out value = "${file.fileOriginName }(${file.fileSize } bytes)"></c:out></a>	
+							</div>
+						</c:forEach>
 					</c:if>
 				</div>
 			</div>

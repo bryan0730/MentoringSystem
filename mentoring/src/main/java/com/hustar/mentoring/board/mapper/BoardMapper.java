@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.hustar.mentoring.board.domain.BoardDomain;
+import com.hustar.mentoring.board.domain.FileDomain;
 
 @Mapper
 public interface BoardMapper {
@@ -25,4 +26,10 @@ public interface BoardMapper {
 	
 	// 게시글 삭제
 	public void deleteBoard(BoardDomain boardDomain);
+	
+	// 게시글 첨부파일 저장
+	public void fileUpload(List<FileDomain> fileList);
+	
+	// 게시글 첨부파일 조회
+	public List<?> selectFileList(int boardSeq);
 }

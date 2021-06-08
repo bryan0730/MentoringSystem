@@ -10,7 +10,7 @@ import lombok.Setter;
 public class BoardDomain extends SearchDomain{
 	
 	// 게시글 번호
-	private String boardSeq;
+	private int boardSeq;
 	
 	// 제목
 	private String boardTitle;
@@ -28,7 +28,7 @@ public class BoardDomain extends SearchDomain{
 	private String boardModifyDate;
 	
 	// 첨부 파일 경로
-	private String boardFilePath1;
-	private String boardFilePath2;
-	private String boardFilePath3;	
+//	private String boardFilePath1;
+//	private String boardFilePath2;
+//	private String boardFilePath3;	
 }
