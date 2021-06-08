@@ -31,7 +31,7 @@ import com.hustar.mentoring.login.service.MemberDetailService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/menti")
+@RequestMapping("/common")
 @RequiredArgsConstructor
 public class BoardController {
 
@@ -47,7 +47,7 @@ public class BoardController {
 		
 		PagingCalc paging = new PagingCalc();
 		
-		paging.setTotalCnt(boardService.selectBoardTotalCnt(), boardDomain);
+		paging.setTotalCnt(boardService.selectBoardTotalCnt(boardDomain), boardDomain);
 		
 		List<BoardDomain> boardList = (List<BoardDomain>) boardService.selectBoardList(boardDomain);
 		
@@ -235,6 +235,7 @@ public class BoardController {
 		System.out.println("a : " + boardDomain.getBoardContents());
 		System.out.println("a : " + boardDomain.getBoardTitle());
 		System.out.println("a : " + boardDomain.getBoardFilePath1());
+		
 		if (boardDomain.getBoardFilePath1() != null) {
 			
 			String temp = boardDomain.getBoardFilePath1();
@@ -248,6 +249,7 @@ public class BoardController {
 			System.out.println("fileName : " + fileName);
 			System.out.println("ori : " + ori);
 			System.out.println("path : " + boardDomain.getBoardFilePath1());
+			
 			// 파일을 byte[] 로 변환
 			//byte[] files = FileUtils.readFileToByteArray(new File(boardDomain.getBoardFilePath1()));
 			byte[] files = Files.readAllBytes(new File(boardDomain.getBoardFilePath1()).toPath());
@@ -261,13 +263,12 @@ public class BoardController {
 			//res.setContentType("application/octet-stream");
 			res.setContentType( "application/download; UTF-8" );
 			res.setContentLength(files.length);
-			res.setHeader("Content-Type", "application/octet-stream");                
+			res.setHeader("Content-Type", "application/x-msdownload");                
 			res.setHeader("Content-Transfer-Encoding", "binary;");
 			res.setHeader("Pragma", "no-cache;");
 			res.setHeader("Expires", "-1;");
 
-			
-			
+
 			String header = req.getHeader("User-Agent");
 			if (header.indexOf("MSIE") > -1) {
 				header = "MSIE";
@@ -318,7 +319,7 @@ public class BoardController {
 			
 			// content-Disposition의 속성이 attachment;인 경우 다운로드한다.
 			// attachment와 다른 속성으로는 inline이 있는데 이 경우 웹페이지 화면에 표시된다.
-			res.setHeader("Content-Dispostion", dispositionPrefix + encodedFilename + "\"");
+			res.setHeader("Content-Dispostion", dispositionPrefix + encodedFilename);
 			
 //			res.setHeader("Content-Dispostion", "=?UTF-8?Q?" + 
 //					"attachment; fileName=\"" + URLEncoder.encode(ori, "UTF-8") + "\";");

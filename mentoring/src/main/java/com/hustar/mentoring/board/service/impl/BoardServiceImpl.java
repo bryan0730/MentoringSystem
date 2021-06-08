@@ -30,9 +30,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
-	public int selectBoardTotalCnt() throws Exception {
+	public int selectBoardTotalCnt(BoardDomain boardDomain) throws Exception {
 		// TODO Auto-generated method stub
-		return boardMapper.selectBoardTotalCnt();
+		return boardMapper.selectBoardTotalCnt(boardDomain);
 	}
 	
 	
@@ -40,6 +40,7 @@ public class BoardServiceImpl implements BoardService{
 	public void insertBoard(BoardDomain boardDomain, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
 		// TODO Auto-generated method stub
 		
+		// 파일 저장을 위한 메소드 호출
 		BoardFileUtils.FileUpload(boardDomain, multipartHttpServletRequest);	
 		
 		boardMapper.insertBoard(boardDomain);

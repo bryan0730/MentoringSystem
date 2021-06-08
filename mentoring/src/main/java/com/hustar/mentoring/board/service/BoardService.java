@@ -14,7 +14,7 @@ public interface BoardService {
 	public BoardDomain selectBoardView(BoardDomain boardDomain) throws Exception;
 	
 	// 게시글 전체 개수
-	public int selectBoardTotalCnt() throws Exception;
+	public int selectBoardTotalCnt(BoardDomain boardDomain) throws Exception;
 	
 	// 게시글 등록
 	public void insertBoard(BoardDomain boardDomain, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception;

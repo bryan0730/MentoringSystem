@@ -64,7 +64,7 @@ public class PagingCalc {
 
 	public void setTotalCnt(int totalCnt, BoardDomain boardDomain) throws Exception {
 		TotalCnt = totalCnt;
-		PageCalc(boardDomain);		
+		PageCalc(boardDomain);
 	}
 
 

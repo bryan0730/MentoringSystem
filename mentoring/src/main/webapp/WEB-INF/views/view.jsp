@@ -46,13 +46,13 @@
 
 			<div class="Board-btn-box">
 				<a href="#none" onclick="history.back(); return false;">뒤로가기</a>
-				<a href="/menti/updateBoard.do?boardSeq=${BoardView.boardSeq }">수정</a>
+				<a href="updateBoard.do?boardSeq=${BoardView.boardSeq }">수정</a>
 				<a href="#none" onclick="fn_del(${BoardView.boardSeq}); return fasle;">삭제</a>
 			</div>
 			
 			
 			
-			<form method="post" id="deleteForm" action="/menti/deleteBoard.do">
+			<form method="post" id="deleteForm" action="deleteBoard.do">
 				<input type="hidden" id="boardSeq" name="boardSeq" value="${BoardView.boardSeq }">
 			</form>
 		</div>

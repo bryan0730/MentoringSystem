@@ -51,13 +51,41 @@
 		<![CDATA[
 			SELECT * FROM BOARD WHERE BOARDSEQ = #{boardSeq}
 		]]>
+			
 	</select>
 	
 	<!-- 게시글 전체 개수 -->
-	<select id="selectBoardTotalCnt" resultType="int">
+	<select id="selectBoardTotalCnt" parameterType="com.hustar.mentoring.board.domain.BoardDomain" resultType="int">
 		<![CDATA[
-			SELECT COUNT(*) FROM BOARD
+			SELECT COUNT(*) FROM BOARD WHERE(1) 
 		]]>	
+		<!-- 검색어가 null이 아니고 값이 비어 있지 않으면 쿼리문 추가 -->
+		<if test='searchKeyword != null and !searchKeyword.equals("")'>
+			<!-- 검색조건이 제목만 일때 -->
+ 			<if test='searchCondition == "boardTitle" '>
+				<![CDATA[
+ 					AND BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')
+ 				]]>
+ 			</if>
+			<!-- 검색조건이 내용만 일때 -->
+			<if test='searchCondition == "boardContents" '>
+				<![CDATA[
+					AND BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%')
+				]]>
+			</if>
+			<!-- 검색조건이 작성자만 일때 -->
+			<if test='searchCondition == "boardWriter" '>
+				<![CDATA[
+					AND BOARDWRITER LIKE CONCAT('%',#{searchKeyword},'%')
+				]]>
+			</if>
+			<!-- 검색조건이 제목+내용 일때 -->
+			<if test='searchCondition == "all" '>
+				<![CDATA[
+					AND (BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')) OR (BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%'))
+				]]>
+			</if>
+		</if>
 	</select>
 	
 	<!-- 게시글 등록 -->

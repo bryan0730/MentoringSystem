@@ -15,7 +15,7 @@ public interface BoardMapper {
 	public BoardDomain selectBoardView(BoardDomain boardDomain);
 	
 	// 게시글 전체 개수
-	public int selectBoardTotalCnt();
+	public int selectBoardTotalCnt(BoardDomain boardDomain);
 	
 	// 게시글 등록
 	public void insertBoard(BoardDomain boardDomain);
