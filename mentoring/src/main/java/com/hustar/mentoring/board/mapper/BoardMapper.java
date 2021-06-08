@@ -28,8 +28,14 @@ public interface BoardMapper {
 	public void deleteBoard(BoardDomain boardDomain);
 	
 	// 게시글 첨부파일 저장
-	public void fileUpload(List<FileDomain> fileList);
+	public void uploadFile(List<FileDomain> fileList);
 	
 	// 게시글 첨부파일 조회
 	public List<?> selectFileList(int boardSeq);
+	
+	// 게시글 첨부파일 삭제
+	public void deleteFile(int boardSeq);
+	
+	// 게시글 첨부파일 다운로드 조회
+	public FileDomain selectFileDownload (int boardSeq, int fileSeq);
 }

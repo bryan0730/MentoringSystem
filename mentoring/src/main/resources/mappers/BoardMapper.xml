@@ -156,7 +156,7 @@
 	
 	
 	<!-- 게시글 첨부파일 저장 -->
-	<insert id="fileUpload" parameterType = "com.hustar.mentoring.board.domain.FileDomain">
+	<insert id="uploadFile" parameterType = "com.hustar.mentoring.board.domain.FileDomain">
 		<![CDATA[
 			INSERT INTO FILE (
 				BOARDSEQ,
@@ -179,11 +179,40 @@
 	</insert>
 	
 	
+	
+	
+	
+	
+	
+	
 	<!-- 게시글 첨부파일 조회 -->
 	<select id="selectFileList" parameterType = "int" resultType = "com.hustar.mentoring.board.domain.FileDomain">
 		<![CDATA[
 			SELECT * FROM FILE WHERE BOARDSEQ=#{boardSeq}
 		]]>
 	</select>
+	
+	
+	
+	
+	
+	
+	<!-- 게시글 첨부파일 다운로드 조회 -->
+	<select id="selectFileDownload" parameterType = "int" resultType = "com.hustar.mentoring.board.domain.FileDomain">
+		<![CDATA[
+			SELECT * FROM FILE WHERE BOARDSEQ=#{boardSeq} AND FILESEQ = #{fileSeq}
+		]]>
+	</select>
+	
+	
+	
+	<!-- 게시글 삭제시 파일 DB 삭제 처리 -->
+	<delete id="deleteFile" parameterType = "int">
+		<![CDATA[
+			DELETE FROM FILE WHERE BOARDSEQ=#{boardSeq}
+				
+		]]>
+	
+	</delete>
 	
 </mapper>

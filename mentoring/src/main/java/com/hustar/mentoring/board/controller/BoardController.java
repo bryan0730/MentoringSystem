@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.springframework.security.core.Authentication;
@@ -179,12 +180,10 @@ public class BoardController {
 			ModelMap model) throws Exception{
 		
 			try {
-				
 				boardService.deleteBoard(boardDomain);
 				
 			} catch(Exception e) {
 				e.printStackTrace();
-				
 			}
 		
 		return "redirect:BoardList.do";
@@ -192,91 +191,33 @@ public class BoardController {
 	
 	// 게시글에서 파일 다운로드
 	@GetMapping(value = {"/fileDownload.do"})
-	public void FileDownload(@ModelAttribute BoardDomain boardDomain,
+	public void FileDownload(@RequestParam int boardSeq, @RequestParam int fileSeq,
 			HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
 			String fileName = "";
-			System.out.println("a");
-			System.out.println("a : " + boardDomain.getBoardSeq());
-			System.out.println("a : " + boardDomain.getBoardContents());
-			System.out.println("a : " + boardDomain.getBoardTitle());
 
+
+			FileDomain fileDomain = (FileDomain) boardService.selectFileDownload(boardSeq, fileSeq);
 		
-		
+			File DownloadFile = new File(fileDomain.getFilePath());
 			
+			byte[] files = FileUtils.readFileToByteArray(DownloadFile);
 			
 			// octet-stream은 모든 경우의 기본값 -> 알려지지 않은 파일 타입은 이 속성을 사용해야 한다.
-			        
-			
-			
-			
-			//res.setContentType("application/octet-stream");
-			res.setContentType( "application/download; UTF-8" );
-			res.setHeader("Content-Type", "application/x-msdownload");                
+			res.setHeader("Content-Type", "application/octet-stream");
+			res.setContentLength((int)DownloadFile.length());
 			res.setHeader("Content-Transfer-Encoding", "binary;");
 			res.setHeader("Pragma", "no-cache;");
 			res.setHeader("Expires", "-1;");
 
 
-			String header = req.getHeader("User-Agent");
-			if (header.indexOf("MSIE") > -1) {
-				header = "MSIE";
-			} else if (header.indexOf("Trident") > -1) { // IE11 문자열 깨짐 방지
-				header = "Trident";
-			} else if (header.indexOf("Chrome") > -1) {
-				header = "Chrome";
-			} else if (header.indexOf("Opera") > -1) {
-				header = "Opera";
-			} else {
-				header = "Firefox";	
-			}
-			
-			System.out.println("header : " + header);
-			
-			String browser = header;
-
-			String dispositionPrefix = "attachment; filename=\"";
-			String encodedFilename = null;
-			
-			
-			if (browser.equals("MSIE")) {
-				encodedFilename = URLEncoder.encode(fileName, "UTF-8").replaceAll("\\+", "%20");
-			} else if (browser.equals("Trident")) { // IE11 문자열 깨짐 방지
-				encodedFilename = URLEncoder.encode(fileName, "UTF-8").replaceAll("\\+", "%20");
-			} else if (browser.equals("Firefox")) {
-				encodedFilename = "\"" + new String(fileName.getBytes("UTF-8"), "8859_1") + "\"";
-			} else if (browser.equals("Opera")) {
-				encodedFilename = "\"" + new String(fileName.getBytes("UTF-8"), "8859_1") + "\"";
-			} else if (browser.equals("Chrome")) {
-				StringBuffer sb = new StringBuffer();
-				for (int i = 0; i < fileName.length(); i++) {
-					char c = fileName.charAt(i);
-					if (c > '~') {
-						sb.append(URLEncoder.encode("" + c, "UTF-8"));
-					} else {
-						sb.append(c);
-					}
-				}
-				encodedFilename = sb.toString();
-			} else {
-				//throw new RuntimeException("Not supported browser");
-				throw new IOException("Not supported browser");
-			}
-			
-			
-			System.out.println("encodedFilename : " + encodedFilename);
-			
 			// content-Disposition의 속성이 attachment;인 경우 다운로드한다.
 			// attachment와 다른 속성으로는 inline이 있는데 이 경우 웹페이지 화면에 표시된다.
-			res.setHeader("Content-Dispostion", dispositionPrefix + encodedFilename);
-			
-//			res.setHeader("Content-Dispostion", "=?UTF-8?Q?" + 
-//					"attachment; fileName=\"" + URLEncoder.encode(ori, "UTF-8") + "\";");
-			
-			
-			
-			
-			//res.getOutputStream().write(files);
+			res.setHeader("Content-Disposition",
+					String.format("attachment; filename=%s", fileDomain.getFileOriginName()));
+
+
+			res.getOutputStream().write(files);
 			res.getOutputStream().flush();
 			res.getOutputStream().close();
 		}

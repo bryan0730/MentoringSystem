@@ -33,7 +33,7 @@ public class BoardFileUtils {
 		}
 		
 		// 파일 업로드
-		public static List<FileDomain> FileUpload (BoardDomain boardDomain, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+		public static List<FileDomain> UploadFile (BoardDomain boardDomain, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
 			// 파일이 없으면 null 반환
 			if(ObjectUtils.isEmpty(multipartHttpServletRequest)) {
 				return null;
@@ -94,6 +94,11 @@ public class BoardFileUtils {
 			}
 			
 			return filelist;
+		}
+		
+		// 게시글 삭제시 서버에 있는 파일도 삭제
+		public static void DeleteFile() throws Exception {
+			
 		}
 
 }

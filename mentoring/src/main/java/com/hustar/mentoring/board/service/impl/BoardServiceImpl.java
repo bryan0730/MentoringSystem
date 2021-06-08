@@ -45,10 +45,10 @@ public class BoardServiceImpl implements BoardService{
 		boardMapper.insertBoard(boardDomain);
 		
 		// 파일 저장을 위한 메소드 호출
-		List<FileDomain> filelist = BoardFileUtils.FileUpload(boardDomain, multipartHttpServletRequest);
+		List<FileDomain> filelist = BoardFileUtils.UploadFile(boardDomain, multipartHttpServletRequest);
 		// 파일이 있으면 파일 저장
 		if (filelist.isEmpty() == false) {
-			boardMapper.fileUpload(filelist);
+			boardMapper.uploadFile(filelist);
 		}
 	}
 	
@@ -61,6 +61,10 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void deleteBoard(BoardDomain boardDomain) throws Exception {
 		// TODO Auto-generated method stub
+		
+			
+		
+		boardMapper.deleteFile(boardDomain.getBoardSeq());
 		boardMapper.deleteBoard(boardDomain);
 	}
 
@@ -69,6 +73,15 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return boardMapper.selectFileList(boardSeq);
 	}
+
+	@Override
+	public FileDomain selectFileDownload(int boardSeq, int fileSeq) throws Exception {
+		// TODO Auto-generated method stub
+		return boardMapper.selectFileDownload(boardSeq, fileSeq);
+	}
+
+	
+	
 
 	
 

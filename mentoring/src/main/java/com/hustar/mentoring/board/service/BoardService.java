@@ -28,4 +28,7 @@ public interface BoardService {
 	
 	// 게시글 첨부파일 조회
 	public List<?> selectFileList(int boardSeq) throws Exception;
+	
+	// 게시글 첨부파일 다운로드 조회
+	public FileDomain selectFileDownload(int boardSeq, int fileSeq) throws Exception;
 }
