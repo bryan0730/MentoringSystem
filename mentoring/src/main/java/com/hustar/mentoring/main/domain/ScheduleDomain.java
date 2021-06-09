@@ -10,5 +10,5 @@ public class ScheduleDomain {
 	private String scheduleTitle;
 	private String scheduleDate;
 	private String scheduleTime;
-	private int memberSeq;
+	private int mentoSeq;
 }

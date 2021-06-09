@@ -389,6 +389,26 @@ tr.calendar-body .calendar-day .day[disabled] {
     float: left;
     /* z-index: 0; */
 }
+.calendar-events > .event-signal{
+    position: relative;
+    left: 0;
+    bottom: 0;
+}
+.calendar-events > .event-signal > .event-icon {
+    display: inline-block;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+    /* z-index: 0; */
+}
+.calendar-events > .event-signal > .event-icon  > div {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.calendar-events > .event-signal> span {
+    font-weight: 600;
+}
 /* .event-container > .event-icon::before {
     content: '';
     position: absolute;
@@ -441,8 +461,35 @@ tr.calendar-body .calendar-day .day[disabled] {
     transform: translateY(-50%);
 }
 .event-container > .event-info > p.event-desc {
+    position: relative;
     font-size: 14px;
     margin-top: 5px;
+}
+
+.event-container > .event-info > p.event-way > span{
+    margin-top: 15px;
+    float: right;
+    font-size: 12px;
+    font-weight: normal;
+    color: #2757F8;
+    border: 1px solid #2757F8;
+    border-radius: 3px;
+    background-color: rgb(237 234 246);
+    padding: 3px 6px;
+    transform: translateY(-50%);
+}
+
+.event-container > .event-info > p.event-name > span{
+    margin-top: 15px;
+    float: left;
+    font-size: 12px;
+    font-weight: normal;
+    color: #2757F8;
+    border: 1px solid #2757F8;
+    border-radius: 3px;
+    background-color: rgb(237 234 246);
+    padding: 3px 6px;
+    transform: translateY(-50%);
 }
 
 
@@ -543,9 +590,9 @@ button.icon-button > span.chevron-arrow-right {
 }
 
 .calendar-events > .event-btn-box{
-    position: absolute;
+    position: relative;
     bottom: 0;
-    right: 0;
+    left: 68%;
 }
 
 
@@ -941,7 +988,7 @@ button.icon-button > span.chevron-arrow-right {
     }
     .calendar-events {
         position: relative;
-        padding: 20px 15px;
+        padding: 70px 15px 20px 15px;
         width: 100%;
         height: 185px;
         -webkit-box-shadow: 0 5px 18px -3px rgba(0, 0, 0, 0.15);
@@ -1021,7 +1068,7 @@ button.icon-button > span.chevron-arrow-right {
 
 
 /* 예약하기 view */
-.modal-view {
+.modal-view, .modal-view-mento {
     position: fixed;
     top: 0;
     left: 0;
@@ -1033,7 +1080,7 @@ button.icon-button > span.chevron-arrow-right {
     z-index: 9999;
   }
 
-  .modal-view .bg {
+  .modal-view, .modal-view-mento .bg {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
@@ -1068,8 +1115,6 @@ button.icon-button > span.chevron-arrow-right {
   .before{
     transform: rotate(180deg);
 }
-
-
 .time-select > ul > span{
     display: block;
     margin-bottom: 5px;

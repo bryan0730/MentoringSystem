@@ -54,4 +54,16 @@ public class MainServiceImpl implements MainService{
 		// TODO Auto-generated method stub
 		return mainMapper.selectScheduleList(scheduleDomain);
 	}
+	
+	@Override
+	public void updateSchedule(ScheduleDomain scheduleDomain) throws Exception {
+		mainMapper.updateSchedule(scheduleDomain);
+	}
+	
+	@Override
+	public void deleteSchedule(ScheduleDomain scheduleDomain) throws Exception {
+		mainMapper.deleteSchedule(scheduleDomain);
+	}
+	
+	
 }

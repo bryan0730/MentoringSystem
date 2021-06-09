@@ -58,4 +58,14 @@ public class MainController {
 		List<ScheduleDomain> ScheduleList = (List<ScheduleDomain>)mainService.selectScheduleList(scheduleDomain);
 		return ScheduleList;
 	}
+	
+	@RequestMapping(value="/updateSchedule")
+	public void ScheduleUpdate(ScheduleDomain scheduleDomain) throws Exception {
+		mainService.updateSchedule(scheduleDomain);
+	}
+	
+	@RequestMapping(value="/deleteSchedule")
+	public void ScheduleDelete(ScheduleDomain scheduleDomain) throws Exception {
+		mainService.deleteSchedule(scheduleDomain);
+	}
 }

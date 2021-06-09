@@ -22,6 +22,7 @@ public class MemberDetails implements UserDetails{
 	private String memberEmail;
 	private String memberPw;
 	private String authoritie;
+	private String memberName;
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
