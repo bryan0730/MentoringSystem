@@ -37,10 +37,11 @@ public class EnterpriseController {
 	}
 	
 	@GetMapping("/enter_search")
-	@ResponseBody
-	public EnterpriseSearchDomain selectEnterSearchList(EnterpriseSearchDomain enterpriseSearchDomain) {
+	public String selectEnterSearchList(EnterpriseSearchDomain enterpriseSearchDomain, Model model) {
 		System.out.println("locationList : "+ enterpriseSearchDomain.getLocationList());
-		return enterpriseSearchDomain;
+		model.addAttribute("enterList", enterpriseService.selectEnterSearchList(enterpriseSearchDomain));
+		model.addAttribute("searchCate", enterpriseSearchDomain);
+		return "enterprise";
 		
 	}
 	
