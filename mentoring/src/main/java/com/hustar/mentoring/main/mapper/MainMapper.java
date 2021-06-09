@@ -21,4 +21,6 @@ public interface MainMapper {
 	public void updateSchedule(ScheduleDomain scheduleDomain);
 	public void deleteSchedule(ScheduleDomain scheduleDomain);
 	
+	public String findByEmail(int mentiSeq);
+	
 }

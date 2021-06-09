@@ -109,6 +109,7 @@ function veiwModal(selectedTime) {
             alert("error");
         },
     });
+    //클래스 말고 attribute로 모든 선택한 시간 선택된 시간 표현하기.
     if(selectedTime){
         $('.time-item')[timeItem[selectedTime]].setAttribute('data-select-val','');
         if([timeItem[selectedTime]] < 2){
@@ -161,8 +162,7 @@ function setData(url, id, accept) {
                 accept: accept,
                 role: role
             }
-        }
-        
+        }       
     }else{
         form = {
             bookingTitle: title,
@@ -172,6 +172,21 @@ function setData(url, id, accept) {
             way: bookingWay,
             mentiSeq: seq,
             mentiName: name
+        }
+        if(url == "insertBooking"){
+            $.ajax({
+                url: "sendEmail",
+                type: "POST",
+                data: form,
+                success: function () {                 
+                },
+                error: function () {
+                    alert("error");
+                },
+                complete: function (){
+                    location.reload();
+                }
+            });
         }
     }  
     // insertBooking controller에 통신 
@@ -239,7 +254,10 @@ function setDataMento(url, id) {
 
 // 달력 뷰 띄우는 함수
 function setBookingView(seq, role) {
-    $('#calendar').evoCalendar({})
+    $('#calendar').evoCalendar({
+        'sidebarDisplayDefault': false,
+        'eventDisplayDefault': false
+    })
     let form;
     if(role == "ROLE_MEMBER"){
         form = {

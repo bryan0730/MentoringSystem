@@ -89,5 +89,15 @@
 	</delete>
 	
 	
+	<select id="findByEmail" resultType="String">
+	
+		<![CDATA[
+			SELECT memberEmail FROM mento as mento
+			LEFT OUTER JOIN mentoring as mentoring ON mento.mentoSeq = mentoring.mentoSeq
+			WHERE mentoring.mentiSeq=#{mentiSeq}
+		]]>
+
+	</select>
+	
 	
 </mapper>
