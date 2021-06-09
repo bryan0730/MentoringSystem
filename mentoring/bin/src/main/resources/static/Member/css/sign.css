@@ -1,0 +1,125 @@
+@charset "UTF-8";
+
+ @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+    body{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    h2{
+        margin: 40px 0;
+        font-weight: bold;
+    }
+
+    h1{
+        font-weight: normal;
+        font-size: 24px;
+        margin-bottom: 23px;
+    }
+
+    p{
+        display: block;
+        font-size: 12px;
+        color: #000;
+        font-weight: normal;
+        margin-top: 40px;
+        margin-bottom: 0;
+    }
+    
+    a{
+    	text-decoration:none;
+    	color:#000;
+    }
+
+    .sign_container{
+        width: 510px;
+        max-width: 580px;
+        border: 1px solid #e5e5e5;
+        padding: 58px 69px 50px;
+        margin-bottom: 50px;
+    }
+    
+    .tb{
+        width: 100%;
+        border-width: 0 0 2px 0;
+        border-color: #ebebeb;
+        height: 48px;
+        box-sizing: border-box;
+        font-size: 18px;
+    }
+
+    .email{
+        width: 85%;
+    }
+
+    .tb:focus{
+        outline: none;
+    }
+
+    .item{
+        width: 100%;
+    }
+
+    .email_box{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #emailCheck{
+        background-color: transparent !important;
+        background-image: none !important;
+        border-radius: 5px; 
+        font-size: 16px;
+        color: #000;
+        padding: 10px;
+        border:1px solid #ccc;
+        border-radius: 20px;
+    }
+
+    .list_des{
+        margin-top: 22px;
+        color: #999;
+        font-size: 12px;
+        padding-left: 20px;
+    }
+
+    .list_desc li {
+        margin-top: 4px;
+    }
+
+    .list_desc li:first-child {
+        margin-top: 0;
+    }
+
+    .msg{
+        font-size: 12px;
+    }
+
+    .sign_btn{
+        width: 100%;
+        border: 0;
+        background: #000;
+        color: #e5e5e5;
+        border-radius: 5px;
+        margin-top: 30px;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .only_menti{
+        width: 100%;
+    }
+
+    .authoritie_box{
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .auth{
+        font-size: 18px;
+    }
