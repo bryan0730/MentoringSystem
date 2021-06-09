@@ -16,7 +16,6 @@ function veiwModalSchedule(selected,id) {
     //선택한 날짜 요일 받아오는 변수
     checkDay = new Date(checkDayArr[2] + '-' + checkDayArr[0] + '-' + checkDayArr[1]).getDay();
     todayLable = week[checkDay];
-
     // 오늘날짜 일정 불러오기
     $.ajax({
         url: "getMentoScheduleTime",
@@ -61,6 +60,13 @@ function reviseMentoEvent(id) {
     let findString = "mento_";
     let splitId = id.split(findString);
     let title = $('.event-container[data-event-index='+id+']').children('.event-info').children('.event-title').text().split('시간 : ');
+
+    checkDayArr = $('.calendar-active').attr('data-date-val').split('/');
+
+    //선택한 날짜 요일 받아오는 변수
+    checkDay = new Date(checkDayArr[2] + '-' + checkDayArr[0] + '-' + checkDayArr[1]).getDay();
+    todayLable = week[checkDay];
+
     if(id.indexOf(findString) != -1){      
         $('.booking-title').children('input').val(title[0]);
         $('#booking-btn').addClass('hidden');
@@ -72,7 +78,8 @@ function reviseMentoEvent(id) {
         $('.booking-title-mento').children('span').text('제목 : ' + title[0]);
         $('.booking-way-mento').children('span').text(way);
         $('.booking-content-mento').children('span').text("상담내용 : " +'\n'+ content);
-        veiwModal(title[1],splitId[1]); 
+        $('.calendar-date').children('.date').text(checkDayArr[0] + '.' + checkDayArr[1] + '(' + todayLable + ')')
+        $('#modal-view-mento').removeClass('hidden');
     }
 
     

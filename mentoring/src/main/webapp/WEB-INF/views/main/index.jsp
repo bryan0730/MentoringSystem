@@ -151,7 +151,6 @@
         </div>
     </div>
     </c:if>
-    <c:if test="${role eq 'ROLE_MENTO'}" >
     <div id="modal-view-mento" class="modal-view-mento hidden">
         <div class="bg"></div>
         <div class="modalBox">
@@ -179,7 +178,6 @@
             </div>
         </div>
     </div>
-    </c:if>
     <input type="hidden" id="eventId" name="eventId">
     <input type="hidden" id="memberSeq" name="memberSeq" value="${memberSeq}">
     <input type="hidden" id="e-mail" value="${name}">
