@@ -45,12 +45,19 @@ public class BoardFileUtils {
 			// 파일명이 중복됐을 때 덮어써지거나 이름이 바뀌는 것을 방지하기 위해 UUID를 통해 랜덤 문자를 생성
 			UUID uid = UUID.randomUUID();
 			
+			
+			
 			// 경로 지정
-			String Path = "C:\\Users\\HUSTAR03\\Desktop\\hustar\\MentoringBoardFiles";
+			//String Path = "C:\\Users\\HUSTAR03\\Desktop\\hustar\\MentoringBoardFiles";
+			
+			String root = multipartHttpServletRequest.getSession().getServletContext().getRealPath("/");
+			String Path = root.substring(0,root.length()-7).concat("resources" + File.separator + "static" + File.separator + "MentoringBoardFiles");
+			
 			File file = new File(Path);
 			
 			// 해당 경로에 폴더가 없으면 폴더 생성
 			if (file.exists() == false) {
+				System.out.println("asdf");
 				file.mkdirs();
 			}
 			
