@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="/main/css/style.css">
+<link rel="stylesheet" href="/Board/css/board-view.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
@@ -35,30 +36,8 @@
 </div>
 
 <style>
-h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px; text-align: center}
-.view {max-width: 1500px; margin : 0 auto; overflow: hidden;}
 
-.view h3 {
-	border-top : 3px solid black;
-	border-bottom : 1px solid #ccc;
-	padding : 10px 0;
-	font-size : 30px;
-	margin-bottom : 5px;
-	}
-.view > span {float : right; font-size : 14px;}
-.view .view-con {
-	min-height: 400px;
-	font-size : 16px;
-	font-weight : 700;
-	margin : 30px 0;
-	border-bottom : 1px solid #ccc;}
-	
-.view .attach-file {padding : 0 0 20px 0;}
-.view .attach-file > span {font-size : 16px;}
-.view .attach-file div {padding : 5px 0;}
 
-.Board-btn-box {max-width: 1500px; margin : 0 auto; text-align: right;}
-.Board-btn-box a {padding : 10px 20px; border : 1px solid black; font-weight: bold; margin-left: 5px;}
 </style>
 <h2>게시판</h2>
 
