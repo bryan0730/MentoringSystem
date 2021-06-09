@@ -144,27 +144,13 @@ public class BoardController {
 	// 게시글 수정 처리
 	@PostMapping(value="/updateBoardForm.do")
 	public String updateBoardForm(@ModelAttribute BoardDomain boardDomain,
-			@RequestParam(value="hu_img", required = false) MultipartFile file,
-			HttpServletRequest req,
+			MultipartHttpServletRequest multipartHttpServletRequest,
 			HttpServletResponse res,
 			ModelMap model) throws Exception {
 		
-			String UploadPath = req.getSession().getServletContext().getRealPath("/");				
-			String ImgUploadPath = UploadPath.substring(0,UploadPath.length()-7).concat("resources" + File.separator + "static" + File.separator + "Board" + File.separator + "ProfileImg");
 			
 			
-			String fileName = null;
 			
-			
-			if (file != null && !(file.getOriginalFilename().equals(""))) {
-				// 파일이 있으면 이름을 가져와서 파일 업로드
-				//fileName = FileUtils.fileUpload(ImgUploadPath, file.getOriginalFilename(), file.getBytes());
-			} else {
-				// 파일이 없을때 기본화면을 제공해야함
-				fileName = "images" + File.separator + "user.png";
-			}
-			// 파일 경로를 Domain에 set
-			//boardDomain.setBoardFilePath1(File.separator + "Board" + File.separator + "ProfileImg" + File.separator +  fileName);
 			
 		
 			boardService.updateBoard(boardDomain);
@@ -214,7 +200,7 @@ public class BoardController {
 			// content-Disposition의 속성이 attachment;인 경우 다운로드한다.
 			// attachment와 다른 속성으로는 inline이 있는데 이 경우 웹페이지 화면에 표시된다.
 			res.setHeader("Content-Disposition",
-					String.format("attachment; filename=%s", fileDomain.getFileOriginName()));
+					String.format("attachment; filename=%s", URLEncoder.encode(fileDomain.getFileOriginName(), "UTF-8")));
 
 
 			res.getOutputStream().write(files);

@@ -129,7 +129,7 @@
 	<!-- 게시글 수정 -->
 	<update id="updateBoard" parameterType="com.hustar.mentoring.board.domain.BoardDomain">
 		<![CDATA[
-			UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS = #{boardContents}, BOARDFILEPATH1 = #{boardFilePath1}, BOARDMODIFYDATE = NOW()
+			UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS = #{boardContents}, BOARDMODIFYDATE = NOW()
 			WHERE BOARDSEQ = #{boardSeq}
 		]]>
 	</update>
