@@ -35,4 +35,10 @@ public class EnterpriseServiceImpl implements EnterpriseService{
 		return enterpriseMapper.selectEnterSearchList(enterpriseSearchDomain);
 	}
 
+	@Override
+	public EnterpriseDomain selectEnterDetail(String enterpriseSeq) {
+		// TODO Auto-generated method stub
+		return enterpriseMapper.selectEnterDetail(enterpriseSeq);
+	}
+
 }

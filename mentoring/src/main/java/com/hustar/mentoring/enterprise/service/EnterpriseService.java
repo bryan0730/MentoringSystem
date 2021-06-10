@@ -13,4 +13,6 @@ public interface EnterpriseService {
 
 	public List<EnterpriseDomain> selectEnterSearchList(EnterpriseSearchDomain enterpriseSearchDomain);
 
+	public EnterpriseDomain selectEnterDetail(String enterpriseSeq);
+
 }

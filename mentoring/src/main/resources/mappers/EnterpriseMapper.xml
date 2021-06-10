@@ -33,4 +33,11 @@
 			)
 		</if>
 	</select>
+	
+	<select id="selectEnterDetail" resultType="com.hustar.mentoring.enterprise.domain.EnterpriseDomain">
+		SELECT *
+		FROM enterprise
+		WHERE enterpriseSeq = #{enterpriseSeq}
+		;
+	</select>
 </mapper>

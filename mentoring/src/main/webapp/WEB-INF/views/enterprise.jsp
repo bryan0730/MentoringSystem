@@ -72,7 +72,7 @@
             	<c:choose>
 	            	<c:when test="${!empty enterList}">
 		            	<c:forEach var="enterList" items="${enterList}" varStatus="status">
-		                <div class="item_company" data-seq="${enterList.enterpriseSeq}">
+		                <div class="item_company" data-seq="${enterList.enterpriseSeq}" onclick="window.location.href='/enterprise_detail?enterpriseSeq=${enterList.enterpriseSeq}'">
 		                	<input type="hidden" id="enterSeq" value="${enterList.enterpriseSeq }">
 		                    <div class="c_logo">
 		                        <img class="logo" src="https://swgo.kr/_File/convention/725101003b33450f4e9708651ec1a8f09abde850.png">
