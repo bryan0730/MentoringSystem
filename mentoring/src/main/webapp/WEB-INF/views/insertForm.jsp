@@ -60,7 +60,7 @@ h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px
 			</ul>
 			<ul>
 				<li>
-					<textarea id="boardContents" name=boardContents>${beforeView.boardContents }</textarea>
+					<textarea id="boardContents" name="boardContents">${beforeView.boardContents }</textarea>
 					<script>
 						 var ckeditor_config = {
 						   resize_enalbe : true,
@@ -83,6 +83,27 @@ h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px
 					<input type="file" id="boardFile" name="boardFile" multiple="multiple">
 				</li>
 			</ul>
+			<div class="attach-file">
+				<c:if test = "${not empty fileList}">
+					<c:forEach var = "file" items= "${fileList }" varStatus="status">
+						<div>
+							<c:url value="fileDownload.do" var = "url">
+								<c:param name="boardSeq" value="${file.boardSeq }"/>
+								<c:param name="fileSeq" value="${file.fileSeq }"/>
+							</c:url>
+							<a href = "${url }"><c:out value = "${file.fileOriginName }(${file.fileSize } bytes)"></c:out></a>
+							
+							
+
+							<c:url value="deleteFile.do" var = "deleteurl">
+								<c:param name="boardSeq" value="${file.boardSeq }"/>
+								<c:param name="fileSeq" value="${file.fileSeq }"/>
+							</c:url>
+							<a href = "${deleteurl }">삭제</a>
+						</div>
+					</c:forEach>
+				</c:if>
+			</div>
 			
 			<!-- <div id="loading-spinner"><img src="/img/load.gif"></div> -->
 			

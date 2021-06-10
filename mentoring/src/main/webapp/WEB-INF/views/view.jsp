@@ -74,6 +74,32 @@
 			<a href="#none" onclick="fn_del(${BoardView.boardSeq}); return fasle;">삭제</a>
 		</div>
 		
+		<div class="Reply-box">
+			<div>
+				<span class="NumberOfReply">0</span><span>개의 댓글</span>
+			</div>
+			
+			<div class="Reply-write">
+				<input type="hidden" id="boardSeq" name="boardSeq" value="${BoardView.boardSeq }">
+				<textarea id="replyContent" name="replyContent" placeholder="  댓글을 입력하세요."></textarea>
+				<a href="#none" onclick="javascript:insertReply();">등록</a>	
+			</div>
+			
+			<div class="Reply-list">
+				<c:if test = "${not empty replyList}">
+					<c:forEach var = "reply" items= "${replyList }" varStatus="status">
+						<div class="Reply" id="reply${reply.replySeq }" >
+							<span class="replyContent${reply.replySeq }"><c:out value ="${reply.replyContent }"/></span>
+							<span class="replyDate${reply.replySeq }"><c:out value ="${reply.replyDate }"/></span>
+							<a href="#none" onclick="javascript:updateReply(${reply.replySeq});">[수정]</a>
+							<a href="#none" onclick="javascript:deleteReply(${reply.replySeq});">[삭제]</a>
+						</div>
+					</c:forEach>
+				</c:if>
+			</div>
+
+		</div>
+		
 		<form method="post" id="deleteForm" action="deleteBoard.do">
 			<input type="hidden" id="boardSeq" name="boardSeq" value="${BoardView.boardSeq }">
 		</form>
@@ -88,5 +114,66 @@
 			$('#boardSeq').val(boardSeq);
 			$('#deleteForm').submit();
 		}
+	}
+	
+	function insertReply() {
+		if ($('#replyContent').val() =="") {
+			alert("내용을 입력해주세요.")
+		} else {
+			$.ajax({
+				type:'POST',
+				url : '<c:url value = "/common/insertReply.do"/>',
+				dataType : 'text',
+				data : {"boardSeq" : ${BoardView.boardSeq},
+						"replyContent" : $('#replyContent').val()},
+				success : function(data) {
+					location.reload();
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					console.log(textStatus);
+				}
+			})
+		}
+	}
+	
+	
+	function deleteReply(Seq) {
+		$.ajax({
+			type:'POST',
+			url : '<c:url value = "/common/deleteReply.do"/>',
+			dataType : 'text',
+			data : {"boardSeq" : ${BoardView.boardSeq},
+					"replySeq" : Seq},
+			success : function(data) {
+				location.reload();
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log(textStatus);
+			}
+		})
+	}
+	
+	function updateReply(replySeq){
+		$('#reply'+replySeq).html("<textarea name = 'replyContent' class = 'editReply'>" 
+				+ $('.replyContent'+replySeq).text() + "</textarea>" +
+				"<a href='#none' onclick='updateReplyproc(" + replySeq + ")'>[저장]</a>" + 
+				"<a href='#none' onclick='location.reload();'>[취소]</a>");
+	}
+	
+	function updateReplyproc(replySeq) {
+		$.ajax({
+			type:'POST',
+			url : '<c:out value="/common/updateReply.do"/>',
+			dataType : 'text',
+			data : {"boardSeq" : ${BoardView.boardSeq},
+					"replySeq" : replySeq,
+					"replyContent" : $('.editReply').val()},
+					success : function(data) {
+						location.reload();
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						console.log(textStatus);
+					}
+		})
 	}
 </script>
