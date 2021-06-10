@@ -17,4 +17,6 @@ public interface EnterpriseMapper {
 
 	public List<EnterpriseDomain> selectEnterSearchList(@Param("search") EnterpriseSearchDomain enterpriseSearchDomain);
 
+	public EnterpriseDomain selectEnterDetail(String enterpriseSeq); 
+
 }
