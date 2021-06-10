@@ -47,17 +47,24 @@
         </div>
         <div class="search_container">
 	        <form method="GET" action="/enter_search">
-	            <label><input type="checkbox" name="locationList" value="북구"> 북구</label>
-	            <label><input type="checkbox" name="locationList" value="중구"> 중구</label>
-	            <label><input type="checkbox" name="locationList" value="수성구"> 수성구</label>
-	            <label><input type="checkbox" name="locationList" value="동구"> 동구</label>
-	            <label><input type="checkbox" name="locationList" value="서구"> 서구</label>
+	            <label class="locationList"><input  type="checkbox" name="locationList" value="북구"> 북구</label>
+	            <label class="locationList"><input type="checkbox" name="locationList" value="중구"> 중구</label>
+	            <label class="locationList"><input type="checkbox" name="locationList" value="수성구"> 수성구</label>
+	            <label class="locationList"><input type="checkbox" name="locationList" value="동구"> 동구</label>
+	            <label class="locationList"><input type="checkbox" name="locationList" value="서구"> 서구</label>
 	
 	            <div class="search_domain">
 	                <input class="search_txt" id="searchText" name="searchText"  type="text">
 	                <button class="search_btn" type="submit">검색</button>
 	            </div>
 	        </form>
+	        <c:if test="${!empty searchCate}">
+		        <div class="search_cate">
+		        	지역 : ${searchCate.locationList }
+		        	<br/>
+		        	검색어 : ${searchCate.searchText }
+		        </div>
+	        </c:if>
         </div>
         <div class="main_container">
             <div class="company_box">

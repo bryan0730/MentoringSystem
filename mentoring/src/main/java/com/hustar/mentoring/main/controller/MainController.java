@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,8 +39,10 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/deleteBooking")
-	public void BookingDelete(BookingDomain bookingDomain) throws Exception {
+	public void BookingDelete(BookingDomain bookingDomain, ModelMap model) throws Exception {
 		mainService.deleteBooking(bookingDomain);
+		
+		model.addAttribute("resultMsg", "삭제되었습니다");
 	}
 	
 	@RequestMapping(value="/getMentoScheduleTime")

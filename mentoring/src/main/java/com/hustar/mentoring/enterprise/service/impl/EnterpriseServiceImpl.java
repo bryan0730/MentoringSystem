@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.hustar.mentoring.enterprise.domain.EnterpriseDomain;
+import com.hustar.mentoring.enterprise.domain.EnterpriseSearchDomain;
 import com.hustar.mentoring.enterprise.mapper.EnterpriseMapper;
 import com.hustar.mentoring.enterprise.service.EnterpriseService;
 
@@ -26,6 +27,12 @@ public class EnterpriseServiceImpl implements EnterpriseService{
 	public List<EnterpriseDomain> scrollDownPost(int startSeq) {
 		// TODO Auto-generated method stub
 		return enterpriseMapper.scrollDownPost(startSeq);
+	}
+
+	@Override
+	public List<EnterpriseDomain> selectEnterSearchList(EnterpriseSearchDomain enterpriseSearchDomain) {
+		// TODO Auto-generated method stub
+		return enterpriseMapper.selectEnterSearchList(enterpriseSearchDomain);
 	}
 
 }
