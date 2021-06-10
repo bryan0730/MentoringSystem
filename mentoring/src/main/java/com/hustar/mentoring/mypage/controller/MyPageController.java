@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.swing.filechooser.FileSystemView;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hustar.mentoring.board.domain.FileDomain;
+import com.hustar.mentoring.login.domain.MemberDetails;
 import com.hustar.mentoring.login.domain.MemberDomain;
 import com.hustar.mentoring.login.service.MemberDetailService;
 import com.hustar.mentoring.mypage.config.ProfilImg;
@@ -32,6 +34,28 @@ public class MyPageController {
 	private final MyPageService mypageService;
 	private final MemberDetailService memberDetailService;
 	
+	//index.jsp에서 마이페이지 로고 클릭시 mentomypage/mentimypage 중 어디로 이동할지 결정
+	@GetMapping("/chooseMypage")	
+	public String chooseMypage(Authentication auth, MemberDetails memberDetails) {
+		MemberDetails authentication = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		String role = authentication.getAuthoritie();
+		
+		System.out.println(role);
+		
+		if(role.equals("ROLE_MEMBER")) {
+			
+			System.out.println(role);
+			
+			return "redirect:/mypage";
+			
+		} else if (role.equals("ROLE_MENTO")){
+			
+			System.out.println(role);
+			
+			return "redirect:/mypageMento";
+		}
+		return null;
+	}
 	//멘토 마이페이지 이동
 	@GetMapping("/mypageMento")
 	public String testSelect(Model model, Authentication auth) {
@@ -49,6 +73,8 @@ public class MyPageController {
 	@GetMapping("/mypage")
 	
 	public String mypage(Model model, HttpServletRequest request, Authentication auth, MemberDomain memberdomain) {
+		
+		System.out.println("testttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
 		
 		int memberSeq = memberDetailService.findBySeq(auth.getName());
 		
