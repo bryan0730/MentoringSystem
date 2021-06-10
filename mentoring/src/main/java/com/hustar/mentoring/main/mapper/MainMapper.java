@@ -23,4 +23,6 @@ public interface MainMapper {
 	
 	public String findByEmail(int mentiSeq);
 	
+	public List<BookingDomain> selectMentoringList(int memberSeq);
+	
 }

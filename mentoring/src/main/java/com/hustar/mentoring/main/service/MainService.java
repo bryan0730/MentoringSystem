@@ -16,4 +16,6 @@ public interface MainService {
 	public List<?> selectScheduleList(ScheduleDomain scheduleDomain) throws Exception;
 	public void updateSchedule(ScheduleDomain scheduleDomain) throws Exception;
 	public void deleteSchedule(ScheduleDomain scheduleDomain) throws Exception;
+	
+	public List<BookingDomain> selectMentoringList(int memberSeq) throws Exception;
 }

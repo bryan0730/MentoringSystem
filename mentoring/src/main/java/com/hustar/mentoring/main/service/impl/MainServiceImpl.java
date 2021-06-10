@@ -65,5 +65,11 @@ public class MainServiceImpl implements MainService{
 		mainMapper.deleteSchedule(scheduleDomain);
 	}
 	
+	@Override
+	public List<BookingDomain> selectMentoringList(int memberSeq) {
+		// TODO Auto-generated method stub
+		return mainMapper.selectMentoringList(memberSeq);
+	}
+	
 	
 }

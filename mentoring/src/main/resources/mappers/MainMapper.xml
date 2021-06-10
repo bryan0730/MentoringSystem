@@ -99,5 +99,15 @@
 
 	</select>
 	
+	<select id="selectMentoringList" resultType="com.hustar.mentoring.main.domain.BookingDomain">
+	
+		<![CDATA[
+			SELECT * FROM booking
+			WHERE mentiSeq=#{memberSeq}
+			ORDER BY bookingDate
+		]]>
+
+	</select>
+	
 	
 </mapper>

@@ -44,7 +44,7 @@
             </div>
             <div class="gnb">
                 <ul>
-                    <li><a href="#none">멘토링</a></li>
+                    <li><a href='<c:url value = "/mentoring"/>'>멘토링</a></li>
                     <li><a href='<c:url value = "/common/BoardList.do"/>'>공지사항</a></li>
                     <li><a href="#none">자유게시판</a></li>
                     <li><a href="#none">참여기업</a></li>

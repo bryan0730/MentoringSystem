@@ -1,0 +1,74 @@
+.mentoring-box{
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+.mentoring-header{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.mentoring-header > h1{
+    font-size: 30px;
+}
+
+.mentoring > .mentoring-gnb{
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mentoring > .mentoring-gnb ul{
+    display: table;
+    width: 100%;
+    margin-bottom: 60px;
+}
+.mentoring > .mentoring-gnb ul li{
+    display: table-cell;
+    width: 50%;
+    font-size: 18px;
+}
+
+.mentoring-list > .mentoring-body{
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.mentoring-list > .mentoring-body > .mento-name{
+    font-size: 18px;
+    margin-bottom: 15px;    
+}
+
+.mentoring-list > .mentoring-body > .mento-name > span{
+    border-bottom: 1px solid #000;
+}
+
+.mentoring-list > .mentoring-body > .mento-name > span > span{
+    font-size: 15px;
+}
+
+
+.mentoring-list > .mentoring-body > .mentoring-title{
+    margin-bottom: 10px;
+}
+
+.mentoring-list > .mentoring-body > .mentoring-title > h2{
+    font-size: 18px;
+}
+
+.mentoring-list > .mentoring-body > .mentoring-content{
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.mentoring-list > .mentoring-body > .mentoring-info{
+    overflow: hidden;
+}
+
+.mentoring-list > .mentoring-body > .mentoring-info >li{
+    float: left;
+    margin: 10px;
+}
