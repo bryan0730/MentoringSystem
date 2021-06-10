@@ -1,7 +1,6 @@
 package com.hustar.mentoring.board.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.List;
 
@@ -13,18 +12,20 @@ import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hustar.mentoring.board.config.PagingCalc;
 import com.hustar.mentoring.board.domain.BoardDomain;
 import com.hustar.mentoring.board.domain.FileDomain;
+import com.hustar.mentoring.board.domain.ReplyDomain;
 import com.hustar.mentoring.board.service.BoardService;
 import com.hustar.mentoring.login.service.MemberDetailService;
 
@@ -70,11 +71,13 @@ public class BoardController {
 			
 			BoardDomain BoardView = (BoardDomain) boardService.selectBoardView(boardDomain);
 			List<FileDomain> fileList = (List<FileDomain>) boardService.selectFileList(boardDomain.getBoardSeq());
+			List<ReplyDomain> replyList = (List<ReplyDomain>) boardService.selectReplyList(boardDomain.getBoardSeq());
+			
 			
 			model.addAttribute("BoardView", BoardView);
 			model.addAttribute("fileList",fileList);
-		
-		
+			model.addAttribute("replyList", replyList);
+			
 		return "view";
 	}
 	
@@ -98,26 +101,6 @@ public class BoardController {
 			HttpServletRequest req,
 			ModelMap model) throws Exception {
 		
-			
-		
-			/*// 저장 경로 설정
-			String UploadPath = req.getSession().getServletContext().getRealPath("/");				
-			String ImgUploadPath = UploadPath.substring(0,UploadPath.length()-7).concat("resources" + File.separator + "static" + File.separator + "Board" + File.separator + "ProfileImg");
-			
-			
-			String fileName = null;
-			
-			
-			if (file != null && !(file.getOriginalFilename().equals(""))) {
-				// 파일이 있으면 이름을 가져와서 파일 업로드
-				fileName = UploadFileUtils.fileUpload(ImgUploadPath, file.getOriginalFilename(), file.getBytes());
-			} else {
-				// 파일이 없을때 기본화면을 제공해야함
-				fileName = "images" + File.separator + "user.png";
-			}
-			// 파일 경로를 Domain에 set
-			boardDomain.setBoardFilePath1(File.separator + "Board" + File.separator + "ProfileImg" + File.separator +  fileName);*/
-		
 			// DB 저장
 			boardService.insertBoard(boardDomain, multipartHttpServletRequest);
 				
@@ -133,7 +116,11 @@ public class BoardController {
 		
 			// 원래 있던 내용을 조회해서 model에 추가
 			BoardDomain beforeView = (BoardDomain) boardService.selectBoardView(boardDomain);
+			List<FileDomain> fileList = (List<FileDomain>) boardService.selectFileList(boardDomain.getBoardSeq());
+			
+			
 			model.addAttribute("beforeView", beforeView);
+			model.addAttribute("fileList",fileList);
 		
 			model.addAttribute("actionUrl", "/common/updateBoardForm.do");
 			
@@ -144,30 +131,11 @@ public class BoardController {
 	// 게시글 수정 처리
 	@PostMapping(value="/updateBoardForm.do")
 	public String updateBoardForm(@ModelAttribute BoardDomain boardDomain,
-			@RequestParam(value="hu_img", required = false) MultipartFile file,
-			HttpServletRequest req,
-			HttpServletResponse res,
+			MultipartHttpServletRequest multipartHttpServletRequest,
 			ModelMap model) throws Exception {
 		
-			String UploadPath = req.getSession().getServletContext().getRealPath("/");				
-			String ImgUploadPath = UploadPath.substring(0,UploadPath.length()-7).concat("resources" + File.separator + "static" + File.separator + "Board" + File.separator + "ProfileImg");
-			
-			
-			String fileName = null;
-			
-			
-			if (file != null && !(file.getOriginalFilename().equals(""))) {
-				// 파일이 있으면 이름을 가져와서 파일 업로드
-				//fileName = FileUtils.fileUpload(ImgUploadPath, file.getOriginalFilename(), file.getBytes());
-			} else {
-				// 파일이 없을때 기본화면을 제공해야함
-				fileName = "images" + File.separator + "user.png";
-			}
-			// 파일 경로를 Domain에 set
-			//boardDomain.setBoardFilePath1(File.separator + "Board" + File.separator + "ProfileImg" + File.separator +  fileName);
-			
 		
-			boardService.updateBoard(boardDomain);
+			boardService.updateBoard(boardDomain, multipartHttpServletRequest);
 		
 		return "redirect:BoardView.do?boardSeq=" + boardDomain.getBoardSeq();
 	}
@@ -178,8 +146,9 @@ public class BoardController {
 			HttpServletRequest req,
 			HttpServletResponse res,
 			ModelMap model) throws Exception{
-		
+			
 			try {
+				
 				boardService.deleteBoard(boardDomain);
 				
 			} catch(Exception e) {
@@ -191,7 +160,7 @@ public class BoardController {
 	
 	// 게시글에서 파일 다운로드
 	@GetMapping(value = {"/fileDownload.do"})
-	public void FileDownload(@RequestParam int boardSeq, @RequestParam int fileSeq,
+	public void fileDownload(@RequestParam int boardSeq, @RequestParam int fileSeq,
 			HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
 			String fileName = "";
@@ -214,11 +183,53 @@ public class BoardController {
 			// content-Disposition의 속성이 attachment;인 경우 다운로드한다.
 			// attachment와 다른 속성으로는 inline이 있는데 이 경우 웹페이지 화면에 표시된다.
 			res.setHeader("Content-Disposition",
-					String.format("attachment; filename=%s", fileDomain.getFileOriginName()));
+					String.format("attachment; filename=%s", URLEncoder.encode(fileDomain.getFileOriginName(), "UTF-8")));
 
 
 			res.getOutputStream().write(files);
 			res.getOutputStream().flush();
 			res.getOutputStream().close();
 		}
+	
+	
+	// 게시글에서 첨부파일만 삭제
+	@RequestMapping(value= {"/deleteFile.do"}, method={RequestMethod.GET, RequestMethod.POST})
+	public String deleteFile(@RequestParam int boardSeq,
+			@RequestParam int fileSeq,
+			HttpServletRequest req,
+			HttpServletResponse res) throws Exception {
+		
+		try {
+			boardService.deleteFile(boardSeq, fileSeq);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/common/updateBoard.do?boardSeq=" + boardSeq;
+	}
+	
+	@PostMapping(value= {"/insertReply.do"})
+	public String insertReply(@ModelAttribute ReplyDomain replyDomain, Model model) throws Exception {
+		
+		
+		boardService.insertReply(replyDomain);
+		
+		return "redirect:/common/BoardView.do?boardSeq=" + replyDomain.getBoardSeq();
+	}
+	
+	@PostMapping(value= {"/updateReply.do"})
+	public String updateReply(@ModelAttribute ReplyDomain replyDomain) throws Exception {
+		
+		boardService.updateReply(replyDomain);
+		
+		
+		return "redirect:/common/BoardView.do?boardSeq=" + replyDomain.getBoardSeq();
+	}
+	
+	@RequestMapping(value= {"/deleteReply.do"}, method={RequestMethod.GET, RequestMethod.POST})
+	public String deleteReply(@RequestParam int boardSeq,@RequestParam int replySeq) throws Exception {
+		boardService.deleteReply(replySeq);
+		return "redirect:/common/BoardView.do?boardSeq=" + boardSeq;
+	}
+	
 }

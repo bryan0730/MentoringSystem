@@ -129,7 +129,7 @@
 	<!-- 게시글 수정 -->
 	<update id="updateBoard" parameterType="com.hustar.mentoring.board.domain.BoardDomain">
 		<![CDATA[
-			UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS = #{boardContents}, BOARDFILEPATH1 = #{boardFilePath1}, BOARDMODIFYDATE = NOW()
+			UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS = #{boardContents}, BOARDMODIFYDATE = NOW()
 			WHERE BOARDSEQ = #{boardSeq}
 		]]>
 	</update>
@@ -207,12 +207,83 @@
 	
 	
 	<!-- 게시글 삭제시 파일 DB 삭제 처리 -->
-	<delete id="deleteFile" parameterType = "int">
+	<delete id="deleteFiles" parameterType = "int">
 		<![CDATA[
 			DELETE FROM FILE WHERE BOARDSEQ=#{boardSeq}
 				
 		]]>
 	
+	</delete>
+	
+	
+	
+	
+	
+	
+	<!-- 게시글 수정 파일 삭제 처리 -->
+	<delete id="deleteFile" parameterType = "int">
+		<![CDATA[
+			DELETE FROM FILE WHERE BOARDSEQ=#{boardSeq} AND FILESEQ=#{fileSeq}
+				
+		]]>
+	
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	<!-- 댓글 리스트 조회 -->
+	<select id="selectReplyList" parameterType="int" resultType="com.hustar.mentoring.board.domain.ReplyDomain">
+		<![CDATA[
+			SELECT * FROM REPLY WHERE BOARDSEQ=#{boardSeq} ORDER BY REPLYSEQ DESC
+		]]>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 댓글 등록 -->
+	<insert id="insertReply" parameterType="com.hustar.mentoring.board.domain.ReplyDomain" useGeneratedKeys="true" keyProperty="replySeq">
+		<![CDATA[
+			INSERT INTO REPLY (
+				BOARDSEQ,
+				REPLYCONTENT,
+				REPLYDATE
+			)
+			VALUES (
+				#{boardSeq},
+				#{replyContent},
+				NOW()
+			)
+		]]>
+	</insert>
+	
+	
+	
+	<!-- 댓글 수정 -->
+	<update id="updateReply" parameterType="com.hustar.mentoring.board.domain.ReplyDomain">
+		<![CDATA[
+			UPDATE REPLY SET REPLYCONTENT=#{replyContent} WHERE REPLYSEQ=#{replySeq} 
+		]]>
+	</update>
+	
+	
+	
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply" parameterType="int">
+		<![CDATA[
+			DELETE FROM REPLY WHERE REPLYSEQ=#{replySeq}
+		]]>
 	</delete>
 	
 </mapper>

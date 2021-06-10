@@ -23,5 +23,10 @@ h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px
 .view .attach-file > span {font-size : 16px;}
 .view .attach-file div {padding : 5px 0;}
 
-.Board-btn-box {max-width: 1500px; margin : 0 auto; text-align: right;}
+.Board-btn-box {max-width: 1500px; margin : 0 auto; text-align: right; padding : 20px;}
 .Board-btn-box a {padding : 10px 20px; border : 1px solid black; font-weight: bold; margin-left: 5px;}
+
+.Reply-box {max-width: 1500px; margin : 0 auto; background: #eee; padding : 10px;}
+.Reply-box .Reply-write {text-align: center;}
+.Reply-box .Reply-write textarea {width: 70%; display: inline-block; font-size : 15px; min-height: 56px;}
+.Reply-box .Reply-write a {vertical-align: top; padding : 20px; background: #ccc; display:inline-block;}

@@ -42,11 +42,7 @@ public class BoardFileUtils {
 			// return을 위한 FileDomain list를 생성
 			List<FileDomain> filelist = new ArrayList<>();
 			
-			// 파일명이 중복됐을 때 덮어써지거나 이름이 바뀌는 것을 방지하기 위해 UUID를 통해 랜덤 문자를 생성
-			UUID uid = UUID.randomUUID();
-			
-			
-			
+
 			// 경로 지정
 			//String Path = "C:\\Users\\HUSTAR03\\Desktop\\hustar\\MentoringBoardFiles";
 			
@@ -73,6 +69,9 @@ public class BoardFileUtils {
 					if (multipartFile.isEmpty() == false) {
 						
 						
+						// 파일명이 중복됐을 때 덮어써지거나 이름이 바뀌는 것을 방지하기 위해 UUID를 통해 랜덤 문자를 생성
+						UUID uid = UUID.randomUUID();
+						
 						newFileName = uid + "_" + multipartFile.getOriginalFilename();
 						
 						
@@ -80,6 +79,8 @@ public class BoardFileUtils {
 						if (ObjectUtils.isEmpty(multipartFile.getContentType())) {
 							break;
 						}
+						
+						System.out.println(multipartFile.getContentType());
 						
 						FileDomain fileDomain = new FileDomain();
 						
@@ -89,7 +90,7 @@ public class BoardFileUtils {
 						fileDomain.setFileContentType(multipartFile.getContentType());
 						fileDomain.setFileSize(multipartFile.getSize());
 						fileDomain.setFilePath(Path + File.separator + newFileName);
-						
+					
 						filelist.add(fileDomain);
 						
 						file = new File(Path + File.separator + newFileName);
@@ -104,8 +105,17 @@ public class BoardFileUtils {
 		}
 		
 		// 게시글 삭제시 서버에 있는 파일도 삭제
-		public static void DeleteFile() throws Exception {
-			
+		public static void DeleteFile(String Path) throws Exception {
+			try {
+				File deleteFile = new File(Path);
+				
+				if (deleteFile.exists() == true) {
+					deleteFile.delete();
+				}
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
 		}
 
 }

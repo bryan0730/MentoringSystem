@@ -13,6 +13,7 @@
 <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="/Board/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" href="/main/css/style.css">
+<link rel="stylesheet" href="/Board/css/board-insert.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
@@ -49,19 +50,6 @@ h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px
 	<c:if test="${beforeView.boardSeq != null}">
 	<input type="hidden" name="boardSeq" value="${beforeView.boardSeq }"> 
 	</c:if>
-
-	 
-<style>
-.board-form {max-width: 1200px; margin : 0 auto; padding : 20px 0;}
-
-
-.board-form ul li {padding-bottom : 10px;}
-.board-form ul li label {font-size : 16px;}
-.board-form ul li input[type=text] {width :100%; min-height: 30px; font-size : 14px;}
-
-.submit-btn {max-width: 1200px; margin : 0 auto;}
-.submit-btn input {float : right; padding : 5px 15px;}
-</style>
 	
 	<div class = "board-form-wrap">
 		<div class = "board-form">
@@ -72,7 +60,7 @@ h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px
 			</ul>
 			<ul>
 				<li>
-					<textarea id="boardContents" name=boardContents>${beforeView.boardContents }</textarea>
+					<textarea id="boardContents" name="boardContents">${beforeView.boardContents }</textarea>
 					<script>
 						 var ckeditor_config = {
 						   resize_enalbe : true,
@@ -95,6 +83,27 @@ h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px
 					<input type="file" id="boardFile" name="boardFile" multiple="multiple">
 				</li>
 			</ul>
+			<div class="attach-file">
+				<c:if test = "${not empty fileList}">
+					<c:forEach var = "file" items= "${fileList }" varStatus="status">
+						<div>
+							<c:url value="fileDownload.do" var = "url">
+								<c:param name="boardSeq" value="${file.boardSeq }"/>
+								<c:param name="fileSeq" value="${file.fileSeq }"/>
+							</c:url>
+							<a href = "${url }"><c:out value = "${file.fileOriginName }(${file.fileSize } bytes)"></c:out></a>
+							
+							
+
+							<c:url value="deleteFile.do" var = "deleteurl">
+								<c:param name="boardSeq" value="${file.boardSeq }"/>
+								<c:param name="fileSeq" value="${file.fileSeq }"/>
+							</c:url>
+							<a href = "${deleteurl }">삭제</a>
+						</div>
+					</c:forEach>
+				</c:if>
+			</div>
 			
 			<!-- <div id="loading-spinner"><img src="/img/load.gif"></div> -->
 			
@@ -110,78 +119,6 @@ h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px
 	
 </body>
 </html>
-
-
-<script type="text/javascript">
-	
-		
-	/*$('.submit-btn').on('click', function () {
-		
-		if(fn_submit()) {
-			
-			var formData = new FormData();
-			var file = document.getElementById("hu_img");
-			
-			formData.append('hu_name', $('#hu_name').val());
-			formData.append('hu_content', $('#hu_content').val());
-			formData.append('hu_img', file.files[0]);
-			
-			if (file.files[0] != null) {
-				
-				
-				$('#loading-spinner').show();
-				
-				axios.post('/insertBoardForm.do', formData, {
-					headers : {
-						'Content-Type' : 'multipart/form-data'
-					}
-				}).then((response) => {
-					$('#loading-spinner').hide();
-				}).catch((error) => {
-					
-				})
-			} else {
-				$.ajax({
-					type : 'post',
-					url : '/insertBoardForm.do',
-					data : formData,
-					
-					processType : false,
-					beforeSend : function() {
-						$('#loading-spinner').show();
-					},
-					success : function (data) {
-						$('#loading-spinner').hide();
-					}
-					
-				})
-			}*/
-			
-			
-			
-			
-			/*$.ajax({
-				method : "post",
-				enctype : 'multipart/form-data',
-				url : 'insertBoardForm.do',
-				data : formData,
-				processData : false,
-				contentType : false,
-				beforeSend : function() {
-					console.log('send');
-					$('#loading-spinner').show();
-				},		
-				success : function(data) {
-					console.log('success');
-					$('#loading-spinner').fadeOut();
-				},
-				error : function() {
-					alert("failed!");
-				}
-			});
-		}
-	});*/
-</script>
 
 <script>
 	function fn_submit() {
