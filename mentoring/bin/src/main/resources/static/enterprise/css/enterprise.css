@@ -1,0 +1,276 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/earlyaccess/notosanskr.css');
+    body {
+        margin: 0;
+        padding: 0;
+        font-size: 0.75em;
+        font-family: 'Noto Sans KR', 'Malgun Gothic', dotum, sans-serif;
+        background: #f5f5f5;
+        height: 100%;
+    }
+    
+    html,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    form,
+    fieldset,
+    img {
+        margin: 0;
+        padding: 0;
+        border: 0
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Noto Sans KR', 'Malgun Gothic', dotum, sans-serif
+    }
+    
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none
+    }
+    
+    a {
+        color: #000;
+        text-decoration: none
+    }
+    
+    
+    img {
+        max-width: 100%;
+        height: auto;
+        width: auto\9;
+    }
+    
+    body {
+        padding-top: 80px;
+    }
+    
+    .header {
+        background: #fff;
+        border-bottom: 1px solid #ccc;
+        box-shadow: 0 12px 6px rgb(0 0 0 / 6%);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+    }
+    
+    .header .header-box {
+        overflow: hidden;
+        padding: 0px 10px;
+    }
+    
+    .header h1 {
+        float: left;
+    }
+    
+    .header h1 a {
+        display: block;
+        padding: 10px;
+    }
+    
+    .header h1 a img {
+        max-width: 150px;
+        max-height: 60px;
+    }
+    
+    .header .gnb {
+        width: 400px;
+        margin: 0 auto;
+    }
+    
+    .header .gnb>ul {
+        overflow: hidden;
+        margin-top: 15px;
+    }
+    
+    .header .gnb>ul>li {
+        float: left;
+        margin: 0 10px;
+    }
+    
+    .header .gnb>ul>li>a {
+        display: block;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #000;
+        transition: all 0.2s;
+    }
+    
+    .header .gnb>ul>li>a:hover {
+        color: #ccc;
+    }
+    
+    .header .tnb {
+        float: right;
+        margin-top: 20px;
+    }
+    
+    .header .tnb>ul>li {
+        float: left;
+    }
+    
+    .header .tnb>ul>li>a {
+        display: block;
+        padding: 10px;
+        color: #000;
+    }
+    /* 헤더부분 끝 */
+    
+.wrap{min-height: calc(92.5vh - 80px);}
+
+.descript{
+    background: #fff;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.descript > h1{
+    font-weight: normal;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.descript > p{
+    margin: 0;
+    font-size: 15px;
+}
+
+.search_container{
+    margin: 10px 0;
+    background: #fff;
+    padding: 15px 40px;
+}
+
+.search_container > label{
+    font-size: 15px;
+}
+
+.main_container{
+    margin: 10px 0;
+}
+
+.main_container .company_box{
+    max-width: 1900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 5px 5px 5px 40px;
+}
+
+.main_container .company_box .item_company{
+    background: #fff;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    width: 23%;
+    height: 300px;
+    box-shadow : 2px 2px 5px 1px silver;
+    
+}
+
+.main_container .company_box .item_company:hover{
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.c_logo{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.logo{
+    width: auto;
+    height: auto;
+    object-fit: fill;
+}
+
+.c_info{
+    height: 50%;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    padding: 10px;
+    
+}
+
+.company{
+    font-weight: 200;
+}
+
+.title{
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.description{
+    font-size: 14px;
+    font-weight: 100;
+}
+
+.region{
+    font-size: 14px;
+    color: #4385F4;
+    margin-bottom: 10px;
+}
+
+.vision{
+    display: flex;
+}
+
+.human{
+    border-radius: 20px;
+    margin-right: 10px;
+    width: 87px;
+    height: 25px;
+    background-color: #F2F2F2;
+    text-align: center;
+}
+
+.search_domain{
+    float: right;
+}
+
+.search_btn{
+    border: 0;
+    color: #fff;
+    background: #000;
+}
+
+.no_data{
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+    padding: 50px;
+}
+
+.no_data > h2{
+	font-size: 24px;
+	font-weight: 200;
+    margin-bottom: 10px;
+}
+
+    
