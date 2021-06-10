@@ -12,8 +12,6 @@ public class GetMentoEmail {
 	private final MainMapper mainMapper;
 	
 	public String findByEmail(int mentiSeq) {
-		System.out.println("===================================================================================");
-		System.out.println(mentiSeq);
 		return mainMapper.findByEmail(mentiSeq);
 	}
 

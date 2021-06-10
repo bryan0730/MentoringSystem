@@ -256,8 +256,8 @@ function setDataMento(url, id) {
 function setBookingView(seq, role) {
     $('#calendar').evoCalendar({
         'sidebarDisplayDefault': false,
-        'eventDisplayDefault': false
-    })
+    });
+    
     let form;
     if(role == "ROLE_MEMBER"){
         form = {
@@ -277,44 +277,26 @@ function setBookingView(seq, role) {
         data: form,
         success: function (data) {
             data.forEach(element => {
-                if(memberRole == "ROLE_MEMBER"){
-                    $("#calendar").evoCalendar('addCalendarEvent', 
-                        {
-                            id: element.bookingId,
-                            name: element.bookingTitle,
-                            date: element.bookingDate,
-                            badge: '시간 : ' + element.bookingTime, // Event badge (optional)
-                            description: element.bookingContent,
-                            type: "event",
-                            color: element.accept == 0 ? "#ff7575" : "#7cee35",
-                            userName:element.mentiName,
-                            way:element.way,
-                            accept:element.accept
-                        }
-                    );
-                }else{   
-                    $("#calendar").evoCalendar('addCalendarEvent', 
-                        {
-                            id: element.bookingId,
-                            name: element.bookingTitle,
-                            date: element.bookingDate,
-                            badge: '시간 : ' + element.bookingTime, // Event badge (optional)
-                            description: element.bookingContent,
-                            type: "event",
-                            color: element.accept == 0 ? "#ff7575" : "#7cee35",
-                            userName:element.mentiName,
-                            way:element.way,
-                            accept:element.accept
-                        }
-                    ); 
-                }               
-            });
+                $("#calendar").evoCalendar('addCalendarEvent', 
+                    {
+                        id: element.bookingId,
+                        name: element.bookingTitle,
+                        date: element.bookingDate,
+                        badge: '시간 : ' + element.bookingTime, // Event badge (optional)
+                        description: element.bookingContent,
+                        type: "event",
+                        color: element.accept == 0 ? "#ff7575" : "#7cee35",
+                        userName:element.mentiName,
+                        way:element.way,
+                        accept:element.accept
+                    }
+                );               
+            })
         },
         error: function () {
             alert("error");
         },
     });
-
     //멘토일 경우 자기자신의 일정을 보여줌.
     if(role == "ROLE_MENTO"){
         $.ajax({
@@ -333,7 +315,7 @@ function setBookingView(seq, role) {
                                 date: element.scheduleDate,
                                 badge: st.length-1 == 0 ? '시간 : ' + st[0] : '시간 : ' + st[0] + ' ~ ' + st[st.length-1], // Event badge (optional)
                                 type: "birthday",
-                                color: mentoringChecker == -1 ? "#3ca8ff" : "#7cee35",
+                                color: "#3ca8ff",
                             }
                         );
                     }
@@ -345,6 +327,7 @@ function setBookingView(seq, role) {
         });
     }  
 };
+
 // 모달뷰 초기화
 function modalReset() {
     $('.booking-title').children('input').val("");

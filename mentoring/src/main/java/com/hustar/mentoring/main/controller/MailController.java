@@ -21,9 +21,6 @@ public class MailController {
 	@PostMapping("/sendEmail")
 	public void saveLocation(Model model, BookingDomain bookingDomain) {
 		
-		String emailId = bookingDomain.getMentiName(); 
-		System.out.println("==================================================================================" + bookingDomain.getMentiSeq());
-		//System.out.println(mentoEmail);
 		String mentoEmail = getMentoEmail.findByEmail(bookingDomain.getMentiSeq());
 		String mentiName = bookingDomain.getMentiName();
 		String mentorinDate = bookingDomain.getBookingDate();
