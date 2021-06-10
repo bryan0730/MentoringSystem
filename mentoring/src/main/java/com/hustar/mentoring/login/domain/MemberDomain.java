@@ -4,6 +4,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,4 +34,7 @@ public class MemberDomain {
 	
 	@NotEmpty
 	private String authoritie;
+	
+	private String memberPhoto;
+	
 }

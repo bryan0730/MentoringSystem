@@ -15,7 +15,7 @@
 	</select>
 	
 	<insert id="mentiSignUp">
-		INSERT INTO MENTI(memberEmail, memberPw, memberName, memberPhoneNumber, memberSchool, memberMajor, memberAddmission, memberTrack, Authoritie)
+		INSERT INTO MENTI(memberEmail, memberPw, memberName, memberPhoneNumber, memberSchool, memberMajor, memberAddmission, memberTrack, Authoritie, memberPhoto)
 		VALUES ( 
 					#{memberEmail}, 
 					#{memberPw}, 
@@ -25,7 +25,8 @@
 					#{memberMajor},
 					#{memberAddmission},
 					#{memberTrack},
-					#{authoritie}
+					#{authoritie},
+					"/Mypage/img/profil.jpg"
 				)
 		;
 	</insert>

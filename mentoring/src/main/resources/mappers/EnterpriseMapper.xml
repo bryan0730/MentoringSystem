@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hustar.mentoring.enterprise.mapper.EnterpriseMapper">
+
+	<select id="selectEnterpriseList" resultType="com.hustar.mentoring.enterprise.domain.EnterpriseDomain">
+		SELECT *
+		FROM enterprise
+		LIMIT 0, 10;
+	</select>
+
+	<select id="scrollDownPost" resultType="com.hustar.mentoring.enterprise.domain.EnterpriseDomain">
+			SELECT *
+			FROM enterprise
+			WHERE enterpriseSeq <![CDATA[ <= ]]> #{startSeq}+10
+			AND enterpriseSeq <![CDATA[ > ]]> #{startSeq}
+			ORDER BY enterpriseSeq asc;
+	</select>
+	
+	<select id="selectEnterSearchList" resultType="com.hustar.mentoring.enterprise.domain.EnterpriseDomain">
+		SELECT *
+		FROM enterprise
+		WHERE(1)
+		<if test="search.searchText != '' ">
+			AND enterpriseName LIKE CONCAT('%',#{search.searchText},'%')
+		</if>
+		<if test="search.locationList != null ">
+			AND ( enterpriseRegion LIKE
+			<foreach collection="search.locationList" item="location"
+				separator="OR enterpriseRegion LIKE">
+				CONCAT('%',#{location},'%')
+			</foreach>
+			)
+		</if>
+	</select>
+	
+	<select id="selectEnterDetail" resultType="com.hustar.mentoring.enterprise.domain.EnterpriseDomain">
+		SELECT *
+		FROM enterprise
+		WHERE enterpriseSeq = #{enterpriseSeq}
+		;
+	</select>
+</mapper>
