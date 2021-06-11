@@ -59,7 +59,7 @@ position: fixed;
             <c:forEach var="result" items="${mento}" varStatus="status">
             <div class="mypage-info">
                 <div class="mypage-img">
-                    <img src="" alt="">
+                    <img src="${result.memberPhoto }" alt="">
                 </div>
                 <div class="mypage-content">
                     <div class="mypage-name">

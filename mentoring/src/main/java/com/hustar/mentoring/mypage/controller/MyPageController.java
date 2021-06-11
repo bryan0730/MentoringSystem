@@ -73,16 +73,14 @@ public class MyPageController {
 	@GetMapping("/mypage")
 	
 	public String mypage(Model model, HttpServletRequest request, Authentication auth, MemberDomain memberdomain) {
-		
-		System.out.println("testttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
-		
+						
 		int memberSeq = memberDetailService.findBySeq(auth.getName());
 		
 		MemberDomain mypage = mypageService.mypage(memberSeq);
 		
 		model.addAttribute("memberSeq", memberSeq);
 		
-		model.addAttribute("mypage", mypage);	
+		model.addAttribute("mypage", mypage);
 		
 		return "mypage";
 		
@@ -143,14 +141,14 @@ public class MyPageController {
 		//DB에 저장된 기본 이미지 경로를 가져오는 메서드
 		String Photo = mypageService.mypage(memberSeq).getMemberPhoto().toString();
 		
-		System.out.println("test!!!!!!!!!!!!!!!!!!!!!!!:" + Photo);
-		
 		//이미지를 저장하고 memberDomain.memberPhoto에 경로를 저장하기 위한 메서드
 		ProfilImg profilImg = new ProfilImg();
 		profilImg.UploadProfil(multipartHttpServletRequest, memberdomain, Photo);
 
-		mypageService.mypageModify(memberdomain, memberSeq);		
-		
+		mypageService.mypageModify(memberdomain, memberSeq);	
+		//이미지가 저장되는 시간을 줌
+		Thread.sleep(2500);
+
 		return "redirect:/mypage";
 	}
 	

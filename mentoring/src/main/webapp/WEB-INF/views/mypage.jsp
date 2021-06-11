@@ -21,7 +21,7 @@
 <!--로고,메뉴-->
         <div class="header">
             <div class="header-box">
-                <h1><a href=""><img src="/img/logo_w.png" alt=""></a></h1>
+                <h1><a href=""><img src="/Mypage/img/logo (1).png" alt=""></a></h1>
                 <div class="tnb">
                     <ul>
                         <li><a href=""><i class="fas fa-bell"></i></a></li>

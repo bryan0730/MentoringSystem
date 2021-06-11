@@ -115,15 +115,15 @@
 	                    </div>
 	                </div>
 	                <div class="mypage-mod-save">
-	                    <button type="submit">
+	                    <button type= "submit" id="modifyBtn">
 	                        <i class="far fa-save"></i>
 	                    </button>
 	                    <h2>저장하기</h2>
 	                </div>
                 </form>
+                <div id="loadingImg"></div>
             </div>
         </div>
-
 </body>
 </html>
 

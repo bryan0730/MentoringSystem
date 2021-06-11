@@ -41,7 +41,7 @@ position: fixed;
  width: 100%;
  z-index: 9999;
  }   
-.header{background: #2757A9; border-bottom: 1px solid #ccc;}    
+.header{background: #fff; border-bottom: 1px solid #000;}    
 .header .header-box{overflow: hidden; padding: 10px 10px; margin-bottom: 10px;}
 
 .header h1{float: left; }
@@ -50,12 +50,12 @@ position: fixed;
 .header .gnb{width: 900px; margin: 8px auto 0;}
 .header .gnb > ul{overflow: hidden; margin-top: 10px;}
 .header .gnb > ul > li{float: left; margin: 0px 30px;}
-.header .gnb > ul > li > a{display: block; padding: 10px; font-size: 18px; font-weight: 600; transition: all 0.5s; color: #fff; margin-left: 50px;}
-.header .gnb > ul > li > a:hover{font-size: 18px; margin-top: 0px; transition: all 0.5s;}
+.header .gnb > ul > li > a{display: block; padding: 10px; font-size: 18px; font-weight: 600; transition: all 0.5s; color: #000; margin-left: 50px;}
+.header .gnb > ul > li > a:hover{font-size: 19px; margin-top: 0px; transition: all 0.5s;}
 
 .header .tnb{float: right; margin-top: 10px;}
 .header .tnb > ul > li{float: left;}
-.header .tnb > ul > li > a{display: block; padding: 10px; font-weight: 500; color: #fff; margin-right: 23px; margin-top: 5px; border: 1px solid white; border-radius: 10px;}
+.header .tnb > ul > li > a{display: block; padding: 10px; font-weight: 500; color: #000; margin-right: 23px; margin-top: 5px; border: 1px solid white; border-radius: 10px;}
 
 
             
