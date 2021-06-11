@@ -66,9 +66,15 @@ public class MainServiceImpl implements MainService{
 	}
 	
 	@Override
-	public List<BookingDomain> selectMentoringList(int memberSeq) {
+	public List<BookingDomain> beforeMentoringList(int memberSeq, String role, String today) {
 		// TODO Auto-generated method stub
-		return mainMapper.selectMentoringList(memberSeq);
+		return mainMapper.beforeMentoringList(memberSeq, role, today);
+	}
+	
+	@Override
+	public List<BookingDomain> afterMentoringList(int memberSeq, String role, String today) {
+		// TODO Auto-generated method stub
+		return mainMapper.afterMentoringList(memberSeq, role, today);
 	}
 	
 	

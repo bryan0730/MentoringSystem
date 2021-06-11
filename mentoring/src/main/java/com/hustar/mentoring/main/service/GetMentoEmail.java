@@ -14,5 +14,9 @@ public class GetMentoEmail {
 	public String findByEmail(int mentiSeq) {
 		return mainMapper.findByEmail(mentiSeq);
 	}
+	
+	public String findByName(int mentiSeq) {
+		return mainMapper.findByName(mentiSeq);
+	}
 
 }
