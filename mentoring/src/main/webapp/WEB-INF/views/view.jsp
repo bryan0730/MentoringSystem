@@ -73,8 +73,10 @@
 
 		<div class="Board-btn-box">
 			<a href="#none" onclick="history.back(); return false;">뒤로가기</a>
-			<a href="updateBoard.do?boardSeq=${BoardView.boardSeq }">수정</a>
-			<a href="#none" onclick="fn_del(${BoardView.boardSeq}); return fasle;">삭제</a>
+			<c:if test="${LoginEmail eq BoardView.memberEmail}">
+				<a href="updateBoard.do?boardSeq=${BoardView.boardSeq }">수정</a>
+				<a href="#none" onclick="fn_del(${BoardView.boardSeq}); return fasle;">삭제</a>
+			</c:if>
 		</div>
 		
 		<div class="Reply-box">
@@ -85,18 +87,20 @@
 			<div class="Reply-write">
 				<input type="hidden" id="boardSeq" name="boardSeq" value="${BoardView.boardSeq }">
 				<textarea id="replyContent" name="replyContent" placeholder="  댓글을 입력하세요."></textarea>
-				<a href="#none" onclick="javascript:insertReply(); return false;">등록</a>	
+				<a href="#none" onclick="javascript:insertReply(${BoardView.boardSeq }); return false;">등록</a>	
 			</div>
 			
 			<div class="Reply-list">
 				<c:if test = "${not empty replyList}">
 					<c:forEach var = "reply" items= "${replyList }" varStatus="status">
 						<div class="Reply" id="reply${reply.replySeq }" >
-							<span class="memberName${reply.memberName }"><c:out value="${reply.memberName }"/></span>
+							<span class="memberName${reply.replySeq }"><c:out value="${reply.memberName }"/></span>
 							<span class="replyContent${reply.replySeq }"><c:out value ="${reply.replyContent }"/></span>
 							<span class="replyDate${reply.replySeq }"><c:out value ="${reply.replyDate }"/></span>
-							<a href="#none" onclick="javascript:updateReply(${reply.replySeq}); return false;">[수정]</a>
-							<a href="#none" onclick="javascript:deleteReply(${reply.replySeq}); return false;">[삭제]</a>
+							<c:if test="${LoginEmail eq reply.memberEmail}">
+								<a href="#none" onclick="javascript:updateReply(${reply.replySeq}); return false;">[수정]</a>
+								<a href="#none" onclick="javascript:deleteReply(${BoardView.boardSeq },${reply.replySeq}); return false;">[삭제]</a>
+							</c:if>
 						</div>
 					</c:forEach>
 				</c:if>
@@ -113,6 +117,9 @@
 </html>
 
 <script>
+
+	console.log("login : " + '${LoginEmail}');
+	console.log("board : " + '${BoardView.memberEmail}');
 	// 게시글 삭제
 	function fn_del(boardSeq) {
 		if(confirm("이 게시글을 삭제하시겠습니까?")) {
@@ -122,7 +129,7 @@
 	}
 	
 	// 댓글 등록
-	function insertReply() {
+	function insertReply(boardSeq) {
 		if ($('#replyContent').val() =="") {
 			alert("내용을 입력해주세요.")
 		} else {
@@ -130,7 +137,7 @@
 				type:'POST',
 				url : '<c:url value = "/common/insertReply.do"/>',
 				dataType : 'text',
-				data : {"boardSeq" : ${BoardView.boardSeq},
+				data : {"boardSeq" : boardSeq,
 						"replyContent" : $('#replyContent').val()},
 				success : function(data) {
 					location.reload();
@@ -143,13 +150,13 @@
 	}
 	
 	// 댓글 삭제
-	function deleteReply(Seq) {
+	function deleteReply(boardSeq,replySeq) {
 		$.ajax({
 			type:'POST',
 			url : '<c:url value = "/common/deleteReply.do"/>',
 			dataType : 'text',
-			data : {"boardSeq" : ${BoardView.boardSeq},
-					"replySeq" : Seq},
+			data : {"boardSeq" : boardSeq,
+					"replySeq" : replySeq},
 			success : function(data) {
 				location.reload();
 			},
