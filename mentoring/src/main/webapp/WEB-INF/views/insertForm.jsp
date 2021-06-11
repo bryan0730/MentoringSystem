@@ -77,6 +77,15 @@ h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px
 				</li>
 	
 			</ul>
+			<c:if test="${role ne 'ROLE_MEMBER'}">
+				<ul>
+					<li>
+						<label for="divSeq">공지사항 등록</label>
+						<input type="checkbox" id="divSeq" name="divseq" value="1" <c:if test="${beforeView.divSeq eq '1'}">checked='checked'</c:if>/>
+					</li>
+				</ul>
+			</c:if>
+			
 			<ul>
 				<li>
 					<label for="">첨부파일</label>
