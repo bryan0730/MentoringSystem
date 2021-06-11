@@ -41,13 +41,16 @@
     </div>
     <script type="text/javascript">
     function fn_mentoring(param){
-    	console.log(param)
     	let param2 = param == "before" ? "after" : "before";
     	$('.mentoring-'+param).addClass('on');
         $('.mentoring-'+param2).removeClass('on');
         
         $('.mentoring-list-'+param).removeClass('hidden');
         $('.mentoring-list-'+param2).addClass('hidden');
+    }
+    
+    function fn_accept(id) {
+    	console.log(id)
     }
     </script>
     
@@ -72,7 +75,7 @@
 	                            </span>
 	                        </div>
 	                        <div class="mentoring-title">
-	                            <h2>"${result.bookingTitle}"</h2>
+	                        	<h2>"${result.bookingTitle}"</h2>
 	                        </div>
 	                        <div class="mentoring-content">
 	                            <p>"${result.bookingContent}"</p>
@@ -102,54 +105,56 @@
                     			value=
                     			<c:if test="${result.accept eq 1}">상담대기</c:if>
                     			<c:if test="${result.accept eq 0}">수락대기</c:if>
+                    			>
+                    			<input type="button" 
+                    			value=
+                    			<c:if test="${result.accept eq 0 && role eq 'ROLE_MENTO'}">"수락" onclick="fn_accept(${result.bookingId })"</c:if>
                     			>
                 			</div>
 	                    </div>
 	                </c:forEach>
                 </div>
                 <div class="mentoring-list-after hidden">
-	                <c:forEach var="result" items="${afterResultList }" varStatus="status"> 
-	                    <div class="mentoring-body">
-	                        <div class="mento-name">
-	                            <span>
-	                            	<c:if test="${role eq 'ROLE_MEMBER'}">${mentoName}<span> 교수님</span></c:if>
-	                            	<c:if test="${role eq 'ROLE_MENTO'}">${result.mentiName}<span> 교육생</span></c:if>              	
-	                            </span>
-	                        </div>
-	                        <div class="mentoring-title">
-	                            <h2>"${result.bookingTitle}"</h2>
-	                        </div>
-	                        <div class="mentoring-content">
-	                            <p>"${result.bookingContent}"</p>
-	                        </div>
-	                        <ul class="mentoring-info">
-	                            <li class="date">
-	                                <ul>
-	                                    <li>상담날짜</li>
-	                                    <li>${result.bookingDate}</li>
-	                                </ul>
-	                            </li>
-	                            <li class="time">
-	                                <ul>
-	                                    <li>상담시간</li>
-	                                    <li>${result.bookingTime}</li>
-	                                </ul>
-	                            </li>
-	                            <li class="way">
-	                                <ul>
-	                                    <li>상담방법</li>
-	                                    <li>${result.way }</li>
-	                                </ul>
-	                            </li>
-	                        </ul>
-	                        <div class="mentoring-state">
-                    			<input type="button" 
-                    			value=
-                    			<c:if test="${result.accept eq 1}">상담대기</c:if>
-                    			<c:if test="${result.accept eq 0}">수락대기</c:if>
-                    			>
-                			</div>
-	                    </div>
+	                <c:forEach var="result" items="${afterResultList }" varStatus="status">
+		                <c:if test="${result.accept eq 1}">
+		                    <div class="mentoring-body">
+		                        <div class="mento-name">
+		                            <span>
+		                            	<c:if test="${role eq 'ROLE_MEMBER'}">${mentoName}<span> 교수님</span></c:if>
+		                            	<c:if test="${role eq 'ROLE_MENTO'}">${result.mentiName}<span> 교육생</span></c:if>              	
+		                            </span>
+		                        </div>
+		                        <div class="mentoring-title">
+		                            <h2>"${result.bookingTitle}"</h2>
+		                        </div>
+		                        <div class="mentoring-content">
+		                            <p>"${result.bookingContent}"</p>
+		                        </div>
+		                        <ul class="mentoring-info">
+		                            <li class="date">
+		                                <ul>
+		                                    <li>상담날짜</li>
+		                                    <li>${result.bookingDate}</li>
+		                                </ul>
+		                            </li>
+		                            <li class="time">
+		                                <ul>
+		                                    <li>상담시간</li>
+		                                    <li>${result.bookingTime}</li>
+		                                </ul>
+		                            </li>
+		                            <li class="way">
+		                                <ul>
+		                                    <li>상담방법</li>
+		                                    <li>${result.way }</li>
+		                                </ul>
+		                            </li>
+		                        </ul>
+		                        <div class="mentoring-state">
+	                    			<input type="button" value="상담완료">
+	                			</div>
+		                    </div>
+		                    </c:if> 
 	                </c:forEach>
                 </div>
             </div>
