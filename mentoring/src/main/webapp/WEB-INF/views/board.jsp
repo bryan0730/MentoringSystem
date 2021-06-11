@@ -49,6 +49,7 @@
 				<th class="date">작성일</th>
 			</tr>
 		</thead>
+		
 		<tbody class="board-bd">
 			<c:forEach var="Board" items="${boardList }" varStatus="status">
 				<tr>
