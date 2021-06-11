@@ -8,8 +8,9 @@ import lombok.Setter;
 public class ReplyDomain extends SearchDomain{
 	private int replySeq;
 	private int boardSeq;
-	private int mentiSeq;
-	private int mentoSeq;
+	
+	private String memberEmail;
+	private String memberName;
 	
 	private String replyDate;
 	private String replyContent;	
