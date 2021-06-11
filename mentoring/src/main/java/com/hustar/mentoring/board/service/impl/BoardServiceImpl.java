@@ -2,6 +2,7 @@ package com.hustar.mentoring.board.service.impl;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -11,18 +12,24 @@ import com.hustar.mentoring.board.domain.FileDomain;
 import com.hustar.mentoring.board.domain.ReplyDomain;
 import com.hustar.mentoring.board.mapper.BoardMapper;
 import com.hustar.mentoring.board.service.BoardService;
+import com.hustar.mentoring.login.domain.MemberDetails;
+import com.hustar.mentoring.login.mapper.MemberMapper;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService{
+	
 	private final BoardMapper boardMapper;
+	private final MemberMapper memberMapper;
 
 	// 게시글 리스트 조회
 	@Override
 	public List<?> selectBoardList(BoardDomain boardDomain) {
 		// TODO Auto-generated method stub
+		
+		
 		return boardMapper.selectBoardList(boardDomain);
 	}
 
@@ -43,8 +50,10 @@ public class BoardServiceImpl implements BoardService{
 	
 	// 게시글 등록
 	@Override
-	public void insertBoard(BoardDomain boardDomain, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+	public void insertBoard(BoardDomain boardDomain, MultipartHttpServletRequest multipartHttpServletRequest, Authentication auth) throws Exception {
 		// TODO Auto-generated method stub
+		
+		boardDomain.setMemberEmail(auth.getName());
 		
 		// 게시글 내용 저장
 		boardMapper.insertBoard(boardDomain);
@@ -125,10 +134,21 @@ public class BoardServiceImpl implements BoardService{
 		return boardMapper.selectReplyList(boardSeq);
 	}
 	
+	
+	@Override
+	public int selectReplyListCnt(int boardSeq) throws Exception {
+		// TODO Auto-generated method stub
+		return boardMapper.selectReplyListCnt(boardSeq);
+	}
+	
+	
 	// 댓글 등록
 	@Override
-	public void insertReply(ReplyDomain replyDomain) throws Exception {
+	public void insertReply(ReplyDomain replyDomain, Authentication auth) throws Exception {
 		// TODO Auto-generated method stub
+		
+		replyDomain.setMemberEmail(auth.getName());
+		
 		boardMapper.insertReply(replyDomain);
 	}
 
@@ -147,6 +167,8 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		boardMapper.deleteReply(replySeq);
 	}
+
+
 
 
 	

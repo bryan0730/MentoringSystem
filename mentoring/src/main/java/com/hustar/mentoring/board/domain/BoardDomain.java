@@ -18,7 +18,10 @@ public class BoardDomain extends SearchDomain{
 	// 내용
 	private String boardContents;
 	
-	// 글쓴이
+	// 글쓴이를 알아내기 위한 정보
+	private String memberEmail;
+	
+	// 알아낸 글쓴이를 저장
 	private String memberName;
 	
 	// 생성일

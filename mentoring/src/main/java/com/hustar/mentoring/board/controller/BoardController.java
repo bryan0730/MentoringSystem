@@ -27,6 +27,7 @@ import com.hustar.mentoring.board.domain.BoardDomain;
 import com.hustar.mentoring.board.domain.FileDomain;
 import com.hustar.mentoring.board.domain.ReplyDomain;
 import com.hustar.mentoring.board.service.BoardService;
+import com.hustar.mentoring.login.domain.MemberDetails;
 import com.hustar.mentoring.login.service.MemberDetailService;
 
 import lombok.RequiredArgsConstructor;
@@ -46,18 +47,20 @@ public class BoardController {
 	public String BoardList(@ModelAttribute("boardDomain") BoardDomain boardDomain,
 			ModelMap model) throws Exception {
 		
+		// 페이징 객체 선언, 페이징 계산
 		PagingCalc paging = new PagingCalc();
-		
 		paging.setTotalCnt(boardService.selectBoardTotalCnt(boardDomain), boardDomain);
 		
-		List<BoardDomain> boardList = (List<BoardDomain>) boardService.selectBoardList(boardDomain);
 		
+		// 게시글 리스트 조회
+		List<BoardDomain> boardList = (List<BoardDomain>) boardService.selectBoardList(boardDomain);
+			
+
 		model.addAttribute("paging",paging);
 		model.addAttribute("select",boardDomain.getPageIndex());
 		model.addAttribute("boardList", boardList);
 		
-		
-		
+
 		return "board";
 	}
 	
@@ -65,18 +68,32 @@ public class BoardController {
 	// 게시글 조회
 	@GetMapping(value="/BoardView.do")
 	public String BoardView(@ModelAttribute BoardDomain boardDomain,
+			Authentication auth,
 			HttpServletRequest req,
 			HttpServletResponse res,
 			ModelMap model) throws Exception {
 			
+			// 게시글 상세 조회
 			BoardDomain BoardView = (BoardDomain) boardService.selectBoardView(boardDomain);
+			
+			// 해당 게시글 첨부파일 조회
 			List<FileDomain> fileList = (List<FileDomain>) boardService.selectFileList(boardDomain.getBoardSeq());
+			
+			// 해당 게시글 댓글 조회
 			List<ReplyDomain> replyList = (List<ReplyDomain>) boardService.selectReplyList(boardDomain.getBoardSeq());
 			
+			// 해당 게시글 댓글 개수 조회
+			int replyCnt = boardService.selectReplyListCnt(boardDomain.getBoardSeq());
+						
+			// 로그인 정보 확인
+			String LoginEmail = auth.getName();
 			
+			
+			model.addAttribute("LoginEmail", LoginEmail);
 			model.addAttribute("BoardView", BoardView);
 			model.addAttribute("fileList",fileList);
 			model.addAttribute("replyList", replyList);
+			model.addAttribute("replyCnt", replyCnt);
 			
 		return "view";
 	}
@@ -102,7 +119,7 @@ public class BoardController {
 			ModelMap model) throws Exception {
 		
 			// DB 저장
-			boardService.insertBoard(boardDomain, multipartHttpServletRequest);
+			boardService.insertBoard(boardDomain, multipartHttpServletRequest, auth);
 				
 			return "redirect:BoardList.do";
 	}
@@ -208,15 +225,17 @@ public class BoardController {
 		return "redirect:/common/updateBoard.do?boardSeq=" + boardSeq;
 	}
 	
+	//  댓글 등록
 	@PostMapping(value= {"/insertReply.do"})
-	public String insertReply(@ModelAttribute ReplyDomain replyDomain, Model model) throws Exception {
+	public String insertReply(@ModelAttribute ReplyDomain replyDomain, Authentication auth, Model model) throws Exception {
 		
 		
-		boardService.insertReply(replyDomain);
+		boardService.insertReply(replyDomain,auth);
 		
 		return "redirect:/common/BoardView.do?boardSeq=" + replyDomain.getBoardSeq();
 	}
 	
+	// 댓글 수정
 	@PostMapping(value= {"/updateReply.do"})
 	public String updateReply(@ModelAttribute ReplyDomain replyDomain) throws Exception {
 		
@@ -226,6 +245,8 @@ public class BoardController {
 		return "redirect:/common/BoardView.do?boardSeq=" + replyDomain.getBoardSeq();
 	}
 	
+	
+	// 댓글 삭제
 	@RequestMapping(value= {"/deleteReply.do"}, method={RequestMethod.GET, RequestMethod.POST})
 	public String deleteReply(@RequestParam int boardSeq,@RequestParam int replySeq) throws Exception {
 		boardService.deleteReply(replySeq);

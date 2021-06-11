@@ -3,7 +3,7 @@
     
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html>
 <html>
@@ -54,8 +54,9 @@
 				<tr>
 					<td class="no">${Board.boardSeq }</td>
 					<td class="title"><a href="BoardView.do?boardSeq=${Board.boardSeq}">${Board.boardTitle}</a></td>
-					<td class="writer"></td>
-					<td class="date">${Board.boardCreateDate }</td>
+					<td class="writer">${Board.memberName }</td>
+					<fmt:parseDate value="${Board.boardCreateDate}" var = "date" pattern="yyyy-MM-dd" scope="page"/>
+					<td class="date"><fmt:formatDate value = "${date }" pattern="yyyy-MM-dd"/></td>
 				</tr>
 			</c:forEach>
 		</tbody>

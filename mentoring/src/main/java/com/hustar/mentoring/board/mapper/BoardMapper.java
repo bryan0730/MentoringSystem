@@ -46,6 +46,9 @@ public interface BoardMapper {
 	// 댓글 리스트 조회
 	public List<ReplyDomain> selectReplyList(int boardSeq);
 	
+	// 댓글 개수 조회
+	public int selectReplyListCnt(int boardSeq);
+	
 	// 댓글 등록
 	public void insertReply(ReplyDomain replyDomain);
 	
