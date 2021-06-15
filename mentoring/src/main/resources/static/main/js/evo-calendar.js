@@ -585,7 +585,7 @@
                             '<div class="event-header"><p></p></div>'+
                             '<div class="event-list"></div>'+
                             '<div class="event-btn-box"><button class="add-btn">예약하기</button>'+
-                            '<button class="detail-btn">상세보기</button></div>'+
+                            '<button class="detail-btn" onclick="location.href=\'mentoring\'">상세보기</button></div>'+
                             '<div class="event-signal"><div class="event-icon"><div style="background-color:#ff7575"></div></div><span>수락대기</span><div class="event-icon"><div style="background-color:#7cee35"></div></div><span>상담대기</span></div>'+
                         '</div>';
             }else{
@@ -594,7 +594,7 @@
                             '<p></p></div>'+
                             '<div class="event-list"></div>'+
                             '<div class="event-btn-box"><button class="add-btn-mento">일정등록</button>'+
-                            '<button class="detail-btn">상세보기</button></div>'+
+                            '<button class="detail-btn"  onclick="location.href=\'mentoring\'">상세보기</button></div>'+
                             '<div class="event-signal"><div class="event-icon"><div style="background-color:#ff7575"></div></div><span>수락대기</span><div class="event-icon"><div style="background-color:#7cee35"></div></div><span>상담대기</span><div class="event-icon"><div style="background-color:#3ca8ff"></div></div><span>오늘일정</span></div>'+
                         '</div>';
             }
@@ -1740,7 +1740,7 @@
                             '<div class="event-header"><p></p></div>'+
                             '<div class="event-list"></div>'+
                             '<div class="event-btn-box"><button class="add-btn">예약하기</button>'+
-                            '<button class="detail-btn">상세보기</button></div>'+
+                            '<button class="detail-btn" onclick="location.href=\'mentoring\'">상세보기</button></div>'+
                             '<div class="event-signal"><div class="event-icon"><div style="background-color:#ff7575"></div></div><span>수락대기</span><div class="event-icon"><div style="background-color:#7cee35"></div></div><span>상담대기</span></div>'+
                         '</div>';
             }else{
@@ -1749,7 +1749,7 @@
                             '<p></p></div>'+
                             '<div class="event-list"></div>'+
                             '<div class="event-btn-box"><button class="add-btn-mento">일정등록</button>'+
-                            '<button class="detail-btn">상세보기</button></div>'+
+                            '<button class="detail-btn" onclick="location.href=\'mentoring\'">상세보기</button></div>'+
                             '<div class="event-signal"><div class="event-icon"><div style="background-color:#ff7575"></div></div><span>수락대기</span><div class="event-icon"><div style="background-color:#7cee35"></div></div><span>상담대기</span><div class="event-icon"><div style="background-color:#3ca8ff"></div></div><span>오늘일정</span></div>'+
                         '</div>';
             }

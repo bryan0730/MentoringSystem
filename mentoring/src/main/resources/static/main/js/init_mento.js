@@ -95,7 +95,6 @@ $('#accept-btn').on('click', function(){
 function acceptBooking() {
     let eventId = $('#eventId').val();
     let title =$('.event-name').children('span').text().split('이름: ')[1]+ "의 멘토링" 
-    console.log(title);
     let date = $('.calendar-active').attr('data-date-val');
     let time = $('.event-container[data-event-index='+eventId+']').children('.event-info').children('.event-title').children('span').text().split("시간 : ")[1];
     let seq = $('#memberSeq').val();
@@ -112,7 +111,7 @@ function acceptBooking() {
         data: form,
         success: function () {
             modalReset();
-            alert("저장되었습니다.");                
+            alert("상담을 수락하였습니다.");                
         },
         error: function () {
             alert("error");

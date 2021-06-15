@@ -17,6 +17,9 @@
     
     <!-- Add jQuery library (required) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+    
+    <!-- JavaScript -->
+
 
 <body>
 	<div class="header">
@@ -50,7 +53,26 @@
     }
     
     function fn_accept(id) {
-    	console.log(id)
+    	form = {
+                bookingId: id,
+                accept: 1,
+                role: "ROLE_MENTO"
+            }
+	    // insertBooking controller에 통신 
+	    $.ajax({
+	        url: "updateBooking",
+	        type: "POST",
+	        data: form,
+	        success: function () {
+	            alert("상담을 수락하였습니다.");                
+	        },
+	        error: function () {
+	            alert("error");
+	        },
+	        complete: function (){
+	            location.reload();
+	        }
+	    });
     }
     </script>
     
@@ -106,10 +128,9 @@
                     			<c:if test="${result.accept eq 1}">상담대기</c:if>
                     			<c:if test="${result.accept eq 0}">수락대기</c:if>
                     			>
-                    			<input type="button" 
-                    			value=
-                    			<c:if test="${result.accept eq 0 && role eq 'ROLE_MENTO'}">"수락" onclick="fn_accept(${result.bookingId })"</c:if>
-                    			>
+                    			<c:if test="${result.accept eq 0 && role eq 'ROLE_MENTO'}">
+                    			<input type="button" value="수락" onclick="fn_accept(${result.bookingId })">
+                    			</c:if>
                 			</div>
 	                    </div>
 	                </c:forEach>
@@ -162,7 +183,7 @@
     
     <div class="footer">
                 <div class="footer-logo">
-                    <a href=""><img src="/main/img/logo_w.png" alt=""></a>
+                    <a href="/common"><img src="/main/img/logo_w.png" alt=""></a>
                 </div>
                 <div class="footer-info">
                     <p>COPYRIGHT(C)Hustar Innovation Academy. All Rights Reserved</p>

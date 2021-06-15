@@ -46,11 +46,14 @@ $('#revise-btn').on('click', function () {
 //삭제버튼 클릭
 $('#remove-btn').on('click', function(){
     let id = $('#eventId').val();
-    if(memberRole == "ROLE_MEMBER"){
-        setData("deleteBooking",id);
-    }else{
-        setDataMento("deleteSchedule",id);
-    }   
+    // 삭제할 여부를 묻고 삭제
+    if(confirm("삭제 하시겠습니까?")){
+        if(memberRole == "ROLE_MEMBER"){
+            setData("deleteBooking",id);
+        }else{
+            setDataMento("deleteSchedule",id);
+        } 
+    }  
 });
 
 //취소버튼 클릭
@@ -144,6 +147,7 @@ function setData(url, id, accept) {
     let role = $("#role").val();
     let name = $('#name').val();
     let form;
+    
     // 저장할 데이터 json으로
     if(id){
         if(role == "ROLE_MEMBER"){
@@ -196,7 +200,13 @@ function setData(url, id, accept) {
         data: form,
         success: function () {
             modalReset();
-            alert("저장되었습니다.");                
+            if(url=="insertBooking"){
+                alert("저장되었습니다.");               
+            }else if(url=="updateBooking"){
+                alert("수정되었습니다.");               
+            }else if(url=="deleteBooking"){
+                alert("삭제되었습니다.");               
+            }
         },
         error: function () {
             alert("error");
@@ -233,14 +243,19 @@ function setDataMento(url, id) {
             mentoSeq: seq,
         }
     }  
-    // insertBooking controller에 통신 
     $.ajax({
         url: url,
         type: "POST",
         data: form,
         success: function () {
             modalReset();
-            alert("저장되었습니다.");                
+            if(url == "insertSchedule"){
+                alert("저장되었습니다.");  
+            }else if(url == "updateSchedule"){
+                alert("수정되었습니다.")
+            }else{
+                alertP("삭제되었습니다.")
+            }                  
         },
         error: function () {
             alert("error");
