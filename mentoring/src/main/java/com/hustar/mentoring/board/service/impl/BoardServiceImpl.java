@@ -12,7 +12,6 @@ import com.hustar.mentoring.board.domain.FileDomain;
 import com.hustar.mentoring.board.domain.ReplyDomain;
 import com.hustar.mentoring.board.mapper.BoardMapper;
 import com.hustar.mentoring.board.service.BoardService;
-import com.hustar.mentoring.login.domain.MemberDetails;
 import com.hustar.mentoring.login.mapper.MemberMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,6 @@ import lombok.RequiredArgsConstructor;
 public class BoardServiceImpl implements BoardService{
 	
 	private final BoardMapper boardMapper;
-	private final MemberMapper memberMapper;
 
 	// 게시글 리스트 조회
 	@Override

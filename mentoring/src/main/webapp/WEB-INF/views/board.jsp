@@ -30,15 +30,18 @@
         <div class="gnb">
             <ul>
                 <li><a href="#none">멘토링</a></li>
-                <li><a href="<c:url value='/common/Boardlist.do'/>">공지사항</a></li>
+                <li><a href="<c:url value='/common/BoardList.do?divSeq=1'/>">공지사항</a></li>
                 <li><a href="#none">자유게시판</a></li>
                 <li><a href="#none">참여기업</a></li>
             </ul>
         </div>
     </div>
 </div>
+<c:choose>
+<c:when test = "${boardDomain.divSeq == '1' }"><h2>공지사항</h2></c:when>
+<c:when test = "${boardDomain.divSeq == '2' }"><h2>게시판</h2></c:when>
+</c:choose>
 
-<h2>게시판</h2>
 <div class="board-wrap">
 	<table class = "board-box">
 		<thead class="board-hd">
@@ -99,8 +102,8 @@
 	<div class="search-box">
 		<select id="searchCondition" name="searchCondition">
 			<option value="boardTitle" <c:if test = "${boardDomain.searchCondition eq 'boardTitle' }">selected='selected'</c:if>>제목만</option>
-			<option value="boardWriter" <c:if test = "${boardDomain.searchCondition eq 'boardContents' }">selected='selected'</c:if>>내용만</option>
-			<option value="boardContents" <c:if test = "${boardDomain.searchCondition eq 'boardWriter' }">selected='selected'</c:if>>작성자만</option>
+			<option value="boardContents" <c:if test = "${boardDomain.searchCondition eq 'boardContents' }">selected='selected'</c:if>>내용만</option>
+			<option value="memberName" <c:if test = "${boardDomain.searchCondition eq 'memberName' }">selected='selected'</c:if>>작성자만</option>
 			<option value="all" <c:if test = "${boardDomain.searchCondition eq 'all' }">selected='selected'</c:if>>제목+내용</option>
 		</select>
 		<input type="text" id="searchKeyword" name="searchKeyword" value = "${boardDomain.searchKeyword }">

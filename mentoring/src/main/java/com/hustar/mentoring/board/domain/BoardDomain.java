@@ -12,6 +12,9 @@ public class BoardDomain extends SearchDomain{
 	// 게시글 번호
 	private int boardSeq;
 	
+	// 게시글 구분
+	private int divSeq;
+	
 	// 제목
 	private String boardTitle;
 	
@@ -29,9 +32,4 @@ public class BoardDomain extends SearchDomain{
 	
 	// 수정일
 	private String boardModifyDate;
-	
-	// 첨부 파일 경로
-//	private String boardFilePath1;
-//	private String boardFilePath2;
-//	private String boardFilePath3;	
 }

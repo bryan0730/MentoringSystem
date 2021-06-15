@@ -38,10 +38,12 @@
         </div>
     </div>
 </div>
-<style>
-h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px; text-align: center}
-</style>
-<h2>게시판</h2>
+
+<c:choose>
+<c:when test = "${boardDomain.divSeq == '1' }"><h2>공지사항</h2></c:when>
+<c:when test = "${boardDomain.divSeq == '2' }"><h2>게시판</h2></c:when>
+</c:choose>
+
 <form method="post" id="submitImg" name="submitImg" enctype="multipart/form-data" onsubmit="return fn_submit();" action="${actionUrl }" >
 
  	<!-- 그냥 등록을 할때에 이전 값이 없어서 NumberFormatException이 발생 -->
@@ -77,14 +79,21 @@ h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px
 				</li>
 	
 			</ul>
-			<c:if test="${role ne 'ROLE_MEMBER'}">
+		
+			
 				<ul>
 					<li>
-						<label for="divSeq">공지사항 등록</label>
-						<input type="checkbox" id="divSeq" name="divseq" value="1" <c:if test="${beforeView.divSeq eq '1'}">checked='checked'</c:if>/>
+						<label for="divSeq">게시판 선택</label>
+						<select id="divSeq" name="divSeq">
+						<!-- 멘티 권한에서는 공지사항 등록을 이용할 수 없음 -->
+							<c:if test="${role ne 'ROLE_MEMBER'}">
+								<option value="1" <c:if test = "${beforeView.divSeq eq '1' }">selected='selected'</c:if>>공지사항</option>
+							</c:if>
+							<option value="2" <c:if test = "${beforeView.divSeq eq '2' }">selected='selected'</c:if>>자유게시판</option>
+						</select>
 					</li>
 				</ul>
-			</c:if>
+
 			
 			<ul>
 				<li>

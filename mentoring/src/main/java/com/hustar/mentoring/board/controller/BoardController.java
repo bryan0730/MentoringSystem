@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,11 +42,10 @@ public class BoardController {
 	protected Log log = LogFactory.getLog(this.getClass());
 	
 	private final BoardService boardService;
-	private final MemberDetailService memberDetailService;
 	
 	// 게시글 List
 	@GetMapping(value="/BoardList.do")
-	public String BoardList(@ModelAttribute("boardDomain") BoardDomain boardDomain,
+	public String BoardList(@ModelAttribute("boardDomain") BoardDomain boardDomain ,
 			ModelMap model) throws Exception {
 		
 		// 페이징 객체 선언, 페이징 계산
@@ -55,7 +55,7 @@ public class BoardController {
 		
 		// 게시글 리스트 조회
 		List<BoardDomain> boardList = (List<BoardDomain>) boardService.selectBoardList(boardDomain);
-			
+
 
 		model.addAttribute("paging",paging);
 		model.addAttribute("select",boardDomain.getPageIndex());
@@ -128,7 +128,7 @@ public class BoardController {
 			// DB 저장
 			boardService.insertBoard(boardDomain, multipartHttpServletRequest, auth);
 				
-			return "redirect:BoardList.do";
+			return "redirect:BoardList.do?divSeq=" + boardDomain.getDivSeq();
 	}
 	
 	// 게시글 수정
@@ -161,7 +161,7 @@ public class BoardController {
 		
 			boardService.updateBoard(boardDomain, multipartHttpServletRequest);
 		
-		return "redirect:BoardView.do?boardSeq=" + boardDomain.getBoardSeq();
+		return "redirect:BoardView.do?divSeq=" + boardDomain.getDivSeq() + "&boardSeq=" + boardDomain.getBoardSeq();
 	}
 	
 	// 게시글 삭제
@@ -179,7 +179,7 @@ public class BoardController {
 				e.printStackTrace();
 			}
 		
-		return "redirect:BoardList.do";
+		return "redirect:BoardList.do?divSeq=" + boardDomain.getDivSeq();
 	}
 	
 	// 게시글에서 파일 다운로드
@@ -198,8 +198,11 @@ public class BoardController {
 			
 			// octet-stream은 모든 경우의 기본값 -> 알려지지 않은 파일 타입은 이 속성을 사용해야 한다.
 			res.setHeader("Content-Type", "application/octet-stream");
+			// 다운 받는 컨텐츠의 길이 설정
 			res.setContentLength((int)DownloadFile.length());
+			// 데이터의 Body의 인코딩 방식 
 			res.setHeader("Content-Transfer-Encoding", "binary;");
+			// no-cache : 응답은 로컬 캐시 저장소에 저장될 수 있지만 서버와 재검사 없이 캐시에서 클라이언트로 제공될 수 없는 속성 (이게 뭔뜻이지?)
 			res.setHeader("Pragma", "no-cache;");
 			res.setHeader("Expires", "-1;");
 

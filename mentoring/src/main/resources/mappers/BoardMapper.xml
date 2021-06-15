@@ -11,43 +11,9 @@
 		]]>
 		
 		<![CDATA[
-			(SELECT * FROM BOARD WHERE(1) 
+			(SELECT * FROM BOARD WHERE DIVSEQ=#{divSeq} ORDER BY BOARDSEQ DESC) AS BOARDLIST
 		]]>
 		
-					
-		<!-- 검색어가 null이 아니고 값이 비어 있지 않으면 쿼리문 추가 -->
-		<if test='searchKeyword != null and !searchKeyword.equals("")'>
-			<!-- 검색조건이 제목만 일때 -->
- 			<if test='searchCondition == "boardTitle" '>
-				<![CDATA[
- 					AND BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')
- 				]]>
- 			</if>
-			<!-- 검색조건이 내용만 일때 -->
-			<if test='searchCondition == "boardContents" '>
-				<![CDATA[
-					AND BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%')
-				]]>
-			</if>
-			<!-- 검색조건이 작성자만 일때
-			<if test='searchCondition == "boardWriter" '>
-				<![CDATA[
-					AND BOARDWRITER LIKE CONCAT('%',#{searchKeyword},'%')
-				]]>
-			</if> -->
-			<!-- 검색조건이 제목+내용 일때 -->
-			<if test='searchCondition == "all" '>
-				<![CDATA[
-					AND (BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')) OR (BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%'))
-				]]>
-			</if>
-		</if>
-		
-		<![CDATA[
-			ORDER BY BOARDSEQ DESC
-			LIMIT #{firstpage}, #{pageUnit}) AS BOARDLIST
-		]]>
-	
 		<![CDATA[
 			INNER JOIN
 				(
@@ -55,11 +21,45 @@
 				union 
 				select memberEmail, memberName from mento
 				) AS MEMBERLIST
-			ON BOARDLIST.MEMBEREMAIL = MEMBERLIST.MEMBEREMAIL;
+			ON BOARDLIST.MEMBEREMAIL = MEMBERLIST.MEMBEREMAIL
 		]]>
-	
-	
-	
+		
+		<![CDATA[
+			WHERE(1) 
+		]]>
+		
+		<!-- 검색어가 null이 아니고 값이 비어 있지 않으면 쿼리문 추가 -->
+		<if test='searchKeyword != null and !searchKeyword.equals("")'>
+			<!-- 검색조건이 제목만 일때 -->
+ 			<if test='searchCondition == "boardTitle" '>
+				<![CDATA[
+ 					AND BOARDLIST.BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')
+ 				]]>
+ 			</if>
+			<!-- 검색조건이 내용만 일때 -->
+			<if test='searchCondition == "boardContents" '>
+				<![CDATA[
+					AND BOARDLIST.BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%')
+				]]>
+			</if>
+			<!-- 검색조건이 작성자만 일때 -->
+			<if test='searchCondition == "memberName" '>
+				<![CDATA[
+					AND MEMBERLIST.MEMBERNAME LIKE CONCAT('%',#{searchKeyword},'%')
+				]]>
+			</if>
+			<!-- 검색조건이 제목+내용 일때 -->
+			<if test='searchCondition == "all" '>
+				<![CDATA[
+					AND (BOARDLIST.BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')) OR (BOARDLIST.BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%'))
+				]]>
+			</if>
+		</if>
+		
+		<![CDATA[
+		ORDER BY BOARDLIST.BOARDSEQ DESC
+		LIMIT #{firstpage}, #{pageUnit};
+		]]>
 	</select>
 	
 	
@@ -96,32 +96,49 @@
 	<!-- 게시글 전체 개수 -->
 	<select id="selectBoardTotalCnt" parameterType="com.hustar.mentoring.board.domain.BoardDomain" resultType="int">
 		<![CDATA[
-			SELECT COUNT(*) FROM BOARD WHERE(1) 
-		]]>	
+			SELECT COUNT(*) FROM 
+		]]>
+		
+		<![CDATA[
+			(SELECT * FROM BOARD WHERE DIVSEQ='2' ORDER BY BOARDSEQ DESC) AS BOARDLIST
+		]]>
+		
+		<![CDATA[
+			INNER JOIN
+				(
+				select memberEmail, memberName from menti 
+				union 
+				select memberEmail, memberName from mento
+				) AS MEMBERLIST
+			ON BOARDLIST.MEMBEREMAIL = MEMBERLIST.MEMBEREMAIL
+			
+			WHERE(1) 
+		]]>
+	
 		<!-- 검색어가 null이 아니고 값이 비어 있지 않으면 쿼리문 추가 -->
 		<if test='searchKeyword != null and !searchKeyword.equals("")'>
 			<!-- 검색조건이 제목만 일때 -->
  			<if test='searchCondition == "boardTitle" '>
 				<![CDATA[
- 					AND BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')
+ 					AND BOARDLIST.BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')
  				]]>
  			</if>
 			<!-- 검색조건이 내용만 일때 -->
 			<if test='searchCondition == "boardContents" '>
 				<![CDATA[
-					AND BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%')
+					AND BOARDLIST.BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%')
 				]]>
 			</if>
 			<!-- 검색조건이 작성자만 일때 -->
-			<if test='searchCondition == "boardWriter" '>
+			<if test='searchCondition == "memberName" '>
 				<![CDATA[
-					AND BOARDWRITER LIKE CONCAT('%',#{searchKeyword},'%')
+					AND MEMBERLIST.MEMBERNAME LIKE CONCAT('%',#{searchKeyword},'%')
 				]]>
 			</if>
 			<!-- 검색조건이 제목+내용 일때 -->
 			<if test='searchCondition == "all" '>
 				<![CDATA[
-					AND (BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')) OR (BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%'))
+					AND (BOARDLIST.BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')) OR (BOARDLIST.BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%'))
 				]]>
 			</if>
 		</if>
@@ -141,6 +158,7 @@
 				BOARDTITLE=#{boardTitle},
 				BOARDCONTENTS=#{boardContents},
 				MEMBEREMAIL=#{memberEmail},
+				DIVSEQ = #{divSeq},
 				BOARDCREATEDATE=NOW()
 		]]>
 	</insert>
@@ -156,8 +174,11 @@
 	<update id="updateBoard" parameterType="com.hustar.mentoring.board.domain.BoardDomain">
 		<![CDATA[
 			UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS = #{boardContents}, BOARDMODIFYDATE = NOW()
-			WHERE BOARDSEQ = #{boardSeq}
 		]]>
+		<![CDATA[, DIVSEQ=#{divSeq}]]>
+		
+		WHERE BOARDSEQ = #{boardSeq}
+
 	</update>
 
 

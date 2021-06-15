@@ -35,11 +35,10 @@
     </div>
 </div>
 
-<style>
-
-
-</style>
-<h2>게시판</h2>
+<c:choose>
+<c:when test = "${boardDomain.divSeq == '1' }"><h2>공지사항</h2></c:when>
+<c:when test = "${boardDomain.divSeq == '2' }"><h2>게시판</h2></c:when>
+</c:choose>
 
 <div class="contents">
 	<div class="Board-wrap">
@@ -72,7 +71,7 @@
 		</div>
 
 		<div class="Board-btn-box">
-			<a href="#none" onclick="history.back(); return false;">뒤로가기</a>
+			<a href="<c:url value='/common/BoardList.do?divSeq=${BoardView.divSeq }'/>">뒤로가기</a>
 			<c:if test="${LoginEmail eq BoardView.memberEmail}">
 				<a href="updateBoard.do?boardSeq=${BoardView.boardSeq }">수정</a>
 				<a href="#none" onclick="fn_del(${BoardView.boardSeq}); return fasle;">삭제</a>
@@ -81,29 +80,32 @@
 		
 		<div class="Reply-box">
 			<div>
-				<span class="NumberOfReply"><c:out value="${replyCnt }"/></span><span>개의 댓글</span>
+				<span class="NumberOfReply"><c:out value="${replyCnt }"/></span><span>  개의 댓글</span>
 			</div>
 			
-			<div class="Reply-write">
-				<input type="hidden" id="boardSeq" name="boardSeq" value="${BoardView.boardSeq }">
-				<textarea id="replyContent" name="replyContent" placeholder="  댓글을 입력하세요."></textarea>
-				<a href="#none" onclick="javascript:insertReply(${BoardView.boardSeq }); return false;">등록</a>	
-			</div>
 			
 			<div class="Reply-list">
 				<c:if test = "${not empty replyList}">
 					<c:forEach var = "reply" items= "${replyList }" varStatus="status">
 						<div class="Reply" id="reply${reply.replySeq }" >
 							<span class="memberName${reply.replySeq }"><c:out value="${reply.memberName }"/></span>
-							<span class="replyContent${reply.replySeq }"><c:out value ="${reply.replyContent }"/></span>
 							<span class="replyDate${reply.replySeq }"><c:out value ="${reply.replyDate }"/></span>
 							<c:if test="${LoginEmail eq reply.memberEmail}">
 								<a href="#none" onclick="javascript:updateReply(${reply.replySeq}); return false;">[수정]</a>
 								<a href="#none" onclick="javascript:deleteReply(${BoardView.boardSeq },${reply.replySeq}); return false;">[삭제]</a>
 							</c:if>
+							<div>
+								<span class="replyContent${reply.replySeq }"><c:out value ="${reply.replyContent }"/></span>
+							</div>
 						</div>
 					</c:forEach>
 				</c:if>
+			</div>
+			
+			<div class="Reply-write">
+				<input type="hidden" id="boardSeq" name="boardSeq" value="${BoardView.boardSeq }">
+				<textarea id="replyContent" name="replyContent" placeholder="  댓글을 입력하세요."></textarea>
+				<a href="#none" onclick="javascript:insertReply(${BoardView.boardSeq }); return false;">등록</a>	
 			</div>
 
 		</div>
@@ -118,8 +120,6 @@
 
 <script>
 
-	console.log("login : " + '${LoginEmail}');
-	console.log("board : " + '${BoardView.memberEmail}');
 	// 게시글 삭제
 	function fn_del(boardSeq) {
 		if(confirm("이 게시글을 삭제하시겠습니까?")) {
@@ -169,7 +169,7 @@
 	
 	// 댓글 수정 textarea 생성
 	function updateReply(replySeq){
-		$('#reply'+replySeq).html("<textarea name = 'replyContent' class = 'editReply'>" 
+		$('#reply'+replySeq).html("<textarea name = 'replyContent' class = 'editReply' style='width:100%'}>" 
 				+ $('.replyContent'+replySeq).text() + "</textarea>" +
 				"<a href='#none' onclick='updateReplyproc(" + replySeq + ")'>[저장]</a>" + 
 				"<a href='#none' onclick='location.reload();'>[취소]</a>");
