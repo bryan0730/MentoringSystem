@@ -2,13 +2,16 @@ package com.hustar.mentoring.admin.controller;
 
 import java.util.List;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hustar.mentoring.admin.service.AdminService;
 import com.hustar.mentoring.enterprise.domain.EnterpriseDomain;
@@ -31,9 +34,10 @@ public class AdminController {
 	
 	@PostMapping("/modifyEnterprise")
 	@ResponseBody
-	public void updateEnterprise(EnterpriseDomain enterpriseDomain) {
+	public void updateEnterprise(EnterpriseDomain enterpriseDomain, @RequestParam(value = "imageUpload", required = false) MultipartFile uploadFile) throws Exception {
 		
-		adminService.updateEnterprise(enterpriseDomain);
+		
+		adminService.updateEnterprise(enterpriseDomain, uploadFile);
 		
 	}
 	

@@ -42,7 +42,7 @@
             	<ul class="accordion">
                 	<c:forEach var="list" items="${list}" varStatus="status">
                     	 <li>
-                    	 	<form id="modifyForm" method="POST" >
+                    	 	<form id="modifyForm" method="POST" enctype="multipart/form-data">
                     	 	<input type="hidden" id="enterpriseSeq" name="enterpriseSeq" value="${list.enterpriseSeq }" >
                             <a class="ac_top">${list.enterpriseName }</a>
                             <div class="body_space">
@@ -58,7 +58,7 @@
                                             </div>
                                             <div class="content">
                                                 <button class="btn">변경</button>
-                                                <input type='file' class="up-file" id="imageUpload" accept=".png, .jpg, .jpeg"/>
+                                                <input type='file' class="up-file" id="imageUpload" name="imageUpload" accept=".png, .jpg, .jpeg"/>
                                             </div>
                                         </div>
                                         <table class="info_table">

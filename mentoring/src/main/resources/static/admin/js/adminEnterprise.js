@@ -38,6 +38,7 @@ $('.modify').click(function(){
 				type:"POST",
 				url:"/admin/modifyEnterprise",
 				data:formData,
+				enctype: 'multipart/form-data',
 				processData: false,
 		   	    contentType: false,   
 				success:function(){
