@@ -7,43 +7,59 @@
 	<!-- 게시판 목록 조회 -->
 	<select id="selectBoardList" parameterType="com.hustar.mentoring.board.domain.BoardDomain" resultType="com.hustar.mentoring.board.domain.BoardDomain">
 		<![CDATA[
-			SELECT * FROM BOARD WHERE(1) 
+			SELECT BOARDLIST.*, MEMBERLIST.MEMBERNAME FROM 
 		]]>
 		
-					
+		<![CDATA[
+			(SELECT * FROM BOARD WHERE DIVSEQ=#{divSeq} ORDER BY BOARDSEQ DESC) AS BOARDLIST
+		]]>
+		
+		<![CDATA[
+			INNER JOIN
+				(
+				select memberEmail, memberName from menti 
+				union 
+				select memberEmail, memberName from mento
+				) AS MEMBERLIST
+			ON BOARDLIST.MEMBEREMAIL = MEMBERLIST.MEMBEREMAIL
+		]]>
+		
+		<![CDATA[
+			WHERE(1) 
+		]]>
+		
 		<!-- 검색어가 null이 아니고 값이 비어 있지 않으면 쿼리문 추가 -->
 		<if test='searchKeyword != null and !searchKeyword.equals("")'>
 			<!-- 검색조건이 제목만 일때 -->
  			<if test='searchCondition == "boardTitle" '>
 				<![CDATA[
- 					AND BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')
+ 					AND BOARDLIST.BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')
  				]]>
  			</if>
 			<!-- 검색조건이 내용만 일때 -->
 			<if test='searchCondition == "boardContents" '>
 				<![CDATA[
-					AND BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%')
+					AND BOARDLIST.BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%')
 				]]>
 			</if>
 			<!-- 검색조건이 작성자만 일때 -->
-			<if test='searchCondition == "boardWriter" '>
+			<if test='searchCondition == "memberName" '>
 				<![CDATA[
-					AND BOARDWRITER LIKE CONCAT('%',#{searchKeyword},'%')
+					AND MEMBERLIST.MEMBERNAME LIKE CONCAT('%',#{searchKeyword},'%')
 				]]>
 			</if>
 			<!-- 검색조건이 제목+내용 일때 -->
 			<if test='searchCondition == "all" '>
 				<![CDATA[
-					AND (BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')) OR (BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%'))
+					AND (BOARDLIST.BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')) OR (BOARDLIST.BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%'))
 				]]>
 			</if>
 		</if>
 		
 		<![CDATA[
-			ORDER BY BOARDSEQ DESC
-			LIMIT #{firstpage}, #{pageUnit}
+		ORDER BY BOARDLIST.BOARDSEQ DESC
+		LIMIT #{firstpage}, #{pageUnit};
 		]]>
-	
 	</select>
 	
 	
@@ -56,7 +72,16 @@
 	<!-- 게시글 상세 조회 -->
 	<select id="selectBoardView" parameterType="com.hustar.mentoring.board.domain.BoardDomain" resultType="com.hustar.mentoring.board.domain.BoardDomain">
 		<![CDATA[
-			SELECT * FROM BOARD WHERE BOARDSEQ = #{boardSeq}
+			SELECT BOARDLIST.*, MEMBERLIST.MEMBERNAME FROM (SELECT * FROM BOARD WHERE BOARDSEQ = #{boardSeq}) BOARDLIST
+		]]>
+		<![CDATA[
+			INNER JOIN
+				(
+				select memberEmail, memberName from menti 
+				union 
+				select memberEmail, memberName from mento
+				) AS MEMBERLIST
+			ON BOARDLIST.MEMBEREMAIL = MEMBERLIST.MEMBEREMAIL;
 		]]>
 			
 	</select>
@@ -71,32 +96,49 @@
 	<!-- 게시글 전체 개수 -->
 	<select id="selectBoardTotalCnt" parameterType="com.hustar.mentoring.board.domain.BoardDomain" resultType="int">
 		<![CDATA[
-			SELECT COUNT(*) FROM BOARD WHERE(1) 
-		]]>	
+			SELECT COUNT(*) FROM 
+		]]>
+		
+		<![CDATA[
+			(SELECT * FROM BOARD WHERE DIVSEQ='2' ORDER BY BOARDSEQ DESC) AS BOARDLIST
+		]]>
+		
+		<![CDATA[
+			INNER JOIN
+				(
+				select memberEmail, memberName from menti 
+				union 
+				select memberEmail, memberName from mento
+				) AS MEMBERLIST
+			ON BOARDLIST.MEMBEREMAIL = MEMBERLIST.MEMBEREMAIL
+			
+			WHERE(1) 
+		]]>
+	
 		<!-- 검색어가 null이 아니고 값이 비어 있지 않으면 쿼리문 추가 -->
 		<if test='searchKeyword != null and !searchKeyword.equals("")'>
 			<!-- 검색조건이 제목만 일때 -->
  			<if test='searchCondition == "boardTitle" '>
 				<![CDATA[
- 					AND BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')
+ 					AND BOARDLIST.BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')
  				]]>
  			</if>
 			<!-- 검색조건이 내용만 일때 -->
 			<if test='searchCondition == "boardContents" '>
 				<![CDATA[
-					AND BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%')
+					AND BOARDLIST.BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%')
 				]]>
 			</if>
 			<!-- 검색조건이 작성자만 일때 -->
-			<if test='searchCondition == "boardWriter" '>
+			<if test='searchCondition == "memberName" '>
 				<![CDATA[
-					AND BOARDWRITER LIKE CONCAT('%',#{searchKeyword},'%')
+					AND MEMBERLIST.MEMBERNAME LIKE CONCAT('%',#{searchKeyword},'%')
 				]]>
 			</if>
 			<!-- 검색조건이 제목+내용 일때 -->
 			<if test='searchCondition == "all" '>
 				<![CDATA[
-					AND (BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')) OR (BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%'))
+					AND (BOARDLIST.BOARDTITLE LIKE CONCAT('%',#{searchKeyword},'%')) OR (BOARDLIST.BOARDCONTENTS LIKE CONCAT('%',#{searchKeyword},'%'))
 				]]>
 			</if>
 		</if>
@@ -115,6 +157,8 @@
 			INSERT INTO BOARD SET
 				BOARDTITLE=#{boardTitle},
 				BOARDCONTENTS=#{boardContents},
+				MEMBEREMAIL=#{memberEmail},
+				DIVSEQ = #{divSeq},
 				BOARDCREATEDATE=NOW()
 		]]>
 	</insert>
@@ -129,9 +173,12 @@
 	<!-- 게시글 수정 -->
 	<update id="updateBoard" parameterType="com.hustar.mentoring.board.domain.BoardDomain">
 		<![CDATA[
-			UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS = #{boardContents}, BOARDFILEPATH1 = #{boardFilePath1}, BOARDMODIFYDATE = NOW()
-			WHERE BOARDSEQ = #{boardSeq}
+			UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS = #{boardContents}, BOARDMODIFYDATE = NOW()
 		]]>
+		<![CDATA[, DIVSEQ=#{divSeq}]]>
+		
+		WHERE BOARDSEQ = #{boardSeq}
+
 	</update>
 
 
@@ -207,12 +254,108 @@
 	
 	
 	<!-- 게시글 삭제시 파일 DB 삭제 처리 -->
-	<delete id="deleteFile" parameterType = "int">
+	<delete id="deleteFiles" parameterType = "int">
 		<![CDATA[
 			DELETE FROM FILE WHERE BOARDSEQ=#{boardSeq}
 				
 		]]>
 	
+	</delete>
+	
+	
+	
+	
+	
+	
+	<!-- 게시글 수정 파일 삭제 처리 -->
+	<delete id="deleteFile" parameterType = "int">
+		<![CDATA[
+			DELETE FROM FILE WHERE BOARDSEQ=#{boardSeq} AND FILESEQ=#{fileSeq}
+				
+		]]>
+	
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	<!-- 댓글 리스트 조회 -->
+	<select id="selectReplyList" parameterType="int" resultType="com.hustar.mentoring.board.domain.ReplyDomain">
+		<![CDATA[
+			SELECT REPLYLIST.*, MEMBERLIST.MEMBERNAME FROM 
+		]]>
+		<![CDATA[
+			(SELECT * FROM REPLY WHERE BOARDSEQ=#{boardSeq} ORDER BY REPLYSEQ DESC) AS REPLYLIST
+		]]>
+		<![CDATA[
+			INNER JOIN
+				(
+				select memberEmail, memberName from menti 
+				union 
+				select memberEmail, memberName from mento
+				) AS MEMBERLIST
+			ON REPLYLIST.MEMBEREMAIL = MEMBERLIST.MEMBEREMAIL;
+		]]>
+	</select>
+	
+	
+	
+	
+	
+	
+	<!-- 댓글 개수 조회 -->
+	<select id="selectReplyListCnt" parameterType="int" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM REPLY WHERE BOARDSEQ=#{boardSeq}	
+		]]>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 댓글 등록 -->
+	<insert id="insertReply" parameterType="com.hustar.mentoring.board.domain.ReplyDomain" useGeneratedKeys="true" keyProperty="replySeq">
+		<![CDATA[
+			INSERT INTO REPLY (
+				BOARDSEQ,
+				REPLYCONTENT,
+				MEMBEREMAIL,
+				REPLYDATE
+			)
+			VALUES (
+				#{boardSeq},
+				#{replyContent},
+				#{memberEmail},
+				NOW()
+			)
+		]]>
+	</insert>
+	
+	
+	
+	<!-- 댓글 수정 -->
+	<update id="updateReply" parameterType="com.hustar.mentoring.board.domain.ReplyDomain">
+		<![CDATA[
+			UPDATE REPLY SET REPLYCONTENT=#{replyContent} WHERE REPLYSEQ=#{replySeq} 
+		]]>
+	</update>
+	
+	
+	
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply" parameterType="int">
+		<![CDATA[
+			DELETE FROM REPLY WHERE REPLYSEQ=#{replySeq}
+		]]>
 	</delete>
 	
 </mapper>

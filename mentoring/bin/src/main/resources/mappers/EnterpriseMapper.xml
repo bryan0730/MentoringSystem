@@ -16,4 +16,28 @@
 			AND enterpriseSeq <![CDATA[ > ]]> #{startSeq}
 			ORDER BY enterpriseSeq asc;
 	</select>
+	
+	<select id="selectEnterSearchList" resultType="com.hustar.mentoring.enterprise.domain.EnterpriseDomain">
+		SELECT *
+		FROM enterprise
+		WHERE(1)
+		<if test="search.searchText != '' ">
+			AND enterpriseName LIKE CONCAT('%',#{search.searchText},'%')
+		</if>
+		<if test="search.locationList != null ">
+			AND ( enterpriseRegion LIKE
+			<foreach collection="search.locationList" item="location"
+				separator="OR enterpriseRegion LIKE">
+				CONCAT('%',#{location},'%')
+			</foreach>
+			)
+		</if>
+	</select>
+	
+	<select id="selectEnterDetail" resultType="com.hustar.mentoring.enterprise.domain.EnterpriseDomain">
+		SELECT *
+		FROM enterprise
+		WHERE enterpriseSeq = #{enterpriseSeq}
+		;
+	</select>
 </mapper>

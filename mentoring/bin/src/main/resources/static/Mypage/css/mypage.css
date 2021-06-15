@@ -1,0 +1,430 @@
+@charset "EUC-KR";
+/* --------------------초기화---------------------------- */
+@import url('http://fonts.googleapis.com/earlyaccess/notosanskr.css');
+
+html {overflow-y:scroll}
+body {margin:0;padding:0;font-size:0.75em; font-family: 'Montserrat', sans-serif, dotum, sans-serif; background:#fff;}
+html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
+h1, h2, h3, h4, h5, h6 {font-size:17px; font-family: 'Montserrat', sans-serif, dotum, sans-serif}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
+
+ul, dl,dt,dd {margin:0;padding:0;list-style:none}
+legend {position:absolute;margin:0;padding:0;font-size:0;line-height:0;text-indent:-9999em;overflow:hidden}
+label, input, button, select, img {vertical-align:middle;font-size:1em}
+input, button {margin:0;padding:0; font-family: 'Montserrat', sans-serif, dotum, sans-serif;font-size:1em}
+input[type="submit"]{cursor:pointer}
+button {cursor:pointer; background-color: #fff;
+        border: 0px;}
+
+textarea, select {font-family: 'Montserrat', sans-serif, dotum, sans-serif;font-size:1em}
+select {margin:0}
+p {margin:0;padding:0;word-break:break-all}
+hr {display:none}
+pre {overflow-x:scroll;font-size:1.1em}
+a {color:#000;text-decoration:none}
+
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9;
+}
+
+/*----------------------------헤더 부분--------------------*/
+.header.autofix_sb {
+position: fixed;
+ width: 100%;
+ z-index: 9999;
+ }   
+.header{background: #fff; border-bottom: 1px solid #000;}    
+.header .header-box{overflow: hidden; padding: 10px 10px; margin-bottom: 10px;}
+
+.header h1{float: left; }
+.header h1 a{display: block; padding: 10px; }
+.header h1 a img{max-height: 40px; max-width: 150px;}
+.header .gnb{width: 900px; margin: 8px auto 0;}
+.header .gnb > ul{overflow: hidden; margin-top: 10px;}
+.header .gnb > ul > li{float: left; margin: 0px 30px;}
+.header .gnb > ul > li > a{display: block; padding: 10px; font-size: 18px; font-weight: 600; transition: all 0.5s; color: #000; margin-left: 50px;}
+.header .gnb > ul > li > a:hover{font-size: 19px; margin-top: 0px; transition: all 0.5s;}
+
+.header .tnb{float: right; margin-top: 10px;}
+.header .tnb > ul > li{float: left;}
+.header .tnb > ul > li > a{display: block; padding: 10px; font-weight: 500; color: #000; margin-right: 23px; margin-top: 5px; border: 1px solid white; border-radius: 10px;}
+
+
+            
+/*----------------------------풋터 부분--------------------*/
+.footer{
+    background: #2757A9;
+    padding: 10px 0;
+}
+.footer .footer-box .footer-logo{
+    display: inline-block;
+    margin-left: 20px;
+}
+.footer .footer-box .footer-info{
+    display: inline-block;
+    margin-left: 100px;
+    font-size: 18px;
+    font-weight: 300;
+    color: #fff;
+}
+
+/*----------------------------마이페이지--------------------------*/
+    .mypage{
+        display: block;
+        width: 1200px;
+        margin: 0 auto;
+        
+    }
+
+    .mypage .mypage-title{
+        margin: 60px 0px;
+    }
+
+    .mypage .mypage-title h1{
+        text-align: center;
+        font-size: 40px;
+        font-weight: 600;
+        color: #111;
+    }
+    
+    .mypage .mypage-sub-menu{
+        height: 100px;
+    }
+
+    .mypage .mypage-sub-menu table{
+        width: 100%;
+        
+    }
+    .mypage .mypage-sub-menu table tr .on{
+        border-bottom: 4px solid #2757A9;
+    }
+
+    .mypage .mypage-sub-menu table tr td{
+        text-align: center;
+        font-weight: 500;
+        font-size: 25px;
+        width: 25%;
+        padding-bottom: 20px;
+    }
+
+    .mypage .mypage-sub-menu table tr td:hover{
+        border-bottom: 4px solid #2757A9;
+    }
+
+    .mypage .mypage-info{
+        display: block;
+        height: 520px;
+        overflow: hidden;
+        border: 3px solid #2757A9;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom:10px;
+    }
+
+    .mypage .mypage-info .mypage-img{
+        display: inline-block;
+    }
+
+    .mypage .mypage-info .mypage-img img{
+        width: 400px;
+        height: 530px;
+        
+        
+        
+    }
+
+    .mypage .mypage-info .mypage-content{
+        display: inline-block;
+        width: auto;
+        height: auto;
+        margin-left: 160px;
+        vertical-align: middle;
+       
+        
+        
+    }
+
+    .mypage .mypage-info .mypage-content div{
+        margin-bottom: 60px;
+        
+    }
+
+    .mypage .mypage-info .mypage-content h2{
+        float: left;
+        font-size: 25px;
+        width: 235px;
+    }
+
+    .mypage .mypage-info .mypage-content p{
+        display: inline-block;
+        font-size: 20px;
+    }
+    
+	.mypage .mypage-info .mypage-mento-modify{
+		display: inline-block;
+	  	font-size: 30px;
+	    vertical-align: top;
+	    float: right;
+	    margin: 30px;
+    }
+    
+	 .mypage .mypage-info .mypage-mento-modify button{
+        border: 3px solid #2757A9;
+        border-radius: 10px;
+        font-size: 25px;
+        padding: 3px;
+    }
+
+    .mypage .mentoring-status{
+        border: 3px solid #2757A9;
+        border-radius: 10px;
+        height: 500px;
+        margin-top: 30px;
+    }
+
+    .mypage .mentoring-status h2{
+        font-size: 30px;
+        margin: 10px;
+    }
+
+    .mypage .intro{
+        border: 3px solid #2757A9;
+        border-radius: 10px;
+        height: 500px;
+        margin-top: 30px;
+    
+    }
+
+    .mypage .intro h2{
+        font-size: 30px;
+        margin: 10px;
+    }
+
+    .mypage .my-board{
+        border: 3px solid #2757A9;
+        border-radius: 10px;
+        height: 500px;
+        margin-top: 30px;
+    }
+
+    .mypage .my-board h2{
+        font-size: 30px;
+        margin: 10px;
+    }
+    
+     .mypage .mypage-info .mypage-modify {
+        display: inline-block;
+        font-size: 40px;
+        vertical-align: top;
+        float: right;
+        margin: 20px;
+        background-color: #fff;
+    }
+    
+/*----------------------------마이페이지 수정--------------------------*/
+    .mypage-mod{
+        display: block;
+        width: 1800px;
+        margin: 0 auto;
+        
+    }
+
+    .mypage-mod .mypage-mod-title{
+        margin: 60px 0px;
+    }
+
+    .mypage-mod .mypage-mod-title h1{
+        text-align: center;
+        font-size: 40px;
+        font-weight: 600;
+        color: #111;
+    }
+
+    .mypage-mod .mypage-mod-info{
+        display: block;
+        height: auto;
+        overflow: hidden;
+        border: 3px solid #2757A9;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .mypage-mod .mypage-mod-info .mypage-mod-img{
+        display: inline-block;
+        width: 400px;
+    }
+
+    .mypage-mod .mypage-mod-info .mypage-mod-img i{
+        display: block;
+        font-size: 100px;
+        width: 110px;
+        margin: 0px auto;
+        margin-top: 90px;
+        margin-bottom: 50px;
+        padding: 20px;
+        
+    
+    }
+
+    .mypage-mod .mypage-mod-info .mypage-mod-img input{
+        display: block;
+        font-size: 15px;
+        width: 200px;
+        margin: 0 auto;
+        
+        
+    
+    }
+
+    .mypage-mod .mypage-mod-info .mypage-mod-content{
+        display: inline-block;
+        width: auto;
+        height: auto;
+        margin-left: 160px;
+        vertical-align: middle;   
+        
+    }
+
+    .mypage-mod .mypage-mod-info .mypage-mod-content div{
+        margin-bottom: 60px;
+        
+    }
+
+    .mypage-mod .mypage-mod-info .mypage-mod-content h2{
+        display: inline-block;
+        font-size: 25px;
+        width: 200px;
+    }
+    
+    
+    .mypage-mod .mypage-mod-info .mypage-mod-content input{
+        display: inline-block;
+        font-size: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border: 0px;
+        border-bottom: 1px solid #000;
+    }
+    
+    .mypage-mod .mypage-mod-info .mypage-mod-content a{
+    	display: inline-block;
+    	font-size: 20px;
+    	margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #000;
+    }
+
+    .mypage-mod .mypage-mod-info .mypage-mod-content select{
+        display: inline-block;
+        font-size: 20px;
+    }
+
+    .mypage-mod .mypage-mod-info .mypage-mod-save {
+        display: inline-block;
+        font-size: 50px;
+        vertical-align: top;
+        float: right;
+        margin: 20px;
+        
+    }
+
+    .mypage-mod .mypage-mod-info .mypage-mod-save button{
+        margin-left: 10px;
+    }
+
+    .mypage-mod .mypage-mod-info .mypage-mod-content .mypage-mod-name{
+        margin-top: 40px;
+    }
+
+    .mypage-mod .mypage-mod-info .mypage-mod-content .mypage-mod-pass-check {
+        margin-left: 30px;
+    }
+
+    .mypage-mod .mypage-mod-info .mypage-mod-content .mypage-mod-edu input{
+        margin-right: 10px;
+    }
+
+    .mypage-mod .mypage-mod-info .mypage-mod-content .mypage-mod-hope input{
+        margin-right: 10px;
+    }
+    
+    /*----------------------------마이페이지 비밀번호 수정--------------------------*/
+     .mypage-pw-mod{
+        display: block;
+        width: 1800px;
+        margin: 0px auto;
+    }
+
+    .mypage-pw-mod .mypage-pw-title{
+        width: 100%;
+        margin: 60px 0px;
+    }
+
+    .mypage-pw-mod .mypage-pw-title h1{
+        text-align: center;
+        font-size: 40px;
+        font-weight: 600;
+        color: #111;
+
+    }
+
+    .mypage-pw-mod .mypage-pw-mod-content{
+        width: 800px;
+        margin: 0px auto;
+        border: 1px solid #111;
+    }
+
+    .mypage-pw-mod .mypage-pw-mod-content div{
+        width: 600px;
+        margin: 20px auto;
+
+    }
+
+    .mypage-pw-mod .mypage-pw-mod-content h2{
+        display: inline-block;
+        font-size: 18px;
+        width: 200px;
+        margin-left: 70px;
+    }
+
+    .mypage-pw-mod .mypage-pw-mod-content input{
+        display: inline-block;
+        font-size: 18px;;
+    }
+
+    .mypage-pw-mod .mypage-pw-mod-content .pw{
+        margin-top: 30px;
+    }
+
+    .mypage-pw-mod .mypage-pw-mod-content .mypage-pw-btn{
+        display: block;
+        width: 170px;
+        margin: 40px auto;
+        
+    }
+
+    .mypage-pw-mod .mypage-pw-mod-content .mypage-pw-btn a{
+       font-size: 14px;
+       padding: 10px;
+       border: 1px solid #111;
+
+    }
+    
+    .mypage-pw-mod .mypage-pw-mod-content .mypage-pw-btn button{
+       font-size: 14px;
+       padding: 10px;
+       border: 1px solid #111;
+       margin-bottom:5px;
+
+    }
+    
+

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hustar.mentoring.admin.mapper.AdminMapper">
+
+	<select id="selectEnterpriseList" resultType="com.hustar.mentoring.enterprise.domain.EnterpriseDomain">
+		SELECT *
+		FROM enterprise
+		;
+	</select>
+
+	<update id="updateEnterprise">
+		UPDATE enterprise
+		SET enterpriseBusinessNumber = #{enterpriseBusinessNumber},
+			enterpriseName = #{enterpriseName},
+			enterpriseOperator = #{enterpriseOperator},
+			enterpriseEmployees = #{enterpriseEmployees},
+			enterpriseUrl = #{enterpriseUrl},
+			enterpriseWoringHours = #{enterpriseWoringHours},
+			enterpriseTask = #{enterpriseTask},
+			enterpriseNumber = #{enterpriseNumber},
+			enterpriseSales = #{enterpriseSales},
+			enterpriseProfit = #{enterpriseProfit},
+			enterpriseSalary = #{enterpriseSalary},
+			enterpriseAvgSalary = #{enterpriseAvgSalary},
+			enterpriseWelfare = #{enterpriseWelfare},
+			enterpriseVision1 = #{enterpriseVision1},
+			enterpriseVision2 = #{enterpriseVision2},
+			enterpriseVision3 = #{enterpriseVision3},
+			enterpriseDiscription = #{enterpriseDiscription},
+			enterpriseRegion = #{enterpriseRegion},
+			enterpriseMessage = #{enterpriseMessage}
+		WHERE enterpriseSeq = #{enterpriseSeq}
+		;
+	</update>
+	
+	<delete id="deleteEnterprise">
+		DELETE FROM enterprise
+		WHERE enterpriseSeq = #{enterpriseSeq}
+		;
+	</delete>
+</mapper>
