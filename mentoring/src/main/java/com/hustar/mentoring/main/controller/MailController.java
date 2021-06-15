@@ -19,7 +19,7 @@ public class MailController {
 	private final GetMentoEmail getMentoEmail;
 	  
 	@PostMapping("/sendEmail")
-	public void saveLocation(Model model, BookingDomain bookingDomain) {
+	public void sendEmail(Model model, BookingDomain bookingDomain) {
 		
 		String mentoEmail = getMentoEmail.findByEmail(bookingDomain.getMentiSeq());
 		String mentiName = bookingDomain.getMentiName();
@@ -27,5 +27,27 @@ public class MailController {
 		String mentoringTime = bookingDomain.getBookingTime();
 		emailUtil.sendEmail(mentoEmail, mentiName + "님이 "+mentorinDate+"일 "+ mentoringTime+"시에" + " 멘토링을 예약했습니다.", "멘토링 시스템을 확인해 주세요.");
     
-  }
+	}
+	
+	@PostMapping("/updateEmail")
+	public void updateEmail(Model model, BookingDomain bookingDomain) {
+		
+		String mentoEmail = getMentoEmail.findByEmail(bookingDomain.getMentiSeq());
+		String mentiName = bookingDomain.getMentiName();
+		String mentorinDate = bookingDomain.getBookingDate();
+		String mentoringTime = bookingDomain.getBookingTime();
+		emailUtil.sendEmail(mentoEmail, mentiName + "님이 "+mentorinDate+"일 "+ mentoringTime+"시에" + " 멘토링을 예약했습니다.", "멘토링 시스템을 확인해 주세요.");
+    
+	}
+	
+	@PostMapping("/deleteEmail")
+	public void deleteEmail(Model model, BookingDomain bookingDomain) {
+		
+		String mentoEmail = getMentoEmail.findByEmail(bookingDomain.getMentiSeq());
+		String mentiName = bookingDomain.getMentiName();
+		String mentorinDate = bookingDomain.getBookingDate();
+		String mentoringTime = bookingDomain.getBookingTime();
+		emailUtil.sendEmail(mentoEmail, mentiName + "님이 "+mentorinDate+"일 "+ mentoringTime+"시" + " 멘토링을 취소하였습니다.", "멘토링 시스템을 확인해 주세요.");
+    
+	}
 }

@@ -147,7 +147,8 @@ function setData(url, id, accept) {
     let role = $("#role").val();
     let name = $('#name').val();
     let form;
-    
+    let emailUrl;
+
     // 저장할 데이터 json으로
     if(id){
         if(role == "ROLE_MEMBER"){
@@ -158,6 +159,7 @@ function setData(url, id, accept) {
                 bookingDate: bookingDate,
                 bookingTime: bookingTime,
                 way: bookingWay,
+                mentiSeq: seq,
                 role: role
             }
         }else{
@@ -177,21 +179,6 @@ function setData(url, id, accept) {
             mentiSeq: seq,
             mentiName: name
         }
-        if(url == "insertBooking"){
-            $.ajax({
-                url: "sendEmail",
-                type: "POST",
-                data: form,
-                success: function () {                 
-                },
-                error: function () {
-                    alert("error");
-                },
-                complete: function (){
-                    location.reload();
-                }
-            });
-        }
     }  
     // insertBooking controller에 통신 
     $.ajax({
@@ -201,11 +188,30 @@ function setData(url, id, accept) {
         success: function () {
             modalReset();
             if(url=="insertBooking"){
-                alert("저장되었습니다.");               
+                alert("저장되었습니다.");
+                emailUrl = "sendEmail";               
             }else if(url=="updateBooking"){
-                alert("수정되었습니다.");               
+                alert("수정되었습니다.");  
+                emailUrl = "updateEmail";             
             }else if(url=="deleteBooking"){
-                alert("삭제되었습니다.");               
+                alert("삭제되었습니다.");    
+                emailUrl = "deleteEmail";            
+            }
+            // email 발송 (예약, 수정, 삭제 시에만)
+            if(!accept){
+                $.ajax({
+                    url: emailUrl,
+                    type: "POST",
+                    data: form,
+                    success: function () {                 
+                    },
+                    error: function () {
+                        alert("error");
+                    },
+                    complete: function (){
+                        location.reload();
+                    }
+                });
             }
         },
         error: function () {
