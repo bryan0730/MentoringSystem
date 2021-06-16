@@ -28,7 +28,7 @@ $(window).scroll(function(){
 		        			str += "<div class="+"'item_company' data-seq='"+this.enterpriseSeq+"'>"
 		        				+ "<input type=hidden id='enterSeq' value='"+this.enterpriseSeq+"'>"
 		        				+ "<div class='c_logo'>"
-		        				+ "<img class='log' src='https://swgo.kr/_File/convention/725101003b33450f4e9708651ec1a8f09abde850.png'>"
+		        				+ "<img class='log' src='/enterprise/img/"+this.enterpriseLogo+"'>"
 		        				+ "</div>"
 		        				+ "<div class='c_info'>"
 		        				+ "<div class='company title'>"+this.enterpriseName+"</div>"
@@ -55,4 +55,5 @@ $(window).scroll(function(){
 		lastScrollTop = currentScrollTop; 
 	}
 });
+//무한 스크롤
 
