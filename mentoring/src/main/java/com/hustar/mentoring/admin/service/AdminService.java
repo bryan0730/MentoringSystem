@@ -14,4 +14,7 @@ public interface AdminService {
 
 	public void deleteEnterprise(EnterpriseDomain enterpriseDomain);
 
+	public void insertEnterprise(EnterpriseDomain enterpriseDomain, MultipartFile uploadFile);
+
+
 }
