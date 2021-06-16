@@ -91,3 +91,19 @@ function deleteEnterprise(enterpriseSeq){
 	}).catch(swal.noop);
 }
 	
+	
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                mainImg=e.target.result;
+                $('#imagePreview').attr("src", e.target.result);
+                $('#imagePreview').hide();
+                $('#imagePreview').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imageUpload").change(function(e) {
+        readURL(this); 
+    });

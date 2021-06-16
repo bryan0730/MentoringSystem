@@ -11,26 +11,27 @@
 
 	<update id="updateEnterprise">
 		UPDATE enterprise
-		SET enterpriseBusinessNumber = #{enterpriseBusinessNumber},
-			enterpriseName = #{enterpriseName},
-			enterpriseOperator = #{enterpriseOperator},
-			enterpriseEmployees = #{enterpriseEmployees},
-			enterpriseUrl = #{enterpriseUrl},
-			enterpriseWoringHours = #{enterpriseWoringHours},
-			enterpriseTask = #{enterpriseTask},
-			enterpriseNumber = #{enterpriseNumber},
-			enterpriseSales = #{enterpriseSales},
-			enterpriseProfit = #{enterpriseProfit},
-			enterpriseSalary = #{enterpriseSalary},
-			enterpriseAvgSalary = #{enterpriseAvgSalary},
-			enterpriseWelfare = #{enterpriseWelfare},
-			enterpriseVision1 = #{enterpriseVision1},
-			enterpriseVision2 = #{enterpriseVision2},
-			enterpriseVision3 = #{enterpriseVision3},
-			enterpriseDiscription = #{enterpriseDiscription},
-			enterpriseRegion = #{enterpriseRegion},
-			enterpriseMessage = #{enterpriseMessage}
-		WHERE enterpriseSeq = #{enterpriseSeq}
+		SET enterpriseBusinessNumber = #{enterpriseDomain.enterpriseBusinessNumber},
+			enterpriseName = #{enterpriseDomain.enterpriseName},
+			enterpriseOperator = #{enterpriseDomain.enterpriseOperator},
+			enterpriseLogo = #{fileName},
+			enterpriseEmployees = #{enterpriseDomain.enterpriseEmployees},
+			enterpriseUrl = #{enterpriseDomain.enterpriseUrl},
+			enterpriseWoringHours = #{enterpriseDomain.enterpriseWoringHours},
+			enterpriseTask = #{enterpriseDomain.enterpriseTask},
+			enterpriseNumber = #{enterpriseDomain.enterpriseNumber},
+			enterpriseSales = #{enterpriseDomain.enterpriseSales},
+			enterpriseProfit = #{enterpriseDomain.enterpriseProfit},
+			enterpriseSalary = #{enterpriseDomain.enterpriseSalary},
+			enterpriseAvgSalary = #{enterpriseDomain.enterpriseAvgSalary},
+			enterpriseWelfare = #{enterpriseDomain.enterpriseWelfare},
+			enterpriseVision1 = #{enterpriseDomain.enterpriseVision1},
+			enterpriseVision2 = #{enterpriseDomain.enterpriseVision2},
+			enterpriseVision3 = #{enterpriseDomain.enterpriseVision3},
+			enterpriseDiscription = #{enterpriseDomain.enterpriseDiscription},
+			enterpriseRegion = #{enterpriseDomain.enterpriseRegion},
+			enterpriseMessage = #{enterpriseDomain.enterpriseMessage}
+		WHERE enterpriseSeq = #{enterpriseDomain.enterpriseSeq}
 		;
 	</update>
 	

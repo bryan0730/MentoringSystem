@@ -47,4 +47,10 @@ public class AdminController {
 		adminService.deleteEnterprise(enterpriseDomain);
 	}
 	
+	@PostMapping("/insertEnterprise")
+	public void insertEnterprise(@RequestParam(value = "imageUpload", required = false) MultipartFile uploadFile){
+		
+		
+	}
+	
 }

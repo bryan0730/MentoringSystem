@@ -75,7 +75,7 @@
 		                <div class="item_company" data-seq="${enterList.enterpriseSeq}" onclick="window.location.href='/enterprise_detail?enterpriseSeq=${enterList.enterpriseSeq}'">
 		                	<input type="hidden" id="enterSeq" value="${enterList.enterpriseSeq }">
 		                    <div class="c_logo">
-		                        <img class="logo" src="https://swgo.kr/_File/convention/725101003b33450f4e9708651ec1a8f09abde850.png">
+		                        <img class="logo" src="/enterprise/img/${enterList.enterpriseLogo }">
 		                    </div>
 		                    <div class="c_info">
 		                        <div class="company title">
@@ -113,9 +113,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
 <script src="enterprise/js/enterprise.js"></script>
-<script>
-// 	$(".search_btn").click(function(){
-// 		alert("gg");
-// 	})
-</script>
 </html>

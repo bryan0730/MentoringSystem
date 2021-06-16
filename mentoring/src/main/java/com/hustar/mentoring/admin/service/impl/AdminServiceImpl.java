@@ -7,8 +7,6 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 import org.apache.commons.io.FileUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -48,8 +46,8 @@ public class AdminServiceImpl implements AdminService{
 			FileUtils.deleteQuietly(file);
 			e.printStackTrace();
 		}
-		
-		//adminMapper.updateEnterprise(enterpriseDomain);
+		System.out.println(file.getName());
+		adminMapper.updateEnterprise(enterpriseDomain, file.getName());
 	}
 
 	@Override

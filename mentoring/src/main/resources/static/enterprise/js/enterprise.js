@@ -52,7 +52,7 @@ $(window).scroll(function(){
 			var position = $(".item_company:first").offset();
 			//$("html,body").stop().animate({scrollTop:positon.top},600,easeEffect);
 		}
-		lastScrollTop = currentScrollTop;
+		lastScrollTop = currentScrollTop; 
 	}
 });
 

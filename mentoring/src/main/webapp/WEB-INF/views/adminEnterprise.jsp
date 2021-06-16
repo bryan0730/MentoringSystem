@@ -52,7 +52,7 @@
                                             <div class="company_img">
                                                 <a class="thum_wrap" href="">
                                                     <span class="img_wrap">
-                                                        <img src="/enterprise/img/${list.enterpriseLogo }" >
+                                                        <img id="imagePreview" src="/enterprise/img/${list.enterpriseLogo }" >
                                                     </span>
                                                 </a>
                                             </div>
@@ -187,6 +187,7 @@
                 <div class="form_header">
                     <h2>기업 등록</h2>
                 </div>
+                <form method="POST" action="/insertEnterprise">
                 <div class="body_space">
                     <div class="basic_info">
                         <div class="info_head">
@@ -314,6 +315,7 @@
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
         </div>
