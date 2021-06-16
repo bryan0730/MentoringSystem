@@ -54,4 +54,67 @@
 		
 	</update>
 	
+	<!-- 게시글 조회 -->
+	<select id="boardList" resultType="com.hustar.mentoring.board.domain.BoardDomain">
+			select * from board where memberEmail = #{memberEmail};
+	</select>
+	
+	<!-- 성장과정 저장 -->
+	<update id="introGrowth">
+	
+		update intro set
+		introGrowth = #{intro.introGrowth}
+		where memberEmail = #{Email};
+		
+		
+	</update>
+	
+	<!-- 성격장단점 저장 -->
+	<update id="introPersonality">
+	
+		update intro set
+		introPersonality = #{intro.introPersonality}
+		where memberEmail = #{Email};
+		
+		
+	</update>
+	
+	<!-- 대내외활동 저장 -->
+	<update id="introActivity">
+	
+		update intro set
+		introActivity = #{intro.introActivity}
+		where memberEmail = #{Email};
+		
+		
+	</update>
+	
+	<!-- 지원동기및입사후포부 저장 -->
+	<update id="introMotive">
+	
+		update intro set
+		introMotive = #{intro.introMotive}
+		where memberEmail = #{Email};
+		
+		
+	</update>
+	
+	<!-- 자소서 조회 -->
+	<select id="introContents" resultType="com.hustar.mentoring.mypage.domain.Intro" >
+			select * from intro where memberEmail = #{Email};
+	</select>
+	
+	<!-- 회원가입시 자소서 레코드 추가 -->
+	<insert id="addIntro">
+		insert into intro(introGrowth, introPersonality, introActivity, introMotive, memberEmail)
+		VALUES ( 
+					"내용을 작성해주세요.", 
+					"내용을 작성해주세요.", 
+					"내용을 작성해주세요.",
+					"내용을 작성해주세요.",
+					#{Email}
+				)
+		;
+	</insert>
+	
 </mapper>

@@ -3,7 +3,7 @@
 @import url('http://fonts.googleapis.com/earlyaccess/notosanskr.css');
 
 html {overflow-y:scroll}
-body {margin:0;padding:0;font-size:0.75em; font-family: 'Montserrat', sans-serif, dotum, sans-serif; background:#fff;}
+body {margin:0;padding:0;font-size:0.75em; font-family: 'Montserrat', sans-serif, dotum, sans-serif;}
 html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
 h1, h2, h3, h4, h5, h6 {font-size:17px; font-family: 'Montserrat', sans-serif, dotum, sans-serif}
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
@@ -77,11 +77,12 @@ position: fixed;
 }
 
 /*----------------------------마이페이지--------------------------*/
+	
+	
     .mypage{
         display: block;
         width: 1200px;
         margin: 0 auto;
-        
     }
 
     .mypage .mypage-title{
@@ -103,9 +104,6 @@ position: fixed;
         width: 100%;
         
     }
-    .mypage .mypage-sub-menu table tr .on{
-        border-bottom: 4px solid #2757A9;
-    }
 
     .mypage .mypage-sub-menu table tr td{
         text-align: center;
@@ -123,20 +121,20 @@ position: fixed;
         display: block;
         height: 520px;
         overflow: hidden;
-        border: 3px solid #2757A9;
-        border-radius: 10px;
+         border: 3px solid #2757A9; 
+         border-radius: 10px; 
         overflow: hidden;
         margin-bottom:10px;
     }
 
     .mypage .mypage-info .mypage-img{
         display: inline-block;
+        
     }
 
     .mypage .mypage-info .mypage-img img{
         width: 400px;
         height: 530px;
-        
         
         
     }
@@ -227,6 +225,60 @@ position: fixed;
         float: right;
         margin: 20px;
         background-color: #fff;
+    }
+    
+     .mypage .my-board tr{
+     	width: 100%;
+    	border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        border-left: 0px;
+        border-right: 0px;
+       }
+    
+    .mypage .my-board table{
+        border-top: 2px solid black;
+        border-bottom: 2px solid black;
+        border-left: 0px;
+        border-right: 0px;
+        width: 80%;
+        margin: 0px auto;
+        border-collapse: collapse;
+
+    }
+    
+    .mypage .my-board td{
+    	padding: 10px 5px;
+
+    }
+    .mypage .my-board td:nth-child(1){
+        width: 25%;
+    }
+
+    .mypage .my-board td:nth-child(2){
+        width: 55%;
+    }
+
+    .mypage .my-board td:nth-child(3){
+        width: 20%;
+    }
+    
+    .mypage .my-board thead td{
+    	font-size: 18px;
+    }
+    
+    .mypage .intro > h2{
+        display: inline-block;
+        
+        
+    }
+
+    .mypage .intro > a{
+        display: inline-block;
+        float: right;
+        margin-top: 20px;
+        margin-right: 20px;
+        font-size: 40px;
+        
     }
     
 /*----------------------------마이페이지 수정--------------------------*/
@@ -427,4 +479,65 @@ position: fixed;
 
     }
     
+    /*----------------------------자기소개서--------------------------*/
+	.mypage .intro > h2{
+        display: inline-block;  
+    }
+
+    .mypage .intro .introSub {
+        display: inline-block;
+        margin-left: 200px;
+        
+    }
+
+    .mypage .intro .introSub a{
+        display: inline-block;
+        margin-right: 60px;
+ 
+    }
+
+    .mypage .intro .introSub a#introGrowth{
+        border-bottom: 2px solid #2757A9;
+    }
+
+    .mypage .intro .introSub a:hover{
+        border-bottom: 2px solid #2757A9;
+    }
+
+    .mypage .intro .introSub a h2{
+        font-size: 18px;
+    }
+
+    .mypage .intro .introGrowth{
+        display: block;
+    }
+
+    .mypage .intro .introPersonality{
+        display: none;
+    }
+
+    .mypage .intro .introActivity{
+        display: none;
+    }
+
+    .mypage .intro .introMotive{
+        display: none;
+    }
+
+
+    .mypage .intro div textarea{
+        display: block;
+        width: 85%;
+        height: 380px;
+        margin: 10px auto;
+        font-size: 18px;
+    }
+
+    .mypage .intro div button{
+        font-size: 18px;
+        float: right;
+        margin-right: 10px;
+        border: 2px solid #2757A9;
+        border-radius: 3px;
+    }
 

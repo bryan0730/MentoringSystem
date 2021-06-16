@@ -14,15 +14,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.hustar.mentoring.board.domain.BoardDomain;
 import com.hustar.mentoring.board.domain.FileDomain;
 import com.hustar.mentoring.login.domain.MemberDetails;
 import com.hustar.mentoring.login.domain.MemberDomain;
 import com.hustar.mentoring.login.service.MemberDetailService;
 import com.hustar.mentoring.mypage.config.ProfilImg;
-import com.hustar.mentoring.mypage.domain.MyPageDomain;
+import com.hustar.mentoring.mypage.domain.Intro;
 import com.hustar.mentoring.mypage.service.MyPageService;
 
 import lombok.RequiredArgsConstructor;
@@ -72,15 +74,27 @@ public class MyPageController {
 	//멘티 마이페이지 이동
 	@GetMapping("/mypage")
 	
-	public String mypage(Model model, HttpServletRequest request, Authentication auth, MemberDomain memberdomain) {
+	public String mypage(Model model, HttpServletRequest request, Authentication auth, MemberDomain memberdomain, BoardDomain boarDomain, Intro intro) {
 						
 		int memberSeq = memberDetailService.findBySeq(auth.getName());
+		
+		//작성한 게시글을 가져오기 위한 memberEmail 가져오는 부분
+		MemberDetails getData = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String memberEmail = getData.getMemberEmail();
+		//게시글 뿌리는 부분
+		List<BoardDomain> board = mypageService.boardList(memberEmail);
+		//자소서 뿌리는 부분
+		Intro introContents = mypageService.introContents(memberEmail);
 		
 		MemberDomain mypage = mypageService.mypage(memberSeq);
 		
 		model.addAttribute("memberSeq", memberSeq);
 		
 		model.addAttribute("mypage", mypage);
+		
+		model.addAttribute("board", board);
+		
+		model.addAttribute("introContents", introContents);
 		
 		return "mypage";
 		
@@ -161,6 +175,50 @@ public class MyPageController {
 		System.out.println("비밀번호 : " + memberdomain.getMemberPw());
 
 				
+		return "redirect:/mypage";
+	}
+
+	@PostMapping("/introGrowth")
+	public String introGrowth(Intro intro) {
+		
+		MemberDetails getData = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String memberEmail = getData.getMemberEmail();
+		
+		mypageService.introGrowth(intro, memberEmail);
+		
+		return "redirect:/mypage";
+	}
+	
+	@PostMapping("/introPersonality")
+	public String introPersonality(Intro intro) {
+		
+		MemberDetails getData = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String memberEmail = getData.getMemberEmail();
+		
+		mypageService.introPersonality(intro, memberEmail);
+		
+		return "redirect:/mypage";
+	}
+	
+	@PostMapping("/introActivity")
+	public String introActivity(Intro intro) {
+		
+		MemberDetails getData = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String memberEmail = getData.getMemberEmail();
+		
+		mypageService.introActivity(intro, memberEmail);
+		
+		return "redirect:/mypage";
+	}
+	
+	@PostMapping("/introMotive")
+	public String introMotive(Intro intro) {
+		
+		MemberDetails getData = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String memberEmail = getData.getMemberEmail();
+		
+		mypageService.introMotive(intro, memberEmail);
+		
 		return "redirect:/mypage";
 	}
 	

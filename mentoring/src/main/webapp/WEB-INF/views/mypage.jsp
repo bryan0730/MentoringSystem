@@ -46,7 +46,7 @@
             <div class="mypage-sub-menu">
                 <table>
                     <tr>
-                        <td class="on">프로필</td>
+                        <td><button onclick=fnMove(".mypage-info") >프로필</button></td>
                         <td><button onclick=fnMove(".mentoring-status") >멘토링 현황</button></td>
                         <td><button onclick=fnMove(".intro") >자소서</button></td>
                         <td><button onclick=fnMove(".my-board") >게시글</button></td>
@@ -94,11 +94,60 @@
             </div>
             <div class="intro">
                 <h2>자소서</h2>
-                <p></p>
-            </div>
+                <div class="introSub">
+                    <a href="#none" id="introGrowth"><h2>성장과정</h2></a>
+                    <a href="#none" id="introPersonality"><h2>성격장단점</h2></a>
+                    <a href="#none" id="introActivity"><h2>대내외활동</h2></a>
+                    <a href="#none" id="introMotive"><h2>지원동기및입사후포부</h2></a>
+                </div>
+                    <div class="introGrowth">
+                        <form action="/introGrowth" method="post">
+                            <textarea name="introGrowth" id="" cols="30" rows="10">${introContents.introGrowth }</textarea>
+                            <button type="submit">저장하기</button>
+                        </form>
+                    </div>
+                    <div class="introPersonality">
+                        
+                        <form action="/introPersonality" method="post">
+                            <textarea name="introPersonality" id="" cols="30" rows="10">${introContents.introPersonality }</textarea>
+                            <button type="submit">저장하기</button>
+                        </form>
+                    </div>
+                    <div class="introActivity">
+                        
+                        <form action="/introActivity" method="post">
+                            <textarea name="introActivity" id="" cols="30" rows="10">${introContents.introActivity }</textarea>
+                            <button type="submit">저장하기</button>
+                        </form>
+                    </div>
+                    <div class="introMotive">
+                        
+                        <form action="/introMotive" method="post">
+                            <textarea name="introMotive" id="" cols="30" rows="10">${introContents.introMotive }</textarea>
+                            <button type="submit">저장하기</button>
+                        </form>
+                    </div>
+             </div>
             <div class="my-board">
                 <h2>게시글</h2>
-                <p></p>
+                <table>
+                	<thead>
+                	<tr>
+                		<td>제목</td>
+                		<td>내용</td>
+                		<td>날짜</td>	
+                	</tr>
+                	</thead>
+                	<c:forEach var="board" items="${board}">
+                		<tbody>
+                 		<tr>
+                            <td>${board.boardTitle }</td>
+                            <td>${board.boardContents }</td>
+                            <td>${board.boardCreateDate }</td>
+                 		</tr>
+                 		</tbody>
+                 	</c:forEach>
+                </table>
             </div>
         </div>
 <script>
@@ -107,5 +156,6 @@
         $('html, body').animate({scrollTop : offset.top}, 400);
     }
 </script>
+<script src="/Mypage/js/intro.js"></script>
 </body>
 </html>
