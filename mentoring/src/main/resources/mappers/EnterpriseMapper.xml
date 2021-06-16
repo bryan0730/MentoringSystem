@@ -6,16 +6,17 @@
 	<select id="selectEnterpriseList" resultType="com.hustar.mentoring.enterprise.domain.EnterpriseDomain">
 		SELECT *
 		FROM enterprise
-		LIMIT 0, 10;
+<!-- 		LIMIT 0, 10 -->
+		;
 	</select>
 
-	<select id="scrollDownPost" resultType="com.hustar.mentoring.enterprise.domain.EnterpriseDomain">
-			SELECT *
-			FROM enterprise
-			WHERE enterpriseSeq <![CDATA[ <= ]]> #{startSeq}+10
-			AND enterpriseSeq <![CDATA[ > ]]> #{startSeq}
-			ORDER BY enterpriseSeq asc;
-	</select>
+<!-- 	<select id="scrollDownPost" resultType="com.hustar.mentoring.enterprise.domain.EnterpriseDomain"> -->
+<!-- 			SELECT * -->
+<!-- 			FROM enterprise -->
+<!-- 			WHERE enterpriseSeq <![CDATA[ <= ]]> #{startSeq}+10 -->
+<!-- 			AND enterpriseSeq <![CDATA[ > ]]> #{startSeq} -->
+<!-- 			ORDER BY enterpriseSeq asc; -->
+<!-- 	</select> -->
 	
 	<select id="selectEnterSearchList" resultType="com.hustar.mentoring.enterprise.domain.EnterpriseDomain">
 		SELECT *

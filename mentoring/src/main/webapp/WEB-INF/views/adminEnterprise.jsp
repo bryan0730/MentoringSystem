@@ -8,32 +8,10 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/admin/css/admin.css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
-   <!-- 콘텐츠 시작 -->
-    <div class="header">
-        <!-- 로고, 메뉴 -->
-        <div class="header-box">
-            <h1>
-                <a href="#"><img src="/Member/img/hustar_logo.png" alt=""></a>
-            </h1>
-
-            <div class="tnb">
-                <ul>
-                    <li><a href="#">로그인</a></li>
-                    <li><a href="#">회원가입</a></li>
-                </ul>
-            </div>
-            <div class="gnb">
-                <ul>
-                    <li><a href="login.html">회사소개</a></li>
-                    <li><a href="admin.html">고객센터</a></li>
-                    <li><a href="#">예약하기</a></li>
-                    <li><a href="#">예약확인</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+   <jsp:include page="/WEB-INF/views/fixing/header.jsp"></jsp:include>
 
     <div class="wrap">
         <div class="body_container">
@@ -321,6 +299,7 @@
         </div>
         </div>
     </div>
+    <jsp:include page="/WEB-INF/views/fixing/footer.jsp"></jsp:include>
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

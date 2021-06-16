@@ -1,6 +1,8 @@
 /**
  * 
  */
+ 
+/*
 var lastScrollTop=0;
 var easeEffect = 'easeInQunit';
 
@@ -55,5 +57,6 @@ $(window).scroll(function(){
 		lastScrollTop = currentScrollTop; 
 	}
 });
+*/
 //무한 스크롤
 

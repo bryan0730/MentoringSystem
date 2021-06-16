@@ -122,4 +122,4 @@ function deleteEnterprise(enterpriseSeq){
     }
     $("#imageUpload2").change(function(e) {
         readURL2(this); 
-    });s
+    });
