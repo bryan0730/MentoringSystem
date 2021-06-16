@@ -55,4 +55,25 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		adminMapper.deleteEnterprise(enterpriseDomain);
 	}
+
+	@Override
+	public void insertEnterprise(EnterpriseDomain enterpriseDomain, MultipartFile uploadFile) {
+		// TODO Auto-generated method stub
+		String root = sc.getRealPath("/");
+		String Path = root.substring(0,root.length()-7).concat("resources/static/enterprise/img/");
+		
+		File file = new File(Path+uploadFile.getOriginalFilename());
+		System.out.println(file.getName());
+		
+		try {
+			InputStream io = uploadFile.getInputStream();
+			FileUtils.copyInputStreamToFile(io, file);
+		}catch (Exception e) {
+			// TODO: handle exception
+			FileUtils.deleteQuietly(file);
+			e.printStackTrace();
+		}
+		System.out.println(file.getName());
+		adminMapper.insertEnterprise(enterpriseDomain, file.getName());
+	}
 }

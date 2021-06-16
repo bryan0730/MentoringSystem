@@ -107,3 +107,19 @@ function deleteEnterprise(enterpriseSeq){
     $("#imageUpload").change(function(e) {
         readURL(this); 
     });
+    
+    function readURL2(input) {
+        if (input.files && input.files[0]) {
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                mainImg=e.target.result;
+                $('#imagePreview2').attr("src", e.target.result);
+                $('#imagePreview2').hide();
+                $('#imagePreview2').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imageUpload2").change(function(e) {
+        readURL2(this); 
+    });

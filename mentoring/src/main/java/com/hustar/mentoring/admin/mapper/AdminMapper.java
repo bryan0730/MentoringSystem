@@ -16,4 +16,6 @@ public interface AdminMapper {
 
 	public void deleteEnterprise(EnterpriseDomain enterpriseDomain);
 
+	public void insertEnterprise(EnterpriseDomain enterpriseDomain, @Param("fileName")String fileName);
+
 }

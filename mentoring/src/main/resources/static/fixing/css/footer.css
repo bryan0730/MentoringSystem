@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+.footer{background: #fff; }
+	.footer > div{max-width:1600px; margin:0 auto; text-align:center; overflow:hidden;}
+	.footer > div > div{float:left;}
+	.footer > div > div.f-logo{padding:10px; margin:10px;}
+	.footer > div > div.f-logo h1 a img{max-width:150px; max-height:40px;}
+	.footer > div > div.f-copy{padding:10px; margin:20px;}

@@ -1,6 +1,8 @@
 /**
  * 
  */
+ 
+/*
 var lastScrollTop=0;
 var easeEffect = 'easeInQunit';
 
@@ -8,7 +10,7 @@ $(window).scroll(function(){
 	var currentScrollTop = $(window).scrollTop();
 	
 	if(currentScrollTop - lastScrollTop > 0){
-		if($(window).scrollTop() >= ($(document).height() - $(window).height())){
+		if(($(window).scrollTop()+1) >= ($(document).height() - $(window).height())){
 			var lastSeq = $(".item_company:last").attr("data-seq");
 			console.log("last : "+lastSeq);
 			
@@ -45,7 +47,7 @@ $(window).scroll(function(){
 		        		//$(".scrollLocation").after(str);
 		        		$(".company_box").append(str);
 		        	}else{
-		        		alert("불러올 데이터 없음");
+		        		
 		        	}
 		        }
 			});
@@ -55,5 +57,6 @@ $(window).scroll(function(){
 		lastScrollTop = currentScrollTop; 
 	}
 });
+*/
 //무한 스크롤
 

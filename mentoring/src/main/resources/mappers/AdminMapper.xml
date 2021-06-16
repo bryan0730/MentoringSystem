@@ -28,6 +28,7 @@
 			enterpriseVision1 = #{enterpriseDomain.enterpriseVision1},
 			enterpriseVision2 = #{enterpriseDomain.enterpriseVision2},
 			enterpriseVision3 = #{enterpriseDomain.enterpriseVision3},
+			enterpriseVision4 = #{enterpriseDomain.enterpriseVision4},
 			enterpriseDiscription = #{enterpriseDomain.enterpriseDiscription},
 			enterpriseRegion = #{enterpriseDomain.enterpriseRegion},
 			enterpriseMessage = #{enterpriseDomain.enterpriseMessage}
@@ -40,4 +41,36 @@
 		WHERE enterpriseSeq = #{enterpriseSeq}
 		;
 	</delete>
+	
+	<insert id="insertEnterprise">
+		INSERT INTO enterprise
+		(enterpriseBusinessNumber, enterpriseName, enterpriseOperator, enterpriseLogo, enterpriseEmployees, 
+		enterpriseUrl, enterpriseWoringHours, enterpriseTask, enterpriseNumber, enterpriseSales, 
+		enterpriseProfit, enterpriseSalary, enterpriseAvgSalary, enterpriseWelfare, enterpriseVision1, enterpriseVision2, enterpriseVision3, enterpriseVision4, 
+		enterpriseDiscription, enterpriseRegion, enterpriseMessage) 
+		VALUES(
+			#{enterpriseDomain.enterpriseBusinessNumber},
+			#{enterpriseDomain.enterpriseName},
+			#{enterpriseDomain.enterpriseOperator},
+			#{fileName},
+			#{enterpriseDomain.enterpriseEmployees},
+			#{enterpriseDomain.enterpriseUrl},
+			#{enterpriseDomain.enterpriseWoringHours},
+			#{enterpriseDomain.enterpriseTask},
+			#{enterpriseDomain.enterpriseNumber},
+			#{enterpriseDomain.enterpriseSales},
+			#{enterpriseDomain.enterpriseProfit},
+			#{enterpriseDomain.enterpriseSalary},
+			#{enterpriseDomain.enterpriseAvgSalary},
+			#{enterpriseDomain.enterpriseWelfare},
+			#{enterpriseDomain.enterpriseVision1},
+			#{enterpriseDomain.enterpriseVision2},
+			#{enterpriseDomain.enterpriseVision3},
+			#{enterpriseDomain.enterpriseVision4},
+			#{enterpriseDomain.enterpriseDiscription},
+			#{enterpriseDomain.enterpriseRegion},
+			#{enterpriseDomain.enterpriseMessage}
+		)
+		;
+	</insert>
 </mapper>

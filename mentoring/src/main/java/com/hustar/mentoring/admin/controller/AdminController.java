@@ -2,7 +2,6 @@ package com.hustar.mentoring.admin.controller;
 
 import java.util.List;
 
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +33,9 @@ public class AdminController {
 	
 	@PostMapping("/modifyEnterprise")
 	@ResponseBody
-	public void updateEnterprise(EnterpriseDomain enterpriseDomain, @RequestParam(value = "imageUpload", required = false) MultipartFile uploadFile) throws Exception {
+	public void updateEnterprise(
+			EnterpriseDomain enterpriseDomain, 
+			@RequestParam(value = "imageUpload", required = false) MultipartFile uploadFile) throws Exception {
 		
 		
 		adminService.updateEnterprise(enterpriseDomain, uploadFile);
@@ -48,9 +49,11 @@ public class AdminController {
 	}
 	
 	@PostMapping("/insertEnterprise")
-	public void insertEnterprise(@RequestParam(value = "imageUpload", required = false) MultipartFile uploadFile){
-		
-		
+	public String insertEnterprise(EnterpriseDomain enterpriseDomain, 
+			@RequestParam(value = "imageUpload2", required = false) MultipartFile uploadFile){
+		System.out.println(uploadFile);
+		adminService.insertEnterprise(enterpriseDomain, uploadFile);
+		return "redirect:/admin"; 
 	}
 	
 }
