@@ -19,32 +19,8 @@
 </head>
 <body>
 <!--로고,메뉴-->
-        <div class="header">
-            <div class="header-box">
-                <h1><a href=""><img src="/img/logo_w.png" alt=""></a></h1>
-                <div class="tnb">
-                    <ul>
-                        <li><a href=""><i class="fas fa-bell"></i></a></li>
-                        <li><a href=""><i class="fas fa-user"></i></a></li>
-                        <li><a href=""><i class="fas fa-sign-out-alt"></i></a></li>
-                    </ul>
-                </div>
-                <div class="gnb">
-                    <ul>
-                        <li><a href="#none">멘토링</a></li>
-                        <li><a href="#none">공지사항</a></li>
-                        <li><a href="#none">자유게시판</a></li>
-                        <li><a href="#none">참여기업</a></li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-        <script>
-            $(document).ready(function () {
-                $(".header").autofix_anything();
-            });
-        </script>
+        <jsp:include page="/WEB-INF/views/fixing/header.jsp"></jsp:include>
+        <div class="wrap">
         <div class="mypage-mod">
             <div class="mypage-mod-title">
                 <h1>마이페이지 수정</h1>
@@ -87,16 +63,6 @@
 	                        <h2>전화번호</h2>
 	                        <input type="text" name="memberPhoneNumber" id="memberPhoneNumber" value="${mypage.memberPhoneNumber }">
 	                    </div>
-<!-- 	                    <div class="mypage-mod-group"> -->
-<!-- 	                        <h2>소속</h2> -->
-<%-- 	                        <select name="te_group" id=""> --%>
-<!-- 	                            <option value="ICT">소속을 선택하세요.</option> -->
-<!-- 	                            <option value="ICT">ICT</option> -->
-<!-- 	                            <option value="의료">의료</option> -->
-<!-- 	                            <option value="자동차">자동차</option> -->
-<!-- 	                            <option value="로봇">로봇</option> -->
-<!-- 	                        </select> -->
-<!-- 	                    </div> -->
 	                    <div class="mypage-mod-class">
                         <h2>입학년도</h2>
                         <input type="text" name="memberAddmission" id="memberAddmission" value="${mypage.memberAddmission }">
@@ -124,6 +90,8 @@
                 <div id="loadingImg"></div>
             </div>
         </div>
+   		</div>
+        <jsp:include page="/WEB-INF/views/fixing/footer.jsp"></jsp:include>
 </body>
 </html>
 

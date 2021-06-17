@@ -1,4 +1,4 @@
-/* 초기화 */
+/* 珥덇린�솕 */
 html {overflow-y:scroll}
 body {margin:0;padding:0;font-size:0.75em; font-family:'Nanum Gothic', 'Malgun Gothic', dotum, sans-serif; background:#f5f5f5;}
 html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
@@ -63,8 +63,8 @@ input:focus, textarea:focus, button:focus {
     width: 200px;
     height: 100%;
     float: left;
-    background-color: #2757A9;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     z-index: 1;
     -webkit-box-shadow: 5px 0 18px -3px #2757A9;
             box-shadow: 5px 0 18px -3px #2757A9;
@@ -155,7 +155,7 @@ input:focus, textarea:focus, button:focus {
     background-color: #3ca8ff;
 }
 .calendar-sidebar > .month-list > .calendar-months > li.active-month {
-    background-color: #2757F8;
+    background-color: #3b5cca59;
 }
 
 .calendar-inner {
@@ -1083,7 +1083,7 @@ button.icon-button > span.chevron-arrow-right {
 }
 
 
-/* 예약하기 view */
+/* �삁�빟�븯湲� view */
 .modal-view, .modal-view-mento {
     position: fixed;
     top: 0;

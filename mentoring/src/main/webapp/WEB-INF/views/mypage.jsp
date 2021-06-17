@@ -19,29 +19,11 @@
 </head>
 <body>
 <!--로고,메뉴-->
-        <div class="header">
-            <div class="header-box">
-                <h1><a href=""><img src="/Mypage/img/logo (1).png" alt=""></a></h1>
-                <div class="tnb">
-                    <ul>
-                        <li><a href=""><i class="fas fa-bell"></i></a></li>
-                        <li><a href=""><i class="fas fa-user"></i></a></li>
-                        <li><a href=""><i class="fas fa-sign-out-alt"></i></a></li>
-                    </ul>
-                </div>
-                <div class="gnb">
-                    <ul>
-                        <li><a href="#none">멘토링</a></li>
-                        <li><a href="#none">공지사항</a></li>
-                        <li><a href="#none">자유게시판</a></li>
-                        <li><a href="#none">참여기업</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <jsp:include page="/WEB-INF/views/fixing/header.jsp"></jsp:include>
+        
         <div class="mypage">
             <div class="mypage-title">
-                <h1>마이페이지</h1>
+                <h1>MyPage</h1>
             </div>
             <div class="mypage-sub-menu">
                 <table>
@@ -103,28 +85,28 @@
                     <div class="introGrowth">
                         <form action="/introGrowth" method="post">
                             <textarea name="introGrowth" id="" cols="30" rows="10">${introContents.introGrowth }</textarea>
-                            <button type="submit">저장하기</button>
+                            <button type="submit" id="introGrowthBtn">SAVE</button>
                         </form>
                     </div>
                     <div class="introPersonality">
                         
                         <form action="/introPersonality" method="post">
                             <textarea name="introPersonality" id="" cols="30" rows="10">${introContents.introPersonality }</textarea>
-                            <button type="submit">저장하기</button>
+                            <button type="submit">SAVE</button>
                         </form>
                     </div>
                     <div class="introActivity">
                         
                         <form action="/introActivity" method="post">
                             <textarea name="introActivity" id="" cols="30" rows="10">${introContents.introActivity }</textarea>
-                            <button type="submit">저장하기</button>
+                            <button type="submit">SAVE</button>
                         </form>
                     </div>
                     <div class="introMotive">
                         
                         <form action="/introMotive" method="post">
                             <textarea name="introMotive" id="" cols="30" rows="10">${introContents.introMotive }</textarea>
-                            <button type="submit">저장하기</button>
+                            <button type="submit">SAVE</button>
                         </form>
                     </div>
              </div>
@@ -141,20 +123,22 @@
                 	<c:forEach var="board" items="${board}">
                 		<tbody>
                  		<tr>
-                            <td>${board.boardTitle }</td>
-                            <td>${board.boardContents }</td>
-                            <td>${board.boardCreateDate }</td>
+                            <td><a href="/common/BoardView.do?boardSeq=${board.boardSeq}">${board.boardTitle }</a></td>
+                            <td><a href="/common/BoardView.do?boardSeq=${board.boardSeq}">${board.boardContents }</a></td>
+                            <td><a href="/common/BoardView.do?boardSeq=${board.boardSeq}">${board.boardCreateDate }</a></td>
                  		</tr>
                  		</tbody>
                  	</c:forEach>
                 </table>
             </div>
         </div>
+        <jsp:include page="/WEB-INF/views/fixing/footer.jsp"></jsp:include>
 <script>
     function fnMove(Seq){
         var offset = $(Seq).offset();
         $('html, body').animate({scrollTop : offset.top}, 400);
     }
+    
 </script>
 <script src="/Mypage/js/intro.js"></script>
 </body>
