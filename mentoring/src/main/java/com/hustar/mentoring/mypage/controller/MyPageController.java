@@ -162,6 +162,7 @@ public class MyPageController {
 		return "redirect:/mypage";
 	}
 	
+	
 	@GetMapping("/mypagePwModify")
 	public String mypagePwModify(MemberDomain memberdomain, Model model, Authentication auth) {
 		int memberSeq = memberDetailService.findBySeq(auth.getName());

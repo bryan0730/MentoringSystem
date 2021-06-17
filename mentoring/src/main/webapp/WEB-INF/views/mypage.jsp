@@ -138,6 +138,7 @@
         var offset = $(Seq).offset();
         $('html, body').animate({scrollTop : offset.top}, 400);
     }
+    
 </script>
 <script src="/Mypage/js/intro.js"></script>
 </body>
