@@ -154,6 +154,7 @@ public class MyPageController {
 		ProfilImg profilImg = new ProfilImg();
 		profilImg.UploadProfil(multipartHttpServletRequest, memberdomain, Photo);
 
+		
 		mypageService.mypageModify(memberdomain, memberSeq);	
 		//이미지가 저장되는 시간을 줌
 		Thread.sleep(2500);
