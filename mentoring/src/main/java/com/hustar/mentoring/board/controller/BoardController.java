@@ -17,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,7 +29,7 @@ import com.hustar.mentoring.board.domain.FileDomain;
 import com.hustar.mentoring.board.domain.ReplyDomain;
 import com.hustar.mentoring.board.service.BoardService;
 import com.hustar.mentoring.login.domain.MemberDetails;
-import com.hustar.mentoring.login.service.MemberDetailService;
+
 
 import lombok.RequiredArgsConstructor;
 

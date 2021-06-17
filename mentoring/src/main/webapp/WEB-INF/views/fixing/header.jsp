@@ -8,7 +8,7 @@
         <!-- 로고, 메뉴 -->
         <div class="header-box">
             <h1>
-                <a href="#"><img src="/Member/img/hustar_logo2.png" alt=""></a>
+                <a href="/common"><img src="/Member/img/hustar_logo2.png" alt=""></a>
             </h1>
 
             <div class="tnb">
@@ -24,9 +24,9 @@
             <div class="gnb"> 
                 <ul>
                     <li><a href="#">멘토링</a></li>
-                    <li><a href="#">공지사항</a></li>
-                    <li><a href="#">자유게시판</a></li>
-                    <li><a href="#">참여기업</a></li>
+                    <li><a href="/common/BoardList.do?divSeq=1">공지사항</a></li>
+                    <li><a href="/common/BoardList.do?divSeq=2">자유게시판</a></li>
+                    <li><a href="/enterprise">참여기업</a></li>
                 </ul>
             </div>
 

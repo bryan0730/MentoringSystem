@@ -12,3 +12,4 @@ h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px
 .submit-btn {max-width: 1200px; margin : 0 auto;}
 .submit-btn input {float : right; padding : 5px 15px;}
 
+.wrap{min-height: calc(92.5vh - 80px);}

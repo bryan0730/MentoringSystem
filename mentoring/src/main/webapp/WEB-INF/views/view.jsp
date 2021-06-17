@@ -8,54 +8,35 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
-<link rel="stylesheet" href="/main/css/style.css">
 <link rel="stylesheet" href="/Board/css/board-view.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 
-<div class="header">
-    <div class="header-box">
-        <h1><a href=""><img src="/main/img/logo_w.png" alt=""></a></h1>
-        <div class="tnb">
-            <ul>
-                <li><a href=""><i class="fas fa-bell"></i></a></li>
-                <li><a href=""><i class="fas fa-user"></i></a></li>
-                <li><a href=""><i class="fas fa-sign-out-alt"></i></a></li>
-            </ul>
-        </div>
-        <div class="gnb">
-            <ul>
-                <li><a href="#none">멘토링</a></li>
-                <li><a href="#none">공지사항</a></li>
-                <li><a href="#none">자유게시판</a></li>
-                <li><a href="#none">참여기업</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+<jsp:include page="/WEB-INF/views/fixing/header.jsp"></jsp:include>
 
+<div class="wrap">
 <c:choose>
-<c:when test = "${boardDomain.divSeq == '1' }"><h2>공지사항</h2></c:when>
-<c:when test = "${boardDomain.divSeq == '2' }"><h2>게시판</h2></c:when>
+<c:when test = "${BoardView.divSeq == '1' }"><h2>공지사항</h2></c:when>
+<c:when test = "${BoardView.divSeq == '2' }"><h2>게시판</h2></c:when>
 </c:choose>
 
-<div class="contents">
+
 	<div class="Board-wrap">
 		<div class="view">
 			<h3><c:out value="${BoardView.boardTitle }"/></h3>
-			<div>
+			<div class="board-writer">
+				<span class="discrip">작성자</span>
 				<span><c:out value="${BoardView.memberName }"/></span>
+			</div>
+			<div class="board-date">
+				<span class="discrip">작성일</span>
 				<span><c:out value = "${BoardView.boardCreateDate }"/></span>
 			</div>
-			
-			
-			<div class="view-con">
-				<p>${BoardView.boardContents }</p>
-			</div>
-			
+
 			<div class="attach-file">
 				<span>첨부파일</span>
+				<div class="file-wrap">
 				<c:if test = "${not empty fileList}">
 					<c:forEach var = "file" items= "${fileList }" varStatus="status">
 						<div>
@@ -67,6 +48,10 @@
 						</div>
 					</c:forEach>
 				</c:if>
+				</div>
+			</div>
+			<div class="view-con">
+				<p>${BoardView.boardContents }</p>
 			</div>
 		</div>
 
@@ -77,44 +62,47 @@
 				<a href="#none" onclick="fn_del(${BoardView.boardSeq}); return fasle;">삭제</a>
 			</c:if>
 		</div>
-		
-		<div class="Reply-box">
-			<div>
-				<span class="NumberOfReply"><c:out value="${replyCnt }"/></span><span>  개의 댓글</span>
-			</div>
-			
-			
-			<div class="Reply-list">
-				<c:if test = "${not empty replyList}">
-					<c:forEach var = "reply" items= "${replyList }" varStatus="status">
-						<div class="Reply" id="reply${reply.replySeq }" >
-							<span class="memberName${reply.replySeq }"><c:out value="${reply.memberName }"/></span>
-							<span class="replyDate${reply.replySeq }"><c:out value ="${reply.replyDate }"/></span>
-							<c:if test="${LoginEmail eq reply.memberEmail}">
-								<a href="#none" onclick="javascript:updateReply(${reply.replySeq}); return false;">[수정]</a>
-								<a href="#none" onclick="javascript:deleteReply(${BoardView.boardSeq },${reply.replySeq}); return false;">[삭제]</a>
-							</c:if>
-							<div>
-								<span class="replyContent${reply.replySeq }"><c:out value ="${reply.replyContent }"/></span>
+		<c:if test="${BoardView.divSeq != '1'}">
+			<div class="Reply-box">
+				<div>
+					<span class="NumberOfReply"><c:out value="${replyCnt }"/></span><span>  개의 댓글</span>
+				</div>
+				<div class="Reply-list">
+					<c:if test = "${not empty replyList}">
+						<c:forEach var = "reply" items= "${replyList }" varStatus="status">
+							<div class="Reply" id="reply${reply.replySeq }" >
+								<div class="memberName" id="memberName${reply.replySeq }"><c:out value="${reply.memberName }"/></div>
+								<div class="content">
+									<span class="replyContent" id="replyContent${reply.replySeq }"><c:out value ="${reply.replyContent }"/></span>
+								</div>
+								<div class="date">
+									<span class = "replyDate" id="replyDate${reply.replySeq }"><c:out value ="${reply.replyDate }"/></span>
+									<c:if test="${LoginEmail eq reply.memberEmail}">
+										<a href="#none" onclick="javascript:updateReply(${reply.replySeq}); return false;">[수정]</a>
+										<a href="#none" onclick="javascript:deleteReply(${BoardView.boardSeq },${reply.replySeq}); return false;">[삭제]</a>
+									</c:if>
+								</div>
 							</div>
-						</div>
-					</c:forEach>
-				</c:if>
+						</c:forEach>
+					</c:if>
+				</div>
+				
+				<div class="Reply-write">
+					<input type="hidden" id="boardSeq" name="boardSeq" value="${BoardView.boardSeq }">
+					<textarea id="replyContent" name="replyContent" placeholder="  댓글을 입력하세요."></textarea>
+					<a href="#none" onclick="javascript:insertReply(${BoardView.boardSeq }); return false;">등록</a>	
+				</div>
 			</div>
-			
-			<div class="Reply-write">
-				<input type="hidden" id="boardSeq" name="boardSeq" value="${BoardView.boardSeq }">
-				<textarea id="replyContent" name="replyContent" placeholder="  댓글을 입력하세요."></textarea>
-				<a href="#none" onclick="javascript:insertReply(${BoardView.boardSeq }); return false;">등록</a>	
-			</div>
-
-		</div>
+		</c:if>
+		
 		
 		<form method="post" id="deleteForm" action="deleteBoard.do">
+			<input type="hidden" id="divSeq" name="divSeq" value="${BoardView.divSeq }">
 			<input type="hidden" id="boardSeq" name="boardSeq" value="${BoardView.boardSeq }">
 		</form>
 	</div>
 </div>
+    <jsp:include page="/WEB-INF/views/fixing/footer.jsp"></jsp:include>
 </body>
 </html>
 
