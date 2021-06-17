@@ -19,32 +19,8 @@
 </head>
 <body>
 <!--로고,메뉴-->
-        <div class="header">
-            <div class="header-box">
-                <h1><a href=""><img src="/img/logo_w.png" alt=""></a></h1>
-                <div class="tnb">
-                    <ul>
-                        <li><a href=""><i class="fas fa-bell"></i></a></li>
-                        <li><a href=""><i class="fas fa-user"></i></a></li>
-                        <li><a href=""><i class="fas fa-sign-out-alt"></i></a></li>
-                    </ul>
-                </div>
-                <div class="gnb">
-                    <ul>
-                        <li><a href="#none">멘토링</a></li>
-                        <li><a href="#none">공지사항</a></li>
-                        <li><a href="#none">자유게시판</a></li>
-                        <li><a href="#none">참여기업</a></li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-        <script>
-            $(document).ready(function () {
-                $(".header").autofix_anything();
-            });
-        </script>
+        <jsp:include page="/WEB-INF/views/fixing/header.jsp"></jsp:include>
+        <div class="wrap">
         <div class="mypage-mod">
             <div class="mypage-mod-title">
                 <h1>마이페이지 수정</h1>
@@ -124,6 +100,8 @@
                 <div id="loadingImg"></div>
             </div>
         </div>
+   		</div>
+        <jsp:include page="/WEB-INF/views/fixing/footer.jsp"></jsp:include>
 </body>
 </html>
 

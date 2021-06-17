@@ -35,54 +35,17 @@ img {
     width: auto\9;
 }
 
-/*----------------------------헤더 부분--------------------*/
-.header.autofix_sb {
-position: fixed;
- width: 100%;
- z-index: 9999;
- }   
-.header{background: #fff; border-bottom: 1px solid #000;}    
-.header .header-box{overflow: hidden; padding: 10px 10px; margin-bottom: 10px;}
-
-.header h1{float: left; }
-.header h1 a{display: block; padding: 10px; }
-.header h1 a img{max-height: 40px; max-width: 150px;}
-.header .gnb{width: 900px; margin: 8px auto 0;}
-.header .gnb > ul{overflow: hidden; margin-top: 10px;}
-.header .gnb > ul > li{float: left; margin: 0px 30px;}
-.header .gnb > ul > li > a{display: block; padding: 10px; font-size: 18px; font-weight: 600; transition: all 0.5s; color: #000; margin-left: 50px;}
-.header .gnb > ul > li > a:hover{font-size: 19px; margin-top: 0px; transition: all 0.5s;}
-
-.header .tnb{float: right; margin-top: 10px;}
-.header .tnb > ul > li{float: left;}
-.header .tnb > ul > li > a{display: block; padding: 10px; font-weight: 500; color: #000; margin-right: 23px; margin-top: 5px; border: 1px solid white; border-radius: 10px;}
-
-
-            
-/*----------------------------풋터 부분--------------------*/
-.footer{
-    background: #2757A9;
-    padding: 10px 0;
-}
-.footer .footer-box .footer-logo{
-    display: inline-block;
-    margin-left: 20px;
-}
-.footer .footer-box .footer-info{
-    display: inline-block;
-    margin-left: 100px;
-    font-size: 18px;
-    font-weight: 300;
-    color: #fff;
-}
-
 /*----------------------------마이페이지--------------------------*/
 	
 	
     .mypage{
         display: block;
-        width: 1200px;
-        margin: 0 auto;
+        width: 1400px;
+        margin: 50px auto;
+        background: #fff;
+        padding:1px 60px;
+        border-radius:20px;
+        box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
     }
 
     .mypage .mypage-title{
@@ -91,13 +54,18 @@ position: fixed;
 
     .mypage .mypage-title h1{
         text-align: center;
-        font-size: 40px;
+        font-size: 35px;
         font-weight: 600;
         color: #111;
     }
     
     .mypage .mypage-sub-menu{
-        height: 100px;
+        height: 150px;
+        padding-top:20px;
+    }
+    
+    .mypage .mypage-sub-menu button{
+    	font-size:25px;
     }
 
     .mypage .mypage-sub-menu table{
@@ -108,11 +76,10 @@ position: fixed;
     .mypage .mypage-sub-menu table tr td{
         text-align: center;
         font-weight: 500;
-        font-size: 25px;
         width: 25%;
         padding-bottom: 20px;
     }
-
+    
     .mypage .mypage-sub-menu table tr td:hover{
         border-bottom: 4px solid #2757A9;
     }
@@ -121,20 +88,24 @@ position: fixed;
         display: block;
         height: 520px;
         overflow: hidden;
-         border: 3px solid #2757A9; 
+         border: 3px solid #ccc; 
          border-radius: 10px; 
         overflow: hidden;
         margin-bottom:10px;
+        box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
+        
     }
 
     .mypage .mypage-info .mypage-img{
         display: inline-block;
+        width: 400px;
+        height: 100%;
         
     }
 
     .mypage .mypage-info .mypage-img img{
-        width: 400px;
-        height: 530px;
+        width: auto;
+        height: 100%;
         
         
     }
@@ -165,57 +136,46 @@ position: fixed;
         display: inline-block;
         font-size: 20px;
     }
-    
-	.mypage .mypage-info .mypage-mento-modify{
-		display: inline-block;
-	  	font-size: 30px;
-	    vertical-align: top;
-	    float: right;
-	    margin: 30px;
-    }
-    
-	 .mypage .mypage-info .mypage-mento-modify button{
-        border: 3px solid #2757A9;
-        border-radius: 10px;
-        font-size: 25px;
-        padding: 3px;
-    }
 
     .mypage .mentoring-status{
-        border: 3px solid #2757A9;
+        border: 3px solid #ccc;
         border-radius: 10px;
         height: 500px;
         margin-top: 30px;
+        box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
     }
 
     .mypage .mentoring-status h2{
-        font-size: 30px;
-        margin: 10px;
+        font-size: 25px;
+        margin: 20px;
     }
 
     .mypage .intro{
-        border: 3px solid #2757A9;
+        border: 3px solid #ccc;
         border-radius: 10px;
-        height: 500px;
+        height: 520px;
         margin-top: 30px;
-    
+    	box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
     }
 
     .mypage .intro h2{
-        font-size: 30px;
-        margin: 10px;
+        font-size: 25px;
+        margin: 20px;
     }
+    
 
     .mypage .my-board{
-        border: 3px solid #2757A9;
+        border: 3px solid #ccc;
         border-radius: 10px;
         height: 500px;
         margin-top: 30px;
+        margin-bottom: 50px;
+        box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
     }
 
     .mypage .my-board h2{
-        font-size: 30px;
-        margin: 10px;
+        font-size: 25px;
+        margin: 20px;
     }
     
      .mypage .mypage-info .mypage-modify {
@@ -236,8 +196,8 @@ position: fixed;
        }
     
     .mypage .my-board table{
-        border-top: 2px solid black;
-        border-bottom: 2px solid black;
+        border-top: 4px solid ccc;
+        border-bottom: 4px solid ccc;
         border-left: 0px;
         border-right: 0px;
         width: 80%;
@@ -247,7 +207,7 @@ position: fixed;
     }
     
     .mypage .my-board td{
-    	padding: 10px 5px;
+    	padding: 15px 5px;
 
     }
     .mypage .my-board td:nth-child(1){
@@ -263,29 +223,24 @@ position: fixed;
     }
     
     .mypage .my-board thead td{
-    	font-size: 18px;
+    	font-size: 20px;
     }
     
-    .mypage .intro > h2{
-        display: inline-block;
-        
-        
-    }
-
-    .mypage .intro > a{
-        display: inline-block;
-        float: right;
-        margin-top: 20px;
-        margin-right: 20px;
-        font-size: 40px;
-        
-    }
     
 /*----------------------------마이페이지 수정--------------------------*/
+
+	.wrap{
+		min-height: calc(94.5vh - 80px);
+	}
     .mypage-mod{
         display: block;
         width: 1800px;
-        margin: 0 auto;
+        height: 1400px;
+        margin: 10px auto;
+        background:#fff;
+        padding:5px 50px;
+        border-radius:10px;
+        
         
     }
 
@@ -295,7 +250,7 @@ position: fixed;
 
     .mypage-mod .mypage-mod-title h1{
         text-align: center;
-        font-size: 40px;
+        font-size: 30px;
         font-weight: 600;
         color: #111;
     }
@@ -304,7 +259,7 @@ position: fixed;
         display: block;
         height: auto;
         overflow: hidden;
-        border: 3px solid #2757A9;
+        border: 3px solid #ccc;
         border-radius: 10px;
         overflow: hidden;
     }
@@ -531,13 +486,17 @@ position: fixed;
         height: 380px;
         margin: 10px auto;
         font-size: 18px;
+        resize: none;
     }
 
     .mypage .intro div button{
-        font-size: 18px;
+        font-size: 15px;
         float: right;
         margin-right: 10px;
-        border: 2px solid #2757A9;
         border-radius: 3px;
+        padding:5px;
+        border-radius:10px;
+        background:#111;
+        color:white;
+        
     }
-
