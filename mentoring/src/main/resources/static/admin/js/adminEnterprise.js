@@ -123,3 +123,13 @@ function deleteEnterprise(enterpriseSeq){
     $("#imageUpload2").change(function(e) {
         readURL2(this); 
     });
+    
+    $(".insert").click(function(){
+    	if($("#imageUpload2").val() == ''){
+    		swal("기업등록","사진을 등록해주세요","error");
+    		
+    		return false;
+    	}
+    	
+    	
+    });

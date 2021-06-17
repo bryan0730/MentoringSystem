@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -42,9 +43,9 @@ public class GlobalHandlerException {
 		return new ResponseEntity<ErrorResponse>(response, HttpStatus.OK);
 	}
 	
-	@ExceptionHandler(MethodArgumentNotValidException.class)
+	@ExceptionHandler(BindException.class)
 	protected ResponseEntity<ErrorResponse> methodArgumentNotValidExceptionHandler(
-			MethodArgumentNotValidException e, HttpServletRequest request){
+			BindException e, HttpServletRequest request){
 		
 		log.error("ValidError- url:{}, trace:{}", request.getRequestURI(), e.getStackTrace());
 		
