@@ -2,6 +2,8 @@ package com.hustar.mentoring.admin.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +51,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/insertEnterprise")
-	public String insertEnterprise(EnterpriseDomain enterpriseDomain, 
+	public String insertEnterprise(@Valid EnterpriseDomain enterpriseDomain, 
 			@RequestParam(value = "imageUpload2", required = false) MultipartFile uploadFile){
 		System.out.println(uploadFile);
 		adminService.insertEnterprise(enterpriseDomain, uploadFile);

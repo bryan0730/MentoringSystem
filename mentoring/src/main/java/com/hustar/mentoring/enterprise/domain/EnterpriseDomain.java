@@ -2,6 +2,7 @@ package com.hustar.mentoring.enterprise.domain;
 
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,8 @@ public class EnterpriseDomain {
 
 	private int enterpriseSeq;
 	private String enterpriseBusinessNumber;
+	
+	@NotBlank
 	private String enterpriseName;
 	private String enterpriseOperator;
 	private String enterpriseLogo;
