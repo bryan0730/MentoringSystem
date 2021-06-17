@@ -87,8 +87,10 @@ function veiwModal(selectedTime) {
     // 예약된 시간 선택 불가능 또는 표시 하기
     if(memberRole == "ROLE_MEMBER"){
         for(let i = 0; i<$('.event-container').length; i++){
-            let time = $('.event-title').children('span')[i].innerHTML.split('시간 : ')[1];
+            if($('.event-title').children('span')[i]){
+                let time = $('.event-title').children('span')[i].innerHTML.split('시간 : ')[1];
             $('.time-item')[timeItem[time]].setAttribute('data-select-val','selected');
+            }     
         }
     }  
     $.ajax({
@@ -160,6 +162,7 @@ function setData(url, id, accept) {
                 bookingTime: bookingTime,
                 way: bookingWay,
                 mentiSeq: seq,
+                mentiName: name,
                 role: role
             }
         }else{
@@ -303,7 +306,7 @@ function setBookingView(seq, role) {
                         id: element.bookingId,
                         name: element.bookingTitle,
                         date: element.bookingDate,
-                        badge: '시간 : ' + element.bookingTime, // Event badge (optional)
+                        badge: '시간 : ' + element.bookingTime,
                         description: element.bookingContent,
                         type: "event",
                         color: element.accept == 0 ? "#ff7575" : "#7cee35",

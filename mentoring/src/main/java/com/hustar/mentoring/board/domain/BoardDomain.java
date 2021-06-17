@@ -12,13 +12,19 @@ public class BoardDomain extends SearchDomain{
 	// 게시글 번호
 	private int boardSeq;
 	
+	// 게시글 구분
+	private int divSeq;
+	
 	// 제목
 	private String boardTitle;
 	
 	// 내용
 	private String boardContents;
 	
-	// 글쓴이
+	// 글쓴이를 알아내기 위한 정보
+	private String memberEmail;
+	
+	// 알아낸 글쓴이를 저장
 	private String memberName;
 	
 	// 생성일
@@ -26,9 +32,4 @@ public class BoardDomain extends SearchDomain{
 	
 	// 수정일
 	private String boardModifyDate;
-	
-	// 첨부 파일 경로
-//	private String boardFilePath1;
-//	private String boardFilePath2;
-//	private String boardFilePath3;	
 }

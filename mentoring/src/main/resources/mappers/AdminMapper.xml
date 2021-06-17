@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hustar.mentoring.admin.mapper.AdminMapper">
+
+	<select id="selectEnterpriseList" resultType="com.hustar.mentoring.enterprise.domain.EnterpriseDomain">
+		SELECT *
+		FROM enterprise
+		;
+	</select>
+
+	<update id="updateEnterprise">
+		UPDATE enterprise
+		SET enterpriseBusinessNumber = #{enterpriseDomain.enterpriseBusinessNumber},
+			enterpriseName = #{enterpriseDomain.enterpriseName},
+			enterpriseOperator = #{enterpriseDomain.enterpriseOperator},
+			enterpriseLogo = #{fileName},
+			enterpriseEmployees = #{enterpriseDomain.enterpriseEmployees},
+			enterpriseUrl = #{enterpriseDomain.enterpriseUrl},
+			enterpriseWoringHours = #{enterpriseDomain.enterpriseWoringHours},
+			enterpriseTask = #{enterpriseDomain.enterpriseTask},
+			enterpriseNumber = #{enterpriseDomain.enterpriseNumber},
+			enterpriseSales = #{enterpriseDomain.enterpriseSales},
+			enterpriseProfit = #{enterpriseDomain.enterpriseProfit},
+			enterpriseSalary = #{enterpriseDomain.enterpriseSalary},
+			enterpriseAvgSalary = #{enterpriseDomain.enterpriseAvgSalary},
+			enterpriseWelfare = #{enterpriseDomain.enterpriseWelfare},
+			enterpriseVision1 = #{enterpriseDomain.enterpriseVision1},
+			enterpriseVision2 = #{enterpriseDomain.enterpriseVision2},
+			enterpriseVision3 = #{enterpriseDomain.enterpriseVision3},
+			enterpriseVision4 = #{enterpriseDomain.enterpriseVision4},
+			enterpriseDiscription = #{enterpriseDomain.enterpriseDiscription},
+			enterpriseRegion = #{enterpriseDomain.enterpriseRegion},
+			enterpriseMessage = #{enterpriseDomain.enterpriseMessage}
+		WHERE enterpriseSeq = #{enterpriseDomain.enterpriseSeq}
+		;
+	</update>
+	
+	<delete id="deleteEnterprise">
+		DELETE FROM enterprise
+		WHERE enterpriseSeq = #{enterpriseSeq}
+		;
+	</delete>
+	
+	<insert id="insertEnterprise">
+		INSERT INTO enterprise
+		(enterpriseBusinessNumber, enterpriseName, enterpriseOperator, enterpriseLogo, enterpriseEmployees, 
+		enterpriseUrl, enterpriseWoringHours, enterpriseTask, enterpriseNumber, enterpriseSales, 
+		enterpriseProfit, enterpriseSalary, enterpriseAvgSalary, enterpriseWelfare, enterpriseVision1, enterpriseVision2, enterpriseVision3, enterpriseVision4, 
+		enterpriseDiscription, enterpriseRegion, enterpriseMessage) 
+		VALUES(
+			#{enterpriseDomain.enterpriseBusinessNumber},
+			#{enterpriseDomain.enterpriseName},
+			#{enterpriseDomain.enterpriseOperator},
+			#{fileName},
+			#{enterpriseDomain.enterpriseEmployees},
+			#{enterpriseDomain.enterpriseUrl},
+			#{enterpriseDomain.enterpriseWoringHours},
+			#{enterpriseDomain.enterpriseTask},
+			#{enterpriseDomain.enterpriseNumber},
+			#{enterpriseDomain.enterpriseSales},
+			#{enterpriseDomain.enterpriseProfit},
+			#{enterpriseDomain.enterpriseSalary},
+			#{enterpriseDomain.enterpriseAvgSalary},
+			#{enterpriseDomain.enterpriseWelfare},
+			#{enterpriseDomain.enterpriseVision1},
+			#{enterpriseDomain.enterpriseVision2},
+			#{enterpriseDomain.enterpriseVision3},
+			#{enterpriseDomain.enterpriseVision4},
+			#{enterpriseDomain.enterpriseDiscription},
+			#{enterpriseDomain.enterpriseRegion},
+			#{enterpriseDomain.enterpriseMessage}
+		)
+		;
+	</insert>
+</mapper>

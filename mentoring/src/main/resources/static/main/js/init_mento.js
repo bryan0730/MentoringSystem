@@ -74,15 +74,32 @@ function reviseMentoEvent(id) {
     }else{
         let content = $('.event-container[data-event-index='+splitId[0]+']').children('.event-info').children('.event-desc').text();
         let way = $('.event-container[data-event-index='+splitId[0]+']').children('.event-info').children('.event-way').text();
-        $('.time').text("시간 : " + title[1]);
-        $('.booking-title-mento').children('span').text('제목 : ' + title[0]);
-        $('.booking-way-mento').children('span').text(way);
-        $('.booking-content-mento').children('span').text("상담내용 : " +'\n'+ content);
-        $('.calendar-date').children('.date').text(checkDayArr[0] + '.' + checkDayArr[1] + '(' + todayLable + ')')
-        $('#modal-view-mento').removeClass('hidden');
-    }
-
-    
+        console.log(way);
+        if(way == "상담방법: 온라인"){
+            $('.calendar-time').addClass("hidden");
+            $('.booking-title-mento').children('span').text('제목 : ' + title[0]);
+            $('.booking-way-mento').children('span').text(way);
+            $('.booking-content-mento').children('span').text("상담내용 : " +'\n'+ content);
+            $('.calendar-date').children('.date').text(checkDayArr[0] + '.' + checkDayArr[1] + '(' + todayLable + ')');
+            $('.answer-area').removeClass("hidden");
+            $('#accept-btn').addClass("hidden");
+            $('#reject-btn').addClass("hidden");
+            $('#answer-btn').removeClass("hidden");
+            $('#modal-view-mento').removeClass('hidden');
+        }else{
+            $('.calendar-time').removeClass("hidden");
+            $('.time').text("시간 : " + title[1]);
+            $('.booking-title-mento').children('span').text('제목 : ' + title[0]);
+            $('.booking-way-mento').children('span').text(way);
+            $('.booking-content-mento').children('span').text("상담내용 : " +'\n'+ content);
+            $('.calendar-date').children('.date').text(checkDayArr[0] + '.' + checkDayArr[1] + '(' + todayLable + ')');
+            $('.answer-area').addClass("hidden");
+            $('#accept-btn').removeClass("hidden");
+            $('#reject-btn').removeClass("hidden");
+            $('#answer-btn').addClass("hidden");
+            $('#modal-view-mento').removeClass('hidden');
+        }  
+    }   
 }
 
 // 수락버튼 클릭

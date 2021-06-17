@@ -45,8 +45,8 @@
             <div class="gnb">
                 <ul>
                     <li><a href='<c:url value = "/mentoring"/>'>멘토링</a></li>
-                    <li><a href='<c:url value = "/common/BoardList.do"/>'>공지사항</a></li>
-                    <li><a href="#none">자유게시판</a></li>
+                    <li><a href='<c:url value = "/common/BoardList.do?divSeq=1"/>'>공지사항</a></li>
+                    <li><a href="<c:url value='/common/BoardList.do?divSeq=2'/>">자유게시판</a></li>
                     <li><a href="#none">참여기업</a></li>
                 </ul>
             </div>
@@ -66,11 +66,11 @@
                 <i class="far fa-calendar-alt"></i>
                 <span class="date"></span>
             </div>
-            <div class="calendar-time">
+            <div class="calendar-time hidden">
                 <i class="far fa-clock"></i>
                 <span class="time">시간 선택</span>
             </div>
-            <div class="time-select">
+            <div class="time-select hidden">
                 <ul class="time-am">
                     <span>오전</span>
                     <li class="time-item"><a href="#none" >10:00</a></li>
@@ -86,9 +86,22 @@
                     <li class="time-item"><a href="#none" >5:00</a></li>                   
                 </ul>
             </div>
+            <script type="text/javascript">
+            	function changeSelect() {
+            		let select = $("#on-off").val();
+            		console.log(select);
+            		if(select == "온라인"){
+            			$(".time-select").addClass("hidden");
+            			$(".calendar-time").addClass("hidden");
+            		}else{
+            			$(".time-select").removeClass("hidden");
+            			$(".calendar-time").removeClass("hidden");
+            		}
+            	}
+            </script>
             <div class="booking-way">
                 <span>상담방법</span>
-                <select name="" id="on-off">
+                <select name="" id="on-off" onchange="changeSelect()">
                     <option value="온라인">온라인</option>
                     <option value="오프라인">오프라인</option>
                 </select>
@@ -170,9 +183,13 @@
             <div class="booking-content-mento">
                 <span>상담내용 : </span>
             </div> 
+            <div class="answer-area">
+            	<textarea rows="10" cols="30" class="answer-area"></textarea>
+            </div>
             <div class="button-area">
                 <button id="accept-btn">수락</button>
                 <button id="reject-btn">거절</button>
+                <button id="answer-btn">답변 등록</button>
                 <button class="booking-cancle">취소</button>
             </div>
         </div>

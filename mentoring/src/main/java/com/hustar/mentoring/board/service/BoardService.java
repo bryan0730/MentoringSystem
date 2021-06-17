@@ -2,6 +2,7 @@ package com.hustar.mentoring.board.service;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hustar.mentoring.board.domain.BoardDomain;
@@ -19,7 +20,7 @@ public interface BoardService {
 	public int selectBoardTotalCnt(BoardDomain boardDomain) throws Exception;
 	
 	// 게시글 등록
-	public void insertBoard(BoardDomain boardDomain, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception;
+	public void insertBoard(BoardDomain boardDomain, MultipartHttpServletRequest multipartHttpServletRequest, Authentication auth) throws Exception;
 	
 	// 게시글 수정
 	public void updateBoard(BoardDomain boardDomain, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception;
@@ -39,8 +40,11 @@ public interface BoardService {
 	// 댓글 리스트 조회
 	public List<ReplyDomain> selectReplyList(int boardSeq) throws Exception;
 	
+	// 댓글 개수 조회
+	public int selectReplyListCnt(int boardSeq) throws Exception;
+	
 	// 댓글 등록
-	public void insertReply(ReplyDomain replyDomain) throws Exception;
+	public void insertReply(ReplyDomain replyDomain, Authentication auth) throws Exception;
 	
 	// 댓글 수정
 	public void updateReply(ReplyDomain replyDomain) throws Exception;
