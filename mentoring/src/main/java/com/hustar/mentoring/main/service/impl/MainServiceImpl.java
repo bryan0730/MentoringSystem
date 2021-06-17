@@ -65,5 +65,17 @@ public class MainServiceImpl implements MainService{
 		mainMapper.deleteSchedule(scheduleDomain);
 	}
 	
+	@Override
+	public List<BookingDomain> beforeMentoringList(int memberSeq, String role, String today) {
+		// TODO Auto-generated method stub
+		return mainMapper.beforeMentoringList(memberSeq, role, today);
+	}
+	
+	@Override
+	public List<BookingDomain> afterMentoringList(int memberSeq, String role, String today) {
+		// TODO Auto-generated method stub
+		return mainMapper.afterMentoringList(memberSeq, role, today);
+	}
+	
 	
 }

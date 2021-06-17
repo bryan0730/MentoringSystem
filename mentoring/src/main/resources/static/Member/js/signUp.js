@@ -116,6 +116,8 @@ $('#signUp').click(function(frm){
 	}
 	//return true;
 	var formData= new FormData($("#signForm")[0]);
+	for (var pair of formData.entries()) { console.log(pair[0]+ ', ' + pair[1]); }
+
 	$.ajax({
 		type:"POST",
 		url:"/signUp",

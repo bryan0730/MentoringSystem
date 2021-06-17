@@ -89,5 +89,59 @@
 	</delete>
 	
 	
+	<select id="findByEmail" resultType="String">
+	
+		<![CDATA[
+			SELECT memberEmail FROM mento as mento
+			LEFT OUTER JOIN mentoring as mentoring ON mento.mentoSeq = mentoring.mentoSeq
+			WHERE mentoring.mentiSeq=#{mentiSeq}
+		]]>
+	</select>
+	
+	<select id="findByName" resultType="String">
+	
+		<![CDATA[
+			SELECT memberName FROM mento as mento
+			LEFT OUTER JOIN mentoring as mentoring ON mento.mentoSeq = mentoring.mentoSeq
+			WHERE mentoring.mentiSeq=#{mentiSeq}
+		]]>
+	</select>
+	
+	<select id="beforeMentoringList" resultType="com.hustar.mentoring.main.domain.BookingDomain">
+	<if test = 'role == "ROLE_MEMBER"' >
+		<![CDATA[
+			SELECT * FROM booking
+			WHERE mentiSeq=#{memberSeq} AND bookingDate >= "${today}"
+			ORDER BY bookingDate, bookingTime
+		]]>
+	</if>
+	<if test = 'role == "ROLE_MENTO"' >
+		<![CDATA[
+			SELECT * FROM booking
+			LEFT OUTER JOIN mentoring as mentoring ON booking.mentiSeq = mentoring.mentiSeq
+			WHERE mentoring.mentoSeq=#{memberSeq} AND bookingDate >= "${today}"
+			ORDER BY bookingDate, bookingTime			
+		]]>
+	</if>
+	</select>
+	
+	<select id="afterMentoringList" resultType="com.hustar.mentoring.main.domain.BookingDomain">
+	<if test = 'role == "ROLE_MEMBER"' >
+		<![CDATA[
+			SELECT * FROM booking
+			WHERE mentiSeq=#{memberSeq} AND bookingDate < "${today}"
+			ORDER BY bookingDate, bookingTime
+		]]>
+	</if>
+	<if test = 'role == "ROLE_MENTO"' >
+		<![CDATA[
+			SELECT * FROM booking
+			LEFT OUTER JOIN mentoring as mentoring ON booking.mentiSeq = mentoring.mentiSeq
+			WHERE mentoring.mentoSeq=#{memberSeq} AND bookingDate < "${today}"
+			ORDER BY bookingDate, bookingTime			
+		]]>
+	</if>
+	</select>
+	
 	
 </mapper>

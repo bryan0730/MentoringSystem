@@ -21,4 +21,10 @@ public interface MainMapper {
 	public void updateSchedule(ScheduleDomain scheduleDomain);
 	public void deleteSchedule(ScheduleDomain scheduleDomain);
 	
+	public String findByEmail(int mentiSeq);
+	public String findByName(int mentiSeq);
+	
+	public List<BookingDomain> beforeMentoringList(int memberSeq, String role, String today);
+	public List<BookingDomain> afterMentoringList(int memberSeq, String role, String today);
+	
 }

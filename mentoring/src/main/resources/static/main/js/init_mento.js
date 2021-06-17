@@ -16,7 +16,6 @@ function veiwModalSchedule(selected,id) {
     //선택한 날짜 요일 받아오는 변수
     checkDay = new Date(checkDayArr[2] + '-' + checkDayArr[0] + '-' + checkDayArr[1]).getDay();
     todayLable = week[checkDay];
-
     // 오늘날짜 일정 불러오기
     $.ajax({
         url: "getMentoScheduleTime",
@@ -61,6 +60,13 @@ function reviseMentoEvent(id) {
     let findString = "mento_";
     let splitId = id.split(findString);
     let title = $('.event-container[data-event-index='+id+']').children('.event-info').children('.event-title').text().split('시간 : ');
+
+    checkDayArr = $('.calendar-active').attr('data-date-val').split('/');
+
+    //선택한 날짜 요일 받아오는 변수
+    checkDay = new Date(checkDayArr[2] + '-' + checkDayArr[0] + '-' + checkDayArr[1]).getDay();
+    todayLable = week[checkDay];
+
     if(id.indexOf(findString) != -1){      
         $('.booking-title').children('input').val(title[0]);
         $('#booking-btn').addClass('hidden');
@@ -68,14 +74,32 @@ function reviseMentoEvent(id) {
     }else{
         let content = $('.event-container[data-event-index='+splitId[0]+']').children('.event-info').children('.event-desc').text();
         let way = $('.event-container[data-event-index='+splitId[0]+']').children('.event-info').children('.event-way').text();
-        $('.time').text("시간 : " + title[1]);
-        $('.booking-title-mento').children('span').text('제목 : ' + title[0]);
-        $('.booking-way-mento').children('span').text(way);
-        $('.booking-content-mento').children('span').text("상담내용 : " +'\n'+ content);
-        veiwModal(title[1],splitId[1]); 
-    }
-
-    
+        console.log(way);
+        if(way == "상담방법: 온라인"){
+            $('.calendar-time').addClass("hidden");
+            $('.booking-title-mento').children('span').text('제목 : ' + title[0]);
+            $('.booking-way-mento').children('span').text(way);
+            $('.booking-content-mento').children('span').text("상담내용 : " +'\n'+ content);
+            $('.calendar-date').children('.date').text(checkDayArr[0] + '.' + checkDayArr[1] + '(' + todayLable + ')');
+            $('.answer-area').removeClass("hidden");
+            $('#accept-btn').addClass("hidden");
+            $('#reject-btn').addClass("hidden");
+            $('#answer-btn').removeClass("hidden");
+            $('#modal-view-mento').removeClass('hidden');
+        }else{
+            $('.calendar-time').removeClass("hidden");
+            $('.time').text("시간 : " + title[1]);
+            $('.booking-title-mento').children('span').text('제목 : ' + title[0]);
+            $('.booking-way-mento').children('span').text(way);
+            $('.booking-content-mento').children('span').text("상담내용 : " +'\n'+ content);
+            $('.calendar-date').children('.date').text(checkDayArr[0] + '.' + checkDayArr[1] + '(' + todayLable + ')');
+            $('.answer-area').addClass("hidden");
+            $('#accept-btn').removeClass("hidden");
+            $('#reject-btn').removeClass("hidden");
+            $('#answer-btn').addClass("hidden");
+            $('#modal-view-mento').removeClass('hidden');
+        }  
+    }   
 }
 
 // 수락버튼 클릭
@@ -88,7 +112,6 @@ $('#accept-btn').on('click', function(){
 function acceptBooking() {
     let eventId = $('#eventId').val();
     let title =$('.event-name').children('span').text().split('이름: ')[1]+ "의 멘토링" 
-    console.log(title);
     let date = $('.calendar-active').attr('data-date-val');
     let time = $('.event-container[data-event-index='+eventId+']').children('.event-info').children('.event-title').children('span').text().split("시간 : ")[1];
     let seq = $('#memberSeq').val();
@@ -105,7 +128,7 @@ function acceptBooking() {
         data: form,
         success: function () {
             modalReset();
-            alert("저장되었습니다.");                
+            alert("상담을 수락하였습니다.");                
         },
         error: function () {
             alert("error");
