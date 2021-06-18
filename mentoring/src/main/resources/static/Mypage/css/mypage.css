@@ -65,7 +65,7 @@ img {
     }
     
     .mypage .mypage-sub-menu button{
-    	font-size:25px;
+    	font-size:20px;
     }
 
     .mypage .mypage-sub-menu table{
@@ -86,7 +86,7 @@ img {
 
     .mypage .mypage-info{
         display: block;
-        height: 520px;
+        height: 450px;
         overflow: hidden;
          border: 3px solid #ccc; 
          border-radius: 10px; 
@@ -98,15 +98,13 @@ img {
 
     .mypage .mypage-info .mypage-img{
         display: inline-block;
-        width: 400px;
-        height: 100%;
         
     }
 
     .mypage .mypage-info .mypage-img img{
-        width: auto;
-        height: 100%;
-        
+        width:400px;    
+		height:450px;
+        border-radius: 10px;   
         
     }
 
@@ -234,13 +232,13 @@ img {
 	}
     .mypage-mod{
         display: block;
-        width: 1800px;
-        height: 1400px;
-        margin: 10px auto;
+        width: 1815px;
+        height: 1100px;
+        margin: 20px auto;
         background:#fff;
         padding:5px 50px;
         border-radius:10px;
-        
+        box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
         
     }
 
@@ -267,6 +265,8 @@ img {
     .mypage-mod .mypage-mod-info .mypage-mod-img{
         display: inline-block;
         width: 400px;
+        vertical-align: middle;
+   	 	margin-left: 40px;
     }
 
     .mypage-mod .mypage-mod-info .mypage-mod-img i{
@@ -285,9 +285,32 @@ img {
         font-size: 15px;
         width: 200px;
         margin: 0 auto;
-        
-        
+    }
     
+    .mypage-mod .mypage-mod-info .mypage-mod-img .select_img img{
+    	border-radius: 30px;
+    	margin-bottom: 20px;
+    	width:400px;    
+		height:450px;
+    	
+    }
+    
+    .mypage-mod .mypage-mod-info .mypage-mod-img .mod-img-btn{
+    	position: absolute;
+    	margin-left: 130px;
+    }
+    
+    .mypage-mod .mypage-mod-info .mypage-mod-img .mod-img-btn button{
+   		width:80%;
+   		margin: 0px auto;
+   		position: absolute;
+   		border:1px solid #111;
+   		border-radius: 30px;
+    	
+    }
+    
+    .mypage-mod .mypage-mod-info .mypage-mod-img .mod-img-btn input{
+    	opacity: 0;
     }
 
     .mypage-mod .mypage-mod-info .mypage-mod-content{

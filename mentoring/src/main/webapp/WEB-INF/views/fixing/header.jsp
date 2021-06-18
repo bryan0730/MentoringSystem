@@ -13,9 +13,9 @@
 
             <div class="tnb">
                 <ul>
-                	<li><a href="#">${name }님</a></li>
+                	<li><a href="/mypage">${name }님</a></li>
                     <li><a href="#"><i class="fas fa-bell"></i></a></li>
-                    <li><a href="#"><i class="fas fa-user"></i></a></li>	
+                    <li><a href="/mypage"><i class="fas fa-user"></i></a></li>	
                     <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
                 </ul>
             </div>
