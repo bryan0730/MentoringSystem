@@ -210,6 +210,7 @@ img {
     }
     .mypage .my-board td:nth-child(1){
         width: 25%;
+     
     }
 
     .mypage .my-board td:nth-child(2){
@@ -222,7 +223,64 @@ img {
     
     .mypage .my-board thead td{
     	font-size: 20px;
+    }   
+/*----------------------------멘토링 현황--------------------------*/
+    .mypage .mentoring-status h2{
+        font-size: 25px;
+        margin: 20px;
     }
+    
+     .mypage .mentoring-status tr{
+     	width: 100%;
+    	border-top: 1px solid #ccc;
+    	border-bottom: 1px solid #ccc;
+        border-left: 0px;
+        border-right: 0px;
+       }
+    
+    .mypage .mentoring-status table{
+        border-left: 0px;
+        border-right: 0px;
+        width: 80%;
+        margin: 0px auto;
+        border-collapse: collapse;
+
+    }
+    
+    .mypage .mentoring-status td{
+    	padding: 10px 5px;
+
+    }
+    .mypage .mentoring-status td:nth-child(1){
+        width: 10%;
+     
+    }
+
+    .mypage .mentoring-status td:nth-child(2){
+        width: 20%;
+    }
+
+    .mypage .mentoring-status td:nth-child(3){
+        width: 20%;
+    }
+    
+    .mypage .mentoring-status td:nth-child(4){
+        width: 15%;
+    }
+    
+    .mypage .mentoring-status td:nth-child(5){
+        width: 15%;
+    }
+    
+    .mypage .mentoring-status td:nth-child(6){
+        width: 20%;
+    }
+    
+    .mypage .mentoring-status thead td{
+    	font-size: 20px;
+    }   
+    
+
     
     
 /*----------------------------마이페이지 수정--------------------------*/

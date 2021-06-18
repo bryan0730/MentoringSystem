@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import com.hustar.mentoring.board.domain.BoardDomain;
 import com.hustar.mentoring.board.domain.FileDomain;
 import com.hustar.mentoring.login.domain.MemberDomain;
+import com.hustar.mentoring.main.domain.BookingDomain;
 import com.hustar.mentoring.mypage.config.ProfilImg;
 import com.hustar.mentoring.mypage.controller.MyPageController;
 import com.hustar.mentoring.mypage.domain.Intro;
@@ -39,4 +40,6 @@ public interface MyPageMapper {
 	public Intro introContents(@Param("Email")String memberEmail);
 
 	public void addIntro(@Param("Email")String memberEmail);
+
+	public List<BookingDomain> bookingContents(@Param("Seq")int memberSeq);
 }

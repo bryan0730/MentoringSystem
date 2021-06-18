@@ -14,8 +14,6 @@
 <!--폰트관련-->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap" rel="stylesheet">
-<!--스크롤시 fixed-->
-<script src="./js/autofix.js"></script>
 </head>
 <body>
 <!--로고,메뉴-->
@@ -68,11 +66,32 @@
             </div>
             <div class="mentoring-status">
                 <h2>멘토링 현황</h2>
-                <ul>
-                    <li>
-                        <p></p>
-                    </li>
-                </ul>
+                <div class="mentoringContents">
+	                <table>
+	                	<thead>
+	                	<tr>
+	                		<td>번호</td>
+	                		<td>제목</td>
+	                		<td>내용</td>	
+	                		<td>날짜</td>
+	                		<td>시간</td>	
+	                		<td>온라인/오프라인</td>		
+	                	</tr>
+	                	</thead>
+	                	<c:forEach var="booking" items="${bookingContents}" varStatus="status">
+	                		<tbody>
+	                 		<tr>
+	                 			<td><a href="">${status.count }</a></td>
+	                            <td><a href="">${booking.bookingTitle }</a></td>
+	                            <td><a href="">${booking.bookingContent }</a></td>
+	                            <td><a href="">${booking.bookingDate }</a></td>
+	                            <td><a href="">${booking.bookingTime }</a></td>
+	                            <td><a href="">${booking.way }</a></td>
+	                 		</tr>
+	                 		</tbody>
+	                 	</c:forEach>
+	                </table>
+                </div>
             </div>
             <div class="intro">
                 <h2>자소서</h2>
@@ -115,16 +134,16 @@
                 <table>
                 	<thead>
                 	<tr>
+                		<td>번호</td>
                 		<td>제목</td>
-                		<td>내용</td>
                 		<td>날짜</td>	
                 	</tr>
                 	</thead>
-                	<c:forEach var="board" items="${board}">
+                	<c:forEach var="board" items="${board}" varStatus="status">
                 		<tbody>
                  		<tr>
+                 			<td><a href="/common/BoardView.do?boardSeq=${board.boardSeq}">${status.count }</a></td>
                             <td><a href="/common/BoardView.do?boardSeq=${board.boardSeq}">${board.boardTitle }</a></td>
-                            <td><a href="/common/BoardView.do?boardSeq=${board.boardSeq}">${board.boardContents }</a></td>
                             <td><a href="/common/BoardView.do?boardSeq=${board.boardSeq}">${board.boardCreateDate }</a></td>
                  		</tr>
                  		</tbody>
@@ -138,7 +157,6 @@
         var offset = $(Seq).offset();
         $('html, body').animate({scrollTop : offset.top}, 400);
     }
-    
 </script>
 <script src="/Mypage/js/intro.js"></script>
 </body>

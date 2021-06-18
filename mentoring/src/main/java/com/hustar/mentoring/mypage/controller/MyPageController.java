@@ -18,6 +18,7 @@ import com.hustar.mentoring.board.domain.FileDomain;
 import com.hustar.mentoring.login.domain.MemberDetails;
 import com.hustar.mentoring.login.domain.MemberDomain;
 import com.hustar.mentoring.login.service.MemberDetailService;
+import com.hustar.mentoring.main.domain.BookingDomain;
 import com.hustar.mentoring.mypage.config.ProfilImg;
 import com.hustar.mentoring.mypage.domain.Intro;
 import com.hustar.mentoring.mypage.service.MyPageService;
@@ -69,7 +70,7 @@ public class MyPageController {
 	//멘티 마이페이지 이동
 	@GetMapping("/mypage")
 	
-	public String mypage(Model model, HttpServletRequest request, Authentication auth, MemberDomain memberdomain, BoardDomain boarDomain, Intro intro) {
+	public String mypage(Model model, HttpServletRequest request, Authentication auth, MemberDomain memberdomain, BoardDomain boarDomain, Intro intro, BookingDomain bookingDomain) {
 						
 		int memberSeq = memberDetailService.findBySeq(auth.getName());
 		
@@ -80,6 +81,8 @@ public class MyPageController {
 		List<BoardDomain> board = mypageService.boardList(memberEmail);
 		//자소서 뿌리는 부분
 		Intro introContents = mypageService.introContents(memberEmail);
+		//멘토링 현황 뿌리는 부분
+		List<BookingDomain> bookingContents= mypageService.bookingContents(memberSeq);
 		
 		MemberDomain mypage = mypageService.mypage(memberSeq);
 		
@@ -90,6 +93,8 @@ public class MyPageController {
 		model.addAttribute("board", board);
 		
 		model.addAttribute("introContents", introContents);
+		
+		model.addAttribute("bookingContents", bookingContents);
 		
 		return "mypage";
 		
@@ -156,12 +161,9 @@ public class MyPageController {
 
 		
 		mypageService.mypageModify(memberdomain, memberSeq);	
-		//이미지가 저장되는 시간을 줌
-		Thread.sleep(2500);
 
-		return "redirect:/mypage";
+		return "loading";
 	}
-	
 	
 	@GetMapping("/mypagePwModify")
 	public String mypagePwModify(MemberDomain memberdomain, Model model, Authentication auth) {
