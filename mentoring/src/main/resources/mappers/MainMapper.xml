@@ -127,7 +127,7 @@
 	<if test = 'role == "ROLE_MEMBER"' >
 		<![CDATA[
 			SELECT * FROM booking
-			WHERE mentiSeq=#{memberSeq} AND bookingDate >= "${today}"
+			WHERE (mentiSeq=#{memberSeq} AND bookingDate >= "${today}" AND accept = "0") OR (mentiSeq=#{memberSeq} AND bookingDate >= "${today}" AND accept = "1" AND booking.way = "오프라인")
 			ORDER BY bookingDate, bookingTime
 		]]>
 	</if>
@@ -135,7 +135,7 @@
 		<![CDATA[
 			SELECT * FROM booking
 			LEFT OUTER JOIN mentoring as mentoring ON booking.mentiSeq = mentoring.mentiSeq
-			WHERE mentoring.mentoSeq=#{memberSeq} AND bookingDate >= "${today}"
+			WHERE (mentoring.mentoSeq=#{memberSeq} AND bookingDate >= "${today}" AND accept = "0") OR (mentoring.mentoSeq=#{memberSeq} AND bookingDate >= "${today}" AND accept = "1" AND booking.way = "오프라인")
 			ORDER BY bookingDate, bookingTime			
 		]]>
 	</if>
@@ -145,15 +145,15 @@
 	<if test = 'role == "ROLE_MEMBER"' >
 		<![CDATA[
 			SELECT * FROM booking
-			WHERE mentiSeq=#{memberSeq} AND bookingDate < "${today}"
+			WHERE mentiSeq=#{memberSeq} AND bookingDate < "${today}" AND accept = "1"
 			ORDER BY bookingDate, bookingTime
 		]]>
 	</if>
 	<if test = 'role == "ROLE_MENTO"' >
 		<![CDATA[
-			SELECT * FROM booking
+			SELECT * FROM booking as booking
 			LEFT OUTER JOIN mentoring as mentoring ON booking.mentiSeq = mentoring.mentiSeq
-			WHERE mentoring.mentoSeq=#{memberSeq} AND bookingDate < "${today}"
+			WHERE (mentoring.mentoSeq=#{memberSeq} AND booking.bookingDate < "${today}" AND booking.accept = "1" AND booking.way = "오프라인") OR (mentoring.mentoSeq=#{memberSeq} AND booking.accept = "1" AND booking.way = "온라인")
 			ORDER BY bookingDate, bookingTime			
 		]]>
 	</if>
