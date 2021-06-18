@@ -24,6 +24,12 @@ public class MainServiceImpl implements MainService{
 	}
 	
 	@Override
+	public String selectBooking(BookingDomain bookingDomain) {
+		// TODO Auto-generated method stub
+		return mainMapper.selectBooking(bookingDomain);
+	}
+	
+	@Override
 	public void insertBooking(BookingDomain bookingDomain) throws Exception {
 		mainMapper.insertBooking(bookingDomain);
 	}

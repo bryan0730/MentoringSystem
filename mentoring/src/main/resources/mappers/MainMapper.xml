@@ -17,6 +17,14 @@
 	</if>
 	</select>
 	
+	<select id="selectBooking" parameterType="com.hustar.mentoring.main.domain.BookingDomain" resultType="String">
+
+		<![CDATA[
+			SELECT bookingComents FROM booking WHERE bookingId = ${bookingId}
+		]]>
+
+	</select>
+	
 	<select id="selectScheduleTime" parameterType="com.hustar.mentoring.main.domain.ScheduleDomain" resultType="com.hustar.mentoring.main.domain.ScheduleDomain">
 
 		<![CDATA[

@@ -362,6 +362,7 @@ function modalReset() {
     $("#accept-btn").removeClass("hidden");
     $("#reject-btn").removeClass("hidden");
     $('.answer').val("");
+    $('.coments-area').addClass('hidden')
     for(let i =0 ; i<$(".time-item").length; i++){
         $(".time-item")[i].setAttribute('data-select-val','')
     }

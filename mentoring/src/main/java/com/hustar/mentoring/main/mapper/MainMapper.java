@@ -11,6 +11,7 @@ import com.hustar.mentoring.main.domain.ScheduleDomain;
 public interface MainMapper {
 
 	public List<?> selectBookingList(BookingDomain bookingDomain);
+	public String selectBooking(BookingDomain bookingDomain);
 	public void insertBooking(BookingDomain bookingDomain);
 	public void updateBooking(BookingDomain bookingDomain);
 	public void deleteBooking(BookingDomain bookingDomain);

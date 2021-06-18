@@ -178,6 +178,10 @@
             <div class="answer-area">
             	<textarea rows="10" cols="30" class="answer"></textarea>
             </div>
+            <div class="coments-area hidden">
+            	<p>답변 : </p>
+            	<span class="coments"></span>
+            </div>
             <div class="button-area">
                 <button id="accept-btn">수락</button>
                 <button id="reject-btn">거절</button>

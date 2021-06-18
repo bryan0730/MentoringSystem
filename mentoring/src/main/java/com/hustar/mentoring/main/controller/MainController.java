@@ -27,11 +27,18 @@ public class MainController {
 		mainService.insertBooking(bookingDomain);
 	}
 	
+	@RequestMapping(value="/selectBooking")
+	public String SelectBooking(BookingDomain bookingDomain) throws Exception {
+		String Coment = mainService.selectBooking(bookingDomain);
+		return Coment;
+	}
+	
 	@RequestMapping(value="/listBooking")
 	public List BookingList(BookingDomain bookingDomain) throws Exception {
 		List<BookingDomain> BookingList = (List<BookingDomain>)mainService.selectBookingList(bookingDomain);
 		return BookingList;
 	}
+	
 	
 	@RequestMapping(value="/updateBooking")
 	public void BookingUpdate(BookingDomain bookingDomain) throws Exception {

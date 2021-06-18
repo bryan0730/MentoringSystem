@@ -7,6 +7,7 @@ import com.hustar.mentoring.main.domain.ScheduleDomain;
 
 public interface MainService {
 	public List<?> selectBookingList(BookingDomain bookingDomain) throws Exception;
+	public String selectBooking(BookingDomain bookingDomain) throws Exception;
 	public void insertBooking(BookingDomain bookingDomain) throws Exception;
 	public void updateBooking(BookingDomain bookingDomain) throws Exception;
 	public void deleteBooking(BookingDomain bookingDomain) throws Exception;

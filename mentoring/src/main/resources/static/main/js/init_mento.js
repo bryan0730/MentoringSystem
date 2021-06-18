@@ -60,6 +60,8 @@ function reviseMentoEvent(id) {
     let findString = "mento_";
     let splitId = id.split(findString);
     let title = $('.event-container[data-event-index='+id+']').children('.event-info').children('.event-title').text().split('시간 : ');
+    let icon = $('.event-container[data-event-index='+id+']').children('.event-icon').children('div').css('background-color');
+    console.log(icon);
     $('.answer-area').addClass("hidden");
     $('#answer-btn').addClass("hidden");
     checkDayArr = $('.calendar-active').attr('data-date-val').split('/');
@@ -76,17 +78,30 @@ function reviseMentoEvent(id) {
         let content = $('.event-container[data-event-index='+splitId[0]+']').children('.event-info').children('.event-desc').text();
         let way = $('.event-container[data-event-index='+splitId[0]+']').children('.event-info').children('.event-way').text();
         console.log(way);
-        if(way == "상담방법: 온라인"){
+        if(way == "상담방법: 온라인" && $('#role').val() == "ROLE_MENTO"){
             $('.calendar-time').addClass("hidden");
             $('.booking-title-mento').children('span').text('제목 : ' + title[0]);
             $('.booking-way-mento').children('span').text(way);
             $('.booking-content-mento').children('span').text("상담내용 : " +'\n'+ content);
             $('.calendar-date').children('.date').text(checkDayArr[0] + '.' + checkDayArr[1] + '(' + todayLable + ')');
-            if($('#role').val() == "ROLE_MENTO") $('.answer-area').removeClass("hidden");
             $('#accept-btn').addClass("hidden");
             $('#reject-btn').addClass("hidden");
-            if($('#role').val() == "ROLE_MENTO") $('#answer-btn').removeClass("hidden");
-            $('#modal-view-mento').removeClass('hidden');
+            if(icon == "rgb(255, 117, 117)") {
+                $('#answer-btn').removeClass("hidden");
+                $('.answer-area').removeClass("hidden");
+                $('#modal-view-mento').removeClass('hidden');
+            }else{
+                getAnswer(id); 
+            }
+        }else if(way == "상담방법: 온라인" && $('#role').val() == "ROLE_MEMBER"){
+            $('.calendar-time').addClass("hidden");
+            $('.booking-title-mento').children('span').text('제목 : ' + title[0]);
+            $('.booking-way-mento').children('span').text(way);
+            $('.booking-content-mento').children('span').text("상담내용 : " +'\n'+ content);
+            $('.calendar-date').children('.date').text(checkDayArr[0] + '.' + checkDayArr[1] + '(' + todayLable + ')');
+            $('#accept-btn').addClass("hidden");
+            $('#reject-btn').addClass("hidden");
+            getAnswer(id); 
         }else{
             $('.calendar-time').removeClass("hidden");
             $('.time').text("시간 : " + title[1]);
@@ -162,5 +177,23 @@ $("#answer-btn").on('click', function () {
         }
     });
 })
+
+function getAnswer(id) {
+    $.ajax({
+        url: "selectBooking",
+        type: "POST",
+        data: {
+            bookingId : id
+        },
+        success: function (element) {
+            $('.coments-area').removeClass('hidden');
+            $('.coments').text(element);
+            $('#modal-view-mento').removeClass('hidden');
+        },
+        error: function () {
+            alert("error");
+        },
+    });
+}
             
     
