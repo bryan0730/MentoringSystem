@@ -28,9 +28,12 @@
             <div class="mypage-mod-info">
             	<form action='/mypageModify' method="post" id="updateData" name="updateData"  enctype="multipart/form-data">
 	                <div class="mypage-mod-img">
-						<div class="select_img"><img src=""/></div>
+						<div class="select_img"><img src="${mypage.memberPhoto }"/></div>
 						<!-- input tag type이 file일 경우 name도 file로 해주어야 type이 맞지 않다는 에러가 안남 -->
-	                    <input type="file" name="file" id="gdsImg">
+						<div class="mod-img-btn">
+							<button>이미지 선택</button>
+	                    	<input type="file" name="file" id="gdsImg">
+	                    </div>
 	                    <!-- input tag에 사진 올리면 보이는 script -->
 	                    <script>
 						  $("#gdsImg").change(function(){
