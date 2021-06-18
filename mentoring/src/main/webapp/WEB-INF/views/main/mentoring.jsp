@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 </head>
 	<!-- stylesheet -->
-	<link rel="stylesheet" href="/main/css/style.css">
 	<link rel="stylesheet" href="/main/css/mentoring.css">
 	
 	 <!-- font-awesome-cdn -->
@@ -22,26 +21,7 @@
 
 
 <body>
-	<div class="header">
-        <div class="header-box">
-            <h1><a href="/common"><img src="/main/img/logo_w.png" alt=""></a></h1>
-            <div class="tnb">
-                <ul>
-                    <li><a href=""><i class="fas fa-bell"></i></a></li>
-                    <li><a href=""><i class="fas fa-user"></i></a></li>
-                    <li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
-                </ul>
-            </div>
-            <div class="gnb">
-                <ul>
-                    <li><a href="#none">멘토링</a></li>
-                    <li><a href='<c:url value = "/common/BoardList.do"/>'>공지사항</a></li>
-                    <li><a href="#none">자유게시판</a></li>
-                    <li><a href="#none">참여기업</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+	<jsp:include page="/WEB-INF/views/fixing/header.jsp"></jsp:include>
     <script type="text/javascript">
     function fn_mentoring(param){
     	let param2 = param == "before" ? "after" : "before";
@@ -74,8 +54,35 @@
 	        }
 	    });
     }
-    </script>
     
+    function fn_answer(id){
+    	let coments = $('.answer[data-booking-index='+'"'+id+'"'+']').val();
+    	console.log(id);
+    	if(confirm("답변을 등록 하시겠습니까?")){
+    		 $.ajax({
+   		        url: "insertComent",
+   		        type: "POST",
+   		        data: {
+   		        	bookingId : id,
+   		        	bookingComents : coments
+   		        },
+   		        success: function () {
+   		            alert("답변을 등록 하였습니다.");                
+   		        },
+   		        error: function () {
+   		            alert("error");
+   		        },
+   		        complete: function (){
+   		            location.reload();
+   		        }
+    		});
+    	}
+    }
+   
+    </script>
+<div class="wrap">
+	<div class="main-wrap">
+
     <div class="mentoring-box">
             <div class="mentoring-header">
                 <h1>Mentoring</h1>
@@ -109,12 +116,14 @@
 	                                    <li>${result.bookingDate}</li>
 	                                </ul>
 	                            </li>
+	                            <c:if test="${result.way eq '오프라인'}">
 	                            <li class="time">
 	                                <ul>
 	                                    <li>상담시간</li>
 	                                    <li>${result.bookingTime}</li>
 	                                </ul>
 	                            </li>
+	                            </c:if>
 	                            <li class="way">
 	                                <ul>
 	                                    <li>상담방법</li>
@@ -122,14 +131,22 @@
 	                                </ul>
 	                            </li>
 	                        </ul>
+	                        <c:if test="${result.way eq '온라인' }">
+		                        <div class="answer-area">
+			                        	<textarea class="answer" data-booking-index="${result.bookingId }"></textarea>
+			                    </div>
+	                        </c:if>
 	                        <div class="mentoring-state">
                     			<input type="button" 
                     			value=
                     			<c:if test="${result.accept eq 1}">상담대기</c:if>
                     			<c:if test="${result.accept eq 0}">수락대기</c:if>
                     			>
-                    			<c:if test="${result.accept eq 0 && role eq 'ROLE_MENTO'}">
+                    			<c:if test="${result.accept eq 0 && role eq 'ROLE_MENTO' && result.way eq '오프라인'}">
                     			<input type="button" value="수락" onclick="fn_accept(${result.bookingId })">
+                    			</c:if>
+                    			<c:if test="${result.accept eq 0 && role eq 'ROLE_MENTO' && result.way eq '온라인'}">
+                    			<input type="button" value="답변하기" onclick="fn_answer(${result.bookingId })">
                     			</c:if>
                 			</div>
 	                    </div>
@@ -171,8 +188,16 @@
 		                                </ul>
 		                            </li>
 		                        </ul>
+		                        <div class="answer-area">
+		                        	<span class="answer">${result.bookingComents}</span>
+		                        </div>
 		                        <div class="mentoring-state">
-	                    			<input type="button" value="상담완료">
+		                        	<c:if test="${result.way eq '오프라인'}">
+	                    				<input type="button" value="상담완료">
+	                    			</c:if>
+	                    			<c:if test="${result.way eq '온라인'}">
+	                    				<input type="button" value="응답완료">
+	                    			</c:if>
 	                			</div>
 		                    </div>
 		                    </c:if> 
@@ -180,15 +205,8 @@
                 </div>
             </div>
         </div>
-    
-    <div class="footer">
-                <div class="footer-logo">
-                    <a href="/common"><img src="/main/img/logo_w.png" alt=""></a>
-                </div>
-                <div class="footer-info">
-                    <p>COPYRIGHT(C)Hustar Innovation Academy. All Rights Reserved</p>
-                </div>
-            </div>
-   	</div>
+  	</div>
+</div>
+    <jsp:include page="/WEB-INF/views/fixing/footer.jsp"></jsp:include>
 </body>
 </html>
