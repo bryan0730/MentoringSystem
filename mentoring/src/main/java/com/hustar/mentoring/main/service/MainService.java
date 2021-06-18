@@ -10,6 +10,7 @@ public interface MainService {
 	public void insertBooking(BookingDomain bookingDomain) throws Exception;
 	public void updateBooking(BookingDomain bookingDomain) throws Exception;
 	public void deleteBooking(BookingDomain bookingDomain) throws Exception;
+	public void answerComent(BookingDomain bookingDomain) throws Exception;
 	
 	public List<?> selectScheduleTime(ScheduleDomain scheduleDomain) throws Exception;
 	public void insertSchedule(ScheduleDomain scheduleDomain) throws Exception;

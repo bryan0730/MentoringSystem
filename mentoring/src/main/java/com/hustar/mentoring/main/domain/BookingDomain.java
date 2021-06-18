@@ -17,4 +17,5 @@ public class BookingDomain {
 	private String mentiName;
 	private int accept;
 	private String role;
+	private String bookingComents;
 }

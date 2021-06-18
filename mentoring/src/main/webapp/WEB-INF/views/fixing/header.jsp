@@ -16,14 +16,14 @@
                 	<li><a href="#">${name }님</a></li>
                     <li><a href="#"><i class="fas fa-bell"></i></a></li>
                     <li><a href="#"><i class="fas fa-user"></i></a></li>	
-                    <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
+                    <li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
                 </ul>
             </div>
 
 
             <div class="gnb"> 
                 <ul>
-                    <li><a href="#">멘토링</a></li>
+                    <li><a href="/mentoring">멘토링</a></li>
                     <li><a href="/common/BoardList.do?divSeq=1">공지사항</a></li>
                     <li><a href="/common/BoardList.do?divSeq=2">자유게시판</a></li>
                     <li><a href="/enterprise">참여기업</a></li>

@@ -692,7 +692,7 @@
             markup += 'style="background-color:'+event_data.color+'"'
         }
         markup += '></div></div><div class="event-info"><p class="event-title">'+_.limitTitle(event_data.name);
-        if (event_data.badge && event_data.way=="오프라인") markup += '<span>'+event_data.badge+'</span>';
+        if ( (event_data.badge && event_data.way=="오프라인") || event_data.type == "birthday") markup += '<span>'+event_data.badge+'</span>';
         markup += '</p>'
         if (event_data.description) markup += '<p class="event-desc">'+event_data.description+'</p>';
         if (event_data.way) markup += '<p class="event-name">'+'<span>'+'이름: '+event_data.userName+' '+'</span>'+'</p>'+'<p class="event-way">'+ '<span>' +'상담방법: '+event_data.way+'</span>' + '</p>'

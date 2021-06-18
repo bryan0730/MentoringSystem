@@ -130,7 +130,7 @@ function veiwModal(selectedTime) {
         $('.calendar-date').children('.date').text(checkDayArr[0] + '.' + checkDayArr[1] + '(' + todayLable + ')');
         if(memberRole == "ROLE_MEMBER"){
             $('#modal-view').removeClass('hidden');
-        }else{
+        }else if(memberRole == "ROLE_MENTO"){
             $('#modal-view-mento').removeClass('hidden');
         }
     }else{
@@ -361,6 +361,7 @@ function modalReset() {
     $('#modal-view-mento').addClass('hidden');
     $("#accept-btn").removeClass("hidden");
     $("#reject-btn").removeClass("hidden");
+    $('.answer').val("");
     for(let i =0 ; i<$(".time-item").length; i++){
         $(".time-item")[i].setAttribute('data-select-val','')
     }
@@ -390,6 +391,7 @@ function reviseEvent(index) {
 function viewMentoring(index) {
     $("#accept-btn").addClass("hidden");
     $("#reject-btn").addClass("hidden");
+    $("#answer-btn").addClass("hidden");
     reviseMentoEvent(index);
 }
 

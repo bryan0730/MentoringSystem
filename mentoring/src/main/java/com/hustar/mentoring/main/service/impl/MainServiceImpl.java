@@ -34,6 +34,11 @@ public class MainServiceImpl implements MainService{
 	}
 	
 	@Override
+	public void answerComent(BookingDomain bookingDomain) throws Exception {
+		mainMapper.answerComent(bookingDomain);
+	}
+	
+	@Override
 	public void deleteBooking(BookingDomain bookingDomain) throws Exception {
 		mainMapper.deleteBooking(bookingDomain);
 	}

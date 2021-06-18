@@ -41,6 +41,14 @@
 		]]>
 	</insert>
 	
+	<update id="answerComent" parameterType="com.hustar.mentoring.main.domain.BookingDomain">
+		<![CDATA[
+			UPDATE booking SET
+			bookingComents = #{bookingComents}, accept=1
+			WHERE bookingId = #{bookingId}
+		]]>
+	</update>
+	
 	<insert id="insertSchedule" parameterType="com.hustar.mentoring.main.domain.ScheduleDomain" useGeneratedKeys="true" keyProperty="scheduleId">
 		<![CDATA[
 			INSERT INTO mento_schedule

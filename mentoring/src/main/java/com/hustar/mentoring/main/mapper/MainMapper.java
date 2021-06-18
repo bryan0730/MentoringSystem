@@ -14,6 +14,7 @@ public interface MainMapper {
 	public void insertBooking(BookingDomain bookingDomain);
 	public void updateBooking(BookingDomain bookingDomain);
 	public void deleteBooking(BookingDomain bookingDomain);
+	public void answerComent(BookingDomain bookingDomain);
 	
 	public List<?> selectScheduleTime(ScheduleDomain scheduleDomain);
 	public void insertSchedule(ScheduleDomain scheduleDomain);

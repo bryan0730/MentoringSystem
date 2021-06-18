@@ -45,6 +45,11 @@ public class MainController {
 		model.addAttribute("resultMsg", "삭제되었습니다");
 	}
 	
+	@RequestMapping(value="/insertComent")
+	public void AnswerComent(BookingDomain bookingDomain) throws Exception {
+		mainService.answerComent(bookingDomain);
+	}
+	
 	@RequestMapping(value="/getMentoScheduleTime")
 	public List ScheduleTime(ScheduleDomain scheduleDomain) throws Exception {
 		List<ScheduleDomain> ScheduleTime = (List<ScheduleDomain>)mainService.selectScheduleTime(scheduleDomain);

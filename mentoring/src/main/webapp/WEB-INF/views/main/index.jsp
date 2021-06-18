@@ -45,116 +45,116 @@
 	</style>
 <div class="wrap">
 	<div class="main-wrap">
-		    <div id="calendar"></div>
-    <c:if test="${role eq 'ROLE_MEMBER'}" >
-    <div id="modal-view" class="modal-view hidden">
-        <div class="bg"></div>
-        <div class="modalBox">
-            <div class="booking-title">
-                <span>제목</span>
-                <input type="text">
-            </div>
-            <div class="calendar-date">
-                <i class="far fa-calendar-alt"></i>
-                <span class="date"></span>
-            </div>
-            <div class="calendar-time hidden">
-                <i class="far fa-clock"></i>
-                <span class="time">시간 선택</span>
-            </div>
-            <div class="time-select hidden">
-                <ul class="time-am">
-                    <span>오전</span>
-                    <li class="time-item"><a href="#none" >10:00</a></li>
-                    <li class="time-item"><a href="#none" >11:00</a></li>
-                </ul>
-                <ul class="time-pm">
-                    <span>오후</span>
-                    <li class="time-item"><a href="#none" >12:00</a></li>
-                    <li class="time-item"><a href="#none" >1:00</a></li>
-                    <li class="time-item"><a href="#none" >2:00</a></li>
-                    <li class="time-item"><a href="#none" >3:00</a></li>
-                    <li class="time-item"><a href="#none" >4:00</a></li>
-                    <li class="time-item"><a href="#none" >5:00</a></li>                   
-                </ul>
-            </div>
-            <script type="text/javascript">
-            	function changeSelect() {
-            		let select = $("#on-off").val();
-            		console.log(select);
-            		if(select == "온라인"){
-            			$(".time-select").addClass("hidden");
-            			$(".calendar-time").addClass("hidden");
-            		}else{
-            			$(".time-select").removeClass("hidden");
-            			$(".calendar-time").removeClass("hidden");
-            		}
-            	}
-            </script>
-            <div class="booking-way">
-                <span>상담방법</span>
-                <select name="" id="on-off" onchange="changeSelect()">
-                    <option value="온라인">온라인</option>
-                    <option value="오프라인">오프라인</option>
-                </select>
-            </div>
-            <div class="booking-content">
-                <div>
-                    <span>상담내용</span>
-                </div>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-            </div>
-        
-            <div class="button-area">
-                <button id="booking-btn">예약</button>
-                <button id="revise-btn">수정</button>
-                <button id="remove-btn">삭제</button>
-                <button class="booking-cancle">취소</button>
-            </div>
-        </div>
-    </div>
-    </c:if>
-    <c:if test="${role eq 'ROLE_MENTO' }">
-    <div id="modal-view" class="modal-view hidden">
-        <div class="bg"></div>
-        <div class="modalBox">
-        	<div class="booking-title">
-                <span>제목</span>
-                <input type="text">
-            </div>
-            <div class="calendar-date">
-                <i class="far fa-calendar-alt"></i>
-                <span class="date"></span>
-            </div>
-            <div class="calendar-time">
-                <i class="far fa-clock"></i>
-                <span class="time">시간 선택</span>
-            </div>
-            <div class="time-select">
-                <ul class="time-am">
-                    <span>오전</span>
-                    <li class="time-item"><a href="#none" >10:00</a></li>
-                    <li class="time-item"><a href="#none" >11:00</a></li>
-                </ul>
-                <ul class="time-pm">
-                    <span>오후</span>
-                    <li class="time-item"><a href="#none" >12:00</a></li>
-                    <li class="time-item"><a href="#none" >1:00</a></li>
-                    <li class="time-item"><a href="#none" >2:00</a></li>
-                    <li class="time-item"><a href="#none" >3:00</a></li>
-                    <li class="time-item"><a href="#none" >4:00</a></li>
-                    <li class="time-item"><a href="#none" >5:00</a></li>                   
-                </ul>
-            </div>           
-            <div class="button-area">
-                <button id="booking-btn">예약</button>
-                <button id="revise-btn">수정</button>
-                <button id="remove-btn">삭제</button>
-                <button class="booking-cancle">취소</button>
-            </div>
-        </div>
-    </div>
-    </c:if>
+		<div id="calendar"></div>
+	    <c:if test="${role eq 'ROLE_MEMBER'}" >
+	    <div id="modal-view" class="modal-view hidden">
+	        <div class="bg"></div>
+	        <div class="modalBox">
+	            <div class="booking-title">
+	                <span>제목</span>
+	                <input type="text">
+	            </div>
+	            <div class="calendar-date">
+	                <i class="far fa-calendar-alt"></i>
+	                <span class="date"></span>
+	            </div>
+	            <div class="calendar-time hidden">
+	                <i class="far fa-clock"></i>
+	                <span class="time">시간 선택</span>
+	            </div>
+	            <div class="time-select hidden">
+	                <ul class="time-am">
+	                    <span>오전</span>
+	                    <li class="time-item"><a href="#none" >10:00</a></li>
+	                    <li class="time-item"><a href="#none" >11:00</a></li>
+	                </ul>
+	                <ul class="time-pm">
+	                    <span>오후</span>
+	                    <li class="time-item"><a href="#none" >12:00</a></li>
+	                    <li class="time-item"><a href="#none" >1:00</a></li>
+	                    <li class="time-item"><a href="#none" >2:00</a></li>
+	                    <li class="time-item"><a href="#none" >3:00</a></li>
+	                    <li class="time-item"><a href="#none" >4:00</a></li>
+	                    <li class="time-item"><a href="#none" >5:00</a></li>                   
+	                </ul>
+	            </div>
+	            <script type="text/javascript">
+	            	function changeSelect() {
+	            		let select = $("#on-off").val();
+	            		console.log(select);
+	            		if(select == "온라인"){
+	            			$(".time-select").addClass("hidden");
+	            			$(".calendar-time").addClass("hidden");
+	            		}else{
+	            			$(".time-select").removeClass("hidden");
+	            			$(".calendar-time").removeClass("hidden");
+	            		}
+	            	}
+	            </script>
+	            <div class="booking-way">
+	                <span>상담방법</span>
+	                <select name="" id="on-off" onchange="changeSelect()">
+	                    <option value="온라인">온라인</option>
+	                    <option value="오프라인">오프라인</option>
+	                </select>
+	            </div>
+	            <div class="booking-content">
+	                <div>
+	                    <span>상담내용</span>
+	                </div>
+	                <textarea name="" id="" cols="30" rows="10"></textarea>
+	            </div>
+	        
+	            <div class="button-area">
+	                <button id="booking-btn">예약</button>
+	                <button id="revise-btn">수정</button>
+	                <button id="remove-btn">삭제</button>
+	                <button class="booking-cancle">취소</button>
+	            </div>
+	        </div>
+	    </div>
+	    </c:if>
+	    <c:if test="${role eq 'ROLE_MENTO' }">
+	    <div id="modal-view" class="modal-view hidden">
+	        <div class="bg"></div>
+	        <div class="modalBox">
+	        	<div class="booking-title">
+	                <span>제목</span>
+	                <input type="text">
+	            </div>
+	            <div class="calendar-date">
+	                <i class="far fa-calendar-alt"></i>
+	                <span class="date"></span>
+	            </div>
+	            <div class="calendar-time">
+	                <i class="far fa-clock"></i>
+	                <span class="time">시간 선택</span>
+	            </div>
+	            <div class="time-select">
+	                <ul class="time-am">
+	                    <span>오전</span>
+	                    <li class="time-item"><a href="#none" >10:00</a></li>
+	                    <li class="time-item"><a href="#none" >11:00</a></li>
+	                </ul>
+	                <ul class="time-pm">
+	                    <span>오후</span>
+	                    <li class="time-item"><a href="#none" >12:00</a></li>
+	                    <li class="time-item"><a href="#none" >1:00</a></li>
+	                    <li class="time-item"><a href="#none" >2:00</a></li>
+	                    <li class="time-item"><a href="#none" >3:00</a></li>
+	                    <li class="time-item"><a href="#none" >4:00</a></li>
+	                    <li class="time-item"><a href="#none" >5:00</a></li>                   
+	                </ul>
+	            </div>           
+	            <div class="button-area">
+	                <button id="booking-btn">예약</button>
+	                <button id="revise-btn">수정</button>
+	                <button id="remove-btn">삭제</button>
+	                <button class="booking-cancle">취소</button>
+	            </div>
+	        </div>
+	    </div>
+	    </c:if>
     <div id="modal-view-mento" class="modal-view-mento hidden">
         <div class="bg"></div>
         <div class="modalBox">
@@ -176,7 +176,7 @@
                 <span>상담내용 : </span>
             </div> 
             <div class="answer-area">
-            	<textarea rows="10" cols="30" class="answer-area"></textarea>
+            	<textarea rows="10" cols="30" class="answer"></textarea>
             </div>
             <div class="button-area">
                 <button id="accept-btn">수락</button>
