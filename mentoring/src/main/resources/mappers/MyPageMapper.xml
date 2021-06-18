@@ -5,8 +5,8 @@
 	
 	<!-- 조회 -->
 	<select id="mento" resultType="com.hustar.mentoring.login.domain.MemberDomain">
-			SELECT menti.* FROM menti AS menti 
-			LEFT OUTER JOIN mentoring AS mentoring ON menti.mentiSeq = mentoring.mentiSeq 
+			select menti.* from menti as menti 
+			left OUTER JOIN mentoring AS mentoring ON menti.mentiSeq = mentoring.mentiSeq 
 			LEFT OUTER JOIN mento AS mento ON mento.mentoSeq = mentoring.mentoSeq 
 			WHERE mentoring.mentoSeq = #{Seq};
 	</select>
@@ -31,15 +31,15 @@
 	<update id="mypageModify">
 	
 		UPDATE menti SET 
-		MEMBERNAME = #{memberdomain.memberName},
-		MEMBEREMAIL = #{memberdomain.memberEmail},
-		MEMBERPHONENUMBER = #{memberdomain.memberPhoneNumber},
-		MEMBERSCHOOL = #{memberdomain.memberSchool},
-		MEMBERMAJOR = #{memberdomain.memberMajor},
-		MEMBERADDMISSION = #{memberdomain.memberAddmission},
-		MEMBERTRACK = #{memberdomain.memberTrack},
-		MEMBERPHOTO = #{memberdomain.memberPhoto}
-		WHERE MENTISEQ = #{Seq};
+		memberName = #{memberdomain.memberName},
+		memberEmail = #{memberdomain.memberEmail},
+		memberPhoneNumber = #{memberdomain.memberPhoneNumber},
+		memberSchool = #{memberdomain.memberSchool},
+		memberMajor = #{memberdomain.memberMajor},
+		memberAddmission = #{memberdomain.memberAddmission},
+		memberTrack = #{memberdomain.memberTrack},
+		memberPhoto = #{memberdomain.memberPhoto}
+		WHERE mentiSeq = #{Seq};
 		
 		
 	</update>
@@ -48,8 +48,8 @@
 	<update id="mypagePwModify">
 	
 		UPDATE menti SET 
-		MEMBERPW = #{memberdomain.memberPw}
-		WHERE MENTISEQ = #{Seq};
+		memberPw = #{memberdomain.memberPw}
+		WHERE mentiSeq = #{Seq};
 		
 		
 	</update>
