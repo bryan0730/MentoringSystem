@@ -117,4 +117,9 @@
 		;
 	</insert>
 	
+	<!-- 멘토링현황 조회 -->
+	<select id="bookingContents" resultType="com.hustar.mentoring.main.domain.BookingDomain" >
+			select * from booking where mentiSeq = #{Seq};
+	</select>
+	
 </mapper>

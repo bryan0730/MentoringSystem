@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.hustar.mentoring.board.domain.BoardDomain;
 import com.hustar.mentoring.board.domain.FileDomain;
 import com.hustar.mentoring.login.domain.MemberDomain;
+import com.hustar.mentoring.main.domain.BookingDomain;
 import com.hustar.mentoring.mypage.config.ProfilImg;
 import com.hustar.mentoring.mypage.controller.MyPageController;
 import com.hustar.mentoring.mypage.domain.Intro;
@@ -98,5 +99,11 @@ public class MyPageServiceImpl implements MyPageService{
 	public void addIntro(String memberEmail) {
 		
 		myPageMapper.addIntro(memberEmail);
+	}
+	
+	@Override
+	public List<BookingDomain> bookingContents(int memberSeq){
+	
+		return myPageMapper.bookingContents(memberSeq);
 	}
 }
