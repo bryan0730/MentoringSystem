@@ -59,8 +59,15 @@ public class MyPageController {
 	public String testSelect(Model model, Authentication auth) {
 		
 		int memberSeq = memberDetailService.findBySeq(auth.getName());
+		//작성한 게시글을 가져오기 위한 memberEmail 가져오는 부분
+		MemberDetails getData = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String memberEmail = getData.getMemberEmail();
+		//게시글 뿌리는 부분
+		List<BoardDomain> board = mypageService.boardList(memberEmail);
 		
 		List<MemberDomain> mento = mypageService.mento(memberSeq);
+		
+		model.addAttribute("board", board);
 		
 		model.addAttribute("mento", mento);
 		
@@ -101,26 +108,23 @@ public class MyPageController {
 		
 	}
 	
-	//멘토 마이페이지에서 특정 학생 마이페이지로 이동
-	@GetMapping("/mypageMenti")
-	
-	public String mypagementi(Model model, HttpServletRequest request, Authentication auth, MemberDomain memberdomain) {
-		
-		int memberSeq = memberDetailService.findBySeq(auth.getName());
-		
-		MemberDomain mypagementi = mypageService.mypagementi(memberdomain);
-		
-		model.addAttribute("memberSeq", memberSeq);
-		
-		model.addAttribute("mypage", mypagementi);	
-		
-		System.out.println("memberSeq : " + memberSeq);
-		System.out.println("mypage.memberSeq : " + mypagementi.getMemberSeq());
-		
-		return "mypage";
-		
-		
-	}
+//	//멘토 마이페이지에서 특정 학생 마이페이지로 이동
+//	@GetMapping("/mypageMenti")
+//	
+//	public String mypagementi(Model model, HttpServletRequest request, Authentication auth, MemberDomain memberdomain) {
+//		
+//		int memberSeq = memberDetailService.findBySeq(auth.getName());
+//		
+//		MemberDomain mypagementi = mypageService.mypagementi(memberdomain);
+//		
+//		model.addAttribute("memberSeq", memberSeq);
+//		
+//		model.addAttribute("mypage", mypagementi);	
+//		
+//		return "mypage";
+//		
+//		
+//	}
 	
 	//마이페이지에서 수정 클릭시 mypageModify로 이동
 	@GetMapping("/updateForm")

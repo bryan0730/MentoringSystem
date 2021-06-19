@@ -15,7 +15,7 @@
                 <ul>
                 	<li><a href="/mypage">${name }님</a></li>
                     <li><a href="#"><i class="fas fa-bell"></i></a></li>
-                          <li><a href="chooseMypage"><i class="fas fa-user"></i></a></li>	
+                          <li><a href="/chooseMypage"><i class="fas fa-user"></i></a></li>	
               <li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
                 </ul>
             </div>
