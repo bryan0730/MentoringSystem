@@ -5,7 +5,7 @@
 	
 	<!-- 조회 -->
 	<select id="mento" resultType="com.hustar.mentoring.login.domain.MemberDomain">
-			select menti.* from menti as menti 
+			select menti.mentiSeq as memberSeq, menti.memberEmail, menti.memberName, menti.memberPhoneNumber, menti.memberPhoto from menti as menti 
 			left OUTER JOIN mentoring AS mentoring ON menti.mentiSeq = mentoring.mentiSeq 
 			LEFT OUTER JOIN mento AS mento ON mento.mentoSeq = mentoring.mentoSeq 
 			WHERE mentoring.mentoSeq = #{Seq};
@@ -23,7 +23,7 @@
 	<!-- 멘토 마이페이지에서 학생 관리버튼 눌렀을 때 해당 학생의 마이페이지로 이동 -->
 	<select id="mypagementi" resultType="com.hustar.mentoring.login.domain.MemberDomain">
 	
-		select mentiSeq as memberSeq, memberEmail, memberName,memberPw, memberPhoneNumber, Authoritie, memberPhoto from menti where memberName = #{memberName};
+		select mentiSeq as memberSeq, memberEmail, memberName, memberPw, memberPhoneNumber, Authoritie, memberPhoto from menti where mentiSeq = #{memberSeq};
 		
 	</select>
 	

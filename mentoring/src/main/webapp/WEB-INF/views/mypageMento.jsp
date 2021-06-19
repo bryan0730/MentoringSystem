@@ -14,44 +14,9 @@
 <!--폰트관련-->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap" rel="stylesheet">
-<!--스크롤시 fixed-->
-<script src="./js/autofix.js"></script>
 </head>
 <body>
-<!--로고,메뉴-->
-        <div class="header">
-            <div class="header-box">
-                <h1><a href=""><img src="/img/logo_w.png" alt=""></a></h1>
-                <div class="tnb">
-                    <ul>
-                        <li><a href=""><i class="fas fa-bell"></i></a></li>
-                        <li><a href=""><i class="fas fa-user"></i></a></li>
-                        <li><a href=""><i class="fas fa-sign-out-alt"></i></a></li>
-                    </ul>
-                </div>
-                <div class="gnb">
-                    <ul>
-                        <li><a href="#none">멘토링</a></li>
-                        <li><a href="#none">공지사항</a></li>
-                        <li><a href="#none">자유게시판</a></li>
-                        <li><a href="#none">참여기업</a></li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-        <style>
-.header.autofix_sb {
-position: fixed;
- width: 100%;
- z-index: 9999;
- }   
-        </style>
-        <script>
-            $(document).ready(function () {
-                $(".header").autofix_anything();
-            });
-        </script>
+ <jsp:include page="/WEB-INF/views/fixing/header.jsp"></jsp:include>
         <div class="mypage">
             <div class="mypage-title">
                 <h1>마이페이지</h1>
@@ -82,7 +47,7 @@ position: fixed;
                     </div>
                 </div>
                 <div class="mypage-mento-modify">
-                    <button onclick='location.href="/mypageMenti?memberName=${result.memberName}";'>
+                    <button onclick="location.href='/mypageMenti?memberSeq=${result.memberSeq}'">
                         관리
                     </button>
                 </div>
@@ -93,6 +58,6 @@ position: fixed;
                 <p></p>
             </div>
         </div>
-
+<jsp:include page="/WEB-INF/views/fixing/footer.jsp"></jsp:include>
 </body>
 </html>
