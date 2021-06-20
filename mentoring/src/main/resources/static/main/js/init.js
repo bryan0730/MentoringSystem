@@ -8,8 +8,10 @@ let checkDay;
 let week = ['일', '월', '화', '수', '목', '금', '토'];
 let checkDayArr;
 // 회원 확인 변수
-let memberSeq = $("#memberSeq").val()
-let memberRole = $("#role").val()
+let memberSeq = $("#memberSeq").val();
+let memberRole = $("#role").val();
+let mentoEmail = memberRole == "ROLE_MEMBER" ? $("#mentoEmail").val() : "";
+let mentiEmail = memberRole == "ROLE_MEMBER" ? $("#e-mail").val() : "";
 
 
 //캘린더 뷰 띄우기
