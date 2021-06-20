@@ -39,23 +39,40 @@
                         <h2>전화번호</h2>
                         <p>${result.memberPhoneNumber }</p>
                     </div>
-                    <div class="mypage-mentoring">
-	                    <a href="">
-	                       	<h2>멘토링 현황</h2>
-	                        <p>확인하기</p>
-	                    </a>
-                    </div>
+<!--                     <div class="mypage-mentoring"> -->
+<!-- 	                    <a href=""> -->
+<!-- 	                       	<h2>멘토링 현황</h2> -->
+<!-- 	                        <p><a href="/mentoring">확인하기</a></p> -->
+<!-- 	                    </a> -->
+<!--                     </div> -->
                 </div>
-                <div class="mypage-mento-modify">
-                    <button onclick="location.href='/mypageMenti?memberSeq=${result.memberSeq}'">
-                        관리
-                    </button>
-                </div>
+<!--                 <div class="mypage-mento-modify"> -->
+<%--                     <button onclick="location.href='/mypageMenti?memberSeq=${result.memberSeq}'"> --%>
+<!--                         관리 -->
+<!--                     </button> -->
+<!--                 </div> -->
             </div>
             </c:forEach>
             <div class="my-board">
                 <h2>게시글</h2>
-                <p></p>
+                <table>
+                	<thead>
+                	<tr>
+                		<td>번호</td>
+                		<td>제목</td>
+                		<td>날짜</td>	
+                	</tr>
+                	</thead>
+                	<c:forEach var="board" items="${board}" varStatus="status">
+                		<tbody>
+                 		<tr>
+                 			<td><a href="/common/BoardView.do?boardSeq=${board.boardSeq}">${status.count }</a></td>
+                            <td><a href="/common/BoardView.do?boardSeq=${board.boardSeq}">${board.boardTitle }</a></td>
+                            <td><a href="/common/BoardView.do?boardSeq=${board.boardSeq}">${board.boardCreateDate }</a></td>
+                 		</tr>
+                 		</tbody>
+                 	</c:forEach>
+                </table>
             </div>
         </div>
 <jsp:include page="/WEB-INF/views/fixing/footer.jsp"></jsp:include>
