@@ -1,6 +1,20 @@
+.wrap{
+	min-height: calc(92.5vh - 80px);
+}
+
+.main-wrap{
+	height:100%;
+}
+
+
 .mentoring-box{
-    max-width: 1800px;
-    margin: 0 auto;
+    max-width: 1200px;
+    min-height: calc(92.5vh - 80px);
+    margin: 10px auto;
+    overflow: auto;
+    background-color: #fff;
+    padding: 35px 10px 35px 10px;
+    box-shadow: 0 12px 6px rgb(0 0 0 / 6%);
 }
 
 .mentoring-header{
@@ -29,12 +43,15 @@
     font-size: 18px;
 }
 
+
+
 .mentoring-list-before > .mentoring-body, .mentoring-list-after > .mentoring-body{
     border: 1px solid #000;
     border-radius: 10px;
     padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
 }
 
 .mentoring-list-before > .mentoring-body > .mento-name, .mentoring-list-after > .mentoring-body > .mento-name{
@@ -71,6 +88,14 @@
 .mentoring-list-before > .mentoring-body > .mentoring-info >li, .mentoring-list-after > .mentoring-body > .mentoring-info >li{
     float: left; 
     margin: 10px;
+}
+
+.mentoring-state{
+	text-align: right;
+}
+
+.mentoring-state > input{
+	margin-right:5px
 }
 
 .hidden{

@@ -107,10 +107,15 @@ function reviseMentoEvent(id) {
             $('.time').text("시간 : " + title[1]);
             $('.booking-title-mento').children('span').text('제목 : ' + title[0]);
             $('.booking-way-mento').children('span').text(way);
-            $('.booking-content-mento').children('span').text("상담내용 : " +'\n'+ content);
+            $('.booking-content-mento').children('span').text("상담내용 : " + content);
             $('.calendar-date').children('.date').text(checkDayArr[0] + '.' + checkDayArr[1] + '(' + todayLable + ')');
-            $('#accept-btn').removeClass("hidden");
-            $('#reject-btn').removeClass("hidden");
+            if(icon == "rgb(255, 117, 117)") {
+                $('#accept-btn').removeClass("hidden");
+                $('#reject-btn').removeClass("hidden");
+            }
+            if(icon == "rgb(124, 238, 53)"){
+                $(".modal-view-mento").children(".modalBox").css("height", "250px");
+            }
             $('#modal-view-mento').removeClass('hidden');
         }  
     }   

@@ -47,11 +47,12 @@ public class BoardFileUtils {
 			//String Path = "C:\\Users\\HUSTAR03\\Desktop\\hustar\\MentoringBoardFiles";
 			
 			String root = multipartHttpServletRequest.getSession().getServletContext().getRealPath("/");
-			String Path = root.substring(0,root.length()-7).concat("resources" + File.separator + "static" + File.separator + "MentoringBoardFiles");
+			String Path = root.concat("WEB-INF" + File.separator + "classes" + File.separator +"static" + File.separator + "MentoringBoardFiles");
 			
 			File file = new File(Path);
 			
-			// 해당 경로에 폴더가 없으면 폴더 생성
+			// 해당 경로에 폴더가 없으면 폴더 생성ls
+			
 			if (file.exists() == false) {
 				System.out.println("asdf");
 				file.mkdirs();

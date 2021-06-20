@@ -81,13 +81,14 @@
 	            <script type="text/javascript">
 	            	function changeSelect() {
 	            		let select = $("#on-off").val();
-	            		console.log(select);
 	            		if(select == "온라인"){
 	            			$(".time-select").addClass("hidden");
 	            			$(".calendar-time").addClass("hidden");
+	            			$(".modal-view").children(".modalBox").css("height", "400px");
 	            		}else{
 	            			$(".time-select").removeClass("hidden");
 	            			$(".calendar-time").removeClass("hidden");
+	            			$(".modal-view").children(".modalBox").css("height", "600px");
 	            		}
 	            	}
 	            </script>
@@ -102,7 +103,7 @@
 	                <div>
 	                    <span>상담내용</span>
 	                </div>
-	                <textarea name="" id="" cols="30" rows="10"></textarea>
+	                <textarea name="" id="" cols="50" rows="10"></textarea>
 	            </div>
 	        
 	            <div class="button-area">
@@ -176,11 +177,14 @@
                 <span>상담내용 : </span>
             </div> 
             <div class="answer-area">
-            	<textarea rows="10" cols="30" class="answer"></textarea>
+            	<p>답변</p>
+            	<textarea rows="10" cols="50" class="answer"></textarea>
             </div>
             <div class="coments-area hidden">
-            	<p>답변 : </p>
-            	<span class="coments"></span>
+            	<p>답변</p>
+            	<div>
+            		<span class="coments"></span>
+            	</div>      	
             </div>
             <div class="button-area">
                 <button id="accept-btn">수락</button>
@@ -195,6 +199,7 @@
     <input type="hidden" id="e-mail" value="${name}">
     <input type="hidden" id="name" value="${userName}">
     <input type="hidden" id="role" value="${role}">
+    <input type="hidden" id="mentoEmail" value="${mentoEmail}">
 	    
 	    <div class="main-banner">
 		    <div class="board-View">

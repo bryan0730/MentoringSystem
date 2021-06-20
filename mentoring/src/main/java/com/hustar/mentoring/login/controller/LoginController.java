@@ -17,6 +17,8 @@ import com.hustar.mentoring.enterprise.domain.EnterpriseDomain;
 import com.hustar.mentoring.enterprise.service.EnterpriseService;
 import com.hustar.mentoring.login.domain.MemberDetails;
 import com.hustar.mentoring.login.service.MemberDetailService;
+import com.hustar.mentoring.main.domain.BookingDomain;
+import com.hustar.mentoring.main.service.GetMentoEmail;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,6 +28,7 @@ public class LoginController {
 	private final MemberDetailService memberDetailService;
 	private final BoardService boardService;
 	private final EnterpriseService enterpriseService;
+	private final GetMentoEmail getMentoEmail;
 	
 	/*
 	 *  MemberDetails auth = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); -> 로그인 후 저장된 유저의 정보들을 MemberDetails 객체로 받음
@@ -46,7 +49,7 @@ public class LoginController {
 	
 
 	@GetMapping("/common")
-	public String menti(Authentication auth, MemberDetails memberDetails, Model model) throws Exception {
+	public String menti(Authentication auth, MemberDetails memberDetails, Model model, BookingDomain bookingDomain) throws Exception {
 		System.out.println("auth.getName() : "+auth.getName());		
 		System.out.println("memberDetailsService.findBySeq(auth.getName) : "+memberDetailService.findBySeq(auth.getName()));
 		System.out.println("memberDetails.getMemberEmail : "+memberDetails.getMemberEmail());
@@ -59,6 +62,10 @@ public class LoginController {
 		String name = authentication.getMemberName();
 		model.addAttribute("role", role);
 		model.addAttribute("userName", name);
+		if(role.equals("ROLE_MEMBER")) {
+			String mentoEmail = getMentoEmail.findByEmail(memberSeq);
+			model.addAttribute("mentoEmail",mentoEmail);
+		}	
 		
 		
 		BoardDomain bd = new BoardDomain();

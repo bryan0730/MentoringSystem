@@ -120,7 +120,7 @@ $('#signUp').click(function(frm){
 
 	$.ajax({
 		type:"POST",
-		url:"/signUp",
+		url:"signUp",
 		data:formData,
 		processData: false,
    	    contentType: false,   
@@ -152,7 +152,7 @@ $('#emailCheck').click(function(){
 	}
 	$.ajax({
         type: "POST",
-        url: "/emailCheck", 
+        url: "emailCheck", 
         data: JSON.stringify({
             "memberEmail": $('#memberEmail').val()
         }),
@@ -167,7 +167,7 @@ $('#emailCheck').click(function(){
         		duplicate = false;
         	}
         	console.log(duplicate);
-			console.log(data);
+			console.log(data.description);
         },
         error: function(request){
         	alert(request.responseText);

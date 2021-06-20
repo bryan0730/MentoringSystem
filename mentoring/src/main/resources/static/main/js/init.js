@@ -362,7 +362,8 @@ function modalReset() {
     $("#accept-btn").removeClass("hidden");
     $("#reject-btn").removeClass("hidden");
     $('.answer').val("");
-    $('.coments-area').addClass('hidden')
+    $('.coments-area').addClass('hidden');
+    $(".modal-view-mento").children(".modalBox").css("height", "400px");
     for(let i =0 ; i<$(".time-item").length; i++){
         $(".time-item")[i].setAttribute('data-select-val','')
     }
@@ -373,13 +374,24 @@ function reviseEvent(index) {
     $('#eventId').val(index);
     let title = $('.event-container[data-event-index='+index+']').children('.event-info').children('.event-title').text().split('시간 : ');
     let content = $('.event-container[data-event-index='+index+']').children('.event-info').children('.event-desc').text().split('상담방법:');
+    let way = $('.event-container[data-event-index='+index+']').children('.event-info').children('.event-way').text().split('상담방법: ')[1];
     if(memberRole == "ROLE_MEMBER"){
         $('#revise-btn').removeClass('hidden');
         $('#remove-btn').removeClass('hidden');
         $('#booking-btn').addClass('hidden');
         $('#modal-view').children(".modalBox").children('.booking-title').children('input').val(title[0]);
         $('.booking-content').children('textarea').val(content[0]);  
-        $('#on-off').val("온라인")
+        if(way=="온라인"){
+            $('#on-off').val("온라인");
+            $(".time-select").addClass("hidden");
+	        $(".calendar-time").addClass("hidden");
+	        $(".modal-view").children(".modalBox").css("height", "400px");
+        }else{
+            $('#on-off').val("오프라인");
+            $(".time-select").removeClass("hidden");
+            $(".calendar-time").removeClass("hidden");
+            $(".modal-view").children(".modalBox").css("height", "600px");
+        }  
         $('.time-item').removeClass('selected-item'); 
         veiwModal(title[1], index);
     }else{

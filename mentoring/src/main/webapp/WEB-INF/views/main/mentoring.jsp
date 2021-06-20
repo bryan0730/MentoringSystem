@@ -82,7 +82,6 @@
     </script>
 <div class="wrap">
 	<div class="main-wrap">
-
     <div class="mentoring-box">
             <div class="mentoring-header">
                 <h1>Mentoring</h1>
@@ -94,7 +93,8 @@
                         <li><a class="mentoring-after" href='javascript:void(0)' onclick="fn_mentoring('after')">완료된 멘토링</a></li>
                     </ul>               
                 </div>
-                <div class="mentoring-list-before">
+                <div class="mentoring-list">
+                	<div class="mentoring-list-before">
 	                <c:forEach var="result" items="${resultList }" varStatus="status"> 
 	                    <div class="mentoring-body">
 	                        <div class="mento-name">
@@ -152,57 +152,59 @@
 	                    </div>
 	                </c:forEach>
                 </div>
-                <div class="mentoring-list-after hidden">
-	                <c:forEach var="result" items="${afterResultList }" varStatus="status">
-		                <c:if test="${result.accept eq 1}">
-		                    <div class="mentoring-body">
-		                        <div class="mento-name">
-		                            <span>
-		                            	<c:if test="${role eq 'ROLE_MEMBER'}">${mentoName}<span> 교수님</span></c:if>
-		                            	<c:if test="${role eq 'ROLE_MENTO'}">${result.mentiName}<span> 교육생</span></c:if>              	
-		                            </span>
-		                        </div>
-		                        <div class="mentoring-title">
-		                            <h2>"${result.bookingTitle}"</h2>
-		                        </div>
-		                        <div class="mentoring-content">
-		                            <p>"${result.bookingContent}"</p>
-		                        </div>
-		                        <ul class="mentoring-info">
-		                            <li class="date">
-		                                <ul>
-		                                    <li>상담날짜</li>
-		                                    <li>${result.bookingDate}</li>
-		                                </ul>
-		                            </li>
-		                            <li class="time">
-		                                <ul>
-		                                    <li>상담시간</li>
-		                                    <li>${result.bookingTime}</li>
-		                                </ul>
-		                            </li>
-		                            <li class="way">
-		                                <ul>
-		                                    <li>상담방법</li>
-		                                    <li>${result.way }</li>
-		                                </ul>
-		                            </li>
-		                        </ul>
-		                        <div class="answer-area">
-		                        	<span class="answer">${result.bookingComents}</span>
-		                        </div>
-		                        <div class="mentoring-state">
-		                        	<c:if test="${result.way eq '오프라인'}">
-	                    				<input type="button" value="상담완료">
-	                    			</c:if>
-	                    			<c:if test="${result.way eq '온라인'}">
-	                    				<input type="button" value="응답완료">
-	                    			</c:if>
-	                			</div>
-		                    </div>
-		                    </c:if> 
-	                </c:forEach>
+	                <div class="mentoring-list-after hidden">
+		                <c:forEach var="result" items="${afterResultList }" varStatus="status">
+			                <c:if test="${result.accept eq 1}">
+			                    <div class="mentoring-body">
+			                        <div class="mento-name">
+			                            <span>
+			                            	<c:if test="${role eq 'ROLE_MEMBER'}">${mentoName}<span> 교수님</span></c:if>
+			                            	<c:if test="${role eq 'ROLE_MENTO'}">${result.mentiName}<span> 교육생</span></c:if>              	
+			                            </span>
+			                        </div>
+			                        <div class="mentoring-title">
+			                            <h2>"${result.bookingTitle}"</h2>
+			                        </div>
+			                        <div class="mentoring-content">
+			                            <p>"${result.bookingContent}"</p>
+			                        </div>
+			                        <ul class="mentoring-info">
+			                            <li class="date">
+			                                <ul>
+			                                    <li>상담날짜</li>
+			                                    <li>${result.bookingDate}</li>
+			                                </ul>
+			                            </li>
+			                            <li class="time">
+			                                <ul>
+			                                    <li>상담시간</li>
+			                                    <li>${result.bookingTime}</li>
+			                                </ul>
+			                            </li>
+			                            <li class="way">
+			                                <ul>
+			                                    <li>상담방법</li>
+			                                    <li>${result.way }</li>
+			                                </ul>
+			                            </li>
+			                        </ul>
+			                        <div class="answer-area">
+			                        	<span class="answer">${result.bookingComents}</span>
+			                        </div>
+			                        <div class="mentoring-state">
+			                        	<c:if test="${result.way eq '오프라인'}">
+		                    				<input type="button" value="상담완료">
+		                    			</c:if>
+		                    			<c:if test="${result.way eq '온라인'}">
+		                    				<input type="button" value="응답완료">
+		                    			</c:if>
+		                			</div>
+			                    </div>
+			                    </c:if> 
+		                </c:forEach>
+	                </div>
                 </div>
+              
             </div>
         </div>
   	</div>
