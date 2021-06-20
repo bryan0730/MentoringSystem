@@ -23,7 +23,7 @@
 
             <div class="gnb"> 
                 <ul>
-                    <li><a href="#">기업관리</a></li>
+                    <li><a href="/admin/adminEnterprise">기업관리</a></li>
                     <li><a href="#">멘토링관리</a></li>
                     <li><a href="#">회원관리</a></li>
                 </ul>

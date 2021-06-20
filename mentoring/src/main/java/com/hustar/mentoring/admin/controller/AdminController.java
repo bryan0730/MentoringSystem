@@ -30,6 +30,12 @@ public class AdminController {
 	private final AdminService adminService;
 	
 	@GetMapping
+	public String adminMain() {
+		
+		return "adminMain";
+	}
+	
+	@GetMapping("/adminEnterprise")
 	public String goAdministrateEnterprise(Model model) {
 		List<EnterpriseDomain> enterpriseList = adminService.selectEnterpriseList();
 		model.addAttribute("list", enterpriseList);
