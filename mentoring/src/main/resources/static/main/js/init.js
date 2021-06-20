@@ -8,8 +8,8 @@ let checkDay;
 let week = ['일', '월', '화', '수', '목', '금', '토'];
 let checkDayArr;
 // 회원 확인 변수
-let memberSeq = $("#memberSeq").val();
-let memberRole = $("#role").val();
+let memberSeq = $("#memberSeq").val()
+let memberRole = $("#role").val()
 let mentoEmail = memberRole == "ROLE_MEMBER" ? $("#mentoEmail").val() : "";
 let mentiEmail = memberRole == "ROLE_MEMBER" ? $("#e-mail").val() : "";
 
@@ -194,7 +194,12 @@ function setData(url, id, accept) {
             modalReset();
             if(url=="insertBooking"){
                 alert("저장되었습니다.");
-                emailUrl = "sendEmail";               
+                emailUrl = "sendEmail";   
+                if(socket){
+                	console.log("소켓 메세지 보낸다");
+                	let socketMsg = "reservation,"+mentiEmail+","+mentoEmail+",mentoring";
+                	socket.send(socketMsg);
+                }            
             }else if(url=="updateBooking"){
                 alert("수정되었습니다.");  
                 emailUrl = "updateEmail";             

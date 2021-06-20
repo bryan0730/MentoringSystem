@@ -16,10 +16,7 @@
     <!-- Add jQuery library (required) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
 
-    <!-- JavaScript -->
-    <script src="/main/js/evo-calendar.js" defer></script>
-    <script src="/main/js/init.js" defer></script>
-    <script src="/main/js/init_mento.js" defer></script>
+    
 
     <!-- font-awesome-cdn -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -374,6 +371,10 @@
 </div>
     <jsp:include page="/WEB-INF/views/fixing/footer.jsp"></jsp:include>
 </body>
+<!-- JavaScript -->
+    <script src="/main/js/evo-calendar.js" defer></script>
+    <script src="/main/js/init.js" defer></script>
+    <script src="/main/js/init_mento.js" defer></script>
 </html>
 
 <style>

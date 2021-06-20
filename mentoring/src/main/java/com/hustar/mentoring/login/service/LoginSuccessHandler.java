@@ -21,7 +21,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		session.setAttribute("name", authentication.getName());
-		System.out.println("SuccessHandler : "+ authentication.getName());
+		System.out.println("SuccessHandler ::::::: "+ authentication.getName());
 		response.sendRedirect("/common");
 	}
 

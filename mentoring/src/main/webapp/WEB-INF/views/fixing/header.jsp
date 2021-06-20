@@ -4,6 +4,108 @@
 <link rel="stylesheet" href="/fixing/css/header.css">
 <link rel="stylesheet" href="/fixing/css/footer.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<style>
+a {
+    color: currentColor;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.message_modal_cover {
+    display: none; 
+    position: absolute;
+    width: 400px;
+    border-radius: 3px;
+    background-color: #fff;
+    top: 71px;
+    right: 60px;
+    z-index: 10000;
+    border: 1px solid #e0e0e0;
+}
+
+.message_modal_cover .message-modal {
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+}
+
+.message_modal_cover .message-modal .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 18px;
+    color: #212529;
+    border-bottom: 2px solid #f1f3f5;
+    width: 100%;
+    height: 55px;
+}
+
+.message_modal_cover .message-modal .list-content .infd-message-cover {
+    padding: 0 14px;
+    background-color: #f8f9fa;
+}
+
+.message_modal_cover .message-modal .list-content .infd-message-cover .infd-message-el {
+    display: flex;
+    padding: 12px 12px 12px 22px;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.message_modal_cover .message-modal .list-content .infd-message-cover .infd-message-el:before {
+    position: absolute;
+    display: inline-block;
+    content: "";
+    background-color: #ff5b16;
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    top: 20px;
+    left: 4px;
+}
+
+.subtitle, .titles {
+    word-break: break-word;
+}
+
+.message_modal_cover .message-modal .button-content a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 48px;
+    background-color: #183dc3;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.message_modal_cover:after {
+    display: inline-block;
+    position: absolute;
+    content: "";
+    width: 24px;
+    height: 24px;
+    top: -12px;
+    right: 15px;
+    transform: rotate(
+45deg
+);
+    border: 1px solid #e0e0e0;
+    border-right: none;
+    border-bottom: none;
+    z-index: 5;
+    background:#fff;
+}
+
+.active{
+    display: block;
+}
+</style>
+
     <div class="header">
         <!-- 로고, 메뉴 -->
         <div class="header-box">
@@ -14,10 +116,26 @@
             <div class="tnb">
                 <ul>
                 	<li><a href="/mypage">${name }님</a></li>
-                    <li><a href="#"><i class="fas fa-bell"></i></a></li>
+                    <li class="alt"><a href="#"><i class="fas fa-bell"></i></a></li>
                           <li><a href="/chooseMypage"><i class="fas fa-user"></i></a></li>	
               <li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
                 </ul>
+		       <div class="message_modal_cover has_bubble nav-modal-cover">
+		        <div class="message-modal">
+		          <div class="header-content unchecked-cnt">알림사항</div>
+		          <div class="list-content">
+		              <div class="infd-message-cover">
+		                <a href="#" class="infd-message-el">
+		                    <span class="titles">
+		                        [공지사항] 6월 3주차 스터디
+		                    </span>
+		                    <span class="date">1일</span>
+		                </a>
+		              </div>
+		          </div>
+		          <div class="button-content"><a href="#">더 많은 알람 보기</a></div>
+		        </div>
+		      </div>
             </div>
 
 
@@ -32,3 +150,25 @@
 
         </div>
     </div>
+    
+    
+      
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script>
+      $(document).ready(function(){
+      	$(".alt").hover(function(){
+      		$(".message_modal_cover").addClass("active");
+      	}, function(){
+              
+                  $(".message_modal_cover").removeClass("active");   
+             
+      	})
+
+          $(".message_modal_cover").hover(function(){
+              $(".message_modal_cover").addClass("active");
+          }, function(){
+              $(".message_modal_cover").removeClass("active"); 
+          })
+      });
+      </script>
