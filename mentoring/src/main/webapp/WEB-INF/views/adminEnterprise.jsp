@@ -11,7 +11,7 @@
 
 </head>
 <body>
-   <jsp:include page="/WEB-INF/views/fixing/header.jsp"></jsp:include>
+   <jsp:include page="/WEB-INF/views/fixing/adminHeader.jsp"></jsp:include>
 
     <div class="wrap">
         <div class="body_container">

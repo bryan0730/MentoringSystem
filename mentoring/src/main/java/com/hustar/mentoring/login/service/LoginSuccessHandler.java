@@ -22,7 +22,13 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		HttpSession session = request.getSession();
 		session.setAttribute("name", authentication.getName());
 		System.out.println("SuccessHandler ::::::: "+ authentication.getName());
-		response.sendRedirect("/common");
+		System.out.println("권한 :::::::: "+authentication.getAuthorities());
+		String userAuth = authentication.getAuthorities().toString();
+		if(userAuth.equals("[ROLE_ADMIN]")) {
+			response.sendRedirect("/admin");
+		}else {
+			response.sendRedirect("/common");
+		}
 	}
 
 }

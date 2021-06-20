@@ -165,7 +165,7 @@ function setData(url, id, accept) {
                 way: bookingWay,
                 mentiSeq: seq,
                 mentiName: name,
-                role: role
+                role: role 
             }
         }else{
             form = {

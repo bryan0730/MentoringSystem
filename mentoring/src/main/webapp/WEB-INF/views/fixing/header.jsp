@@ -104,6 +104,25 @@ a {
 .active{
     display: block;
 }
+
+.none-active{
+	display: none;
+}
+
+.alt{
+    position: relative;
+}
+
+.red-circle{
+/*     display: none;  */
+    position: absolute;
+    background: red;
+    border-radius: 500%;
+    width: 6px;
+    height: 6px;
+    top: 13px;
+    right: 18px;
+}
 </style>
 
     <div class="header">
@@ -116,14 +135,27 @@ a {
             <div class="tnb">
                 <ul>
                 	<li><a href="/mypage">${name }님</a></li>
-                    <li class="alt"><a href="#"><i class="fas fa-bell"></i></a></li>
-                          <li><a href="/chooseMypage"><i class="fas fa-user"></i></a></li>	
-              <li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+                    <li class="alt">
+                    	<a href="#">
+                    		<i class="fas fa-bell"></i>
+                    	</a>
+						<div class="red-circle"></div>    
+                    </li>
+                    <li><a href="/chooseMypage"><i class="fas fa-user"></i></a></li>	
+              		<li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
                 </ul>
 		       <div class="message_modal_cover has_bubble nav-modal-cover">
 		        <div class="message-modal">
 		          <div class="header-content unchecked-cnt">알림사항</div>
 		          <div class="list-content">
+		              <div class="infd-message-cover">
+		                <a href="#" class="infd-message-el">
+		                    <span class="titles">
+		                        [공지사항] 6월 3주차 스터디
+		                    </span>
+		                    <span class="date">1일</span>
+		                </a>
+		              </div>
 		              <div class="infd-message-cover">
 		                <a href="#" class="infd-message-el">
 		                    <span class="titles">
@@ -159,6 +191,7 @@ a {
       $(document).ready(function(){
       	$(".alt").hover(function(){
       		$(".message_modal_cover").addClass("active");
+      		//$(".red-circle").addClass("none-active");
       	}, function(){
               
                   $(".message_modal_cover").removeClass("active");   
