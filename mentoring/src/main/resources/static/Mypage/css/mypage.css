@@ -120,8 +120,12 @@ img {
     }
 
     .mypage .mypage-info .mypage-content div{
-        margin-bottom: 60px;
+        margin-bottom: 50px;
         
+    }
+    
+    .mypage .mypage-info .mypage-content .mypage-name{
+    	margin-top: 50px;
     }
 
     .mypage .mypage-info .mypage-content h2{
@@ -133,6 +137,7 @@ img {
     .mypage .mypage-info .mypage-content p{
         display: inline-block;
         font-size: 20px;
+        margin-right:10px;
     }
 
     .mypage .mentoring-status{
