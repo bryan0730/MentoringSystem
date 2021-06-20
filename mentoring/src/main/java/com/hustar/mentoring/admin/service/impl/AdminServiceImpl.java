@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.hustar.mentoring.admin.mapper.AdminMapper;
 import com.hustar.mentoring.admin.service.AdminService;
 import com.hustar.mentoring.enterprise.domain.EnterpriseDomain;
+import com.hustar.mentoring.login.domain.MemberDomain;
 
 import lombok.RequiredArgsConstructor;
 
@@ -76,4 +77,36 @@ public class AdminServiceImpl implements AdminService{
 		System.out.println(file.getName());
 		adminMapper.insertEnterprise(enterpriseDomain, file.getName());
 	}
+
+	@Override
+	public List<MemberDomain> selectMentoList() {
+		// TODO Auto-generated method stub
+		return adminMapper.selectMentoList();
+	}
+	
+	@Override
+	public List<MemberDomain> selectMentiList() {
+		// TODO Auto-generated method stub
+		return adminMapper.selectMentiList();
+	}
+
+	@Override
+	public void insertMentoring(int mentoSeq, List<String> mentiSeq) {
+		// TODO Auto-generated method stub
+		adminMapper.insertMentoring(mentoSeq, mentiSeq);
+	}
+
+	@Override
+	public void deleteMentoring(int mentiSeq) {
+		// TODO Auto-generated method stub
+		adminMapper.deleteMentoring(mentiSeq);
+	}
+
+	@Override
+	public List<MemberDomain> selectMentiListOfMento(int mentoSeq) {
+		// TODO Auto-generated method stub
+		return adminMapper.selectMentiListOfMento(mentoSeq);
+	}
+
+	
 }

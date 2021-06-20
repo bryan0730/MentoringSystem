@@ -97,7 +97,7 @@
 								<c:param name="boardSeq" value="${file.boardSeq }"/>
 								<c:param name="fileSeq" value="${file.fileSeq }"/>
 							</c:url>
-							<a href = "${deleteurl }">삭제</a>
+							<a class= "delbtn" href = "${deleteurl }">X</a>
 						</div>
 					</c:forEach>
 				</c:if>
