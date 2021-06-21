@@ -23,6 +23,7 @@
     margin-bottom: 20px;
 }
 .mentoring-header > h1{
+	color : #2757A9;
     font-size: 30px;
 }
 
@@ -41,6 +42,7 @@
     display: table-cell;
     width: 50%;
     font-size: 18px;
+    cursor: pointer;
 }
 
 
@@ -109,10 +111,17 @@
     margin-top: 15px;
 }
 
-.answer{
-	width:590px;
-	height: 105px;
+.answer {
+    padding: 10px;
+    border: 1px solid;
+    width: 580px;
+    height: 105px;
 }
+
+.answer-area > p {
+	font-size:15px
+}
+
 
 .action-btn{
 	cursor: pointer;
@@ -127,5 +136,6 @@
 }
 
 .on{
-	border-bottom: 1px solid #000;
+	color : #2757A9;
+	border-bottom: 1px solid #2757A9;
 }

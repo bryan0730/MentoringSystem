@@ -18,72 +18,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
     
     <!-- JavaScript -->
-
+	<script src="/main/js/mentoring.js"></script>
 
 <body>
 	<jsp:include page="/WEB-INF/views/fixing/header.jsp"></jsp:include>
-    <script type="text/javascript">
-    function fn_mentoring(param){
-    	let param2 = param == "before" ? "after" : "before";
-    	$('.mentoring-'+param).addClass('on');
-        $('.mentoring-'+param2).removeClass('on');
-        
-        $('.mentoring-list-'+param).removeClass('hidden');
-        $('.mentoring-list-'+param2).addClass('hidden');
-    }
-    
-    function fn_accept(id) {
-    	form = {
-                bookingId: id,
-                accept: 1,
-                role: "ROLE_MENTO"
-            }
-	    // insertBooking controller에 통신 
-	    $.ajax({
-	        url: "updateBooking",
-	        type: "POST",
-	        data: form,
-	        success: function () {
-	            alert("상담을 수락하였습니다.");                
-	        },
-	        error: function () {
-	            alert("error");
-	        },
-	        complete: function (){
-	            location.reload();
-	        }
-	    });
-    }
-    
-    function fn_answer(id){
-    	let coments = $('.answer[data-booking-index='+'"'+id+'"'+']').val();
-    	if(!coments){
-    		alert("답변을 입력해 주세요.")
-    	}else{
-    		if(confirm("답변을 등록 하시겠습니까?")){
-	       		 $.ajax({
-	      		        url: "insertComent",
-	      		        type: "POST",
-	      		        data: {
-	      		        	bookingId : id,
-	      		        	bookingComents : coments
-	      		        },
-	      		        success: function () {
-	      		            alert("답변을 등록 하였습니다.");                
-	      		        },
-	      		        error: function () {
-	      		            alert("error");
-	      		        },
-	      		        complete: function (){
-	      		            location.reload();
-	      		        }
-	       		});
-	       	}
-    	}
-    	
-    }
-   
-    </script>
 <div class="wrap">
 	<div class="main-wrap">
     <div class="mentoring-box">
@@ -93,8 +31,8 @@
             <div class="mentoring">    
                 <div class="mentoring-gnb">
                     <ul>
-                        <li><a class="mentoring-before on" href='javascript:void(0)' onclick="fn_mentoring('before')">진행 중인 멘토링</a></li>
-                        <li><a class="mentoring-after" href='javascript:void(0)' onclick="fn_mentoring('after')">완료된 멘토링</a></li>
+                        <li class="mentoring-before on" onclick="fn_mentoring('before')"><a  href='javascript:void(0)' >진행 중인 멘토링</a></li>
+                        <li class="mentoring-after" onclick="fn_mentoring('after')"><a href='javascript:void(0)' >완료된 멘토링</a></li>
                     </ul>               
                 </div>
                 <div class="mentoring-list">
@@ -108,10 +46,10 @@
 	                            </span>
 	                        </div>
 	                        <div class="mentoring-title">
-	                        	<h2>"${result.bookingTitle}"</h2>
+	                        	<h2>제목 : "${result.bookingTitle}"</h2>
 	                        </div>
 	                        <div class="mentoring-content">
-	                            <p>"${result.bookingContent}"</p>
+	                            <p>내용 : "${result.bookingContent}"</p>
 	                        </div>
 	                        <ul class="mentoring-info">
 	                            <li class="date">
@@ -128,7 +66,8 @@
 	                        </ul>
 	                        <c:if test="${result.way eq '온라인' && role eq 'ROLE_MENTO'}">
 		                        <div class="answer-area">
-			                        	<textarea class="answer" data-booking-index="${result.bookingId }"></textarea>
+		                        	<p>답변</p>
+			                        <textarea class="answer" data-booking-index="${result.bookingId }"></textarea>
 			                    </div>
 	                        </c:if>
 	                        <div class="mentoring-state">
@@ -159,10 +98,10 @@
 			                            </span>
 			                        </div>
 			                        <div class="mentoring-title">
-			                            <h2>"${result.bookingTitle}"</h2>
+			                            <h2>제목 : "${result.bookingTitle}"</h2>
 			                        </div>
 			                        <div class="mentoring-content">
-			                            <p>"${result.bookingContent}"</p>
+			                            <p>내용 :  "${result.bookingContent}"</p>
 			                        </div>
 			                        <ul class="mentoring-info">
 			                            <li class="date">
@@ -186,7 +125,7 @@
 			                        <c:if test="${result.way eq '온라인'}">
 			                        	<div class="answer-area">
 				                        	<p>답변</p>
-				                        	<span class="answer">${result.bookingComents}</span>
+				                        	<div class="answer">${result.bookingComents}</div>
 				                        </div>
 			                        </c:if>
 			                        <div class="mentoring-state">
