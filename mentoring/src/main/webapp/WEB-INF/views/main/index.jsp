@@ -226,7 +226,7 @@
 							<a href="/common/BoardView.do?boardSeq=${free.boardSeq }">
 								<span><c:out value="${free.boardTitle }"/></span>
 								<fmt:parseDate value="${free.boardCreateDate}" var = "date" pattern="yyyy-MM-dd" scope="page"/>
-								<span><fmt:formatDate value = "${date }" pattern="yyyy-MM-dd"/></span>
+								<span class="date"><fmt:formatDate value = "${date }" pattern="yyyy-MM-dd"/></span>
 							</a>
 						</li>
 					</ul>
