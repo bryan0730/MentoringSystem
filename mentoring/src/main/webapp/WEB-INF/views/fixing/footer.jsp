@@ -20,7 +20,7 @@ $(document).ready( function() {
 });
 function connectWS() {
     console.log("tttttttttttttt")
-    var ws = new WebSocket("ws://localhost:9999/mentoringNotice");
+    var ws = new WebSocket("ws://www.humensy.ml/mentoringNotice");
     socket = ws;
     ws.onopen = function () {
         console.log('Info: connection opened.');
