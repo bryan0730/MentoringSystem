@@ -13,6 +13,17 @@ a {
     cursor: pointer;
 }
 
+.red-circle{
+	display: none;
+    position: absolute;
+    background: red;
+    border-radius: 500%;
+    width: 6px;
+    height: 6px;
+    top: 13px;
+    right: 18px;
+}
+
 .message_modal_cover {
     display: none; 
     position: absolute;
@@ -114,16 +125,7 @@ a {
     position: relative;
 }
 
-.red-circle{
-	display: none;
-    position: absolute;
-    background: red;
-    border-radius: 500%;
-    width: 6px;
-    height: 6px;
-    top: 13px;
-    right: 18px;
-}
+
 </style>
 
     <div class="header">

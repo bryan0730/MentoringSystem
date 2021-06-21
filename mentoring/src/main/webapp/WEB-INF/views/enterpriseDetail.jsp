@@ -26,7 +26,7 @@
                     <div class="company_img">
                         <a class="thum_wrap" href="">
                             <span class="img_wrap">
-                                <img src="https://swgo.kr/_File/convention/725101003b33450f4e9708651ec1a8f09abde850.png" >
+                                <img src="/enterprise/img/${info.enterpriseLogo }" >
                             </span>
                         </a>
                     </div>
