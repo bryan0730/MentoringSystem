@@ -312,7 +312,6 @@ function setBookingView(seq, role) {
         data: form,
         success: function (data) {
             data.forEach(element => {
-                console.log(localDate < element.bookingDate);
                 if(localDate < element.bookingDate || element.accept==1){
                     $("#calendar").evoCalendar('addCalendarEvent', 
                         {
