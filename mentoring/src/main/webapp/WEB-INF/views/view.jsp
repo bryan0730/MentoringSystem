@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>휴멘시 - 휴스타 멘토링 시스템</title>
 <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="/Board/css/board-view.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">

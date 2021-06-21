@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>휴멘시 - 휴스타 멘토링 시스템</title>
 <link rel="stylesheet" href="/enterprise/css/enterpriseDetail.css">
 
 <link rel="stylesheet" href="/fixing/css/header.css">

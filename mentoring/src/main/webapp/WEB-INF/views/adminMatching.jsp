@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/admin/css/adminMatching.css">
-<title>Insert title here</title>
+<title>휴멘시 - 휴스타 멘토링 시스템</title>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/fixing/adminHeader.jsp"></jsp:include>

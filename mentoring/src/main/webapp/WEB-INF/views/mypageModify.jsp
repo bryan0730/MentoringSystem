@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>휴멘시 - 휴스타 멘토링 시스템</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/Mypage/css/mypage.css">
