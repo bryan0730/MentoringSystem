@@ -9,7 +9,7 @@
 
 .mentoring-box{
     max-width: 1200px;
-    min-height: calc(92.5vh - 80px);
+    height: calc(92.5vh - 80px);
     margin: 10px auto;
     overflow: auto;
     background-color: #fff;
