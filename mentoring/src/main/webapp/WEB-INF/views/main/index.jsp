@@ -11,7 +11,7 @@
 
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="/main/css/evo-calendar.css" />
-
+    <link rel="stylesheet" href="/main/css/main-bottom.css"/>
 
     <!-- Add jQuery library (required) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
@@ -32,14 +32,12 @@
     <link rel="stylesheet" href="/main/css/swiper.min.css"/>
 
 
+
 <title>Document</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/fixing/header.jsp"></jsp:include>
-	<style>
-	.header .gnb>ul>li {margin: 0 8px;}
-	.wrap {padding-top:65px; min-height: calc(93.5vh);}	
-	</style>
+
 <div class="wrap">
 	<div class="main-wrap">
 		<div id="calendar"></div>
@@ -210,7 +208,7 @@
 					<c:forEach var="notice" items="${noticelist }">
 					<ul>
 						<li>
-							<a href="#none">
+							<a href="/common/BoardView.do?boardSeq=${notice.boardSeq }">
 								<span><c:out value="${notice.boardTitle }"/></span>
 								<fmt:parseDate value="${notice.boardCreateDate}" var = "date" pattern="yyyy-MM-dd" scope="page"/>
 								<span><fmt:formatDate value = "${date }" pattern="yyyy-MM-dd"/></span>
@@ -225,7 +223,7 @@
 					<c:forEach var="free" items="${freelist }">
 					<ul>
 						<li>
-							<a href="#none">
+							<a href="/common/BoardView.do?boardSeq=${free.boardSeq }">
 								<span><c:out value="${free.boardTitle }"/></span>
 								<fmt:parseDate value="${free.boardCreateDate}" var = "date" pattern="yyyy-MM-dd" scope="page"/>
 								<span><fmt:formatDate value = "${date }" pattern="yyyy-MM-dd"/></span>
@@ -275,99 +273,6 @@
     
     
 	</div>
-    
-    
-<style>
-.main-wrap {max-width:2000px; margin : 0 auto;}
-.main-banner {padding-top : 30px; text-align: center; padding-bottom:30px;}
-</style>
-    
-   	
-	
-	<!-- Initialize Swiper -->
-    <script>
-		var swiper = new Swiper('.swiper-container', {
-				slidesPerView: 2,
-				slidesPerColumn : 2,
-				pagination: {
-			          el: ".swiper-pagination",
-			          clickable: true,
-			        },
-				navigation: {
-			          nextEl: ".swiper-button-next",
-			          prevEl: ".swiper-button-prev",
-			        },
-				autoplay: {
-					delay: 4000,
-					disableOnInteraction: false
-				}
-		});
-	</script>
-
-   	<style>
-      html,
-      body {
-        position: relative;
-        height: 100%;
-      }
-
-      body {
-        background: #eee;
-        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-        font-size: 14px;
-        color: #000;
-        margin: 0;
-        padding: 0;
-      }
-      .swiper-container {
-        width: 49.5%;
-        height: auto;
-        display: inline-block;
-        background : #fff;
-        box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
-      }
-
-      .swiper-slide {
-      padding : 30px;
-      	text-align : center;
-        font-size: 14px;
-        background: #fff;
-
-        /* Center slide text vertically */
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-      }
-      
-      
-      .swiper-slide img {
-        display: block;
-        width: auto;
-        height: auto;
-        margin : 0 auto;
-        object-fit: cover;
-      }
-      
-      .swiper-slide div {
-      	padding:3px;
-      }
-      
-      .swiper-slide span {
-      	display : inline-block;
-      	padding : 5px;
-      	border : 1px solid #aaa;
-      }
-    </style>
-	
 </div>
     <jsp:include page="/WEB-INF/views/fixing/footer.jsp"></jsp:include>
 </body>
@@ -375,64 +280,5 @@
     <script src="/main/js/evo-calendar.js" defer></script>
     <script src="/main/js/init.js" defer></script>
     <script src="/main/js/init_mento.js" defer></script>
+    <script src="/main/js/main-bottom.js"></script>
 </html>
-
-<style>
-.board-View {
-	display : inline-block;
-	width:49%;
-	vertical-align: top;
-	margin-left:5px;
-	background: #fff;
-	height:459px;
-    margin: 0 10px 0 0;
-    border: 1px solid #ccc;
-    box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
-    }
-ul.tabs{
-		margin: 0px;
-		padding: 0px;
-		list-style: none;
-	}
-	ul.tabs li{
-		background: none;
-		color: #222;
-		display: inline-block;
-		padding: 10px 15px;
-		cursor: pointer;
-	}
-
-	ul.tabs li.current{
-		background: #f5f5f5;
-		color: #222;
-	}
-
-	.tab-content{
-		display: none;
-		background: #f5f5f5;
-		padding: 15px;
-	}
-.tab-content ul{
-		padding: 10px 0;
-	}
-
-	.tab-content.current{
-		display: block;
-	}
-</style>
-
-<script type="text/javascript">
-$(document).ready(function(){
-	
-	$('ul.tabs li').click(function(){
-		var tab_id = $(this).attr('data-tab');
-
-		$('ul.tabs li').removeClass('current');
-		$('.tab-content').removeClass('current');
-
-		$(this).addClass('current');
-		$("#"+tab_id).addClass('current');
-	})
-
-})
-</script>

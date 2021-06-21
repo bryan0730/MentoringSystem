@@ -158,7 +158,7 @@
 	// 댓글 수정 textarea 생성
 	function updateReply(replySeq){
 		$('#reply'+replySeq).html("<textarea name = 'replyContent' class = 'editReply' style='width:100%'}>" 
-				+ $('.replyContent'+replySeq).text() + "</textarea>" +
+				+ $('#replyContent'+replySeq).text() + "</textarea>" +
 				"<a href='#none' onclick='updateReplyproc(" + replySeq + ")'>[저장]</a>" + 
 				"<a href='#none' onclick='location.reload();'>[취소]</a>");
 	}

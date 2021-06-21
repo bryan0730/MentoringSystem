@@ -17,7 +17,6 @@
 <body>
 
 <jsp:include page="/WEB-INF/views/fixing/header.jsp"></jsp:include>
-
 <div class="board-wrap">
 <c:choose>
 <c:when test = "${boardDomain.divSeq == '1' }"><h2>공지사항</h2></c:when>
