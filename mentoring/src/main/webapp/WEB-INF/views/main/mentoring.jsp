@@ -171,26 +171,28 @@
 			                        <ul class="mentoring-info">
 			                            <li class="date">
 			                                <ul>
-			                                    <li>상담날짜</li>
-			                                    <li>${result.bookingDate}</li>
+			                                    <li>상담날짜 : ${result.bookingDate}</li>
 			                                </ul>
 			                            </li>
-			                            <li class="time">
-			                                <ul>
-			                                    <li>상담시간</li>
-			                                    <li>${result.bookingTime}</li>
-			                                </ul>
-			                            </li>
+			                            <c:if test="${result.way eq '오프라인'}">
+			                            	<li class="time">
+				                                <ul>
+				                                    <li>상담시간 : ${result.bookingTime}</li>
+				                                </ul>
+				                            </li>
+			                            </c:if>
 			                            <li class="way">
 			                                <ul>
-			                                    <li>상담방법</li>
-			                                    <li>${result.way }</li>
+			                                    <li>상담방법 : ${result.way }</li>
 			                                </ul>
 			                            </li>
 			                        </ul>
-			                        <div class="answer-area">
-			                        	<span class="answer">${result.bookingComents}</span>
-			                        </div>
+			                        <c:if test="${result.way eq '온라인'}">
+			                        	<div class="answer-area">
+				                        	<p>답변</p>
+				                        	<span class="answer">${result.bookingComents}</span>
+				                        </div>
+			                        </c:if>
 			                        <div class="mentoring-state">
 			                        	<c:if test="${result.way eq '오프라인'}">
 		                    				<input type="button" value="상담완료">

@@ -18,4 +18,6 @@ public class BookingDomain {
 	private int accept;
 	private String role;
 	private String bookingComents;
+	private String mentoEmail;
+	private String mentiEmail;
 }

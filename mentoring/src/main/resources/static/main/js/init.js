@@ -182,7 +182,9 @@ function setData(url, id, accept) {
             bookingTime: bookingTime,
             way: bookingWay,
             mentiSeq: seq,
-            mentiName: name
+            mentiName: name,
+            mentoEmail: mentoEmail,
+            mentiEmail : mentiEmail
         }
     }  
     // insertBooking controller에 통신 

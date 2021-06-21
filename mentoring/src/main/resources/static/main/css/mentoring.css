@@ -52,6 +52,7 @@
     max-width: 600px;
     margin: 20px auto;
     box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
+    position:relative;
 }
 
 .mentoring-list-before > .mentoring-body > .mento-name, .mentoring-list-after > .mentoring-body > .mento-name{
@@ -82,11 +83,12 @@
 }
 
 .mentoring-list-before > .mentoring-body > .mentoring-info, .mentoring-list-after > .mentoring-body > .mentoring-info{
-    overflow: hidden;
+    position: absolute;
+    right:10px;
+    top:10px
 }
 
 .mentoring-list-before > .mentoring-body > .mentoring-info >li, .mentoring-list-after > .mentoring-body > .mentoring-info >li{
-    float: left; 
     margin: 10px;
 }
 
@@ -95,7 +97,14 @@
 }
 
 .mentoring-state > input{
-	margin-right:5px
+	width: 80px;
+    background-color: #fbfbfb;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 5px;
+    transition: all .3s;
+    margin-left: 5px;
 }
 
 .hidden{
