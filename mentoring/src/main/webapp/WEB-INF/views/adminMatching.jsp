@@ -19,6 +19,7 @@
 		<div class="memberList">
 			<h3>멘토링 매칭 대기 현황</h3>
 			<div class="mentoList">
+				<div class="title">멘토 교수 목록</div>
 				<ul>
 				<c:forEach var="mento" items="${mentoList }">
 					<li value='<c:out value="${mento.memberSeq }"/>'><c:out value="${mento.memberName }"/></li>	
@@ -27,6 +28,7 @@
 			</div>
 		
 			<div class="mentiList">
+				<div class="title">멘티 교육생 목록</div>
 				<ul>
 				<c:forEach var="menti" items="${mentiList }">
 					<li id='menti<c:out value="${menti.memberSeq }"/>'value='<c:out value="${menti.memberSeq }"/>'><c:out value="${menti.memberName }"/></li>
