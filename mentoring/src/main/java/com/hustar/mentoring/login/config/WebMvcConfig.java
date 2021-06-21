@@ -34,7 +34,7 @@ public class WebMvcConfig implements WebMvcConfigurer{
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		// TODO Auto-generated method stub
-		registry.addInterceptor(new EchoInterceptor(echoService)).excludePathPatterns("/admin/**","/resource/**","/Member/**");
+		registry.addInterceptor(new EchoInterceptor(echoService)).excludePathPatterns("/admin/**","/resource/**","/Member/**", "/login", "/loginProcess");
 	}
 	
 	
