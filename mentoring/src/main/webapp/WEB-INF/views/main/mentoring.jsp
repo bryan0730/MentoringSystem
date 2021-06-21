@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title>휴멘시 - 휴스타 멘토링 시스템</title>
 </head>
 	<!-- stylesheet -->
 	<link rel="stylesheet" href="/main/css/mentoring.css">

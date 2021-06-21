@@ -33,7 +33,7 @@
 
 
 
-<title>Document</title>
+<title>휴멘시 - 휴스타 멘토링 시스템</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/fixing/header.jsp"></jsp:include>
