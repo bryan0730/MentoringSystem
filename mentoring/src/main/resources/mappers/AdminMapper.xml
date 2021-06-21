@@ -73,4 +73,52 @@
 		)
 		;
 	</insert>
+	
+	<select id="selectMentoList" resultType="com.hustar.mentoring.login.domain.MemberDomain">
+		
+			SELECT mentoSeq as memberSeq, memberEmail, memberName, authoritie, memberPhoneNumber FROM mento
+<!-- 		SELECT memberSeq, memberEmail, memberName, authoritie, memberPhoneNumber FROM -->
+<!-- 		(SELECT mentoSeq as memberSeq, memberEmail, memberName, authoritie, memberPhoneNumber FROM mento) AS mentoT -->
+<!-- 		LEFT OUTER JOIN (SELECT mentoringSeq, mentoSeq FROM mentoring) AS mentoringT -->
+<!-- 		ON mentoT.memberSeq = mentoringT.mentoSeq -->
+<!-- 		WHERE mentoringSeq IS NULL -->
+<!-- 		; -->
+	</select>
+	
+	<select id="selectMentiList" resultType="com.hustar.mentoring.login.domain.MemberDomain">
+		SELECT memberSeq, memberEmail, memberName, authoritie, memberPhoneNumber FROM
+		(SELECT mentiSeq as memberSeq, memberEmail, memberName, authoritie, memberPhoneNumber FROM menti) AS mentiT
+		LEFT OUTER JOIN (SELECT mentoringSeq, mentiSeq, mentoSeq FROM mentoring) AS mentoringT
+		ON mentiT.memberSeq = mentoringT.mentiSeq
+		WHERE mentoringSeq IS NULL
+		;
+	</select>
+	
+	<select id="selectMentiListOfMento" resultType="com.hustar.mentoring.login.domain.MemberDomain">
+		SELECT memberSeq, memberEmail, memberName, authoritie, memberPhoneNumber FROM
+		(SELECT mentiSeq as memberSeq, memberEmail, memberName, authoritie, memberPhoneNumber FROM menti) AS mentiT
+		LEFT OUTER JOIN (SELECT mentoringSeq, mentiSeq, mentoSeq FROM mentoring) AS mentoringT
+		ON mentiT.memberSeq = mentoringT.mentiSeq
+		WHERE mentoSeq = #{mentoSeq}
+	</select>
+	
+	<insert id="insertMentoring">
+		INSERT INTO mentoring (
+			mentoSeq,
+			mentiSeq
+			)
+		VALUES
+		
+		<foreach collection="mentiSeq" item="menti" separator=",">
+		(
+			#{mentoSeq},
+			#{menti}
+		) 
+		</foreach>
+	</insert>
+	
+	<delete id="deleteMentoring">
+		DELETE FROM mentoring
+		WHERE mentiSeq=#{mentiSeq};
+	</delete>
 </mapper>

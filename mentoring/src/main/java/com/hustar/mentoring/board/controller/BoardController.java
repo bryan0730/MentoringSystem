@@ -44,7 +44,7 @@ public class BoardController {
 	
 	// 게시글 List
 	@GetMapping(value="/BoardList.do")
-	public String BoardList(@ModelAttribute("boardDomain") BoardDomain boardDomain ,
+	public String BoardList(@ModelAttribute("boardDomain") BoardDomain boardDomain,
 			ModelMap model) throws Exception {
 		
 		// 페이징 객체 선언, 페이징 계산
@@ -55,7 +55,11 @@ public class BoardController {
 		// 게시글 리스트 조회
 		List<BoardDomain> boardList = (List<BoardDomain>) boardService.selectBoardList(boardDomain);
 
-
+		MemberDetails authentication = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		String role = authentication.getAuthoritie();
+		
+		
+		model.addAttribute("role", role);
 		model.addAttribute("paging",paging);
 		model.addAttribute("select",boardDomain.getPageIndex());
 		model.addAttribute("boardList", boardList);

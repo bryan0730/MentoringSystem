@@ -100,7 +100,7 @@
 		]]>
 		
 		<![CDATA[
-			(SELECT * FROM board WHERE divSeq='2' ORDER BY boardSeq DESC) AS BOARDLIST
+			(SELECT * FROM board WHERE divSeq=#{divSeq} ORDER BY boardSeq DESC) AS BOARDLIST
 		]]>
 		
 		<![CDATA[
@@ -322,7 +322,7 @@
 	
 	
 	<!-- 댓글 등록 -->
-	<insert id="insertreply" parameterType="com.hustar.mentoring.board.domain.ReplyDomain" useGeneratedKeys="true" keyProperty="replySeq">
+	<insert id="insertReply" parameterType="com.hustar.mentoring.board.domain.ReplyDomain" useGeneratedKeys="true" keyProperty="replySeq">
 		<![CDATA[
 			INSERT INTO reply (
 				boardSeq,
@@ -342,7 +342,7 @@
 	
 	
 	<!-- 댓글 수정 -->
-	<update id="updatereply" parameterType="com.hustar.mentoring.board.domain.ReplyDomain">
+	<update id="updateReply" parameterType="com.hustar.mentoring.board.domain.ReplyDomain">
 		<![CDATA[
 			UPDATE reply SET replyContent=#{replyContent} WHERE replySeq=#{replySeq} 
 		]]>
@@ -352,7 +352,7 @@
 	
 	
 	<!-- 댓글 삭제 -->
-	<delete id="deletereply" parameterType="int">
+	<delete id="deleteReply" parameterType="int">
 		<![CDATA[
 			DELETE FROM reply WHERE replySeq=#{replySeq}
 		]]>

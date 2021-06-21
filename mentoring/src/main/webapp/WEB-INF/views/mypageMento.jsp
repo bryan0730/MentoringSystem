@@ -39,6 +39,15 @@
                         <h2>전화번호</h2>
                         <p>${result.memberPhoneNumber }</p>
                     </div>
+                    <div class="mypage-school">
+                        <h2>학력사항</h2>
+                        <p>${result.memberSchool }</p>
+                        <p>${result.memberMajor }</p>
+                    </div>
+                    <div class="mypage-track">
+                        <h2>트랙</h2>
+                        <p>${result.memberTrack }</p>
+                    </div>
 <!--                     <div class="mypage-mentoring"> -->
 <!-- 	                    <a href=""> -->
 <!-- 	                       	<h2>멘토링 현황</h2> -->

@@ -5,7 +5,7 @@
 	
 	<!-- 조회 -->
 	<select id="mento" resultType="com.hustar.mentoring.login.domain.MemberDomain">
-			select menti.mentiSeq as memberSeq, menti.memberEmail, menti.memberName, menti.memberPhoneNumber, menti.memberPhoto from menti as menti 
+			select menti.mentiSeq as memberSeq, menti.memberEmail, menti.memberName, menti.memberPhoneNumber, menti.memberPhoto, menti.memberSchool, menti.memberMajor, menti.memberTrack from menti as menti 
 			left OUTER JOIN mentoring AS mentoring ON menti.mentiSeq = mentoring.mentiSeq 
 			LEFT OUTER JOIN mento AS mento ON mento.mentoSeq = mentoring.mentoSeq 
 			WHERE mentoring.mentoSeq = #{Seq};

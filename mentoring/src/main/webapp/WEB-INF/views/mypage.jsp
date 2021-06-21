@@ -50,6 +50,15 @@
                         <h2>전화번호</h2>
                         <p>${mypage.memberPhoneNumber }</p>
                     </div>
+                    <div class="mypage-school">
+                        <h2>학력사항</h2>
+                        <p>${mypage.memberSchool }</p>
+                        <p>${mypage.memberMajor }</p>
+                    </div>
+                    <div class="mypage-track">
+                        <h2>트랙</h2>
+                        <p>${mypage.memberTrack }</p>
+                    </div>
                 </div>
                 <div class="mypage-modify">
                 <!-- 본인이 아니면 수정 버튼 안나오게 -->
