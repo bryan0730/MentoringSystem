@@ -28,6 +28,9 @@ public class MailController {
 		String mentoringSelect = bookingDomain.getWay();
 		String mentoringTitle = bookingDomain.getBookingTitle();
 		
+		System.out.println("===================================================" + mentoEmail);
+		System.out.println("===================================================" + mentoringSelect);
+		
 		if(mentoringSelect.equals("오프라인")) {
 			emailUtil.sendEmail(mentoEmail, mentiName + "님이 "+mentorinDate+"일 "+ mentoringTime+"시에" + " 멘토링을 예약했습니다.", "멘토링 시스템을 확인해 주세요.");
 		}else {

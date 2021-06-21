@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="/fixing/css/header.css">
 <link rel="stylesheet" href="/fixing/css/footer.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
 <style>
 a {
     color: currentColor;
