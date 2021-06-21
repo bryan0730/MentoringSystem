@@ -1,1 +1,93 @@
 @charset "UTF-8";
+.wrap {text-align: center; min-height: calc(92.5vh - 80px);}
+
+h2 {font-size : 30px; padding : 20px;}
+h3 {font-size : 22px; font-weight: 500;}
+.mentoring-wrap {
+	max-width:1700px;
+	margin:0 auto;
+	border: 1px solid #ccc;
+	}
+
+.memberList {
+	max-width:1700px;
+	margin:0 auto;
+	background: #fff;
+	padding : 20px 5px;
+
+	}
+.mentoring {
+	max-width:1700px;
+	min-height:300px;
+	margin:0 auto;
+	background: #fff;
+	padding : 20px 0 20px 0;
+
+	}
+
+.mentoList {
+	display: inline-block;
+	width : 45%;
+	vertical-align: top;
+	border : 1px solid #ccc;
+	overflow: auto;
+	min-height:250px;
+	max-height:250px;
+	font-size: 16px;
+	}
+	
+.mentiList {
+	display: inline-block;
+	width : 45%;
+	vertical-align: top;
+	border : 1px solid #ccc;
+	overflow: auto;
+	min-height:250px;
+	max-height:250px;
+	font-size: 16px;
+	}
+
+
+.mentoList li {
+	padding : 5px 0 ;
+	border-bottom: 1px dotted #ccc;
+	}
+.mentiList li {
+	padding : 5px 0 ;
+	border-bottom: 1px dotted #ccc;
+	} 
+
+
+.mentoInfo {
+	display: inline-block;
+	width : 45%;
+	vertical-align: top;
+	border : 1px solid #ccc;
+	min-height: 400px;
+	font-size: 16px;
+	}
+.mentiInfo {
+	display: inline-block;
+	width : 45%;
+	vertical-align: top;
+	border : 1px solid #ccc;
+	min-height: 400px;
+	}
+.mentiInfo li {padding: 5px 0; font-size: 16px; border-bottom: 1px dotted #ccc;}
+.mentiInfo li a{padding: 0 20px;}
+
+.matchbtn-box {
+	max-width:1700px;
+	margin : 0 auto;
+	text-align: right;
+	margin-top : 20px;
+	}
+
+.matchbtn {
+	margin-right : 80px;
+	display : inline-block;
+	padding : 8px 15px;
+	background: black;
+	color : #fff;
+	border: 1px solid #ccc;
+	}

@@ -209,9 +209,10 @@
 					<ul>
 						<li>
 							<a href="/common/BoardView.do?boardSeq=${notice.boardSeq }">
+								<span class="seq"><c:out value="${notice.boardSeq }"/></span>
 								<span><c:out value="${notice.boardTitle }"/></span>
 								<fmt:parseDate value="${notice.boardCreateDate}" var = "date" pattern="yyyy-MM-dd" scope="page"/>
-								<span class="date"><fmt:formatDate value = "${date }" pattern="yyyy-MM-dd"/></span>
+								<span class="date"><span class="writer">${notice.memberName }</span><fmt:formatDate value = "${date }" pattern="yyyy-MM-dd"/></span>
 							</a>
 						</li>
 					</ul>
@@ -224,9 +225,10 @@
 					<ul>
 						<li>
 							<a href="/common/BoardView.do?boardSeq=${free.boardSeq }">
+								<span class="seq"><c:out value="${free.boardSeq }"/></span>
 								<span><c:out value="${free.boardTitle }"/></span>
 								<fmt:parseDate value="${free.boardCreateDate}" var = "date" pattern="yyyy-MM-dd" scope="page"/>
-								<span class="date"><fmt:formatDate value = "${date }" pattern="yyyy-MM-dd"/></span>
+								<span class="date"><span class="writer">${free.memberName }</span><fmt:formatDate value = "${date }" pattern="yyyy-MM-dd"/></span>
 							</a>
 						</li>
 					</ul>
