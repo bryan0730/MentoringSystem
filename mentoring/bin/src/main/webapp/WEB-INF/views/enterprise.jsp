@@ -5,39 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>휴멘시 - 휴스타 멘토링 시스템</title>
 
 <link rel="stylesheet" href="/enterprise/css/enterprise.css">
+
+
 
 </head>
 <body>
  <!-- 콘텐츠 시작 -->
-    <div class="header">
-        <!-- 로고, 메뉴 -->
-        <div class="header-box">
-            <h1>
-                <a href="#"><img src="/Member/img/hustar_logo.png" alt=""></a>
-            </h1>
-
-            <div class="tnb">
-                <ul>
-                    <li><a href="#">로그인</a></li>
-                    <li><a href="#">회원가입</a></li>
-                </ul>
-            </div>
-
-
-            <div class="gnb">
-                <ul>
-                    <li><a href="#">회사소개</a></li>
-                    <li><a href="#">고객센터</a></li>
-                    <li><a href="#">예약하기</a></li>
-                    <li><a href="#">예약확인</a></li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
+    <jsp:include page="/WEB-INF/views/fixing/header.jsp"></jsp:include>
+    
     <div class="wrap">
         <div class="descript">
             <h1>참여 기업정보 소개</h1>
@@ -75,7 +53,7 @@
 		                <div class="item_company" data-seq="${enterList.enterpriseSeq}" onclick="window.location.href='/enterprise_detail?enterpriseSeq=${enterList.enterpriseSeq}'">
 		                	<input type="hidden" id="enterSeq" value="${enterList.enterpriseSeq }">
 		                    <div class="c_logo">
-		                        <img class="logo" src="https://swgo.kr/_File/convention/725101003b33450f4e9708651ec1a8f09abde850.png">
+		                        <img class="logo" src="/enterprise/img/${enterList.enterpriseLogo }">
 		                    </div>
 		                    <div class="c_info">
 		                        <div class="company title">
@@ -109,13 +87,10 @@
 
     </div>
     
+    <jsp:include page="/WEB-INF/views/fixing/footer.jsp"></jsp:include>
+    
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
 <script src="enterprise/js/enterprise.js"></script>
-<script>
-// 	$(".search_btn").click(function(){
-// 		alert("gg");
-// 	})
-</script>
 </html>

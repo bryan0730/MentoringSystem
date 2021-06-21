@@ -140,19 +140,6 @@ img {
         margin-right:10px;
     }
 
-    .mypage .mentoring-status{
-        border: 3px solid #ccc;
-        border-radius: 10px;
-        height: 500px;
-        margin-top: 30px;
-        box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
-    }
-
-    .mypage .mentoring-status h2{
-        font-size: 25px;
-        margin: 20px;
-    }
-
     .mypage .intro{
         border: 3px solid #ccc;
         border-radius: 10px;
@@ -174,6 +161,7 @@ img {
         margin-top: 30px;
         margin-bottom: 50px;
         box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
+        overflow: auto;
     }
 
     .mypage .my-board h2{
@@ -230,6 +218,15 @@ img {
     	font-size: 20px;
     }   
 /*----------------------------멘토링 현황--------------------------*/
+   .mypage .mentoring-status{
+        border: 3px solid #ccc;
+        border-radius: 10px;
+        height: 500px;
+        margin-top: 30px;
+        box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
+        overflow:auto;
+    }
+
     .mypage .mentoring-status h2{
         font-size: 25px;
         margin: 20px;
@@ -285,21 +282,11 @@ img {
     	font-size: 20px;
     }   
     
-/*----------------------------마이페이지--------------------------*/
-    .mypage .mypage-info .mypage-mento-modify{
-    	display: inline-block;
-    	float: right;
-    	margin: 10px;
-    	font-size:15px;
-    	border: 3px solid #ccc;
-    	border-radius: 5px;
-    	padding: 5px;
-    }
     
 /*----------------------------마이페이지 수정--------------------------*/
 
 	.wrap{
-		min-height: calc(94.5vh - 80px);
+		min-height: calc(94vh - 80px);
 	}
     .mypage-mod{
         display: block;
@@ -462,6 +449,7 @@ img {
         display: block;
         width: 1800px;
         margin: 0px auto;
+        min-height: calc(91vh - 80px);
     }
 
     .mypage-pw-mod .mypage-pw-title{

@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+.wrap{min-height: calc(92.5vh - 80px); background: #fff;}
+
 h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px; text-align: center;}
 
 .view {max-width: 1500px; margin : 0 auto; overflow: hidden;}
@@ -8,8 +10,9 @@ h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px
 	border-top : 3px solid black;
 	border-bottom : 1px solid #ccc;
 	padding : 10px 0;
-	font-size : 30px;
+	font-size : 20px;
 	margin-bottom : 5px;
+
 	}
 .view > span {float : right; font-size : 14px;}
 .view .view-con {
@@ -17,30 +20,48 @@ h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px
 	font-size : 16px;
 	font-weight : 700;
 	margin : 30px 0;
+	padding-bottom :30px;
 	border-bottom : 1px solid #ccc;}
 	
-.view .attach-file {padding : 0 0 20px 0;}
-.view .attach-file > span {font-size : 16px;}
-.view .attach-file div {padding : 5px 0;}
+.view .attach-file {
+	min-height : 60px;
+	padding : 0 0 10px 0;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+    margin-top: 5px;
+    position: relative;
+    }
 
+
+.view .board-writer {display: inline-block; padding : 15px 40px 15px 0px; border-right: 1px solid #ccc;}
+.view .board-writer > span {font-size : 14px;}
+.view .board-writer > span.discrip {margin-right: 15px; font-size: 14px; font-weight: bold;}
+.view .board-date {display: inline-block; padding : 15px 10px 15px 20px;}
+.view .board-date > span {font-size : 14px;}
+.view .board-date > span.discrip {margin-right: 15px; font-size: 14px; font-weight: bold;}
+
+
+.view .attach-file > span {position : absolute; font-size : 14px; padding : 20px 0 10px 0; font-weight: bold;}
+.view .attach-file div.file-wrap {padding : 10px 0 10px 155px;}
+.view .attach-file div.file-wrap div {padding : 5px 0 5px 0; font-size : 14px;}
 .Board-btn-box {max-width: 1500px; margin : 0 auto; text-align: right; padding : 20px;}
 .Board-btn-box a {padding : 10px 20px; border : 1px solid black; font-weight: bold; margin-left: 5px;}
 
-.Reply-box {max-width: 1500px; margin : 0 auto; background: #eee; padding : 10px;}
-.Reply-box > div {font-size: 15px;}
-.Reply-box > div > span.NumberOfReply {font-size: 17px;}
 
-.Reply-box .Reply-list .Reply {
-		background: #fff;
-		width : 90%;
-		margin :0 auto;
-		padding : 10px 5px;
-		border-radius: 5px;
-		margin-top : 10px;
-		margin-bottom : 10px;
-		}
+.Reply-box {max-width: 1500px; margin : 0 auto; background: #f5f5f5; padding : 10px; margin-top : 10px;}
 
-.Reply-box .Reply-list .Reply div {font-size : 17px;}
+.Reply-box > div {font-size: 12px;}
+.Reply-box > div > span.NumberOfReply {font-size: 14px;}
+
+
+.Reply-box div.memberName {font-size: 14px; font-weight: bold;}
+.Reply-box div.content {font-size: 12px;}
+.Reply-box div.date {font-size: 11px; color : #aaa;}
+
+
+
+.Reply-box .Reply-list .Reply {padding : 10px 30px;}
+
 .Reply-box .Reply-write {text-align: center; margin-top : 7px;}
 .Reply-box .Reply-write textarea {width: 80%; display: inline-block; font-size : 15px; min-height: 56px;}
 .Reply-box .Reply-write a {vertical-align: top; padding : 20px; background: #ccc; display:inline-block;}

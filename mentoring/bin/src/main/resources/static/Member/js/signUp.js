@@ -116,9 +116,11 @@ $('#signUp').click(function(frm){
 	}
 	//return true;
 	var formData= new FormData($("#signForm")[0]);
+	for (var pair of formData.entries()) { console.log(pair[0]+ ', ' + pair[1]); }
+
 	$.ajax({
 		type:"POST",
-		url:"/signUp",
+		url:"signUp",
 		data:formData,
 		processData: false,
    	    contentType: false,   
@@ -150,7 +152,7 @@ $('#emailCheck').click(function(){
 	}
 	$.ajax({
         type: "POST",
-        url: "/emailCheck", 
+        url: "emailCheck", 
         data: JSON.stringify({
             "memberEmail": $('#memberEmail').val()
         }),
@@ -165,7 +167,7 @@ $('#emailCheck').click(function(){
         		duplicate = false;
         	}
         	console.log(duplicate);
-			console.log(data);
+			console.log(data.description);
         },
         error: function(request){
         	alert(request.responseText);

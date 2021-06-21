@@ -1,0 +1,147 @@
+.wrap{
+	min-height: calc(92.5vh - 80px);
+}
+
+.main-wrap{
+	height:100%;
+}
+
+
+.mentoring-box{
+    max-width: 1200px;
+    height: calc(92.5vh - 80px);
+    margin: 10px auto;
+    overflow: auto;
+   	margin: 50px auto;
+    background: #fff;
+    padding: 1px 60px;
+    border-radius: 20px;
+    box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
+}
+
+.mentoring-header{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.mentoring-header > h1{
+	padding: 20px 0 0 0;
+	color : #2757A9;
+    font-size: 30px;
+}
+
+.mentoring > .mentoring-gnb{
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mentoring > .mentoring-gnb ul{
+	
+    display: table;
+    width: 100%;
+    margin-bottom: 30px;
+}
+.mentoring > .mentoring-gnb ul li{
+	padding: 10px;
+    display: table-cell;
+    width: 50%;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+
+
+.mentoring-list-before > .mentoring-body, .mentoring-list-after > .mentoring-body{
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
+    position:relative;
+}
+
+.mentoring-list-before > .mentoring-body > .mento-name, .mentoring-list-after > .mentoring-body > .mento-name{
+    font-size: 18px;
+    margin-bottom: 15px;    
+}
+
+.mentoring-list-before > .mentoring-body > .mento-name > span, .mentoring-list-after > .mentoring-body > .mento-name > span{
+    border-bottom: 1px solid #000;
+}
+
+.mentoring-list-before > .mentoring-body > .mento-name > span > span, .mentoring-list-after > .mentoring-body > .mento-name > span > span{
+    font-size: 15px;
+}
+
+
+.mentoring-list-before > .mentoring-body > .mentoring-title, .mentoring-list-after > .mentoring-body > .mentoring-title{
+    margin-bottom: 10px;
+}
+
+.mentoring-list-before > .mentoring-body > .mentoring-title > h2, .mentoring-list-after > .mentoring-body > .mentoring-title > h2{
+    font-size: 18px;
+}
+
+.mentoring-list-before > .mentoring-body > .mentoring-content, .mentoring-list-after > .mentoring-body > .mentoring-content{
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.mentoring-list-before > .mentoring-body > .mentoring-info, .mentoring-list-after > .mentoring-body > .mentoring-info{
+    position: absolute;
+    right:10px;
+    top:10px
+}
+
+.mentoring-list-before > .mentoring-body > .mentoring-info >li, .mentoring-list-after > .mentoring-body > .mentoring-info >li{
+    margin: 10px;
+    font-size : 15px;
+}
+
+.mentoring-state{
+	text-align: right;
+}
+
+.mentoring-state > input{
+	width: 80px;
+    background-color: #fbfbfb;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 5px;
+    transition: all .3s;
+    margin-left: 5px;
+    margin-top: 15px;
+}
+
+.answer {
+    padding: 10px;
+    border: 1px solid;
+    width: 580px;
+    height: 105px;
+}
+
+.answer-area > p {
+	font-size:15px
+}
+
+
+.action-btn{
+	cursor: pointer;
+	
+}
+.action-btn:hover{
+	font-weight:bold;
+}
+
+.hidden{
+	display: none;
+}
+
+.on{
+	font-weight: bold;
+	color : #2757A9;
+	border-bottom: 3px solid #2757A9;
+}

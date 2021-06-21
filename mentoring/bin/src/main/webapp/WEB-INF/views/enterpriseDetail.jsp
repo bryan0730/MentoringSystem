@@ -5,40 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>휴멘시 - 휴스타 멘토링 시스템</title>
 <link rel="stylesheet" href="/enterprise/css/enterpriseDetail.css">
+
+<link rel="stylesheet" href="/fixing/css/header.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <!-- 콘텐츠 시작 -->
-    <div class="header">
-        <!-- 로고, 메뉴 -->
-        <div class="header-box">
-            <h1>
-                <a href="#"><img src="/Member/img/hustar_logo.png" alt=""></a>
-            </h1>
-
-            <div class="tnb">
-                <ul>
-                    <li><a href="#">로그인</a></li>
-                    <li><a href="#">회원가입</a></li>
-                    <!--
-            <li><a href="#">회원가입</a></li>
-            <li><a href="#">정보수정</a></li>
-            -->
-                </ul>
-            </div>
-
-
-            <div class="gnb">
-                <ul>
-                    <li><a href="#">회사소개</a></li>
-                    <li><a href="#">고객센터</a></li>
-                    <li><a href="#">예약하기</a></li>
-                    <li><a href="#">예약확인</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <jsp:include page="/WEB-INF/views/fixing/header.jsp"></jsp:include>
 
     <div class="body_wrap">
         <div class="logo_banner">
@@ -51,7 +26,7 @@
                     <div class="company_img">
                         <a class="thum_wrap" href="">
                             <span class="img_wrap">
-                                <img src="https://swgo.kr/_File/convention/725101003b33450f4e9708651ec1a8f09abde850.png" >
+                                <img src="/enterprise/img/${info.enterpriseLogo }" >
                             </span>
                         </a>
                     </div>
@@ -202,6 +177,7 @@
             </div>
         </div>
     </div>
+    <jsp:include page="/WEB-INF/views/fixing/footer.jsp"></jsp:include>
 </body>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </html>

@@ -1,6 +1,8 @@
 /**
  * 
  */
+ 
+/*
 var lastScrollTop=0;
 var easeEffect = 'easeInQunit';
 
@@ -8,7 +10,7 @@ $(window).scroll(function(){
 	var currentScrollTop = $(window).scrollTop();
 	
 	if(currentScrollTop - lastScrollTop > 0){
-		if($(window).scrollTop() >= ($(document).height() - $(window).height())){
+		if(($(window).scrollTop()+1) >= ($(document).height() - $(window).height())){
 			var lastSeq = $(".item_company:last").attr("data-seq");
 			console.log("last : "+lastSeq);
 			
@@ -28,7 +30,7 @@ $(window).scroll(function(){
 		        			str += "<div class="+"'item_company' data-seq='"+this.enterpriseSeq+"'>"
 		        				+ "<input type=hidden id='enterSeq' value='"+this.enterpriseSeq+"'>"
 		        				+ "<div class='c_logo'>"
-		        				+ "<img class='log' src='https://swgo.kr/_File/convention/725101003b33450f4e9708651ec1a8f09abde850.png'>"
+		        				+ "<img class='log' src='/enterprise/img/"+this.enterpriseLogo+"'>"
 		        				+ "</div>"
 		        				+ "<div class='c_info'>"
 		        				+ "<div class='company title'>"+this.enterpriseName+"</div>"
@@ -45,14 +47,16 @@ $(window).scroll(function(){
 		        		//$(".scrollLocation").after(str);
 		        		$(".company_box").append(str);
 		        	}else{
-		        		alert("불러올 데이터 없음");
+		        		
 		        	}
 		        }
 			});
 			var position = $(".item_company:first").offset();
 			//$("html,body").stop().animate({scrollTop:positon.top},600,easeEffect);
 		}
-		lastScrollTop = currentScrollTop;
+		lastScrollTop = currentScrollTop; 
 	}
 });
+*/
+//무한 스크롤
 

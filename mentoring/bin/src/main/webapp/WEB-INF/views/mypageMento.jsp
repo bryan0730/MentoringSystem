@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>휴멘시 - 휴스타 멘토링 시스템</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/Mypage/css/mypage.css">
@@ -14,44 +14,9 @@
 <!--폰트관련-->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap" rel="stylesheet">
-<!--스크롤시 fixed-->
-<script src="./js/autofix.js"></script>
 </head>
 <body>
-<!--로고,메뉴-->
-        <div class="header">
-            <div class="header-box">
-                <h1><a href=""><img src="/img/logo_w.png" alt=""></a></h1>
-                <div class="tnb">
-                    <ul>
-                        <li><a href=""><i class="fas fa-bell"></i></a></li>
-                        <li><a href=""><i class="fas fa-user"></i></a></li>
-                        <li><a href=""><i class="fas fa-sign-out-alt"></i></a></li>
-                    </ul>
-                </div>
-                <div class="gnb">
-                    <ul>
-                        <li><a href="#none">멘토링</a></li>
-                        <li><a href="#none">공지사항</a></li>
-                        <li><a href="#none">자유게시판</a></li>
-                        <li><a href="#none">참여기업</a></li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-        <style>
-.header.autofix_sb {
-position: fixed;
- width: 100%;
- z-index: 9999;
- }   
-        </style>
-        <script>
-            $(document).ready(function () {
-                $(".header").autofix_anything();
-            });
-        </script>
+ <jsp:include page="/WEB-INF/views/fixing/header.jsp"></jsp:include>
         <div class="mypage">
             <div class="mypage-title">
                 <h1>마이페이지</h1>
@@ -74,25 +39,51 @@ position: fixed;
                         <h2>전화번호</h2>
                         <p>${result.memberPhoneNumber }</p>
                     </div>
-                    <div class="mypage-mentoring">
-	                    <a href="">
-	                       	<h2>멘토링 현황</h2>
-	                        <p>확인하기</p>
-	                    </a>
+                    <div class="mypage-school">
+                        <h2>학력사항</h2>
+                        <p>${result.memberSchool }</p>
+                        <p>${result.memberMajor }</p>
                     </div>
+                    <div class="mypage-track">
+                        <h2>트랙</h2>
+                        <p>${result.memberTrack }</p>
+                    </div>
+<!--                     <div class="mypage-mentoring"> -->
+<!-- 	                    <a href=""> -->
+<!-- 	                       	<h2>멘토링 현황</h2> -->
+<!-- 	                        <p><a href="/mentoring">확인하기</a></p> -->
+<!-- 	                    </a> -->
+<!--                     </div> -->
                 </div>
-                <div class="mypage-mento-modify">
-                    <button onclick='location.href="/mypageMenti?memberName=${result.memberName}";'>
-                        관리
-                    </button>
-                </div>
+<!--                 <div class="mypage-mento-modify"> -->
+<%--                     <button onclick="location.href='/mypageMenti?memberSeq=${result.memberSeq}'"> --%>
+<!--                         관리 -->
+<!--                     </button> -->
+<!--                 </div> -->
             </div>
             </c:forEach>
             <div class="my-board">
                 <h2>게시글</h2>
-                <p></p>
+                <table>
+                	<thead>
+                	<tr>
+                		<td>번호</td>
+                		<td>제목</td>
+                		<td>날짜</td>	
+                	</tr>
+                	</thead>
+                	<c:forEach var="board" items="${board}" varStatus="status">
+                		<tbody>
+                 		<tr>
+                 			<td><a href="/common/BoardView.do?boardSeq=${board.boardSeq}">${status.count }</a></td>
+                            <td><a href="/common/BoardView.do?boardSeq=${board.boardSeq}">${board.boardTitle }</a></td>
+                            <td><a href="/common/BoardView.do?boardSeq=${board.boardSeq}">${board.boardCreateDate }</a></td>
+                 		</tr>
+                 		</tbody>
+                 	</c:forEach>
+                </table>
             </div>
         </div>
-
+<jsp:include page="/WEB-INF/views/fixing/footer.jsp"></jsp:include>
 </body>
 </html>

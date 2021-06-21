@@ -3,7 +3,7 @@
 @import url('http://fonts.googleapis.com/earlyaccess/notosanskr.css');
 
 html {overflow-y:scroll}
-body {margin:0;padding:0;font-size:0.75em; font-family: 'Montserrat', sans-serif, dotum, sans-serif; background:#fff;}
+body {margin:0;padding:0;font-size:0.75em; font-family: 'Montserrat', sans-serif, dotum, sans-serif;}
 html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
 h1, h2, h3, h4, h5, h6 {font-size:17px; font-family: 'Montserrat', sans-serif, dotum, sans-serif}
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
@@ -35,53 +35,17 @@ img {
     width: auto\9;
 }
 
-/*----------------------------헤더 부분--------------------*/
-.header.autofix_sb {
-position: fixed;
- width: 100%;
- z-index: 9999;
- }   
-.header{background: #fff; border-bottom: 1px solid #000;}    
-.header .header-box{overflow: hidden; padding: 10px 10px; margin-bottom: 10px;}
-
-.header h1{float: left; }
-.header h1 a{display: block; padding: 10px; }
-.header h1 a img{max-height: 40px; max-width: 150px;}
-.header .gnb{width: 900px; margin: 8px auto 0;}
-.header .gnb > ul{overflow: hidden; margin-top: 10px;}
-.header .gnb > ul > li{float: left; margin: 0px 30px;}
-.header .gnb > ul > li > a{display: block; padding: 10px; font-size: 18px; font-weight: 600; transition: all 0.5s; color: #000; margin-left: 50px;}
-.header .gnb > ul > li > a:hover{font-size: 19px; margin-top: 0px; transition: all 0.5s;}
-
-.header .tnb{float: right; margin-top: 10px;}
-.header .tnb > ul > li{float: left;}
-.header .tnb > ul > li > a{display: block; padding: 10px; font-weight: 500; color: #000; margin-right: 23px; margin-top: 5px; border: 1px solid white; border-radius: 10px;}
-
-
-            
-/*----------------------------풋터 부분--------------------*/
-.footer{
-    background: #2757A9;
-    padding: 10px 0;
-}
-.footer .footer-box .footer-logo{
-    display: inline-block;
-    margin-left: 20px;
-}
-.footer .footer-box .footer-info{
-    display: inline-block;
-    margin-left: 100px;
-    font-size: 18px;
-    font-weight: 300;
-    color: #fff;
-}
-
 /*----------------------------마이페이지--------------------------*/
+	
+	
     .mypage{
         display: block;
-        width: 1200px;
-        margin: 0 auto;
-        
+        width: 1400px;
+        margin: 50px auto;
+        background: #fff;
+        padding:1px 60px;
+        border-radius:20px;
+        box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
     }
 
     .mypage .mypage-title{
@@ -90,54 +54,57 @@ position: fixed;
 
     .mypage .mypage-title h1{
         text-align: center;
-        font-size: 40px;
+        font-size: 35px;
         font-weight: 600;
         color: #111;
     }
     
     .mypage .mypage-sub-menu{
-        height: 100px;
+        height: 150px;
+        padding-top:20px;
+    }
+    
+    .mypage .mypage-sub-menu button{
+    	font-size:20px;
     }
 
     .mypage .mypage-sub-menu table{
         width: 100%;
         
     }
-    .mypage .mypage-sub-menu table tr .on{
-        border-bottom: 4px solid #2757A9;
-    }
 
     .mypage .mypage-sub-menu table tr td{
         text-align: center;
         font-weight: 500;
-        font-size: 25px;
         width: 25%;
         padding-bottom: 20px;
     }
-
+    
     .mypage .mypage-sub-menu table tr td:hover{
         border-bottom: 4px solid #2757A9;
     }
 
     .mypage .mypage-info{
         display: block;
-        height: 520px;
+        height: 450px;
         overflow: hidden;
-        border: 3px solid #2757A9;
-        border-radius: 10px;
+         border: 3px solid #ccc; 
+         border-radius: 10px; 
         overflow: hidden;
         margin-bottom:10px;
+        box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
+        
     }
 
     .mypage .mypage-info .mypage-img{
         display: inline-block;
+        
     }
 
     .mypage .mypage-info .mypage-img img{
-        width: 400px;
-        height: 530px;
-        
-        
+        width:400px;    
+		height:450px;
+        border-radius: 10px;   
         
     }
 
@@ -153,8 +120,12 @@ position: fixed;
     }
 
     .mypage .mypage-info .mypage-content div{
-        margin-bottom: 60px;
+        margin-bottom: 50px;
         
+    }
+    
+    .mypage .mypage-info .mypage-content .mypage-name{
+    	margin-top: 50px;
     }
 
     .mypage .mypage-info .mypage-content h2{
@@ -166,58 +137,48 @@ position: fixed;
     .mypage .mypage-info .mypage-content p{
         display: inline-block;
         font-size: 20px;
-    }
-    
-	.mypage .mypage-info .mypage-mento-modify{
-		display: inline-block;
-	  	font-size: 30px;
-	    vertical-align: top;
-	    float: right;
-	    margin: 30px;
-    }
-    
-	 .mypage .mypage-info .mypage-mento-modify button{
-        border: 3px solid #2757A9;
-        border-radius: 10px;
-        font-size: 25px;
-        padding: 3px;
+        margin-right:10px;
     }
 
     .mypage .mentoring-status{
-        border: 3px solid #2757A9;
+        border: 3px solid #ccc;
         border-radius: 10px;
         height: 500px;
         margin-top: 30px;
+        box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
     }
 
     .mypage .mentoring-status h2{
-        font-size: 30px;
-        margin: 10px;
+        font-size: 25px;
+        margin: 20px;
     }
 
     .mypage .intro{
-        border: 3px solid #2757A9;
+        border: 3px solid #ccc;
         border-radius: 10px;
-        height: 500px;
+        height: 520px;
         margin-top: 30px;
-    
+    	box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
     }
 
     .mypage .intro h2{
-        font-size: 30px;
-        margin: 10px;
+        font-size: 25px;
+        margin: 20px;
     }
+    
 
     .mypage .my-board{
-        border: 3px solid #2757A9;
+        border: 3px solid #ccc;
         border-radius: 10px;
         height: 500px;
         margin-top: 30px;
+        margin-bottom: 50px;
+        box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
     }
 
     .mypage .my-board h2{
-        font-size: 30px;
-        margin: 10px;
+        font-size: 25px;
+        margin: 20px;
     }
     
      .mypage .mypage-info .mypage-modify {
@@ -229,11 +190,126 @@ position: fixed;
         background-color: #fff;
     }
     
+     .mypage .my-board tr{
+     	width: 100%;
+    	border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        border-left: 0px;
+        border-right: 0px;
+       }
+    
+    .mypage .my-board table{
+        border-top: 4px solid ccc;
+        border-bottom: 4px solid ccc;
+        border-left: 0px;
+        border-right: 0px;
+        width: 80%;
+        margin: 0px auto;
+        border-collapse: collapse;
+
+    }
+    
+    .mypage .my-board td{
+    	padding: 15px 5px;
+
+    }
+    .mypage .my-board td:nth-child(1){
+        width: 25%;
+     
+    }
+
+    .mypage .my-board td:nth-child(2){
+        width: 55%;
+    }
+
+    .mypage .my-board td:nth-child(3){
+        width: 20%;
+    }
+    
+    .mypage .my-board thead td{
+    	font-size: 20px;
+    }   
+/*----------------------------멘토링 현황--------------------------*/
+    .mypage .mentoring-status h2{
+        font-size: 25px;
+        margin: 20px;
+    }
+    
+     .mypage .mentoring-status tr{
+     	width: 100%;
+    	border-top: 1px solid #ccc;
+    	border-bottom: 1px solid #ccc;
+        border-left: 0px;
+        border-right: 0px;
+       }
+    
+    .mypage .mentoring-status table{
+        border-left: 0px;
+        border-right: 0px;
+        width: 80%;
+        margin: 0px auto;
+        border-collapse: collapse;
+
+    }
+    
+    .mypage .mentoring-status td{
+    	padding: 10px 5px;
+
+    }
+    .mypage .mentoring-status td:nth-child(1){
+        width: 10%;
+     
+    }
+
+    .mypage .mentoring-status td:nth-child(2){
+        width: 20%;
+    }
+
+    .mypage .mentoring-status td:nth-child(3){
+        width: 20%;
+    }
+    
+    .mypage .mentoring-status td:nth-child(4){
+        width: 15%;
+    }
+    
+    .mypage .mentoring-status td:nth-child(5){
+        width: 15%;
+    }
+    
+    .mypage .mentoring-status td:nth-child(6){
+        width: 20%;
+    }
+    
+    .mypage .mentoring-status thead td{
+    	font-size: 20px;
+    }   
+    
+/*----------------------------마이페이지--------------------------*/
+    .mypage .mypage-info .mypage-mento-modify{
+    	display: inline-block;
+    	float: right;
+    	margin: 10px;
+    	font-size:15px;
+    	border: 3px solid #ccc;
+    	border-radius: 5px;
+    	padding: 5px;
+    }
+    
 /*----------------------------마이페이지 수정--------------------------*/
+
+	.wrap{
+		min-height: calc(94.5vh - 80px);
+	}
     .mypage-mod{
         display: block;
-        width: 1800px;
-        margin: 0 auto;
+        width: 1815px;
+        height: 1100px;
+        margin: 20px auto;
+        background:#fff;
+        padding:5px 50px;
+        border-radius:10px;
+        box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
         
     }
 
@@ -243,7 +319,7 @@ position: fixed;
 
     .mypage-mod .mypage-mod-title h1{
         text-align: center;
-        font-size: 40px;
+        font-size: 30px;
         font-weight: 600;
         color: #111;
     }
@@ -252,7 +328,7 @@ position: fixed;
         display: block;
         height: auto;
         overflow: hidden;
-        border: 3px solid #2757A9;
+        border: 3px solid #ccc;
         border-radius: 10px;
         overflow: hidden;
     }
@@ -260,6 +336,8 @@ position: fixed;
     .mypage-mod .mypage-mod-info .mypage-mod-img{
         display: inline-block;
         width: 400px;
+        vertical-align: middle;
+   	 	margin-left: 40px;
     }
 
     .mypage-mod .mypage-mod-info .mypage-mod-img i{
@@ -271,7 +349,6 @@ position: fixed;
         margin-bottom: 50px;
         padding: 20px;
         
-    
     }
 
     .mypage-mod .mypage-mod-info .mypage-mod-img input{
@@ -279,16 +356,39 @@ position: fixed;
         font-size: 15px;
         width: 200px;
         margin: 0 auto;
-        
-        
+    }
     
+    .mypage-mod .mypage-mod-info .mypage-mod-img .select_img img{
+    	border-radius: 30px;
+    	margin-bottom: 20px;
+    	width:400px;    
+		height:450px;
+    	
+    }
+    
+    .mypage-mod .mypage-mod-info .mypage-mod-img .mod-img-btn{
+    	position: absolute;
+    	margin-left: 130px;
+    }
+    
+    .mypage-mod .mypage-mod-info .mypage-mod-img .mod-img-btn button{
+   		width:80%;
+   		margin: 0px auto;
+   		position: absolute;
+   		border:1px solid #111;
+   		border-radius: 30px;
+    	
+    }
+    
+    .mypage-mod .mypage-mod-info .mypage-mod-img .mod-img-btn input{
+    	opacity: 0;
     }
 
     .mypage-mod .mypage-mod-info .mypage-mod-content{
         display: inline-block;
         width: auto;
         height: auto;
-        margin-left: 160px;
+        margin-left: 80px;
         vertical-align: middle;   
         
     }
@@ -427,4 +527,69 @@ position: fixed;
 
     }
     
+    /*----------------------------자기소개서--------------------------*/
+	.mypage .intro > h2{
+        display: inline-block;  
+    }
 
+    .mypage .intro .introSub {
+        display: inline-block;
+        margin-left: 200px;
+        
+    }
+
+    .mypage .intro .introSub a{
+        display: inline-block;
+        margin-right: 60px;
+ 
+    }
+
+    .mypage .intro .introSub a#introGrowth{
+        border-bottom: 2px solid #2757A9;
+    }
+
+    .mypage .intro .introSub a:hover{
+        border-bottom: 2px solid #2757A9;
+    }
+
+    .mypage .intro .introSub a h2{
+        font-size: 18px;
+    }
+
+    .mypage .intro .introGrowth{
+        display: block;
+    }
+
+    .mypage .intro .introPersonality{
+        display: none;
+    }
+
+    .mypage .intro .introActivity{
+        display: none;
+    }
+
+    .mypage .intro .introMotive{
+        display: none;
+    }
+
+
+    .mypage .intro div textarea{
+        display: block;
+        width: 85%;
+        height: 380px;
+        margin: 10px auto;
+        font-size: 18px;
+        resize: none;
+    }
+
+    .mypage .intro div button{
+        font-size: 15px;
+        float: right;
+        margin-right: 10px;
+        border-radius: 3px;
+        padding:5px;
+        border-radius:10px;
+        background:#111;
+        color:white;
+        
+    }

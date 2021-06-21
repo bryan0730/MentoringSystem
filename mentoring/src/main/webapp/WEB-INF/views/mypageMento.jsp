@@ -11,9 +11,6 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/Mypage/css/mypage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<!--폰트관련-->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap" rel="stylesheet">
 </head>
 <body>
  <jsp:include page="/WEB-INF/views/fixing/header.jsp"></jsp:include>

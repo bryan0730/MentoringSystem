@@ -5,8 +5,8 @@
 	
 	<!-- 조회 -->
 	<select id="mento" resultType="com.hustar.mentoring.login.domain.MemberDomain">
-			SELECT menti.* FROM menti AS menti 
-			LEFT OUTER JOIN mentoring AS mentoring ON menti.mentiSeq = mentoring.mentiSeq 
+			select menti.mentiSeq as memberSeq, menti.memberEmail, menti.memberName, menti.memberPhoneNumber, menti.memberPhoto, menti.memberSchool, menti.memberMajor, menti.memberTrack from menti as menti 
+			left OUTER JOIN mentoring AS mentoring ON menti.mentiSeq = mentoring.mentiSeq 
 			LEFT OUTER JOIN mento AS mento ON mento.mentoSeq = mentoring.mentoSeq 
 			WHERE mentoring.mentoSeq = #{Seq};
 	</select>
@@ -23,23 +23,23 @@
 	<!-- 멘토 마이페이지에서 학생 관리버튼 눌렀을 때 해당 학생의 마이페이지로 이동 -->
 	<select id="mypagementi" resultType="com.hustar.mentoring.login.domain.MemberDomain">
 	
-		select mentiSeq as memberSeq, memberEmail, memberName,memberPw, memberPhoneNumber, Authoritie, memberPhoto from menti where memberName = #{memberName};
+		select mentiSeq as memberSeq, memberEmail, memberName, memberPw, memberPhoneNumber, Authoritie, memberPhoto from menti where mentiSeq = #{memberSeq};
 		
 	</select>
 	
 	<!-- 마이페이지 수정 -->
 	<update id="mypageModify">
 	
-		UPDATE MENTI SET 
-		MEMBERNAME = #{memberdomain.memberName},
-		MEMBEREMAIL = #{memberdomain.memberEmail},
-		MEMBERPHONENUMBER = #{memberdomain.memberPhoneNumber},
-		MEMBERSCHOOL = #{memberdomain.memberSchool},
-		MEMBERMAJOR = #{memberdomain.memberMajor},
-		MEMBERADDMISSION = #{memberdomain.memberAddmission},
-		MEMBERTRACK = #{memberdomain.memberTrack},
-		MEMBERPHOTO = #{memberdomain.memberPhoto}
-		WHERE MENTISEQ = #{Seq};
+		UPDATE menti SET 
+		memberName = #{memberdomain.memberName},
+		memberEmail = #{memberdomain.memberEmail},
+		memberPhoneNumber = #{memberdomain.memberPhoneNumber},
+		memberSchool = #{memberdomain.memberSchool},
+		memberMajor = #{memberdomain.memberMajor},
+		memberAddmission = #{memberdomain.memberAddmission},
+		memberTrack = #{memberdomain.memberTrack},
+		memberPhoto = #{memberdomain.memberPhoto}
+		WHERE mentiSeq = #{Seq};
 		
 		
 	</update>
@@ -47,11 +47,80 @@
 	<!-- 마이페이지 비밀번호 수정 -->
 	<update id="mypagePwModify">
 	
-		UPDATE MENTI SET 
-		MEMBERPW = #{memberdomain.memberPw}
-		WHERE MENTISEQ = #{Seq};
+		UPDATE menti SET 
+		memberPw = #{memberdomain.memberPw}
+		WHERE mentiSeq = #{Seq};
 		
 		
 	</update>
+	
+	<!-- 게시글 조회 -->
+	<select id="boardList" resultType="com.hustar.mentoring.board.domain.BoardDomain">
+			select * from board where memberEmail = #{memberEmail};
+	</select>
+	
+	<!-- 성장과정 저장 -->
+	<update id="introGrowth">
+	
+		update intro set
+		introGrowth = #{intro.introGrowth}
+		where memberEmail = #{Email};
+		
+		
+	</update>
+	
+	<!-- 성격장단점 저장 -->
+	<update id="introPersonality">
+	
+		update intro set
+		introPersonality = #{intro.introPersonality}
+		where memberEmail = #{Email};
+		
+		
+	</update>
+	
+	<!-- 대내외활동 저장 -->
+	<update id="introActivity">
+	
+		update intro set
+		introActivity = #{intro.introActivity}
+		where memberEmail = #{Email};
+		
+		
+	</update>
+	
+	<!-- 지원동기및입사후포부 저장 -->
+	<update id="introMotive">
+	
+		update intro set
+		introMotive = #{intro.introMotive}
+		where memberEmail = #{Email};
+		
+		
+	</update>
+	
+	<!-- 자소서 조회 -->
+	<select id="introContents" resultType="com.hustar.mentoring.mypage.domain.Intro" >
+			select * from intro where memberEmail = #{Email};
+	</select>
+	
+	<!-- 회원가입시 자소서 레코드 추가 -->
+	<insert id="addIntro">
+		insert into intro(introGrowth, introPersonality, introActivity, introMotive, memberEmail)
+		VALUES ( 
+					"내용을 작성해주세요.", 
+					"내용을 작성해주세요.", 
+					"내용을 작성해주세요.",
+					"내용을 작성해주세요.",
+					#{Email}
+				)
+		;
+	</insert>
+	
+	<!-- 멘토링현황 조회 -->
+	<select id="bookingContents" resultType="com.hustar.mentoring.main.domain.BookingDomain" >
+			select * from booking where mentiSeq = #{Seq};
+	</select>
+	
 	
 </mapper>
