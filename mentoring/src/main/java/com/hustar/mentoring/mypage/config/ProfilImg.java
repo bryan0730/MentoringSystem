@@ -23,7 +23,12 @@ public class ProfilImg {
 		UUID uid = UUID.randomUUID();
 		
 		String root = multipartHttpServletRequest.getSession().getServletContext().getRealPath("/");
-		String Path = root.substring(0,root.length()-7).concat("resources" + File.separator + "static" + File.separator + "ProfilImg");
+		//로컬에서 실행시 경로
+		//String Path = root.substring(0,root.length()-7).concat("resources" + File.separator + "static" + File.separator + "ProfilImg");
+		
+		//서버에서 실행시 경로
+		String Path = root.concat("WEB-INF" + File.separator + "classes" + File.separator +"static" + File.separator + "ProfilImg");
+		
 		
 		File file = new File(Path);
 		// 만약 경로에 폴더가 없으면 생성

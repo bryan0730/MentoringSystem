@@ -1,9 +1,12 @@
 package com.hustar.mentoring.exception;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationServiceException;
@@ -53,6 +56,16 @@ public class GlobalHandlerException {
 		
 		return new ResponseEntity<ErrorResponse>(response, HttpStatus.OK);
 	}
+	
+	@ExceptionHandler({SQLException.class, DataAccessException.class})
+    protected ResponseEntity<ErrorResponse> SQLExceptionHandler(DataAccessException e,
+    		HttpServletRequest request) {
+		log.error("SQLException- url:{}, trace:{}", request.getRequestURI(), e.getStackTrace());
+		final ErrorResponse response = new ErrorResponse(ErrorCode.SQL_ERROR.getCode(), ErrorCode.SQL_ERROR.getDescription(), 
+				"SQL|DB ERROR");
+		
+        return new ResponseEntity<ErrorResponse>(response, HttpStatus.OK);
+    }
 	
 	private ErrorResponse makeErrorResponse(BindingResult bindingResult) {
 		String code = "";

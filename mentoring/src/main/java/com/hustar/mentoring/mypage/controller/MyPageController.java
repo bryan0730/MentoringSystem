@@ -160,8 +160,8 @@ public class MyPageController {
 		String Photo = mypageService.mypage(memberSeq).getMemberPhoto().toString();
 		
 		//이미지를 저장하고 memberDomain.memberPhoto에 경로를 저장하기 위한 메서드
-		ProfilImg profilImg = new ProfilImg();
-		profilImg.UploadProfil(multipartHttpServletRequest, memberdomain, Photo);
+		//ProfilImg profilImg = new ProfilImg();
+		ProfilImg.UploadProfil(multipartHttpServletRequest, memberdomain, Photo);
 
 		
 		mypageService.mypageModify(memberdomain, memberSeq);	
