@@ -14,7 +14,7 @@
 
             <div class="tnb">
                 <ul>
-                	<li><a href="/mypage">${name }님</a></li>	
+                	<li><a href="#">${name }님</a></li>	
               		<li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
                 </ul>
 		      

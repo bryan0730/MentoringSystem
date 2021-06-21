@@ -165,7 +165,7 @@
                 <div class="form_header">
                     <h2>기업 등록</h2>
                 </div>
-                <form method="POST" action="admin/insertEnterprise" id="insertF" enctype="multipart/form-data">
+                <form method="POST" action="/admin/insertEnterprise" id="insertF" enctype="multipart/form-data">
                 <div class="body_space">
                     <div class="basic_info">
                         <div class="info_head">

@@ -64,7 +64,7 @@ public class AdminController {
 			@RequestParam(value = "imageUpload2", required = false) MultipartFile uploadFile){
 		System.out.println(uploadFile);
 		adminService.insertEnterprise(enterpriseDomain, uploadFile);
-		return "redirect:/admin"; 
+		return "redirect:/admin/adminEnterprise"; 
 	}
 	@GetMapping("/matchingPage")
 	public String matchingPage(Model model) {
