@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 	<!-- stylesheet -->
@@ -31,8 +31,8 @@
             <div class="mentoring">    
                 <div class="mentoring-gnb">
                     <ul>
-                        <li class="mentoring-before on" onclick="fn_mentoring('before')"><a  href='javascript:void(0)' >¡¯«‡ ¡ﬂ¿Œ ∏‡≈‰∏µ</a></li>
-                        <li class="mentoring-after" onclick="fn_mentoring('after')"><a href='javascript:void(0)' >øœ∑·µ» ∏‡≈‰∏µ</a></li>
+                        <li class="mentoring-before on" onclick="fn_mentoring('before')"><a  href='javascript:void(0)' >ÏßÑÌñâ Ï§ëÏù∏ Î©òÌÜ†ÎßÅ</a></li>
+                        <li class="mentoring-after" onclick="fn_mentoring('after')"><a href='javascript:void(0)' >ÏôÑÎ£åÎêú Î©òÌÜ†ÎßÅ</a></li>
                     </ul>               
                 </div>
                 <div class="mentoring-list">
@@ -41,47 +41,47 @@
 	                    <div class="mentoring-body">
 	                        <div class="mento-name">
 	                            <span>
-	                            	<c:if test="${role eq 'ROLE_MEMBER'}">${mentoName}<span> ±≥ºˆ¥‘</span></c:if>
-	                            	<c:if test="${role eq 'ROLE_MENTO'}">${result.mentiName}<span> ±≥¿∞ª˝</span></c:if>              	
+	                            	<c:if test="${role eq 'ROLE_MEMBER'}">${mentoName}<span> ÍµêÏàòÎãò</span></c:if>
+	                            	<c:if test="${role eq 'ROLE_MENTO'}">${result.mentiName}<span> ÍµêÏú°ÏÉù</span></c:if>              	
 	                            </span>
 	                        </div>
 	                        <div class="mentoring-title">
-	                        	<h2>¡¶∏Ò : "${result.bookingTitle}"</h2>
+	                        	<h2>Ï†úÎ™© : "${result.bookingTitle}"</h2>
 	                        </div>
 	                        <div class="mentoring-content">
-	                            <p>≥ªøÎ : "${result.bookingContent}"</p>
+	                            <p>ÎÇ¥Ïö© : "${result.bookingContent}"</p>
 	                        </div>
 	                        <ul class="mentoring-info">
 	                            <li class="date">
-	                                ªÛ¥„≥Ø¬• : ${result.bookingDate}
+	                                ÏÉÅÎã¥ÎÇ†Ïßú : ${result.bookingDate}
 	                            </li>
-	                            <c:if test="${result.way eq 'ø¿«¡∂Û¿Œ'}">
+	                            <c:if test="${result.way eq 'Ïò§ÌîÑÎùºÏù∏'}">
 	                            <li class="time">
-									ªÛ¥„Ω√∞£ : ${result.bookingTime}
+									ÏÉÅÎã¥ÏãúÍ∞Ñ : ${result.bookingTime}
 	                            </li>
 	                            </c:if>
 	                            <li class="way">
-	                                ªÛ¥„πÊπ˝ : ${result.way }
+	                                ÏÉÅÎã¥Î∞©Î≤ï : ${result.way }
 	                            </li>
 	                        </ul>
-	                        <c:if test="${result.way eq 'ø¬∂Û¿Œ' && role eq 'ROLE_MENTO'}">
+	                        <c:if test="${result.way eq 'Ïò®ÎùºÏù∏' && role eq 'ROLE_MENTO'}">
 		                        <div class="answer-area">
-		                        	<p>¥‰∫Ø</p>
+		                        	<p>ÎãµÎ≥Ä</p>
 			                        <textarea class="answer" data-booking-index="${result.bookingId }"></textarea>
 			                    </div>
 	                        </c:if>
 	                        <div class="mentoring-state">
                         		<input type="button" 
                     			value=
-                    			<c:if test="${result.accept eq 1}">ªÛ¥„¥Î±‚</c:if>
-                    			<c:if test="${result.accept eq 0 && result.way eq 'ø¿«¡∂Û¿Œ' && role eq 'ROLE_MEMBER'}">ºˆ∂Ù¥Î±‚</c:if>
-                    			<c:if test="${result.accept eq 0 && result.way eq 'ø¬∂Û¿Œ'}">¥‰∫Ø¥Î±‚</c:if>
+                    			<c:if test="${result.accept eq 1}">ÏÉÅÎã¥ÎåÄÍ∏∞</c:if>
+                    			<c:if test="${result.accept eq 0 && result.way eq 'Ïò§ÌîÑÎùºÏù∏' && role eq 'ROLE_MEMBER'}">ÏàòÎùΩÎåÄÍ∏∞</c:if>
+                    			<c:if test="${result.accept eq 0 && result.way eq 'Ïò®ÎùºÏù∏'}">ÎãµÎ≥ÄÎåÄÍ∏∞</c:if>
                     			>
-                    			<c:if test="${result.accept eq 0 && role eq 'ROLE_MENTO' && result.way eq 'ø¿«¡∂Û¿Œ'}">
-                    				<input class="action-btn" type="button" value="ºˆ∂Ù" onclick="fn_accept(${result.bookingId })">
+                    			<c:if test="${result.accept eq 0 && role eq 'ROLE_MENTO' && result.way eq 'Ïò§ÌîÑÎùºÏù∏'}">
+                    				<input class="action-btn" type="button" value="ÏàòÎùΩ" onclick="fn_accept(${result.bookingId })">
                     			</c:if>
-                    			<c:if test="${result.accept eq 0 && role eq 'ROLE_MENTO' && result.way eq 'ø¬∂Û¿Œ'}">
-                    				<input class="action-btn" type="button" value="¥‰∫Ø«œ±‚" onclick="fn_answer(${result.bookingId })">
+                    			<c:if test="${result.accept eq 0 && role eq 'ROLE_MENTO' && result.way eq 'Ïò®ÎùºÏù∏'}">
+                    				<input class="action-btn" type="button" value="ÎãµÎ≥ÄÌïòÍ∏∞" onclick="fn_answer(${result.bookingId })">
                     			</c:if>
                 			</div>
 	                    </div>
@@ -93,47 +93,47 @@
 			                    <div class="mentoring-body">
 			                        <div class="mento-name">
 			                            <span>
-			                            	<c:if test="${role eq 'ROLE_MEMBER'}">${mentoName}<span> ±≥ºˆ¥‘</span></c:if>
-			                            	<c:if test="${role eq 'ROLE_MENTO'}">${result.mentiName}<span> ±≥¿∞ª˝</span></c:if>              	
+			                            	<c:if test="${role eq 'ROLE_MEMBER'}">${mentoName}<span> ÍµêÏàòÎãò</span></c:if>
+			                            	<c:if test="${role eq 'ROLE_MENTO'}">${result.mentiName}<span> ÍµêÏú°ÏÉù</span></c:if>              	
 			                            </span>
 			                        </div>
 			                        <div class="mentoring-title">
-			                            <h2>¡¶∏Ò : "${result.bookingTitle}"</h2>
+			                            <h2>Ï†úÎ™© : "${result.bookingTitle}"</h2>
 			                        </div>
 			                        <div class="mentoring-content">
-			                            <p>≥ªøÎ :  "${result.bookingContent}"</p>
+			                            <p>ÎÇ¥Ïö© :  "${result.bookingContent}"</p>
 			                        </div>
 			                        <ul class="mentoring-info">
 			                            <li class="date">
 			                                <ul>
-			                                    <li>ªÛ¥„≥Ø¬• : ${result.bookingDate}</li>
+			                                    <li>ÏÉÅÎã¥ÎÇ†Ïßú : ${result.bookingDate}</li>
 			                                </ul>
 			                            </li>
-			                            <c:if test="${result.way eq 'ø¿«¡∂Û¿Œ'}">
+			                            <c:if test="${result.way eq 'Ïò§ÌîÑÎùºÏù∏'}">
 			                            	<li class="time">
 				                                <ul>
-				                                    <li>ªÛ¥„Ω√∞£ : ${result.bookingTime}</li>
+				                                    <li>ÏÉÅÎã¥ÏãúÍ∞Ñ : ${result.bookingTime}</li>
 				                                </ul>
 				                            </li>
 			                            </c:if>
 			                            <li class="way">
 			                                <ul>
-			                                    <li>ªÛ¥„πÊπ˝ : ${result.way }</li>
+			                                    <li>ÏÉÅÎã¥Î∞©Î≤ï : ${result.way }</li>
 			                                </ul>
 			                            </li>
 			                        </ul>
-			                        <c:if test="${result.way eq 'ø¬∂Û¿Œ'}">
+			                        <c:if test="${result.way eq 'Ïò®ÎùºÏù∏'}">
 			                        	<div class="answer-area">
-				                        	<p>¥‰∫Ø</p>
+				                        	<p>ÎãµÎ≥Ä</p>
 				                        	<div class="answer">${result.bookingComents}</div>
 				                        </div>
 			                        </c:if>
 			                        <div class="mentoring-state">
-			                        	<c:if test="${result.way eq 'ø¿«¡∂Û¿Œ'}">
-		                    				<input type="button" value="ªÛ¥„øœ∑·">
+			                        	<c:if test="${result.way eq 'Ïò§ÌîÑÎùºÏù∏'}">
+		                    				<input type="button" value="ÏÉÅÎã¥ÏôÑÎ£å">
 		                    			</c:if>
-		                    			<c:if test="${result.way eq 'ø¬∂Û¿Œ'}">
-		                    				<input type="button" value="¿¿¥‰øœ∑·">
+		                    			<c:if test="${result.way eq 'Ïò®ÎùºÏù∏'}">
+		                    				<input type="button" value="ÏùëÎãµÏôÑÎ£å">
 		                    			</c:if>
 		                			</div>
 			                    </div>

@@ -12,9 +12,11 @@
     height: calc(92.5vh - 80px);
     margin: 10px auto;
     overflow: auto;
-    background-color: #fff;
-    padding: 35px 10px 35px 10px;
-    box-shadow: 0 12px 6px rgb(0 0 0 / 6%);
+   	margin: 50px auto;
+    background: #fff;
+    padding: 1px 60px;
+    border-radius: 20px;
+    box-shadow: -12px 12px 6px rgb(0 0 0 / 6%);
 }
 
 .mentoring-header{
@@ -23,6 +25,7 @@
     margin-bottom: 20px;
 }
 .mentoring-header > h1{
+	padding: 20px 0 0 0;
 	color : #2757A9;
     font-size: 30px;
 }
@@ -34,11 +37,13 @@
 }
 
 .mentoring > .mentoring-gnb ul{
+	
     display: table;
     width: 100%;
     margin-bottom: 30px;
 }
 .mentoring > .mentoring-gnb ul li{
+	padding: 10px;
     display: table-cell;
     width: 50%;
     font-size: 18px;
@@ -136,6 +141,7 @@
 }
 
 .on{
+	font-weight: bold;
 	color : #2757A9;
-	border-bottom: 1px solid #2757A9;
+	border-bottom: 3px solid #2757A9;
 }
