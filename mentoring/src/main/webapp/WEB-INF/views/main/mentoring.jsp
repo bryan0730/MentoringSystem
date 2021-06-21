@@ -57,26 +57,30 @@
     
     function fn_answer(id){
     	let coments = $('.answer[data-booking-index='+'"'+id+'"'+']').val();
-    	console.log(id);
-    	if(confirm("답변을 등록 하시겠습니까?")){
-    		 $.ajax({
-   		        url: "insertComent",
-   		        type: "POST",
-   		        data: {
-   		        	bookingId : id,
-   		        	bookingComents : coments
-   		        },
-   		        success: function () {
-   		            alert("답변을 등록 하였습니다.");                
-   		        },
-   		        error: function () {
-   		            alert("error");
-   		        },
-   		        complete: function (){
-   		            location.reload();
-   		        }
-    		});
+    	if(!coments){
+    		alert("답변을 입력해 주세요.")
+    	}else{
+    		if(confirm("답변을 등록 하시겠습니까?")){
+	       		 $.ajax({
+	      		        url: "insertComent",
+	      		        type: "POST",
+	      		        data: {
+	      		        	bookingId : id,
+	      		        	bookingComents : coments
+	      		        },
+	      		        success: function () {
+	      		            alert("답변을 등록 하였습니다.");                
+	      		        },
+	      		        error: function () {
+	      		            alert("error");
+	      		        },
+	      		        complete: function (){
+	      		            location.reload();
+	      		        }
+	       		});
+	       	}
     	}
+    	
     }
    
     </script>
@@ -111,42 +115,34 @@
 	                        </div>
 	                        <ul class="mentoring-info">
 	                            <li class="date">
-	                                <ul>
-	                                    <li>상담날짜</li>
-	                                    <li>${result.bookingDate}</li>
-	                                </ul>
+	                                상담날짜 : ${result.bookingDate}
 	                            </li>
 	                            <c:if test="${result.way eq '오프라인'}">
 	                            <li class="time">
-	                                <ul>
-	                                    <li>상담시간</li>
-	                                    <li>${result.bookingTime}</li>
-	                                </ul>
+									상담시간 : ${result.bookingTime}
 	                            </li>
 	                            </c:if>
 	                            <li class="way">
-	                                <ul>
-	                                    <li>상담방법</li>
-	                                    <li>${result.way }</li>
-	                                </ul>
+	                                상담방법 : ${result.way }
 	                            </li>
 	                        </ul>
-	                        <c:if test="${result.way eq '온라인' }">
+	                        <c:if test="${result.way eq '온라인' && role eq 'ROLE_MENTO'}">
 		                        <div class="answer-area">
 			                        	<textarea class="answer" data-booking-index="${result.bookingId }"></textarea>
 			                    </div>
 	                        </c:if>
 	                        <div class="mentoring-state">
-                    			<input type="button" 
+                        		<input type="button" 
                     			value=
                     			<c:if test="${result.accept eq 1}">상담대기</c:if>
-                    			<c:if test="${result.accept eq 0}">수락대기</c:if>
+                    			<c:if test="${result.accept eq 0 && result.way eq '오프라인' && role eq 'ROLE_MEMBER'}">수락대기</c:if>
+                    			<c:if test="${result.accept eq 0 && result.way eq '온라인'}">답변대기</c:if>
                     			>
                     			<c:if test="${result.accept eq 0 && role eq 'ROLE_MENTO' && result.way eq '오프라인'}">
-                    			<input type="button" value="수락" onclick="fn_accept(${result.bookingId })">
+                    				<input class="action-btn" type="button" value="수락" onclick="fn_accept(${result.bookingId })">
                     			</c:if>
                     			<c:if test="${result.accept eq 0 && role eq 'ROLE_MENTO' && result.way eq '온라인'}">
-                    			<input type="button" value="답변하기" onclick="fn_answer(${result.bookingId })">
+                    				<input class="action-btn" type="button" value="답변하기" onclick="fn_answer(${result.bookingId })">
                     			</c:if>
                 			</div>
 	                    </div>
