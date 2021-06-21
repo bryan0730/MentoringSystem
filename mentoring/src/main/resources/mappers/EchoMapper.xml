@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hustar.mentoring.EchoMapper">
+	
+	<insert id="echoInsert">
+		INSERT INTO echo(receiverId, senderId, echoMsg, echoStatus) 
+		VALUES(#{receiverId}, #{senderId}, #{echoMsg}, #{echoStatus})
+		;
+	</insert>
+	
+	<select id="selectEchoList" resultType="com.hustar.mentoring.EchoDomain">
+		SELECT *
+		FROM echo
+		WHERE receiverId = #{memberId}
+		ORDER BY echoSeq DESC
+		;
+	</select>
+
+</mapper>

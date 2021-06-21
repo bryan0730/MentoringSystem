@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!-- 콘텐츠 시작 -->
 <link rel="stylesheet" href="/fixing/css/header.css">
 <link rel="stylesheet" href="/fixing/css/footer.css">
@@ -114,7 +115,7 @@ a {
 }
 
 .red-circle{
-/*     display: none;  */
+	display: none;
     position: absolute;
     background: red;
     border-radius: 500%;
@@ -131,7 +132,7 @@ a {
             <h1>
                 <a href="/common"><img src="/Member/img/hustar_logo2.png" alt=""></a>
             </h1>
-
+			
             <div class="tnb">
                 <ul>
                 	<li><a href="/mypage">${name }님</a></li>
@@ -148,22 +149,16 @@ a {
 		        <div class="message-modal">
 		          <div class="header-content unchecked-cnt">알림사항</div>
 		          <div class="list-content">
-		              <div class="infd-message-cover">
-		                <a href="#" class="infd-message-el">
-		                    <span class="titles">
-		                        [공지사항] 6월 3주차 스터디
-		                    </span>
-		                    <span class="date">1일</span>
-		                </a>
-		              </div>
-		              <div class="infd-message-cover">
-		                <a href="#" class="infd-message-el">
-		                    <span class="titles">
-		                        [공지사항] 6월 3주차 스터디
-		                    </span>
-		                    <span class="date">1일</span>
-		                </a>
-		              </div>
+		          	<c:forEach var="echoList" items="${echoList}" varStatus="status">
+			              <div class="infd-message-cover">
+			                <a href="#" class="infd-message-el">
+			                    <span class="titles">
+			                        ${echoList.echoMsg }
+			                    </span>
+			                    <span class="date">오늘</span>
+			                </a>
+			              </div>
+		            </c:forEach>  
 		          </div>
 		          <div class="button-content"><a href="#">더 많은 알람 보기</a></div>
 		        </div>
@@ -191,11 +186,9 @@ a {
       $(document).ready(function(){
       	$(".alt").hover(function(){
       		$(".message_modal_cover").addClass("active");
-      		//$(".red-circle").addClass("none-active");
+      		$(".red-circle").addClass("none-active");
       	}, function(){
-              
-                  $(".message_modal_cover").removeClass("active");   
-             
+            $(".message_modal_cover").removeClass("active");    
       	})
 
           $(".message_modal_cover").hover(function(){

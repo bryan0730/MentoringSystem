@@ -1,13 +1,20 @@
 package com.hustar.mentoring.login.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.hustar.mentoring.EchoService;
+import com.hustar.mentoring.notice.service.EchoInterceptor;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer{
 
+	@Autowired
+	private EchoService echoService;
 	
 	
 	@Bean
@@ -22,4 +29,13 @@ public class WebMvcConfig implements WebMvcConfigurer{
 		
 		return commonsMultipartResolver;
 	}
+
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		// TODO Auto-generated method stub
+		registry.addInterceptor(new EchoInterceptor(echoService)).excludePathPatterns("/admin/**","/resource/**","/Member/**");
+	}
+	
+	
 }

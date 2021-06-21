@@ -44,7 +44,7 @@ $('.modify').click(function(){
 				success:function(){
 					swal("기업수정", "수정되었습니다.", "success").then(function(isConfirm){
 						if(isConfirm){
-							window.location.href='/admin'
+							window.location.href='/admin/adminEnterprise'
 						}
 					}).catch(swal.noop)
 				},
@@ -78,7 +78,7 @@ function deleteEnterprise(enterpriseSeq){
 				success:function(){
 					swal("기업삭제", "삭제되었습니다.", "success").then(function(isConfirm){
 						if(isConfirm){
-							window.location.href='/admin'
+							window.location.href='/admin/adminEnterprise'
 						}
 					}).catch(swal.noop)
 				},

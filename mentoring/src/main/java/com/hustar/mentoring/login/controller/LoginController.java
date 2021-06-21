@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.hustar.mentoring.board.domain.BoardDomain;
 import com.hustar.mentoring.board.service.BoardService;
@@ -24,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
+//@SessionAttributes("role")
 public class LoginController {
 	private final MemberDetailService memberDetailService;
 	private final BoardService boardService;

@@ -12,6 +12,7 @@ let memberSeq = $("#memberSeq").val()
 let memberRole = $("#role").val()
 let mentoEmail = memberRole == "ROLE_MEMBER" ? $("#mentoEmail").val() : "";
 let mentiEmail = memberRole == "ROLE_MEMBER" ? $("#e-mail").val() : "";
+let echoMsg = mentiEmail + "님이 멘토링을 예약하셨습니다."
 
 
 //캘린더 뷰 띄우기
@@ -106,6 +107,7 @@ function veiwModal(selectedTime) {
                 console.log(element.scheduleTime)
                 // 예약된 시간 선택 불가능 또는 표시 하기
                 let st = element.scheduleTime.split(',');
+                console.log(st);
                 for(let i = 0; i<st.length; i++){
                     $('.time-item')[timeItem[st[i]]].setAttribute('data-select-val','selected');
                 }
@@ -164,7 +166,7 @@ function setData(url, id, accept) {
                 way: bookingWay,
                 mentiSeq: seq,
                 mentiName: name,
-                role: role
+                role: role 
             }
         }else{
             form = {
@@ -182,8 +184,9 @@ function setData(url, id, accept) {
             way: bookingWay,
             mentiSeq: seq,
             mentiName: name,
-            mentoEmail: mentoEmail,
-            mentiEmail : mentiEmail
+            receiverId: mentoEmail,
+            senderId : mentiEmail,
+            echoMsg : echoMsg
         }
     }  
     // insertBooking controller에 통신 
@@ -301,10 +304,7 @@ function setBookingView(seq, role) {
             mentoSeq: seq,
             role: role
         };
-    }
-
-    let localDate = "0" + month + "/" + date + "/" + year;    
-    
+    }       
     // 예약 현황  
     $.ajax({
         url: "listBooking",
@@ -312,22 +312,20 @@ function setBookingView(seq, role) {
         data: form,
         success: function (data) {
             data.forEach(element => {
-                if(localDate < element.bookingDate || element.accept==1){
-                    $("#calendar").evoCalendar('addCalendarEvent', 
-                        {
-                            id: element.bookingId,
-                            name: element.bookingTitle,
-                            date: element.bookingDate,
-                            badge: '시간 : ' + element.bookingTime,
-                            description: element.bookingContent,
-                            type: "event",
-                            color: element.accept == 0 ? "#ff7575" : "#7cee35",
-                            userName:element.mentiName,
-                            way:element.way,
-                            accept:element.accept
-                        }
-                    );  
-                }                  
+                $("#calendar").evoCalendar('addCalendarEvent', 
+                    {
+                        id: element.bookingId,
+                        name: element.bookingTitle,
+                        date: element.bookingDate,
+                        badge: '시간 : ' + element.bookingTime,
+                        description: element.bookingContent,
+                        type: "event",
+                        color: element.accept == 0 ? "#ff7575" : "#7cee35",
+                        userName:element.mentiName,
+                        way:element.way,
+                        accept:element.accept
+                    }
+                );               
             })
         },
         error: function () {

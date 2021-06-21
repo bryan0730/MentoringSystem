@@ -9,6 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hustar.mentoring.EchoDomain;
+import com.hustar.mentoring.EchoService;
 import com.hustar.mentoring.main.domain.BookingDomain;
 import com.hustar.mentoring.main.domain.ScheduleDomain;
 import com.hustar.mentoring.main.service.GetMentoEmail;
@@ -23,11 +25,15 @@ public class MainController {
 	protected Log log = LogFactory.getLog(this.getClass());
 
 	private final MainService mainService;
+	private final EchoService echoService;
 	
 	
 	@RequestMapping(value="/insertBooking")
-	public void BookingInsert(BookingDomain bookingDomain) throws Exception {
+	public void BookingInsert(BookingDomain bookingDomain, EchoDomain echoDomain) throws Exception {
 		mainService.insertBooking(bookingDomain);
+		
+		echoDomain.setEchoStatus("reservation");
+		echoService.echoInsert(echoDomain);
 	}
 	
 	@RequestMapping(value="/selectBooking")

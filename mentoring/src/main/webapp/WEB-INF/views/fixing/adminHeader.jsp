@@ -9,7 +9,7 @@
         <!-- 로고, 메뉴 -->
         <div class="header-box">
             <h1>
-                <a href="/common"><img src="/Member/img/hustar_logo2.png" alt=""></a>
+                <a href="/admin"><img src="/Member/img/hustar_logo2.png" alt=""></a>
             </h1>
 
             <div class="tnb">

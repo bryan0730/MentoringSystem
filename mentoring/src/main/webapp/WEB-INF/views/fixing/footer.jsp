@@ -28,7 +28,17 @@ function connectWS() {
     ws.onmessage = function (event) {
         console.log("ReceiveMessage:", event.data+'\n');
         
-        alert(event.data);
+        $('.list-content').append(
+                "<div class='infd-message-cover'>"+
+                    "<a href='#' class='infd-message-el'>"+
+                        "<span class='title'>"+
+                            event.data+
+                        "</span>"+
+                        "<span class='date'>오늘</span>"+
+                    "</a>"+
+                "</div>"
+            )
+		$(".red-circle").addClass("active");
     };
     ws.onclose = function (event) { 
         console.log('Info: connection closed.');
