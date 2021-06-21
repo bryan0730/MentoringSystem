@@ -14,6 +14,7 @@
 <!--폰트관련-->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap" rel="stylesheet">
+
 </head>
 <body>
 <!--로고,메뉴-->
@@ -90,12 +91,12 @@
 	                	<c:forEach var="booking" items="${bookingContents}" varStatus="status">
 	                		<tbody>
 	                 		<tr>
-	                 			<td><a href="">${status.count }</a></td>
-	                            <td><a href="">${booking.bookingTitle }</a></td>
-	                            <td><a href="">${booking.bookingContent }</a></td>
-	                            <td><a href="">${booking.bookingDate }</a></td>
-	                            <td><a href="">${booking.bookingTime }</a></td>
-	                            <td><a href="">${booking.way }</a></td>
+	                 			<td><a href="/mentoring">${status.count }</a></td>
+	                            <td><a href="/mentoring">${booking.bookingTitle }</a></td>
+	                            <td><a href="/mentoring">${booking.bookingContent }</a></td>
+	                            <td><a href="/mentoring">${booking.bookingDate }</a></td>
+	                            <td><a href="/mentoring">${booking.bookingTime }</a></td>
+	                            <td><a href="/mentoring">${booking.way }</a></td>
 	                 		</tr>
 	                 		</tbody>
 	                 	</c:forEach>
