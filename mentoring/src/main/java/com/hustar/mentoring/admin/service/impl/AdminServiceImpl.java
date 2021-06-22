@@ -35,8 +35,8 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		
 		String root = sc.getRealPath("/");
-		String Path = root.substring(0,root.length()-7).concat("resources/static/enterprise/img/");
-		
+		//String Path = root.substring(0,root.length()-7).concat("resources/static/enterprise/img/");
+		String Path = root.concat("WEB-INF" + File.separator + "classes" + File.separator +"static" + File.separator + "enterprise" + File.separator + "img");
 		File file = new File(Path+uploadFile.getOriginalFilename());
 		
 		try {
@@ -61,9 +61,11 @@ public class AdminServiceImpl implements AdminService{
 	public void insertEnterprise(EnterpriseDomain enterpriseDomain, MultipartFile uploadFile) {
 		// TODO Auto-generated method stub
 		String root = sc.getRealPath("/");
-		String Path = root.substring(0,root.length()-7).concat("resources/static/enterprise/img/");
+		//String Path = root.substring(0,root.length()-7).concat("resources/static/enterprise/img/");
+		String Path = root.concat("WEB-INF" + File.separator + "classes" + File.separator +"static" + File.separator + "enterprise" + File.separator + "img");
+
 		
-		File file = new File(Path+uploadFile.getOriginalFilename());
+		File file = new File(Path+File.separator+uploadFile.getOriginalFilename());
 		System.out.println(file.getName());
 		
 		try {

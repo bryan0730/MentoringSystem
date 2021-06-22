@@ -29,11 +29,11 @@ $('.add-btn').bind('click', function () {
 $('#booking-btn').bind('click', function () {
     if(!$('.booking-title').children('input').val()){
         alert('제목을 입력해 주세요');
-    }else if(!$('.booking-content').children('textarea').val()){
+    }else if(memberRole== "ROLE_MEMBER" && !$('.booking-content').children('textarea').val()){
         alert('내용을 입력해 주세요')
     }else{
         if(memberRole == "ROLE_MEMBER"){
-            setData("insertBooking");
+            $('#mentoEmail').val() ? setData("insertBooking") : alert("멘토링 매칭이 아직 되어있지 않습니다. 담당자에게 연락하세요.");        
         }else{
             setDataMento("insertSchedule");
         }
@@ -213,7 +213,10 @@ function setData(url, id, accept) {
                 	socket.send(socketMsg);
                 }            
             }else if(url=="updateBooking"){
-                alert("수정되었습니다.");  
+                alert("수정되었습니다.");
+                if(role == "ROLE_MENTO"){
+
+                }  
                 emailUrl = "updateEmail";             
             }else if(url=="deleteBooking"){
                 alert("삭제되었습니다.");    

@@ -23,5 +23,4 @@ public class EchoInterceptor implements HandlerInterceptor{
 		request.setAttribute("echoList", echoService.selectEchoList(memberId));
 		return true;
 	}
-
 }

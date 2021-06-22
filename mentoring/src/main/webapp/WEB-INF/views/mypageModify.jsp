@@ -25,7 +25,7 @@
 					name="updateData" enctype="multipart/form-data">
 					<div class="mypage-mod-img">
 						<div class="select_img">
-							<img src="${mypage.memberPhoto }" />
+							<img src="${mypage.memberPhoto}" />
 						</div>
 						<!-- input tag type이 file일 경우 name도 file로 해주어야 type이 맞지 않다는 에러가 안남 -->
 						<div class="mod-img-btn">
