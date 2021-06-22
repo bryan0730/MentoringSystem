@@ -190,9 +190,6 @@ public class BoardController {
 	public void fileDownload(@RequestParam int boardSeq, @RequestParam int fileSeq,
 			HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
-			String fileName = "";
-
-
 			FileDomain fileDomain = (FileDomain) boardService.selectFileDownload(boardSeq, fileSeq);
 		
 			File DownloadFile = new File(fileDomain.getFilePath());

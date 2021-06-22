@@ -73,7 +73,8 @@
 	<div class= "paging">
 		<ul>
 			<c:if test="${paging.prev}">
-			 	<li><a href="BoardList.do?pageIndex=${paging.startPageNum - 1}">이전</a></li>
+				<li><a href="BoardList.do?divSeq=${boardDomain.divSeq }&pageIndex=1">처음</a></li>
+			 	<li><a href="BoardList.do?divSeq=${boardDomain.divSeq }&pageIndex=${paging.startPageNum - 1}">이전</a></li>
 			</c:if>
 			
 			<c:forEach begin="${paging.startPageNum}" end="${paging.endPageNum}" var="num">
@@ -89,7 +90,8 @@
 			</c:forEach>
 			
 			<c:if test="${paging.next}">
-			 	<li><a href="BoardList.do?pageIndex=${paging.endPageNum + 1}">다음</a></li>
+			 	<li><a href="BoardList.do?divSeq=${boardDomain.divSeq }&pageIndex=${paging.endPageNum + 1}">다음</a></li>
+			 	<li><a href="BoardList.do?divSeq=${boardDomain.divSeq }&pageIndex=${paging.lastPaging}">끝</a></li>
 			</c:if>
 		
 		</ul>
@@ -103,6 +105,10 @@
 </html>
 <script type="text/javascript">
 function fn_search() {
-	$('#searchForm').submit();
+	if ($('#searchKeyword').val()==""){
+		alert("검색어를 입력하세요!")
+	} else {
+		$('#searchForm').submit();	
+	}
 }
 </script>

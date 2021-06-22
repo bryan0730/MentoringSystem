@@ -49,6 +49,9 @@ padding : 30px;
   align-items: center;
 }
 
+.swiper-slide:hover {
+	border:1px solid black;
+	cursor: pointer;}
 
 .swiper-slide img {
   display: block;

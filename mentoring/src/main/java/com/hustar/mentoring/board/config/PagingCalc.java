@@ -82,7 +82,12 @@ public class PagingCalc {
 	public boolean isNext() {
 		return next;
 	}
-
+	
+	private int lastPaging;
+	
+	public int getLastPaging() {
+		return lastPaging;
+	}
 
 
 	// Domain에 존재하는 정보 : 현재 Index, pageUnit, firstpage, lastpage
@@ -99,7 +104,7 @@ public class PagingCalc {
 		
 		
 		// 게시글 마지막 페이징 번호 계산
-		int lastPaging = (int)(Math.ceil((double)TotalCnt / (double)boardDomain.getPageUnit()));
+		lastPaging = (int)(Math.ceil((double)TotalCnt / (double)boardDomain.getPageUnit()));
 		
 		// 표시되는 마지막 번호가 계산한 마지막 페이징보다 크면 마지막 페이징으로 입력
 		if (endPageNum > lastPaging) {

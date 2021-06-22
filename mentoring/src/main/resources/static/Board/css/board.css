@@ -5,7 +5,7 @@ h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px
 .write-btn {max-width : 1500px; margin : 0 auto; text-align: right}
 .write-btn a {
 	display : inline-block;
-	padding: 10px;
+	padding: 10px 20px;
 	margin-top : 10px;
 	border : 1px solid #ccc;
 	font-weight : bold;
@@ -41,4 +41,5 @@ margin: 30px 3px;
 
 .search-box {max-width: 1500px; margin: 0 auto; text-align: right; margin-bottom: 10px;}
 .search-box input {padding: 5px 15px;}
+.search-box input[type="button"] {border : 1px solid #ccc; background: #fff; font-weight: bold;}
 .search-box select {padding: 5px 10px;}

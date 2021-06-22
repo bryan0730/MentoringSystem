@@ -78,10 +78,11 @@
 			<ul>
 				<li>
 					<label for="">첨부파일</label>
+					<a href="#none" onclick="return false;">Upload Files</a>
 					<input type="file" id="boardFile" name="boardFile" multiple="multiple">
 				</li>
 			</ul>
-			<div class="attach-file">
+			<div class="attach-file" id="attach-file">
 				<c:if test = "${not empty fileList}">
 					<c:forEach var = "file" items= "${fileList }" varStatus="status">
 						<div>
@@ -139,4 +140,18 @@
 			return false;
 		}
 	};
+	window.onload = function(){
+        target = document.getElementById('boardFile');
+        target.addEventListener('change', function(){
+            fileList = "";
+            for(i = 0; i < target.files.length; i++){
+                fileList += target.files[i].name + '<br>';
+                console.log(fileList);
+            }
+            target2 = document.getElementById('attach-file');
+            target2.innerHTML = fileList;
+        });
+    }
+
+	
 </script>

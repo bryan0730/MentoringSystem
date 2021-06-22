@@ -8,9 +8,17 @@ h2 {max-width:1500px; margin : 0 auto; padding : 50px 0 30px 0; font-size : 30px
 .board-form ul li {padding-bottom : 10px;}
 .board-form ul li label {font-size : 16px;}
 .board-form ul li input[type=text] {width :100%; min-height: 30px; font-size : 14px;}
+.board-form ul li > a {
+    position: absolute;
+    border: 1px solid black;
+    padding: 2px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-left: 10px;}
+.board-form ul li input[type=file] {opacity: 0;}
 
 .submit-btn {max-width: 1200px; margin : 0 auto;}
-.submit-btn input {float : right; padding : 5px 15px;}
+.submit-btn input {float : right; padding : 5px 15px; background: #fff; border:1px solid black; cursor: pointer; font-weight: bold;}
 
 .attach-file {padding-left: 60px; font-size: 14px;}
 .attach-file div {padding : 4px 0;}
