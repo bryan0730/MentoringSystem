@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.disable()
 			.authorizeRequests()
 			.antMatchers("/login", "/signUp", "/sign", "/emailCheck").permitAll()
-			.antMatchers("/common/**").hasAnyRole("MEMBER","MENTO")
+			//.antMatchers("/common/**").hasAnyRole("MEMBER","MENTO")
 			.antMatchers("/menti/**").hasRole("MEMBER")
 			.antMatchers("/mento/**").hasRole("MENTO")
 			.antMatchers("/admin/**").hasRole("ADMIN")

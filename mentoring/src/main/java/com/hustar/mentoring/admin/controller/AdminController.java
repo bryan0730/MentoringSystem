@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hustar.mentoring.admin.service.AdminService;
 import com.hustar.mentoring.enterprise.domain.EnterpriseDomain;
+import com.hustar.mentoring.login.domain.MemberDetails;
 import com.hustar.mentoring.login.domain.MemberDomain;
 
 import lombok.RequiredArgsConstructor;
@@ -71,6 +73,10 @@ public class AdminController {
 		
 		List<MemberDomain> mentoList = (List<MemberDomain>)adminService.selectMentoList();
 		List<MemberDomain> mentiList = (List<MemberDomain>)adminService.selectMentiList();
+		MemberDetails authentication = (MemberDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		String role = authentication.getAuthoritie();
+		
+		model.addAttribute("role", role);
 		
 		model.addAttribute("mentoList", mentoList);
 		model.addAttribute("mentiList", mentiList);

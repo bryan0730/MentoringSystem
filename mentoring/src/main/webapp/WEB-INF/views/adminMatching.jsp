@@ -22,7 +22,9 @@
 				<div class="title">멘토 교수 목록</div>
 				<ul>
 				<c:forEach var="mento" items="${mentoList }">
-					<li value='<c:out value="${mento.memberSeq }"/>'><c:out value="${mento.memberName }"/></li>	
+					<c:if test="${mento.authoritie != 'ROLE_ADMIN'}">
+						<li value='<c:out value="${mento.memberSeq }"/>'><c:out value="${mento.memberName }"/></li>
+					</c:if>	
 				</c:forEach>
 				</ul>
 			</div>
