@@ -181,7 +181,9 @@ function setData(url, id, accept) {
             form = {
                 bookingId: id,
                 accept: accept,
-                role: role
+                role: role.
+                mentoEmail: mentoEmail,
+            	mentiEmail : mentiEmail
             }
         }       
     }else{
@@ -194,8 +196,8 @@ function setData(url, id, accept) {
             mentiSeq: seq,
             mentiName: name,
             mentoEmail: mentoEmail,
-            mentiEmail : mentiEmail,
-            echoMsg : "멘토링이 예약되었습니다."
+            mentiEmail : mentiEmail
+            //echoMsg : "멘토링이 예약되었습니다."
         }
     }  
     // insertBooking controller에 통신 

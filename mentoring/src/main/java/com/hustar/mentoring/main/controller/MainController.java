@@ -39,6 +39,7 @@ public class MainController {
       echoDomain.setSenderId(bookingDomain.getMentiEmail());
       echoDomain.setReceiverId(bookingDomain.getMentoEmail());
       echoDomain.setEchoStatus("reservation");
+      echoDomain.setEchoMsg(bookingDomain.getMentiEmail()+"님이 멘토링을 예약하셨습니다.");
       echoService.echoInsert(echoDomain);
    }
    
@@ -63,6 +64,7 @@ public class MainController {
       echoDomain.setSenderId(bookingDomain.getMentoEmail());
       echoDomain.setReceiverId(bookingDomain.getMentiEmail());
       echoDomain.setEchoStatus("accept");
+      echoDomain.setEchoMsg(bookingDomain.getMentoEmail()+"님이 멘토링을 수락하셨습니다.");
       echoService.echoInsert(echoDomain);
    }
    
