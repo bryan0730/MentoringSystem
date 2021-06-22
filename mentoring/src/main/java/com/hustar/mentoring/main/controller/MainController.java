@@ -58,6 +58,10 @@ public class MainController {
    
    @RequestMapping(value="/updateBooking")
    public void BookingUpdate(BookingDomain bookingDomain, EchoDomain echoDomain) throws Exception {
+	   System.out.println("==================================================mentoemail==================================================");
+	   System.out.println(bookingDomain.getMentoEmail());
+	   System.out.println("==================================================mentiemail==================================================");
+	   System.out.println(bookingDomain.getMentiEmail());
       mainService.updateBooking(bookingDomain);
       
       
@@ -66,6 +70,7 @@ public class MainController {
       echoDomain.setEchoStatus("accept");
       echoDomain.setEchoMsg(bookingDomain.getMentoEmail()+"님이 멘토링을 수락하셨습니다.");
       echoService.echoInsert(echoDomain);
+      
    }
    
    @RequestMapping(value="/deleteBooking")
@@ -107,5 +112,11 @@ public class MainController {
       mainService.deleteSchedule(scheduleDomain);
    }
    
-
+   @RequestMapping(value="/getMentiEmail")
+   public String GetMentiEmail(BookingDomain bookingDomain) throws Exception {
+	   String mentiEmail = mainService.getMentiEmail(bookingDomain);
+	   return mentiEmail;
+   }
+   
+   
 }

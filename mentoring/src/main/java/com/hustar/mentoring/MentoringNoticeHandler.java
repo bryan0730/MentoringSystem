@@ -45,7 +45,7 @@ public class MentoringNoticeHandler extends TextWebSocketHandler{
             
             WebSocketSession receiverSession = userSession.get(mento);
             TextMessage tmpMsg = null;
-            if ("reservation".equals(cmd) && receiverSession != null) {
+            if ("reservation".equals(cmd) && receiverSession != null || "accept".equals(cmd)) {
             		System.out.println("권한 : : : : : : :" + role); 
             	if(role=="ROLE_MEMBER") {
             	    tmpMsg = new TextMessage(menti + "님이  멘토링을 예약하셨습니다.");

@@ -88,5 +88,10 @@ public class MainServiceImpl implements MainService{
 		return mainMapper.afterMentoringList(memberSeq, role, today);
 	}
 	
+	@Override
+	public String getMentiEmail(BookingDomain bookingDomain) throws Exception {	
+		return mainMapper.getMentiEmail(bookingDomain);
+	}
+	
 	
 }

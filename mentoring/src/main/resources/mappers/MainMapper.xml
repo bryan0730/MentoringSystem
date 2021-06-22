@@ -114,6 +114,14 @@
 		]]>
 	</select>
 	
+	<select id="getMentiEmail" resultType="String">
+	
+		<![CDATA[
+			SELECT memberEmail FROM menti WHERE mentiSeq = (SELECT mentiSeq FROM booking WHERE bookingId = #{bookingId});
+
+		]]>
+	</select>
+	
 	<select id="findByName" resultType="String">
 	
 		<![CDATA[

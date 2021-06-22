@@ -21,4 +21,6 @@ public interface MainService {
 	
 	public List<BookingDomain> beforeMentoringList(int memberSeq, String role, String today) throws Exception;
 	public List<BookingDomain> afterMentoringList(int memberSeq, String role, String today) throws Exception;
+	
+	public String getMentiEmail(BookingDomain bookingDomain) throws Exception;
 }

@@ -10,8 +10,8 @@ let checkDayArr;
 // 회원 확인 변수
 let memberSeq = $("#memberSeq").val()
 let memberRole = $("#role").val()
-let mentoEmail = memberRole == "ROLE_MEMBER" ? $("#mentoEmail").val() : "";
-let mentiEmail = memberRole == "ROLE_MEMBER" ? $("#e-mail").val() : "";
+let mentoEmail = memberRole == "ROLE_MEMBER" ? $("#mentoEmail").val() : $("#e-mail").val();
+let mentiEmail = memberRole == "ROLE_MEMBER" ? $("#e-mail").val() : $("#mentoEmail").val();
 
 
 //캘린더 뷰 띄우기
@@ -215,14 +215,15 @@ function setData(url, id, accept) {
                    let socketMsg = "reservation,"+mentiEmail+","+mentoEmail+","+role;
                    socket.send(socketMsg);
                 }            
-            }else if(url=="updateBooking"){
-                alert("수정되었습니다.");   
+            }else if(url=="updateBooking"){      
                 if(role == "ROLE_MENTO"){
-                   if(socket){
+                   if(socket){     
                       console.log("소켓 메세지 보낸다 멘티한테");
                       let socketMsg = "accept,"+mentoEmail+","+mentiEmail+","+role;
                       socket.send(socketMsg);
                    }
+                }else{
+                    alert("수정되었습니다."); 
                 }
                 emailUrl = "updateEmail";             
             }else if(url=="deleteBooking"){
@@ -429,6 +430,21 @@ function reviseEvent(index) {
         $('.time-item').removeClass('selected-item'); 
         veiwModal(title[1], index);
     }else{
+        console.log("click")
+                    $.ajax({
+                        url: "getMentiEmail",
+                        type: "POST",
+                        data: {
+                            bookingId: index
+                        },
+                        success: function (element) {
+                            console.log(element);
+                            mentiEmail = element;
+                        },
+                        error: function () {
+                            alert("error");
+                        },
+                    });
         reviseMentoEvent(index);
     }
     

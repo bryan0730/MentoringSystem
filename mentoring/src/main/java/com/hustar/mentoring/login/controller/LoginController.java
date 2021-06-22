@@ -67,7 +67,7 @@ public class LoginController {
 		if(role.equals("ROLE_MEMBER")) {
 			String mentoEmail = getMentoEmail.findByEmail(memberSeq);
 			model.addAttribute("mentoEmail",mentoEmail);
-		}	
+		}
 		
 		
 		BoardDomain bd = new BoardDomain();

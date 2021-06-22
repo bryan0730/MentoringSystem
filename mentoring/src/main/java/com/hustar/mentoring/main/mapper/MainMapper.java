@@ -29,4 +29,6 @@ public interface MainMapper {
 	public List<BookingDomain> beforeMentoringList(int memberSeq, String role, String today);
 	public List<BookingDomain> afterMentoringList(int memberSeq, String role, String today);
 	
+	public String getMentiEmail(BookingDomain bookingDomain);
+	
 }
