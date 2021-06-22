@@ -19,7 +19,9 @@ public class EchoInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		// TODO Auto-generated method stub
+		
 		String memberId = SecurityContextHolder.getContext().getAuthentication().getName();
+		System.out.println("dsfsdfsdf : " + memberId);
 		request.setAttribute("echoList", echoService.selectEchoList(memberId));
 		return true;
 	}

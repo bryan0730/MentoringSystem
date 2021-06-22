@@ -30,7 +30,7 @@ public class MentoringNoticeHandler extends TextWebSocketHandler{
    @Override
    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
       // TODO Auto-generated method stub
-      System.out.println("웹소켓 메세지 : "+message);
+      System.out.println("웹소켓 메세지 ::::::::::: "+message);
       String senderId = getId(session);
       
       String msg = message.getPayload();
@@ -38,16 +38,16 @@ public class MentoringNoticeHandler extends TextWebSocketHandler{
          String[] strs = msg.split(",");
          if (strs != null && strs.length == 4) {
             String cmd = strs[0];
-            String sender = strs[1];
-            String receiver = strs[2];
+            String menti = strs[1];
+            String mento = strs[2];
             String role = strs[3];
             
             
-            WebSocketSession receiverSession = userSession.get(sender);
+            WebSocketSession receiverSession = userSession.get(mento);
              
             if ("reservation".equals(cmd) && receiverSession != null) {
             		System.out.println("권한 : : : : : : :" + role);
-            	   TextMessage tmpMsg = new TextMessage(receiver + "님이  멘토링을 예약하셨습니다.");
+            	   TextMessage tmpMsg = new TextMessage(menti + "님이  멘토링을 예약하셨습니다.");
             	   receiverSession.sendMessage(tmpMsg);
             }
          }

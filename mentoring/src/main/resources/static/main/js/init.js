@@ -209,7 +209,7 @@ function setData(url, id, accept) {
                 alert("저장되었습니다.");
                 emailUrl = "sendEmail";   
                 if(socket){
-                   console.log("소켓 메세지 보낸다");
+                   console.log("소켓 메세지 보낸다 : : : : : : : : : : : : : : : : : : :");
                    let socketMsg = "reservation,"+mentiEmail+","+mentoEmail+","+role;
                    socket.send(socketMsg);
                 }            
