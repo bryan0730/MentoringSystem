@@ -33,7 +33,7 @@ $('#booking-btn').bind('click', function () {
         alert('내용을 입력해 주세요')
     }else{
         if(memberRole == "ROLE_MEMBER"){
-            $('#mentoEmail').val() ? setData("insertBooking") : alert("멘토링 매칭이 아직 되어있지 않습니다. 담당자에게 연락하세요.");        
+            setData("insertBooking");
         }else{
             setDataMento("insertSchedule");
         }
@@ -199,7 +199,7 @@ function setData(url, id, accept) {
     }  
     // insertBooking controller에 통신 
     $.ajax({
-        url: url,
+        url: url, 
         type: "POST",
         data: form,
         success: function () {
@@ -208,15 +208,19 @@ function setData(url, id, accept) {
                 alert("저장되었습니다.");
                 emailUrl = "sendEmail";   
                 if(socket){
-                	console.log("소켓 메세지 보낸다");
-                	let socketMsg = "reservation,"+mentiEmail+","+mentoEmail+",mentoring";
-                	socket.send(socketMsg);
+                   console.log("소켓 메세지 보낸다");
+                   let socketMsg = "reservation,"+mentiEmail+","+mentoEmail+","+role;
+                   socket.send(socketMsg);
                 }            
             }else if(url=="updateBooking"){
-                alert("수정되었습니다.");
+                alert("수정되었습니다.");   
                 if(role == "ROLE_MENTO"){
-
-                }  
+                   if(socket){
+                      console.log("소켓 메세지 보낸다 멘티한테");
+                      let socketMsg = "accept,"+mentoEmail+","+mentiEmail+","+role;
+                      socket.send(socketMsg);
+                   }
+                }
                 emailUrl = "updateEmail";             
             }else if(url=="deleteBooking"){
                 alert("삭제되었습니다.");    
@@ -411,8 +415,8 @@ function reviseEvent(index) {
         if(way=="온라인"){
             $('#on-off').val("온라인");
             $(".time-select").addClass("hidden");
-	        $(".calendar-time").addClass("hidden");
-	        $(".modal-view").children(".modalBox").css("height", "400px");
+           $(".calendar-time").addClass("hidden");
+           $(".modal-view").children(".modalBox").css("height", "400px");
         }else{
             $('#on-off').val("오프라인");
             $(".time-select").removeClass("hidden");
@@ -434,4 +438,3 @@ function viewMentoring(index) {
     $("#answer-btn").addClass("hidden");
     reviseMentoEvent(index);
 }
-
