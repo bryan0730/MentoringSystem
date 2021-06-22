@@ -74,7 +74,7 @@
                         		<input type="button" 
                     			value=
                     			<c:if test="${result.accept eq 1}">상담대기</c:if>
-                    			<c:if test="${result.accept eq 0 && result.way eq '오프라인' && role eq 'ROLE_MEMBER'}">수락대기</c:if>
+                    			<c:if test="${result.accept eq 0 && result.way eq '오프라인'}">수락대기</c:if>
                     			<c:if test="${result.accept eq 0 && result.way eq '온라인'}">답변대기</c:if>
                     			>
                     			<c:if test="${result.accept eq 0 && role eq 'ROLE_MENTO' && result.way eq '오프라인'}">

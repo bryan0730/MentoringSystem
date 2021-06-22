@@ -181,7 +181,7 @@ function setData(url, id, accept) {
             form = {
                 bookingId: id,
                 accept: accept,
-                role: role.
+                role: role,
                 mentoEmail: mentoEmail,
             	mentiEmail : mentiEmail
             }
