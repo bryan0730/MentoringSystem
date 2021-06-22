@@ -53,18 +53,15 @@
                 <div class="item track_box">
                     <input type="text" name="memberTrack" id="memberTrack" class="tb track" placeholder="ICT 트랙(H/W, S/W)">
                 </div>
-            </div>
-            <p>사진</p>
-            <div class="item photo_box">
-                생략
-            </div>
+            </div> 
+
             <p>가입자 권한</p>
             <div class="item authoritie_box">
                 <div class="auth">
                     <input type="radio" name="authoritie" value="ROLE_MEMBER">멘티
                 </div>
                 <div class="auth">
-		            <input type="radio" name="authoritie" value="ROLE_MENTO">멘토
+                  <input type="radio" name="authoritie" value="ROLE_MENTO">멘토
                 </div>
             </div>
 

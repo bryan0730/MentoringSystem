@@ -6,12 +6,17 @@
 
  // 멘토, 멘티 리스트를 클릭 이벤트 세팅
  $(document).on('click', 'div.mentoList ul li', function() {
-     $('div.mentoList ul li').show()
-     $('div.mentoList ul li').removeClass("mento-on");
-     $(this).addClass("mento-on");
-     $('.mento-on').hide();
-   	 
-     selectMento(this);
+     
+   	 if ($('.mentiInfo ul li').hasClass('unmatched')) {
+        alert("진행중인 매칭을 저장해주세요")
+     }else {
+	     $('div.mentoList ul li').show()
+	     $('div.mentoList ul li').removeClass("mento-on");
+	     $(this).addClass("mento-on");
+	     $('.mento-on').hide();
+     	selectMento(this);
+     }
+     
  })
  
  $(document).on('click', 'div.mentiList ul li', function() {
@@ -31,35 +36,30 @@
  // mentiInfo에 출력됨
  function selectMento(mento) {
  
- 	console.log($('.mentiInfo ul li').hasClass('unmatched'));
-     if ($('.mentiInfo ul li').hasClass('unmatched')) {
-        alert("진행중인 매칭을 저장해주세요")
-     } else {
-      	$('div.mentoInfo span').remove();
-     	$('div.mentiInfo ul li').remove();
-        let addhtml = "<span>" + $(mento).text() + "</span>";
-        let mentoSeq = $(mento).val();
-        $('div.mentoInfo').append(addhtml);
-        $.ajax({
-            type:'GET',
-            url : '/admin/selectMentiList',
-            dataType : 'JSON',
-            data : {"mentoSeq" : mentoSeq},
-            success : function(data) {
-                let size = data.length;
-                for (let i = 0; i < size; i++) {
-                    let addhtml = "<li id='matchedMenti" + data[i].memberSeq + "'>" + data[i].memberName 
-                    + "<a href='#none' onclick='javascript:deleteMenti(" + data[i].memberSeq + "); return false;'>삭제</a>"
-                    + "</li>"
-                    $('div.mentiInfo ul').append(addhtml);
-                }
-                
-            },
-            error : function(jqXHR, textStatus, errorThrown) {
-                console.log("error");
+  	$('div.mentoInfo span').remove();
+ 	$('div.mentiInfo ul li').remove();
+    let addhtml = "<span>" + $(mento).text() + "</span>";
+    let mentoSeq = $(mento).val();
+    $('div.mentoInfo').append(addhtml);
+    $.ajax({
+        type:'GET',
+        url : '/admin/selectMentiList',
+        dataType : 'JSON',
+        data : {"mentoSeq" : mentoSeq},
+        success : function(data) {
+            let size = data.length;
+            for (let i = 0; i < size; i++) {
+                let addhtml = "<li id='matchedMenti" + data[i].memberSeq + "'>" + data[i].memberName 
+                + "<a href='#none' onclick='javascript:deleteMenti(" + data[i].memberSeq + "); return false;'>삭제</a>"
+                + "</li>"
+                $('div.mentiInfo ul').append(addhtml);
             }
-        });
-     }
+            
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log("error");
+        }
+    });
      
  }
  

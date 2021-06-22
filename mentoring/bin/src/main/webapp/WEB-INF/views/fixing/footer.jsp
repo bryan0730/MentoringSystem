@@ -17,10 +17,10 @@
 var socket = null;
 $(document).ready( function() {
     connectWS();	
-});
+});	
 function connectWS() {
     console.log("tttttttttttttt")
-    var ws = new WebSocket("ws://www.humensy.ml/mentoringNotice");
+    var ws = new WebSocket("ws://localhost:9988/mentoringNotice");
     socket = ws;
     ws.onopen = function () {
         console.log('Info: connection opened.');

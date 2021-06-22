@@ -30,9 +30,14 @@ public class MainController {
    
    @RequestMapping(value="/insertBooking")
    public void BookingInsert(BookingDomain bookingDomain, EchoDomain echoDomain) throws Exception {
-      mainService.insertBooking(bookingDomain);
+	   System.out.println("에코 :  : : "+echoDomain.getEchoMsg());
+	      System.out.println("에코  : : : "+bookingDomain.getMentiEmail());
+	      System.out.println("에코  : : : "+bookingDomain.getMentoEmail());
+	   
+	   mainService.insertBooking(bookingDomain);
       
-      
+      echoDomain.setSenderId(bookingDomain.getMentiEmail());
+      echoDomain.setReceiverId(bookingDomain.getMentoEmail());
       echoDomain.setEchoStatus("reservation");
       echoService.echoInsert(echoDomain);
    }
@@ -54,6 +59,9 @@ public class MainController {
    public void BookingUpdate(BookingDomain bookingDomain, EchoDomain echoDomain) throws Exception {
       mainService.updateBooking(bookingDomain);
       
+      
+      echoDomain.setSenderId(bookingDomain.getMentoEmail());
+      echoDomain.setReceiverId(bookingDomain.getMentiEmail());
       echoDomain.setEchoStatus("accept");
       echoService.echoInsert(echoDomain);
    }

@@ -12,7 +12,6 @@ let memberSeq = $("#memberSeq").val()
 let memberRole = $("#role").val()
 let mentoEmail = memberRole == "ROLE_MEMBER" ? $("#mentoEmail").val() : "";
 let mentiEmail = memberRole == "ROLE_MEMBER" ? $("#e-mail").val() : "";
-let echoMsg = mentiEmail + "님이 멘토링을 예약하셨습니다."
 
 
 //캘린더 뷰 띄우기
@@ -28,22 +27,33 @@ $('.add-btn').bind('click', function () {
 
 // 예약버튼 클릭
 $('#booking-btn').bind('click', function () {
-    if(memberRole == "ROLE_MEMBER"){
-        setData("insertBooking");
+    if(!$('.booking-title').children('input').val()){
+        alert('제목을 입력해 주세요');
+    }else if(memberRole== "ROLE_MEMBER" && !$('.booking-content').children('textarea').val()){
+        alert('내용을 입력해 주세요')
     }else{
-        setDataMento("insertSchedule");
-    }
-    
+        if(memberRole == "ROLE_MEMBER"){
+            setData("insertBooking");
+        }else{
+            setDataMento("insertSchedule");
+        }
+    }  
 });
 
 // 수정버튼 클릭 
 $('#revise-btn').on('click', function () {
     let id = $('#eventId').val();
-    if(memberRole == "ROLE_MEMBER"){
-        setData("updateBooking",id);
+    if(!$('.booking-title').children('input').val()){
+        alert('제목을 입력해 주세요');
+    }else if(!$('.booking-content').children('textarea').val()){
+        alert('내용을 입력해 주세요')
     }else{
-        setDataMento("updateSchedule",id);
-    }
+        if(memberRole == "ROLE_MEMBER"){
+            setData("updateBooking",id);
+        }else{
+            setDataMento("updateSchedule",id);
+        }
+    } 
 });
 
 //삭제버튼 클릭
@@ -107,7 +117,6 @@ function veiwModal(selectedTime) {
                 console.log(element.scheduleTime)
                 // 예약된 시간 선택 불가능 또는 표시 하기
                 let st = element.scheduleTime.split(',');
-                console.log(st);
                 for(let i = 0; i<st.length; i++){
                     $('.time-item')[timeItem[st[i]]].setAttribute('data-select-val','selected');
                 }
@@ -166,7 +175,7 @@ function setData(url, id, accept) {
                 way: bookingWay,
                 mentiSeq: seq,
                 mentiName: name,
-                role: role 
+                role: role
             }
         }else{
             form = {
@@ -184,14 +193,13 @@ function setData(url, id, accept) {
             way: bookingWay,
             mentiSeq: seq,
             mentiName: name,
-            receiverId: mentoEmail,
-            senderId : mentiEmail,
-            echoMsg : echoMsg
+            mentoEmail: mentoEmail,
+            mentiEmail : mentiEmail
         }
     }  
     // insertBooking controller에 통신 
     $.ajax({
-        url: url,
+        url: url, 
         type: "POST",
         data: form,
         success: function () {
@@ -200,12 +208,19 @@ function setData(url, id, accept) {
                 alert("저장되었습니다.");
                 emailUrl = "sendEmail";   
                 if(socket){
-                	console.log("소켓 메세지 보낸다");
-                	let socketMsg = "reservation,"+mentiEmail+","+mentoEmail+",mentoring";
-                	socket.send(socketMsg);
+                   console.log("소켓 메세지 보낸다");
+                   let socketMsg = "reservation,"+mentiEmail+","+mentoEmail+","+role;
+                   socket.send(socketMsg);
                 }            
             }else if(url=="updateBooking"){
-                alert("수정되었습니다.");  
+                alert("수정되었습니다.");   
+                if(role == "ROLE_MENTO"){
+                   if(socket){
+                      console.log("소켓 메세지 보낸다 멘티한테");
+                      let socketMsg = "accept,"+mentoEmail+","+mentiEmail+","+role;
+                      socket.send(socketMsg);
+                   }
+                }
                 emailUrl = "updateEmail";             
             }else if(url=="deleteBooking"){
                 alert("삭제되었습니다.");    
@@ -304,7 +319,10 @@ function setBookingView(seq, role) {
             mentoSeq: seq,
             role: role
         };
-    }       
+    }
+
+    let localDate = "0" + month + "/" + date + "/" + year;    
+    
     // 예약 현황  
     $.ajax({
         url: "listBooking",
@@ -312,20 +330,22 @@ function setBookingView(seq, role) {
         data: form,
         success: function (data) {
             data.forEach(element => {
-                $("#calendar").evoCalendar('addCalendarEvent', 
-                    {
-                        id: element.bookingId,
-                        name: element.bookingTitle,
-                        date: element.bookingDate,
-                        badge: '시간 : ' + element.bookingTime,
-                        description: element.bookingContent,
-                        type: "event",
-                        color: element.accept == 0 ? "#ff7575" : "#7cee35",
-                        userName:element.mentiName,
-                        way:element.way,
-                        accept:element.accept
-                    }
-                );               
+                if(localDate < element.bookingDate || element.accept==1){
+                    $("#calendar").evoCalendar('addCalendarEvent', 
+                        {
+                            id: element.bookingId,
+                            name: element.bookingTitle,
+                            date: element.bookingDate,
+                            badge: '시간 : ' + element.bookingTime,
+                            description: element.bookingContent,
+                            type: "event",
+                            color: element.accept == 0 ? "#ff7575" : "#7cee35",
+                            userName:element.mentiName,
+                            way:element.way,
+                            accept:element.accept
+                        }
+                    );  
+                }                  
             })
         },
         error: function () {
@@ -395,8 +415,8 @@ function reviseEvent(index) {
         if(way=="온라인"){
             $('#on-off').val("온라인");
             $(".time-select").addClass("hidden");
-	        $(".calendar-time").addClass("hidden");
-	        $(".modal-view").children(".modalBox").css("height", "400px");
+           $(".calendar-time").addClass("hidden");
+           $(".modal-view").children(".modalBox").css("height", "400px");
         }else{
             $('#on-off').val("오프라인");
             $(".time-select").removeClass("hidden");
@@ -418,4 +438,3 @@ function viewMentoring(index) {
     $("#answer-btn").addClass("hidden");
     reviseMentoEvent(index);
 }
-

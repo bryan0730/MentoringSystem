@@ -166,22 +166,26 @@ $("#answer-btn").on('click', function () {
         bookingId : id,
         bookingComents : coments
     }
-    $.ajax({
-        url: "insertComent",
-        type: "POST",
-        data: form,
-        success: function () {
-            modalReset();
-            alert("답변을 등록 하였습니다.");                
-        },
-        error: function () {
-            alert("error");
-        },
-        complete: function (){
-            location.reload();
-        }
-    });
-})
+    if(!coments){
+        alert("답변을 입력해 주세요.")
+    }else{
+        $.ajax({
+            url: "insertComent",
+            type: "POST",
+            data: form,
+            success: function () {
+                modalReset();
+                alert("답변을 등록 하였습니다.");                
+            },
+            error: function () {
+                alert("error");
+            },
+            complete: function (){
+                location.reload();
+            }
+        });
+    }   
+});
 
 function getAnswer(id) {
     $.ajax({

@@ -194,7 +194,8 @@ function setData(url, id, accept) {
             mentiSeq: seq,
             mentiName: name,
             mentoEmail: mentoEmail,
-            mentiEmail : mentiEmail
+            mentiEmail : mentiEmail,
+            echoMsg : "멘토링이 예약되었습니다."
         }
     }  
     // insertBooking controller에 통신 

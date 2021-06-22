@@ -44,15 +44,11 @@ public class MentoringNoticeHandler extends TextWebSocketHandler{
             
             
             WebSocketSession receiverSession = userSession.get(sender);
-            TextMessage tmpMsg = null;
+             
             if ("reservation".equals(cmd) && receiverSession != null) {
-               if(role=="ROLE_MEMBER") {
-                  tmpMsg = new TextMessage(receiver + "님이  멘토링을 예약하셨습니다.");
-               }else if(role == "ROLE_MENTO") {
-                  tmpMsg = new TextMessage(receiver + "님이  멘토링을 수락하셨습니다.");
-               }
-               
-               receiverSession.sendMessage(tmpMsg);
+            		System.out.println("권한 : : : : : : :" + role);
+            	   TextMessage tmpMsg = new TextMessage(receiver + "님이  멘토링을 예약하셨습니다.");
+            	   receiverSession.sendMessage(tmpMsg);
             }
          }
       }
