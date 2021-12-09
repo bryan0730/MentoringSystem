@@ -1,7 +1,9 @@
 # MentoringSystem
 Hustar ICT Mentoring
 
--URL-
+접속주소 : 13.209.46.220
+
+-URL- 
 
 멘토/멘티 모두 혀용 : /common/**
 
